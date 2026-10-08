@@ -1,0 +1,8 @@
+import {
+  "ssssurf/dialnumber",
+  "moonbitlang/core/env",
+}
+
+options(
+  "is-main": true,
+)
