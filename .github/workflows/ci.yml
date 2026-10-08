@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install MoonBit
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+
+      # The acceptance criteria set a floor of moonc 0.10.14. The installer
+      # takes whatever "latest" resolves to at run time, which is normally well
+      # ahead of that floor — but nothing recorded which compiler actually built
+      # the code, so a mirror that lagged behind (or a cached runner image)
+      # could have dropped under the floor without anyone noticing. Echo the
+      # versions for the record and fail the run if moonc has fallen behind.
+      - name: Toolchain meets the required moonc version
+        run: |
+          moon version --all
+          required=0.10.14
+          actual=$(moonc -v | sed -E 's/^v([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
+          echo "moonc $actual (required >= $required)"
+          lowest=$(printf '%s\n%s\n' "$required" "$actual" | sort -V | head -n 1)
+          if [ "$lowest" != "$required" ]; then
+            echo "::error::moonc $actual is older than the required $required"
+            exit 1
+          fi
+
+      - name: Check
+        run: moon check
+
+      - name: Test
+        run: moon test
+
+      # README.md and docs/reproducible-demo.md both record command output as
+      # literal text. Without this step a renamed field or an extra demo line
+      # would leave the documented output quietly wrong, which is exactly what
+      # the acceptance criteria ask not to happen.
+      - name: Documentation matches real output
+        run: node scripts/check-docs.mjs
+
+  # The README and the project description both claim the library compiles for
+  # native, wasm and wasm-gc. Verifying only the default target let that claim
+  # drift silently, so each target is now built explicitly.
+  build-matrix:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [wasm, wasm-gc, native]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install MoonBit
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+
+      - name: Build (${{ matrix.target }})
+        run: moon build --target ${{ matrix.target }}
+
+      - name: Test (${{ matrix.target }})
+        run: moon test --target ${{ matrix.target }}
