@@ -1,0 +1,96 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "ssssurf/dialnumber"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn calling_code(String) -> Int?
+
+pub fn canonical_region_code(String) -> String?
+
+pub fn format_e164(PhoneNumber) -> String
+
+pub fn format_international(PhoneNumber) -> String
+
+pub fn format_national(PhoneNumber, String) -> String?
+
+pub fn format_rfc3966(PhoneNumber) -> String
+
+pub fn idd_prefix(String) -> String?
+
+pub fn is_possible(PhoneNumber) -> Bool
+
+pub fn is_possible_in_region(PhoneNumber, String) -> Bool
+
+pub fn is_possible_number(String, String) -> Bool
+
+pub fn national_prefix(String) -> String?
+
+pub fn parse(String, String) -> PhoneNumber?
+
+pub fn parse_e164(String) -> PhoneNumber?
+
+pub fn parse_national(String, String) -> PhoneNumber?
+
+pub fn parse_tel_uri(String) -> PhoneNumber?
+
+pub fn possible_lengths(String) -> Array[Int]?
+
+pub fn possible_types(PhoneNumber) -> Array[NumberType]
+
+pub fn possible_types_in_region(PhoneNumber, String) -> Array[NumberType]
+
+pub fn region_by_calling_code(Int) -> String?
+
+pub fn region_codes() -> Array[String]
+
+pub fn region_exists(String) -> Bool
+
+pub fn region_name(String) -> String?
+
+pub fn region_of_number(PhoneNumber) -> String?
+
+pub fn regions_by_calling_code(Int) -> Array[String]
+
+pub fn to_tel_uri(PhoneNumber) -> String
+
+// Errors
+
+// Types and methods
+pub(all) enum NumberType {
+  FixedLine
+  Mobile
+  TollFree
+  PremiumRate
+  SharedCost
+  Voip
+  Uan
+  PersonalNumber
+  Pager
+  Voicemail
+} derive(Eq, @debug.Debug)
+pub fn NumberType::equal(Self, Self) -> Bool
+pub fn NumberType::not_equal(Self, Self) -> Bool
+pub fn NumberType::output(Self, &Logger) -> Unit
+pub fn NumberType::to_repr(Self) -> @debug.Repr
+pub fn NumberType::to_string(Self) -> String
+pub impl Show for NumberType
+
+pub(all) struct PhoneNumber {
+  country_code : Int
+  national_number : String
+  extension : String
+} derive(Eq)
+pub fn PhoneNumber::equal(Self, Self) -> Bool
+pub fn PhoneNumber::new(Int, String) -> Self
+pub fn PhoneNumber::not_equal(Self, Self) -> Bool
+pub fn PhoneNumber::output(Self, &Logger) -> Unit
+pub fn PhoneNumber::to_string(Self) -> String
+pub fn PhoneNumber::with_extension(Self, String) -> Self
+pub impl Show for PhoneNumber
+
+// Type aliases
+
+// Traits
