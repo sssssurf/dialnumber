@@ -1,13 +1,13 @@
 // Learn more about moon.mod configuration:
 // https://docs.moonbitlang.com/en/latest/toolchain/moon/module.html
 
-name = "ssssurf/dialnumber"
+name = "sssssurf/dialnumber"
 
 version = "0.1.0"
 
 readme = "README.mbt.md"
 
-repository = "https://github.com/ssssurf/dialnumber"
+repository = "https://github.com/sssssurf/dialnumber"
 
 license = "Apache-2.0"
 

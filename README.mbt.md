@@ -59,7 +59,7 @@ no dependencies.
 ## Install
 
 ```bash
-moon add ssssurf/dialnumber
+moon add sssssurf/dialnumber
 ```
 
 ## Quick start

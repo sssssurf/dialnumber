@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "ssssurf/dialnumber"
+package "sssssurf/dialnumber"
 
 import {
   "moonbitlang/core/debug",

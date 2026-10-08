@@ -33,4 +33,4 @@ First release.
 - `scripts/check-docs.mjs`, which fails CI when the recorded documentation drifts
   from real output.
 
-[0.1.0]: https://github.com/ssssurf/dialnumber/releases/tag/v0.1.0
+[0.1.0]: https://github.com/sssssurf/dialnumber/releases/tag/v0.1.0
