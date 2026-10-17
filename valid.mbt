@@ -1,17 +1,30 @@
 // Structural validation.
 //
-// The check available from published plan data alone is a length test: a calling
-// code the table knows, and a national number whose length the plan uses. That
-// is the same test libphonenumber calls "possible". Deciding whether a line is
-// actually assigned needs the leading-digit patterns, which this library does
-// not carry, so there is deliberately no function that claims to do more than
-// the data supports. See the README for the full boundary.
+// Two checks are available from published plan data:
+//
+//   * a length test: a calling code the table knows, and a national number whose
+//     length the plan uses. That is the same test libphonenumber calls
+//     "possible", and it is all that is applied to the 49 plans known only by
+//     their lengths.
+//   * for +1, a structural test: the NANP's NPA-NXX-XXXX shape, which is
+//     published, plus the area-code split between the United States and Canada.
+//     This resolves the one shared calling code in the table and rejects numbers
+//     no NANP plan could contain.
+//
+// Neither check proves a line is assigned: that needs the per-plan leading-digit
+// patterns, which this library does not carry. See the README for the boundary.
 
 ///|
-/// The region a parsed number belongs to: one that uses its calling code and
-/// admits its length. For a shared calling code the primary region wins.
-/// None when no region matches.
+/// The region a parsed number belongs to.
+///
+/// For +1 the area code decides: a Canadian NPA gives `"CA"`, any other
+/// structurally valid NPA gives `"US"` (see `nanp.mbt`). For every other calling
+/// code the region must use that code and admit the number's length; if several
+/// do, the primary region wins. None when no region matches.
 pub fn region_of_number(pn : PhoneNumber) -> String? {
+  if pn.country_code == 1 {
+    return nanp_region_of(pn.national_number)
+  }
   let n = chars_of(pn.national_number).length()
   let mut fallback : String? = None
   for r in regions {
@@ -28,21 +41,34 @@ pub fn region_of_number(pn : PhoneNumber) -> String? {
 }
 
 ///|
-/// True when a known region uses the number's calling code and admits its
-/// length. Streams are not consulted: this says the number *could* exist in the
-/// plan, not that it is assigned.
+/// True when the number could exist in some plan the table knows. For +1 this
+/// checks the NANP structure; for everything else it checks the length. Streams
+/// are not consulted: this says the number *could* exist, not that it is
+/// assigned.
 pub fn is_possible(pn : PhoneNumber) -> Bool {
+  if pn.country_code == 1 {
+    return nanp_possible(pn.national_number)
+  }
   region_of_number(pn) is Some(_)
 }
 
 ///|
 /// The same check against one named region.
+///
+/// For +1 this is stronger than a length test: the number must have NANP
+/// structure and its area code must belong to `region`, so a Manitoba number is
+/// not possible in the United States. For other calling codes it remains the
+/// length test, because no better published rule is carried here.
 pub fn is_possible_in_region(pn : PhoneNumber, region : String) -> Bool {
   match find_region(region) {
     None => false
     Some(r) =>
-      r.calling_code == pn.country_code &&
-      lengths_of(r).contains(chars_of(pn.national_number).length())
+      if pn.country_code == 1 {
+        nanp_region_of(pn.national_number) == Some(r.code)
+      } else {
+        r.calling_code == pn.country_code &&
+        lengths_of(r).contains(chars_of(pn.national_number).length())
+      }
   }
 }
 
@@ -59,6 +85,8 @@ pub fn possible_types(pn : PhoneNumber) -> Array[NumberType] {
 
 ///|
 /// The number types in one named region whose length rule admits this number.
+/// For +1 the number must also have NANP structure and its area code must
+/// belong to the region.
 pub fn possible_types_in_region(
   pn : PhoneNumber,
   region : String,
@@ -66,10 +94,16 @@ pub fn possible_types_in_region(
   match find_region(region) {
     None => []
     Some(r) =>
-      if r.calling_code == pn.country_code {
-        types_for_length(r, chars_of(pn.national_number).length())
-      } else {
+      if r.calling_code != pn.country_code {
         []
+      } else if pn.country_code == 1 {
+        if nanp_region_of(pn.national_number) == Some(r.code) {
+          types_for_length(r, chars_of(pn.national_number).length())
+        } else {
+          []
+        }
+      } else {
+        types_for_length(r, chars_of(pn.national_number).length())
       }
   }
 }

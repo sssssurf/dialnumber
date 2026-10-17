@@ -118,6 +118,14 @@ fn main {
     }
   }
 
+  head("+1 is two countries, and the NANP has a shape")
+  // The area code decides the country; the NPA/NXX rules decide readability.
+  tour("+1 201-555-0123", "")
+  tour("+1 204-254-5000", "")
+  tour("+1 905-555-0123", "")
+  tour("+1 111-555-0123", "")
+  tour("+1 201-155-0123", "")
+
   head("a parsed number keeps its extension")
   match @dn.parse_tel_uri("tel:+1-201-555-0123;ext=42") {
     None => show("tel uri", "unreadable")
@@ -125,6 +133,34 @@ fn main {
       show("e164", @dn.format_e164(pn))
       show("extension", pn.extension)
       show("rfc3966", @dn.format_rfc3966(pn))
+    }
+  }
+
+  head("a tel: URI keeps its local context")
+  // A local number with a numeric context resolves; the context is preserved
+  // rather than merged away, so the canonical form can be regenerated.
+  match @dn.parse_tel_uri_full("tel:555-0123;phone-context=+1-919;ext=42") {
+    None => show("tel uri", "rejected")
+    Some(t) => {
+      show("local_number", t.local_number)
+      show("phone_context", t.phone_context)
+      show("canonical", t.to_string())
+      match @dn.resolve_tel_uri(t) {
+        Some(pn) => show("resolved", @dn.format_e164(pn))
+        None => show("resolved", "no")
+      }
+    }
+  }
+  // A domain context is valid RFC 3966 but cannot be resolved to a number here.
+  match @dn.parse_tel_uri_full("tel:7042;phone-context=example.com") {
+    None => show("tel uri", "rejected")
+    Some(t) => {
+      show("phone_context", t.phone_context)
+      show("canonical", t.to_string())
+      match @dn.resolve_tel_uri(t) {
+        Some(pn) => show("resolved", @dn.format_e164(pn))
+        None => show("resolved", "no (domain context)")
+      }
     }
   }
 

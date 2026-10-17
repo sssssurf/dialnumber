@@ -33,7 +33,10 @@ test "arbitrary junk never panics" {
     let _ = @dialnumber.parse(w, "")
     let _ = @dialnumber.parse(w, "JP")
     let _ = @dialnumber.parse_tel_uri(w)
+    let _ = @dialnumber.parse_tel_uri_full(w)
     let _ = @dialnumber.is_possible_number(w, "US")
+    let _ = @dialnumber.nanp_possible(w)
+    let _ = @dialnumber.nanp_region_of(w)
   }
 }
 
