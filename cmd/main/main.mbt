@@ -177,11 +177,18 @@ fn run_cc(code : String) -> Unit {
 
 ///|
 fn run_tel(uri : String) -> Unit {
-  match @dialnumber.parse_tel_uri(uri) {
+  match @dialnumber.parse_tel_uri_full(uri) {
     None => println("tel: invalid uri")
-    Some(pn) => {
-      println("e164: \{@dialnumber.format_e164(pn)}")
-      println("extension: \{if pn.extension == "" { "(none)" } else { pn.extension }}")
+    Some(t) => {
+      println("global_number: \{if t.global_number == "" { "(none)" } else { t.global_number }}")
+      println("local_number: \{if t.local_number == "" { "(none)" } else { t.local_number }}")
+      println("phone_context: \{if t.phone_context == "" { "(none)" } else { t.phone_context }}")
+      println("extension: \{if t.extension == "" { "(none)" } else { t.extension }}")
+      println("isub: \{if t.isub == "" { "(none)" } else { t.isub }}")
+      match @dialnumber.resolve_tel_uri(t) {
+        None => println("resolved: no")
+        Some(pn) => println("resolved: \{@dialnumber.format_e164(pn)}")
+      }
     }
   }
 }

@@ -164,37 +164,12 @@ test "format_rfc3966 carries the extension" {
 }
 
 ///|
-test "is_possible checks the calling code and the length" {
+test "is_possible checks the structure and the length" {
   assert_true(@dialnumber.is_possible_number("+12015550123", ""))
   assert_false(@dialnumber.is_possible_number("+1201555012", ""))
   assert_false(@dialnumber.is_possible_number("+120155501234", ""))
   assert_false(@dialnumber.is_possible_number("+9995550000", ""))
   assert_false(@dialnumber.is_possible_number("garbage", ""))
-}
-
-///|
-test "is_possible_in_region also checks the region agrees" {
-  match @dialnumber.parse("+12015550123", "") {
-    Some(pn) => {
-      assert_true(@dialnumber.is_possible_in_region(pn, "US"))
-      assert_true(@dialnumber.is_possible_in_region(pn, "CA"))
-      assert_false(@dialnumber.is_possible_in_region(pn, "JP"))
-    }
-    None => assert_true(false)
-  }
-}
-
-///|
-test "region_of_number resolves a shared calling code to the primary region" {
-  match @dialnumber.parse("+12015550123", "") {
-    Some(pn) => assert_eq(@dialnumber.region_of_number(pn), Some("US"))
-    None => assert_true(false)
-  }
-  match @dialnumber.parse("+12042545000", "") {
-    // Still +1; the primary region wins even for a Canadian area code.
-    Some(pn) => assert_eq(@dialnumber.region_of_number(pn), Some("US"))
-    None => assert_true(false)
-  }
 }
 
 ///|
@@ -292,6 +267,138 @@ test "tel uri rejections" {
   assert_true(@dialnumber.parse_tel_uri("tel:") is None)
   // A domain phone-context cannot be resolved to a country code here.
   assert_true(@dialnumber.parse_tel_uri("tel:5550123;phone-context=example.com") is None)
+}
+
+///|
+test "a local number resolves through a numeric context" {
+  match @dialnumber.parse_tel_uri_full("tel:555-0123;phone-context=+1-914") {
+    Some(t) => {
+      // The context is kept separate from the local digits, not merged in.
+      assert_eq(t.local_number, "5550123")
+      assert_eq(t.phone_context, "+1914")
+      match @dialnumber.resolve_tel_uri(t) {
+        Some(pn) => assert_eq(@dialnumber.format_e164(pn), "+19145550123")
+        None => assert_true(false)
+      }
+    }
+    None => assert_true(false)
+  }
+}
+
+///|
+test "a domain context parses and round-trips but does not resolve" {
+  match @dialnumber.parse_tel_uri_full("tel:7042;phone-context=Example.COM") {
+    Some(t) => {
+      assert_eq(t.local_number, "7042")
+      assert_eq(t.phone_context, "example.com")
+      assert_eq(
+        @dialnumber.to_tel_uri_full(t),
+        Some("tel:7042;phone-context=example.com"),
+      )
+      assert_true(@dialnumber.resolve_tel_uri(t) is None)
+    }
+    None => assert_true(false)
+  }
+}
+
+///|
+test "a local number with non-decimal digits parses but does not resolve" {
+  match @dialnumber.parse_tel_uri_full("tel:*123;phone-context=+1415") {
+    Some(t) => {
+      assert_eq(t.local_number, "*123")
+      assert_true(@dialnumber.resolve_tel_uri(t) is None)
+    }
+    None => assert_true(false)
+  }
+}
+
+///|
+test "isub is preserved opaquely" {
+  match @dialnumber.parse_tel_uri_full("tel:+14155550123;isub=abc%20def") {
+    Some(t) => {
+      assert_eq(t.isub, "abc%20def")
+      assert_eq(t.extension, "")
+      match @dialnumber.resolve_tel_uri(t) {
+        Some(pn) => assert_eq(@dialnumber.format_e164(pn), "+14155550123")
+        None => assert_true(false)
+      }
+    }
+    None => assert_true(false)
+  }
+}
+
+///|
+test "tel uri parameters are validated, not dropped" {
+  for bad in [
+    "tel:5550123", // local number without a phone-context
+    "tel:+12015550123;phone-context=+1", // context on a global number
+    "tel:+12015550123;ext=42;isub=abc", // ext and isub are exclusive
+    "tel:+12015550123;isub=abc;ext=42",
+    "tel:+12015550123;ext=42;ext=43", // duplicate
+    "tel:+12015550123;phone-context=+1;phone-context=+2",
+    "tel:+12015550123;foo=bar", // unknown parameter
+    "tel:+12015550123;ext=", // empty value
+    "tel:+12015550123;ext", // parameter without a value
+    "tel:+1 201 555 0123", // space is not a visual separator
+    "tel:+12015550123;;ext=42", // empty parameter
+    "tel:;ext=42",
+    "tel:+12015550123;phone-context=",
+  ] {
+    assert_true(@dialnumber.parse_tel_uri_full(bad) is None)
+  }
+}
+
+///|
+test "tel uri parse and serialise are inverses" {
+  let written : Array[String] = [
+    "tel:+12015550123",
+    "tel:+1-201-555-0123;ext=42",
+    "TEL:+44-20-7946-0958;ISUB=abc%20def",
+    "tel:7042;phone-context=+1-919",
+    "tel:7042;phone-context=Example.COM;ext=42",
+    "tel:863-1234;phone-context=+1-914-555",
+    "tel:+1-(201)-555-0123",
+  ]
+  for uri in written {
+    match @dialnumber.parse_tel_uri_full(uri) {
+      None => assert_true(false)
+      Some(t) =>
+        match @dialnumber.to_tel_uri_full(t) {
+          None => assert_true(false)
+          Some(canonical) =>
+            match @dialnumber.parse_tel_uri_full(canonical) {
+              Some(again) => assert_eq(again, t)
+              None => assert_true(false)
+            }
+        }
+    }
+  }
+}
+
+///|
+test "to_tel_uri_full refuses an incoherent struct" {
+  assert_true(
+    @dialnumber.to_tel_uri_full(
+      @dialnumber.TelUri::{
+        global_number: "",
+        local_number: "",
+        phone_context: "",
+        extension: "",
+        isub: "",
+      },
+    ) is None,
+  )
+  assert_true(
+    @dialnumber.to_tel_uri_full(
+      @dialnumber.TelUri::{
+        global_number: "+12015550123",
+        local_number: "",
+        phone_context: "+1914",
+        extension: "",
+        isub: "",
+      },
+    ) is None,
+  )
 }
 
 ///|

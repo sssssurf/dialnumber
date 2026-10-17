@@ -43,6 +43,41 @@ fn upper_ascii(c : Char) -> Char {
 }
 
 ///|
+/// Lowercase an ASCII letter. Like `upper_ascii`, every other character is
+/// returned unchanged.
+fn lower_ascii(c : Char) -> Char {
+  match c {
+    'A' => 'a'
+    'B' => 'b'
+    'C' => 'c'
+    'D' => 'd'
+    'E' => 'e'
+    'F' => 'f'
+    'G' => 'g'
+    'H' => 'h'
+    'I' => 'i'
+    'J' => 'j'
+    'K' => 'k'
+    'L' => 'l'
+    'M' => 'm'
+    'N' => 'n'
+    'O' => 'o'
+    'P' => 'p'
+    'Q' => 'q'
+    'R' => 'r'
+    'S' => 's'
+    'T' => 't'
+    'U' => 'u'
+    'V' => 'v'
+    'W' => 'w'
+    'X' => 'x'
+    'Y' => 'y'
+    'Z' => 'z'
+    _ => c
+  }
+}
+
+///|
 /// The characters of a string, in order.
 fn chars_of(s : String) -> Array[Char] {
   let out : Array[Char] = []
@@ -235,6 +270,20 @@ fn index_of_sub(s : String, sub : String) -> Int? {
     }
     if ok {
       return Some(i)
+    }
+  }
+  None
+}
+
+///|
+/// Split a string at the first occurrence of `sep`. None when the separator is
+/// absent, so a missing `=` in a URI parameter is distinguishable from an empty
+/// value.
+fn split_first(s : String, sep : Char) -> (String, String)? {
+  let cs = chars_of(s)
+  for i = 0; i < cs.length(); i = i + 1 {
+    if cs[i] == sep {
+      return Some((slice(cs, 0, i), slice(cs, i + 1, cs.length() - i - 1)))
     }
   }
   None
