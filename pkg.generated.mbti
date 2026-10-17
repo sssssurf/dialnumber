@@ -26,6 +26,12 @@ pub fn is_possible_in_region(PhoneNumber, String) -> Bool
 
 pub fn is_possible_number(String, String) -> Bool
 
+pub fn nanp_canadian_area_codes() -> Array[String]
+
+pub fn nanp_possible(String) -> Bool
+
+pub fn nanp_region_of(String) -> String?
+
 pub fn national_prefix(String) -> String?
 
 pub fn parse(String, String) -> PhoneNumber?
@@ -35,6 +41,8 @@ pub fn parse_e164(String) -> PhoneNumber?
 pub fn parse_national(String, String) -> PhoneNumber?
 
 pub fn parse_tel_uri(String) -> PhoneNumber?
+
+pub fn parse_tel_uri_full(String) -> TelUri?
 
 pub fn possible_lengths(String) -> Array[Int]?
 
@@ -54,7 +62,11 @@ pub fn region_of_number(PhoneNumber) -> String?
 
 pub fn regions_by_calling_code(Int) -> Array[String]
 
+pub fn resolve_tel_uri(TelUri) -> PhoneNumber?
+
 pub fn to_tel_uri(PhoneNumber) -> String
+
+pub fn to_tel_uri_full(TelUri) -> String?
 
 // Errors
 
@@ -90,6 +102,20 @@ pub fn PhoneNumber::output(Self, &Logger) -> Unit
 pub fn PhoneNumber::to_string(Self) -> String
 pub fn PhoneNumber::with_extension(Self, String) -> Self
 pub impl Show for PhoneNumber
+
+pub(all) struct TelUri {
+  global_number : String
+  local_number : String
+  phone_context : String
+  extension : String
+  isub : String
+} derive(Eq, @debug.Debug)
+pub fn TelUri::equal(Self, Self) -> Bool
+pub fn TelUri::not_equal(Self, Self) -> Bool
+pub fn TelUri::output(Self, &Logger) -> Unit
+pub fn TelUri::to_repr(Self) -> @debug.Repr
+pub fn TelUri::to_string(Self) -> String
+pub impl Show for TelUri
 
 // Type aliases
 
