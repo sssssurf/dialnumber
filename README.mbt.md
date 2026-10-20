@@ -1,84 +1,158 @@
 # dialnumber
 
-Phone number parsing, validation and formatting for MoonBit, built on the
+Phone number parsing, validation and formatting for MoonBit, driven by the
 national numbering plans behind ITU-T E.164.
 
 A phone number written by a person is a mess of spaces, dashes, parentheses,
 trunk prefixes and country codes, and the same number can be written a dozen
-ways. `dialnumber` turns any of them into one value, checks it against the plan,
-and renders it back in whichever of the standard shapes you need.
+ways. `dialnumber` turns any of them into one value, decides what the plan says
+about it, and renders it back in whichever of the standard shapes you need.
+
+The table covers **245 numbering plans**, and each plan carries the real rules
+rather than only its lengths: a pattern engine interprets those rules, and a data
+pipeline regenerates the whole table from Google's libphonenumber metadata with a
+recorded checksum. Every public function is total — bad input comes back as
+`None` or `false`, never as an exception.
 
 ## What it does
 
 - **Parse** an E.164 number (`+81 90-1234-5678`), a number dialled
   internationally (`011 44 20 7946 0958` from the NANP), or a number dialled
   nationally with a region hint (`090-1234-5678` in Japan) into a `PhoneNumber`.
-- **Check** the structure against the plan: the calling code is one the table
-  knows, and the national number's length is one the plan uses. For `+1` the
-  check is stronger — the NANP's NPA-NXX-XXXX shape is enforced.
-- **Disambiguate `+1`** between the United States and Canada by area code, so
-  `+1 204…` (Manitoba) resolves to `CA` and `+1 201…` (New Jersey) to `US`.
-- **List** the number types a length admits — fixed-line, mobile, toll-free,
-  premium-rate, shared-cost, voip, uan, personal, pager, voicemail.
+- **Check possibility** — the cheap test: a known calling code and a length the
+  plan uses.
+- **Check validity** — the rule test: the national number must match one of the
+  plan's published patterns. This is libphonenumber's "valid" verdict, and it is
+  a real decision procedure rather than a length check.
+- **Name the number type** the rules report: fixed-line, mobile, the shared
+  fixed-line-or-mobile, toll-free, premium-rate, shared-cost, voip, uan, personal,
+  pager, voicemail — with libphonenumber's precedence between them.
+- **Resolve the region** of a number, including every calling code several
+  territories share. All 25 territories of the `+1` space resolve from their own
+  area-code allocation, so `+1 204…` is Canada, `+1 787…` is Puerto Rico and
+  `+1 868…` is Trinidad and Tobago.
 - **Format** to E.164, international, national, or an RFC 3966 `tel:` URI.
 - **Look up** regions by code or by calling code, with the plan's international
-  and national prefixes and its national-number lengths.
+  and national prefixes, the lengths it uses and the raw rules behind a verdict.
 - **Read and write** RFC 3966 `tel:` URIs with the full grammar: global and
   local numbers, numeric or domain `;phone-context=`, `;ext=` and `;isub=`.
   Parsing keeps each part separate, and the parser and serialiser are inverses.
 
-The table covers **51 numbering plans** and every public function is total: bad
-input comes back as `None` or `false`, never as an exception or a panic.
+## Two levels of validation
 
-## What it deliberately does not do
+The distinction is the same one libphonenumber draws, and it is worth being
+explicit about because it is the difference between "could exist" and "is
+assigned".
 
-This is the boundary that matters, so it is stated up front rather than buried.
+| Level | Question | Answer comes from |
+| --- | --- | --- |
+| `is_possible` | known calling code, length the plan uses? | published lengths (and the NANP's shape rules for `+1`) |
+| `is_valid` | does the number match a published rule? | the plan's per-type patterns, interpreted by the engine |
+| `number_type` | which rule matched? | the same walk, in libphonenumber's precedence order |
 
-`dialnumber` validates **structure**, not **assignment**. It can tell you that
-`+81 90-1234-5678` is a well-formed Japanese mobile but not that the line exists,
-is reachable, or belongs to anyone. Deciding that needs each plan's leading-digit
-ranges and its allocation records, which this library does not carry.
+For `+1` the structural rule runs first: ten digits, area code and exchange
+starting 2–9, no N11 area code. A number can therefore be *possible* and not
+*valid* — `+1 555-555-0123` has the right shape, but 555 is not an assigned area
+code, so no territory's allocation claims it.
 
-Two levels of structural check are available from published data:
+```moonbit nocheck
+///|
+let pn = @dialnumber.parse("+1 204-254-5000", "")
 
-- For the 49 plans known only by their lengths, the check is the length test.
-- For `+1`, the NANP shape is published and is enforced: NPA and NXX start with
-  2–9, and N11 service codes are not area codes. This also fixes the
-  worst length-test failure, where a Canadian local-only seven-digit number
-  resolved to a country; it now resolves to nothing.
-
-So there is no `is_valid` that claims more than the data supports. The check is
-named `is_possible`, the same word libphonenumber uses for the length test, and
-`possible_types` returns a *candidate set* rather than a verdict, because several
-types can share one length. The `+1` resolver is US/Canada only: Caribbean NPAs,
-Puerto Rico, Guam and the shared 8YY/900 codes resolve to `US`.
-
-For the same reason there is no locale-aware digit grouping. Rendering
-`201 555 0123` correctly needs the leading-digit patterns that are out of scope;
-a generic grouper would be wrong exactly where it looked most confident, which is
-worse than leaving the caller to group for display.
-
-## The `+1` disambiguation
-
-The United States and Canada share calling code 1, and a length test cannot tell
-them apart. The area code can. `nanp.mbt` holds the Canadian NPAs in service
-(56 geographic plus the non-geographic 600, 622 and 633), and applies three
-structural rules that every NANP number obeys:
-
-- the national number is exactly ten digits;
-- the area code (NPA) and central-office code (NXX) start with 2–9;
-- the area code is not an N11 service code.
-
-`region_of_number` then answers `CA` for a Canadian NPA and `US` otherwise;
-`is_possible_in_region` uses the same rule, so a Manitoba number is not possible
-in the United States. Reserved-but-not-yet-active NPAs are left out on purpose,
-which is why `nanp.mbt` dates its data.
-
-```moonbit
-@dialnumber.nanp_region_of("2042545000")  // Some("CA")
-@dialnumber.nanp_region_of("2015550123")  // Some("US")
-@dialnumber.nanp_possible("2011550123")   // false: NXX starts with 1
+///|
+match pn {
+  Some(n) => {
+    @dialnumber.region_of_number(n)  // Some("CA")
+    @dialnumber.is_possible(n)      // true
+    @dialnumber.is_valid(n)         // true
+    @dialnumber.number_type(n)      // Some(FixedLineOrMobile)
+  }
+  None => ()
+}
 ```
+
+## The rule engine
+
+`pattern.mbt` is a small regular-expression engine built for exactly the grammar
+the numbering plans use: literals, `\d`, character classes with ranges,
+non-capturing groups, alternation, and the `?`, `*`, `+`, `{n}`, `{n,}` and
+`{n,m}` quantifiers. A recursive-descent parser builds a syntax tree, the tree is
+compiled to a Thompson NFA, and matching simulates the NFA over a set of live
+states.
+
+Three properties follow from that construction, and all three are tested:
+
+- **Linear in pattern size times input length.** There is no backtracking, so no
+  pattern can make a validation call explode — the failure mode that makes
+  regex-based validators unsafe on hostile input simply does not exist here.
+- **Total.** A pattern that does not parse matches nothing, so a bad data row can
+  never become a false positive. `pattern_well_formed` exposes the same check.
+- **Data, not code.** The rules are strings in the generated table; a plan that
+  changes its ranges is a data refresh, not a source change.
+
+```moonbit nocheck
+///|
+@dialnumber.matches_pattern("[2-9]\\d{9}", "2042545000")  // true
+@dialnumber.matches_pattern("[2-9]\\d{9}", "204254500")   // false: full match only
+@dialnumber.pattern_well_formed("[2-9]\\d{9}")            // true
+@dialnumber.plan_pattern("DK")                            // Some("[2-9]\\d{7}")
+```
+
+## Where the data comes from, and how it is maintained
+
+The table is generated, not hand-written:
+
+```text
+PhoneNumberMetadata.xml          upstream, Apache-2.0, pinned by SHA-256
+        |  scripts/update-metadata.mjs      fetch, extract, validate the grammar
+        v
+data/numbering-plans.json        one record per region: prefixes, types,
+        |                        patterns, lengths, example numbers
+        |  scripts/gen-metadata.mjs         emit MoonBit
+        v
+plan_data.mbt                    the table the library compiles
+plan_examples_test.mbt           1 132 published example numbers as golden tests
+plan_corpus_test.mbt             the engine cross-checked against a regex engine
+```
+
+`data/numbering-plans.json` records the source URL, the license, the retrieval
+date and the SHA-256 of the exact upstream file it was extracted from, so a
+refresh is auditable. Both `scripts/gen-metadata.mjs --check` and
+`scripts/gen-corpus.mjs` are run by CI: editing a generated file by hand, or
+forgetting to regenerate after a data refresh, fails the build instead of
+drifting silently.
+
+```bash
+node scripts/update-metadata.mjs   # fetch a fresh copy of the upstream XML
+node scripts/gen-metadata.mjs      # regenerate the table and the example tests
+node scripts/gen-corpus.mjs        # regenerate the differential corpus
+node scripts/check-docs.mjs        # verify the docs still match real output
+```
+
+## Coverage: 245 plans and the whole NANP
+
+The table holds every geographic territory the upstream metadata describes, with
+the number types each plan defines: 245 regions, 1 132 per-type rules and 1 132
+published example numbers.
+
+The North American Numbering Plan is the largest shared calling code: 25
+territories on `+1`. Each publishes its own area-code allocation, so resolution
+walks those allocations instead of a hard-coded list — the United States, Canada,
+Puerto Rico, Jamaica, the Bahamas, Trinidad and Tobago, Guam and the rest all
+resolve to themselves, while a shared range such as a toll-free `800` number
+resolves to the plan's main country.
+
+```moonbit nocheck
+///|
+@dialnumber.nanp_region_codes().length()  // 25
+@dialnumber.nanp_region_of("2042545000")  // Some("CA")
+@dialnumber.nanp_region_of("7872345678")  // Some("PR")
+@dialnumber.nanp_region_of("2011550123")  // None: NXX starts with 1
+```
+
+Non-geographic calling codes (`+800` international freephone and its neighbours)
+describe networks rather than territories, so they are outside a region-keyed
+table by design; the README's boundary note applies to them.
 
 ## RFC 3966 without losing the context
 
@@ -96,7 +170,9 @@ The parsed `TelUri` keeps `global_number`, `local_number`, `phone_context`,
 `parse_tel_uri_full` and `to_tel_uri_full` are inverses, and resolution is a
 separate step (`resolve_tel_uri`). Extensions and ISDN subaddresses are mutually
 exclusive, as the RFC requires; unknown, duplicate and empty parameters are
-rejected rather than dropped, and spaces are not accepted as visual separators.
+rejected rather than dropped; spaces are not accepted as visual separators; and
+an `isub` value is checked as a run of URI characters, so a `%` must start a
+complete `%HH` escape.
 
 ## Relationship to other MoonBit libraries
 
@@ -106,8 +182,8 @@ and `uuid` string formats; they do not know about telephone numbering.
 `moovalid` and `maru` are validator-combinator frameworks. `mooncontract`
 validates OpenAPI contracts, and `moonmrz` reads the ICAO 9303 machine-readable
 zone of a passport. `dialnumber` sits alongside them: it takes a phone number in
-and gives you its parts, its plan, and its canonical renderings, with no I/O and
-no dependencies.
+and gives you its parts, its plan, its verdict and its canonical renderings, with
+no I/O and no dependencies.
 
 ## Install
 
@@ -124,9 +200,10 @@ let pn = @dialnumber.parse("011 44 20 7946 0958", "US")
 ///|
 match pn {
   Some(n) => {
-    @dialnumber.format_e164(n)          // "+442079460958"
+    @dialnumber.format_e164(n)           // "+442079460958"
     @dialnumber.format_national(n, "GB") // Some("02079460958")
     @dialnumber.is_possible(n)           // true
+    @dialnumber.is_valid(n)              // true
     @dialnumber.region_of_number(n)      // Some("GB")
   }
   None => ()
@@ -140,13 +217,15 @@ report, and the text below is recorded from a real run.
 
 ```bash
 moon run cmd/main -- parse "+81 90-1234-5678"
+moon run cmd/main -- valid "+1 787-234-5678"
 moon run cmd/main -- possible "090-1234-5678" JP
 moon run cmd/main -- format "090-1234-5678" JP
 moon run cmd/main -- types "+86 131 2345 6789"
 moon run cmd/main -- region "+442079460958"
 moon run cmd/main -- info JP
 moon run cmd/main -- cc de
-moon run cmd/main -- tel "tel:+1-201-555-0123;ext=42"
+moon run cmd/main -- tel "tel:555-0123;phone-context=+1-919;ext=42"
+moon run cmd/main -- match "\d{8}" 12345678
 moon run cmd/main -- list
 ```
 
@@ -158,9 +237,16 @@ country_code: 81
 national_number: 9012345678
 e164: +819012345678
 region: JP
-```
 
-```text
+$ moon run cmd/main -- valid "+1 787-234-5678"
+valid: yes
+type: fixed-line-or-mobile
+region: PR
+
+$ moon run cmd/main -- types "+86 131 2345 6789"
+length candidates: fixed-line,mobile,shared-cost
+pattern verdict: mobile
+
 $ moon run cmd/main -- info JP
 region: JP
 name: Japan
@@ -168,29 +254,54 @@ calling_code: 81
 idd: 010
 national_prefix: 0
 lengths: 8,9,10,11,12,13,14,15,16,17
-```
 
-```text
-$ moon run cmd/main -- types "+86 131 2345 6789"
-types: fixed-line,mobile,shared-cost
+$ moon run cmd/main -- tel "tel:555-0123;phone-context=+1-919;ext=42"
+global_number: (none)
+local_number: 5550123
+phone_context: +1919
+extension: 42
+isub: (none)
+resolved: +19195550123
+
+$ moon run cmd/main -- match "\d{8}" 12345678
+well_formed: yes
+matches: yes
 ```
 
 ## API
+
+Parsing and validation:
 
 | Function | Purpose |
 | --- | --- |
 | `parse(input, region)` | read any written form into a `PhoneNumber?` |
 | `parse_e164(input)` | read only a `+`-prefixed number |
 | `parse_national(input, region)` | read a number as dialled in a region |
-| `is_possible(pn)` | length test, or NANP structure for `+1` |
+| `is_possible(pn)` | known code and a length the plan uses, plus NANP shape for `+1` |
 | `is_possible_in_region(pn, region)` | the same, against one named region |
 | `is_possible_number(input, region)` | parse then check, in one call |
-| `possible_types(pn)` | number types the length admits |
+| `is_valid(pn)` | the national number matches a published rule |
+| `is_valid_in_region(pn, region)` | the same, against one named region |
+| `is_valid_number(input, region)` | parse then validate, in one call |
+| `number_type(pn)` | the type the rules report, in libphonenumber's precedence |
+| `number_type_in_region(pn, region)` | the same, within one named region |
+| `possible_types(pn)` | number types whose *length* admits the number |
 | `possible_types_in_region(pn, region)` | the same, within one region |
-| `region_of_number(pn)` | the region a number resolves to (area code for `+1`) |
-| `nanp_possible(nsn)` | ten-digit NANP structure |
-| `nanp_region_of(nsn)` | `Some("CA")` / `Some("US")` by area code |
-| `nanp_canadian_area_codes()` | the Canadian NPAs the resolver knows |
+| `region_of_number(pn)` | the region the number resolves to |
+
+The pattern engine and the rules behind a verdict:
+
+| Function | Purpose |
+| --- | --- |
+| `matches_pattern(pattern, text)` | full-match under the numbering-plan grammar |
+| `pattern_well_formed(pattern)` | is the rule inside the supported grammar |
+| `plan_pattern(code)` | the plan's overall rule, as published |
+| `type_pattern(code, kind)` | the rule published for one number type |
+
+Formatting and `tel:` URIs:
+
+| Function | Purpose |
+| --- | --- |
 | `format_e164(pn)` | `+8613123456789` |
 | `format_international(pn)` | `+86 13123456789` |
 | `format_national(pn, region)` | trunk prefix plus national number |
@@ -200,6 +311,15 @@ types: fixed-line,mobile,shared-cost
 | `to_tel_uri_full(t)` | serialise a `TelUri` canonically |
 | `resolve_tel_uri(t)` | resolve parsed parts, when the context allows |
 | `to_tel_uri(pn)` | write a `tel:` URI for a number |
+
+The NANP and the region table:
+
+| Function | Purpose |
+| --- | --- |
+| `nanp_possible(nsn)` | ten-digit NANP structure |
+| `nanp_region_of(nsn)` | the territory a `+1` number belongs to |
+| `nanp_region_codes()` | every region in the NANP |
+| `nanp_area_code(nsn)` | the first three digits of a NANP number |
 | `region_codes()` | every region code in the table |
 | `region_exists(code)` | is the code in the table |
 | `canonical_region_code(code)` | the table's spelling of a code |
@@ -208,33 +328,33 @@ types: fixed-line,mobile,shared-cost
 | `idd_prefix(code)` | international dial-out prefix |
 | `national_prefix(code)` | trunk prefix, or `None` |
 | `possible_lengths(code)` | national-number lengths |
+| `local_only_lengths(code)` | lengths accepted only when dialled locally |
 | `region_by_calling_code(cc)` | one region for a calling code |
 | `regions_by_calling_code(cc)` | every region for a calling code |
 
-The `NumberType` enum names the ten categories. The `PhoneNumber` struct holds
+The `NumberType` enum names the eleven categories. The `PhoneNumber` struct holds
 `country_code`, `national_number` (a string, so a significant leading zero
 survives), and `extension`. `TelUri` holds the five parts of a `tel:` URI.
 
-## Where the data comes from
-
-The numbering-plan table is derived from Google's
-[libphonenumber](https://github.com/google/libphonenumber) metadata
-(`PhoneNumberMetadata.xml`, Apache-2.0), which tracks the plans themselves. Only
-the length rules are reproduced here; the per-type leading-digit patterns are
-the part left out, which is what keeps `is_possible` a length test for the 49
-plans that have no structural rule of their own.
-
-The Canadian area-code set in `nanp.mbt` comes from the same metadata (the CA
-territory, all number types) and is cross-checked with the Canadian Numbering
-Administrator's published area-code map. It is dated in the source because area
-codes are allocated over time.
-
 ## Tests
 
-60 tests cover the public API, the package-private helpers, and robustness
-against malformed input. The vectors are real numbers from the plans' published
-examples, and the robustness suite feeds the parser junk, 500-digit numbers and
-lone separators to show that nothing panics.
+326 tests cover the public API, the pattern engine, the generated table, the
+`tel:` grammar, and robustness against malformed input. The bulk of them are
+generated from the same data the library ships, so a data refresh grows the suite
+with it:
+
+- one block per region, asserting that every published example number is
+  accepted by its plan, resolves to the region the data says, and reports a
+  plausible type;
+- a differential corpus that runs every published rule against its example and
+  a mutated near miss, with the expected answer computed by an independent
+  regular-expression engine;
+- whitebox checks that the table matches the metadata counts, that every rule is
+  inside the engine's grammar, and that the NANP is complete;
+- unit tests for the grammar, the operators, the refusals, and matching time on
+  long input;
+- a robustness suite that feeds junk, 500-digit numbers and lone separators
+  through every public entry point.
 
 ```bash
 moon test
@@ -242,4 +362,6 @@ moon test
 
 ## License
 
-Apache-2.0. See `LICENSE`.
+Apache-2.0. See `LICENSE`. The numbering-plan data is derived from Google's
+[libphonenumber](https://github.com/google/libphonenumber) (Apache-2.0), and the
+region display names come from CLDR through the generator's `Intl.DisplayNames`.
