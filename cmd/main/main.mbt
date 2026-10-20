@@ -18,11 +18,13 @@ fn main {
     "parse" => run_parse(arg, region)
     "info" => run_info(arg)
     "possible" => run_possible(arg, region)
+    "valid" => run_valid(arg, region)
     "format" => run_format(arg, region)
     "types" => run_types(arg, region)
     "region" => run_region(arg)
     "cc" => run_cc(arg)
     "tel" => run_tel(arg)
+    "match" => run_match(arg, region)
     "list" => run_list()
     _ => print_usage()
   }
@@ -42,14 +44,16 @@ fn arg_at(args : Array[String], i : Int) -> String {
 fn print_usage() -> Unit {
   println(
     "usage: dialnumber <command> [args]\n" +
-    "  parse <number> [region]    parse and report the parts\n" +
+    "  parse <number> [region]     parse and report the parts\n" +
     "  possible <number> [region]  length check against the region's plan\n" +
+    "  valid <number> [region]     rule check, region and number type\n" +
     "  format <number> [region]    the four renderings\n" +
-    "  types <number> [region]     number types the length admits\n" +
+    "  types <number> [region]     length candidates and the pattern verdict\n" +
     "  region <number>             the region a parsed number resolves to\n" +
     "  info <region>               calling code, prefixes and lengths\n" +
     "  cc <region>                 just the calling code\n" +
     "  tel <uri>                   parse an RFC 3966 tel: URI\n" +
+    "  match <pattern> <text>      run the numbering-plan pattern engine\n" +
     "  list                        every region code in the table",
   )
 }
@@ -96,16 +100,44 @@ fn run_format(input : String, region : String) -> Unit {
 }
 
 ///|
+fn run_valid(input : String, region : String) -> Unit {
+  match @dialnumber.parse(input, region) {
+    None => println("valid: no (unreadable)")
+    Some(pn) => {
+      println("valid: \{yes_no(@dialnumber.is_valid(pn))}")
+      match @dialnumber.number_type(pn) {
+        Some(t) => println("type: \{t.to_string()}")
+        None => println("type: (none)")
+      }
+      show_region(@dialnumber.region_of_number(pn))
+    }
+  }
+}
+
+///|
+fn run_match(pattern : String, text : String) -> Unit {
+  if pattern == "" {
+    println("match: need a pattern")
+    return
+  }
+  println("well_formed: \{yes_no(@dialnumber.pattern_well_formed(pattern))}")
+  println("matches: \{yes_no(@dialnumber.matches_pattern(pattern, text))}")
+}
+
+///|
 fn run_types(input : String, region : String) -> Unit {
   match @dialnumber.parse(input, region) {
     None => println("types: invalid input")
     Some(pn) => {
-      let ts = @dialnumber.possible_types(pn)
-      let names : Array[String] = []
-      for t in ts {
-        names.push(t.to_string())
+      let possible : Array[String] = []
+      for t in @dialnumber.possible_types(pn) {
+        possible.push(t.to_string())
       }
-      println("types: \{join(names, ",")}")
+      println("length candidates: \{join(possible, ",")}")
+      match @dialnumber.number_type(pn) {
+        Some(t) => println("pattern verdict: \{t.to_string()}")
+        None => println("pattern verdict: (none)")
+      }
     }
   }
 }

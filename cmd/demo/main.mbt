@@ -51,6 +51,11 @@ fn tour(input : String, region : String) -> Unit {
       }
       show("region", reg)
       show("possible", if @dn.is_possible(pn) { "yes" } else { "no" })
+      show("valid", if @dn.is_valid(pn) { "yes" } else { "no" })
+      match @dn.number_type(pn) {
+        Some(t) => show("type", t.to_string())
+        None => show("type", "(none)")
+      }
     }
   }
 }
@@ -118,13 +123,32 @@ fn main {
     }
   }
 
-  head("+1 is two countries, and the NANP has a shape")
-  // The area code decides the country; the NPA/NXX rules decide readability.
+  head("+1 is 25 territories, and each allocation decides")
+  // Every +1 territory publishes its own area-code allocation; the engine
+  // resolves the number against it instead of a hard-coded US/CA split.
   tour("+1 201-555-0123", "")
   tour("+1 204-254-5000", "")
-  tour("+1 905-555-0123", "")
+  tour("+1 787-234-5678", "")
+  tour("+1 876-523-0123", "")
+  tour("+1 242-345-6789", "")
+  tour("+1 868-221-1234", "")
   tour("+1 111-555-0123", "")
   tour("+1 201-155-0123", "")
+
+  head("possible is a length question, valid is a rule question")
+  // 555 passes the NANP's shape rules but is not an assigned area code, so the
+  // number is possible and not valid — the distinction the two levels exist for.
+  tour("+1 555-555-0123", "")
+  tour("+1 201-555-0123", "")
+  tour("+81 90-1234-567", "")
+
+  head("the rules are data the engine interprets")
+  match @dn.plan_pattern("DK") {
+    Some(p) => show("DK plan pattern", p)
+    None => show("DK plan pattern", "(none)")
+  }
+  show("pattern matches 12345678", if @dn.matches_pattern("\\d{8}", "12345678") { "yes" } else { "no" })
+  show("pattern matches 1234567", if @dn.matches_pattern("\\d{8}", "1234567") { "yes" } else { "no" })
 
   head("a parsed number keeps its extension")
   match @dn.parse_tel_uri("tel:+1-201-555-0123;ext=42") {
