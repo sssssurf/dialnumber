@@ -10,6 +10,8 @@ pub fn calling_code(String) -> Int?
 
 pub fn canonical_region_code(String) -> String?
 
+pub fn format_dialling(PhoneNumber, String) -> String?
+
 pub fn format_e164(PhoneNumber) -> String
 
 pub fn format_international(PhoneNumber) -> String
