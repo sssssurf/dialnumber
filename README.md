@@ -368,10 +368,12 @@ survives), and `extension`. `TelUri` holds the five parts of a `tel:` URI.
 
 ## Performance
 
-Two decisions keep a validation out of the millisecond range: a rule is compiled
-once and memoised in the table, and the matcher walks only the states that are
-alive rather than the whole program. A plan rule is a large alternation, and after
-the first digit only a few of its branches can still match.
+Three decisions keep a validation out of the millisecond range: a rule is
+compiled once and memoised in the table, the matcher walks only the states that
+are alive rather than the whole program, and a territory that publishes leading
+digits is filtered by them before its full rules run — the same first question
+libphonenumber asks. A plan rule is a large alternation, and after the first digit
+only a few of its branches can still match.
 
 Measured with `moon bench benchmarks` (wasm target, mean per call; the first call
 for a rule pays its compilation, later calls reuse it):
@@ -380,14 +382,14 @@ for a rule pays its compilation, later calls reuse it):
 | --- | --- |
 | `is_possible` | 0.13 µs |
 | `format_e164` | 0.10 µs |
+| `format_national` | 3.9 µs |
+| `is_valid` (a single-plan number) | 4.5 µs |
 | `parse` (E.164) | 4.9 µs |
-| `is_valid` (a single-plan number) | 4.8 µs |
-| `parse` (`tel:` URI) | 9.0 µs |
+| `parse` (`tel:` URI) | 9.1 µs |
+| `region_of_number` | 12.8 µs |
 | `parse` (national) | 15.8 µs |
-| `format_national` | 32.9 µs |
-| `region_of_number` | 45.1 µs |
-| `is_valid` (a NANP number, 25 territories to disambiguate) | 48.5 µs |
-| `format_international` | 70.4 µs |
+| `is_valid` (a NANP number, 25 territories to disambiguate) | 15.9 µs |
+| `format_international` | 18.7 µs |
 
 The benchmarks live in `benchmarks/` and are part of the repository so a
 regression shows up as a number, not as an opinion.

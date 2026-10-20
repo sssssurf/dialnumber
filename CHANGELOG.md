@@ -4,6 +4,30 @@ All notable changes to this project are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2026-10-20
+
+Leading digits as the first question, and the performance that follows from it.
+
+### Added
+
+- Every territory's published `leadingDigits` pattern is part of the table, and
+  the prefix matcher (`run_pattern_prefix`) answers "does the number start
+  inside this territory's allocation?" in one pass over the input.
+- `nationalPrefixForParsing` is used to recognise a trunk prefix while parsing,
+  so a plan that accepts more than one spelling parses them the same way.
+
+### Changed
+
+- `region_of_number` and `nanp_region_of` filter candidates by their leading
+  digits before running the full type rules: the same order libphonenumber uses,
+  and the reason a `+1` resolution now takes 12.8 µs instead of 45.
+- Format selection also uses the cached leading-digit pattern, with the same
+  prefix matcher.
+- Measured (`moon bench benchmarks`, wasm): `is_valid` on a NANP number 48.5 µs →
+  15.9 µs, `number_type` 52.6 µs → 20.2 µs, `region_of_number` 45.1 µs →
+  12.8 µs, `format_national` 32.9 µs → 3.9 µs, `format_international` 70.4 µs →
+  18.7 µs — against 2.45 ms / 2.34 ms / 2.35 ms before 0.5.0.
+
 ## [0.5.0] - 2026-10-20
 
 Speed, a dialling form, and property tests.
@@ -193,6 +217,7 @@ First release.
 - `scripts/check-docs.mjs`, which fails CI when the recorded documentation drifts
   from real output.
 
+[0.6.0]: https://github.com/sssssurf/dialnumber/releases/tag/v0.6.0
 [0.5.0]: https://github.com/sssssurf/dialnumber/releases/tag/v0.5.0
 [0.4.0]: https://github.com/sssssurf/dialnumber/releases/tag/v0.4.0
 [0.3.0]: https://github.com/sssssurf/dialnumber/releases/tag/v0.3.0
