@@ -447,6 +447,7 @@ pub fn parse_tel_uri_full(uri : String) -> TelUri? {
         return None
       }
       params.push((name, value))
+    }
   }
   let mut global_number = ""
   let mut local_number = ""
