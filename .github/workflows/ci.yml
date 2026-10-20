@@ -37,6 +37,16 @@ jobs:
       - name: Check
         run: moon check
 
+      # The plan table and the two generated test files are committed. If a
+      # generator is not re-run after a data change the repository drifts from
+      # its own source of truth, so each generator runs in check mode here: any
+      # difference fails the job instead of being silently rewritten.
+      - name: Generated data matches its source
+        run: |
+          node scripts/gen-metadata.mjs --check
+          node scripts/gen-corpus.mjs --check
+          node scripts/sync-readme.mjs --check
+
       - name: Test
         run: moon test
 
