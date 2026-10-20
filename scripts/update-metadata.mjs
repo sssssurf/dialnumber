@@ -223,6 +223,10 @@ async function main() {
       // usually the plain prefix, but some plans publish a pattern ("0|80?")
       // because more than one spelling is dialled.
       prefix_parsing: strip(attrs.nationalPrefixForParsing ?? ""),
+      // The territory's own leading-digit pattern: how territories that share a
+      // calling code tell each other apart, and much cheaper to test than the
+      // full type rules.
+      leading_digits: strip(attrs.leadingDigits ?? ""),
       // Some plans rewrite the national number while parsing (Argentina turns
       // "011 15-…" into "9 11 …", Belarus drops an extra trunk digit). That
       // machinery is `nationalPrefixForParsing` plus a transform rule; this

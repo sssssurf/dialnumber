@@ -52,7 +52,7 @@ function table(doc) {
   for (const r of doc.regions) {
     out.push("  plan_row(");
     out.push(
-      `    ${q(r.code)}, ${q(r.name)}, ${r.calling_code}, ${q(r.idd)}, ${q(r.national_prefix)}, ${q(r.prefix_parsing ?? "")}, ${r.primary},`,
+      `    ${q(r.code)}, ${q(r.name)}, ${r.calling_code}, ${q(r.idd)}, ${q(r.national_prefix)}, ${q(r.prefix_parsing ?? "")}, ${q(r.leading_digits ?? "")}, ${r.primary},`,
     );
     out.push(`    ${q(r.general)},`);
     out.push("    [");

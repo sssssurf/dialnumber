@@ -498,6 +498,46 @@ fn pat_run(prog : PatProg, start : Int, input : Array[Char]) -> Bool {
   false
 }
 
+///|
+/// Run the program and stop as soon as a prefix of the input has been accepted.
+/// This is `lookingAt` semantics: the pattern has to match where the number
+/// starts, not the whole of it.
+fn pat_run_prefix(prog : PatProg, start : Int, input : Array[Char]) -> Bool {
+  let states = prog.code.length() / 4
+  let mark = Array::make(states, 0)
+  let mut gen = 1
+  let mut cur : Array[Int] = []
+  pat_closure(prog, start, mark, gen, cur)
+  let mut step = 0
+  while step <= input.length() {
+    let mut accepted = false
+    for s in cur {
+      if prog.code[s * 4] == st_match {
+        accepted = true
+      }
+    }
+    if accepted {
+      return true
+    }
+    if step == input.length() || cur.length() == 0 {
+      return false
+    }
+    gen = gen + 1
+    let nxt : Array[Int] = []
+    for s in cur {
+      if prog.code[s * 4] == st_char {
+        let cls = prog.code[s * 4 + 1]
+        if pat_class_matches(prog.classes[cls], input[step]) {
+          pat_closure(prog, prog.code[s * 4 + 2], mark, gen, nxt)
+        }
+      }
+    }
+    cur = nxt
+    step = step + 1
+  }
+  false
+}
+
 // ---------------------------------------------------------------------------
 // Public surface
 // ---------------------------------------------------------------------------
@@ -529,6 +569,17 @@ fn run_pattern(c : CompiledPattern, text : String) -> Bool {
     return false
   }
   pat_run(c.prog, c.start, chars_of(text))
+}
+
+///|
+/// True when the pattern matches some prefix of the text — the `lookingAt`
+/// question the plan data asks of its leading-digit patterns. One pass over the
+/// input, not one match per prefix.
+fn run_pattern_prefix(c : CompiledPattern, text : String) -> Bool {
+  if c.start < 0 {
+    return false
+  }
+  pat_run_prefix(c.prog, c.start, chars_of(text))
 }
 
 ///|

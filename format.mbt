@@ -212,19 +212,29 @@ fn format_tail(format : String) -> String {
 }
 
 ///|
-/// True when the formatting rule's published leading-digit pattern matches a
-/// prefix of the number — RFC-style `lookingAt`, since the rule is about where
-/// the number starts, not about the whole of it.
-fn format_leading_matches(pattern : String, national_number : String) -> Bool {
-  let cs = chars_of(national_number)
-  let mut k = 1
-  while k <= cs.length() {
-    if matches_pattern(pattern, slice(cs, 0, k)) {
-      return true
-    }
-    k = k + 1
+/// True when the formatting rule applies to the number: its published
+/// leading-digit pattern has to match where the number starts. The pattern is
+/// compiled once and kept in the rule, and the match is a single pass over the
+/// input rather than one match per prefix.
+fn format_leading_matches(f : PhoneFormat, national_number : String) -> Bool {
+  if f.leading.length() == 0 {
+    return true
   }
-  false
+  // The metadata lists the same rule once per progressively longer leading
+  // pattern; the last one is the most specific and decides.
+  let pattern = f.leading[f.leading.length() - 1]
+  let compiled = match f.leading_rule.val {
+    Some(c) => c
+    None => {
+      let c = compile_pattern(pattern)
+      f.leading_rule.val = Some(c)
+      c
+    }
+  }
+  if compiled.start < 0 {
+    return true
+  }
+  run_pattern_prefix(compiled, national_number)
 }
 
 ///|
@@ -242,13 +252,8 @@ fn render_with_formats(
     }
   }
   for f in formats_of(r) {
-    if f.leading.length() > 0 {
-      // The metadata lists the same rule once per progressively longer leading
-      // pattern; the last one is the most specific and is the one that decides.
-      let last = f.leading[f.leading.length() - 1]
-      if !format_leading_matches(last, national_number) {
-        continue
-      }
+    if !format_leading_matches(f, national_number) {
+      continue
     }
     let groups = match parse_format_groups(f.pattern) {
       None => continue

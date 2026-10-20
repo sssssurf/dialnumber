@@ -43,23 +43,27 @@ pub fn region_of_number(pn : PhoneNumber) -> String? {
     return None
   }
   for r in candidates {
-    if r.primary && region_admits(r, pn.national_number) {
+    if r.primary && region_leading_matches(r, pn.national_number) &&
+      region_admits(r, pn.national_number) {
       return Some(r.code)
     }
   }
   for r in candidates {
-    if region_admits(r, pn.national_number) {
+    if region_leading_matches(r, pn.national_number) &&
+      region_admits(r, pn.national_number) {
       return Some(r.code)
     }
   }
   let n = chars_of(pn.national_number).length()
   for r in candidates {
-    if r.primary && lengths_of(r).contains(n) {
+    if r.primary && region_leading_matches(r, pn.national_number) &&
+      lengths_of(r).contains(n) {
       return Some(r.code)
     }
   }
   for r in candidates {
-    if lengths_of(r).contains(n) {
+    if region_leading_matches(r, pn.national_number) &&
+      lengths_of(r).contains(n) {
       return Some(r.code)
     }
   }

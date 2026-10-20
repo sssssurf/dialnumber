@@ -100,6 +100,11 @@ pub fn nanp_region_of(national_number : String) -> String? {
     if r.calling_code != 1 {
       continue
     }
+    // The territory's leading digits answer the cheap half of the question: a
+    // number outside them cannot belong to it, so its full rules need not run.
+    if !region_leading_matches(r, national_number) {
+      continue
+    }
     if region_admits(r, national_number) {
       if r.primary {
         return Some(r.code)

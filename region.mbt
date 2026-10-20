@@ -44,6 +44,9 @@ priv struct PhoneFormat {
   format : String
   intl_format : String
   prefix_rule : String
+  /// The compiled leading-digit pattern of the rule (the last one published),
+  /// memoised so rendering does not re-parse it.
+  leading_rule : @ref.Ref[CompiledPattern?]
 }
 
 ///|
@@ -55,7 +58,7 @@ fn plan_format(
   intl_format : String,
   prefix_rule : String,
 ) -> PhoneFormat {
-  { pattern, leading, format, intl_format, prefix_rule }
+  { pattern, leading, format, intl_format, prefix_rule, leading_rule: @ref.Ref(None) }
 }
 
 ///|
@@ -75,6 +78,10 @@ priv struct Region {
   /// The published pattern that recognises a trunk prefix while parsing; empty
   /// when the plan only publishes the plain prefix.
   prefix_parsing : String
+  /// The territory's leading-digit pattern, or empty when it publishes none.
+  leading_digits : String
+  /// The compiled leading-digit pattern, memoised like the type rules.
+  leading_rule : @ref.Ref[CompiledPattern?]
   /// The compiled trunk-prefix pattern, memoised like the type rules.
   prefix_rule : @ref.Ref[CompiledPattern?]
   primary : Bool
@@ -94,6 +101,29 @@ fn plan_type(
   local_only : Array[Int],
 ) -> PlanType {
   { kind, pattern, national, local_only, cached: @ref.Ref(None) }
+}
+
+///|
+/// True when the territory's published leading-digit pattern matches a prefix of
+/// the number, or when it publishes none. In a shared calling code this is the
+/// cheap first question: the full type rules only run for territories that pass
+/// it, which is what keeps a +1 resolution from testing twenty-five allocations.
+fn region_leading_matches(r : Region, national_number : String) -> Bool {
+  if r.leading_digits == "" {
+    return true
+  }
+  let compiled = match r.leading_rule.val {
+    Some(c) => c
+    None => {
+      let c = compile_pattern(r.leading_digits)
+      r.leading_rule.val = Some(c)
+      c
+    }
+  }
+  if compiled.start < 0 {
+    return true
+  }
+  run_pattern_prefix(compiled, national_number)
 }
 
 ///|
@@ -147,6 +177,7 @@ fn plan_row(
   idd : String,
   national_prefix : String,
   prefix_parsing : String,
+  leading_digits : String,
   primary : Bool,
   general : String,
   types : Array[PlanType],
@@ -159,6 +190,8 @@ fn plan_row(
     idd,
     national_prefix,
     prefix_parsing,
+    leading_digits,
+    leading_rule: @ref.Ref(None),
     prefix_rule: @ref.Ref(None),
     primary,
     general,
