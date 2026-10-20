@@ -25,7 +25,6 @@ regresses this output changes and the documentation check fails.
 ## Recorded output
 
 ```text
-
 == parse across the ways people write a number ==
 input: +1 201-555-0123
 e164: +12015550123
@@ -187,7 +186,7 @@ rfc3966: tel:+12015550123;ext=42
 == a tel: URI keeps its local context ==
 local_number: 5550123
 phone_context: +1919
-canonical: tel:5550123;phone-context=+1919;ext=42
+canonical: tel:5550123;ext=42;phone-context=+1919
 resolved: +19195550123
 phone_context: example.com
 canonical: tel:7042;phone-context=example.com
@@ -261,7 +260,7 @@ node scripts/check-docs.mjs
 ## Test summary
 
 ```text
-Total tests: 339, passed: 339, failed: 0.
+Total tests: 342, passed: 342, failed: 0.
 ```
 
 ## Verifying the documentation itself
