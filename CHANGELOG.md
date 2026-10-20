@@ -4,6 +4,47 @@ All notable changes to this project are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2026-10-20
+
+Formatting from the plans' own rules, so a number is rendered the way its country
+writes it.
+
+### Added
+
+- The numbering-format table: 740 formatting rules extracted from the upstream
+  metadata, carried in `data/numbering-plans.json` and generated into
+  `plan_data.mbt`. A rule is a pattern of digit groups, the text between them,
+  the leading digits that select it, the international variant and the plan's
+  national-prefix rule.
+- Grouped renderings: `format_national` returns `(201) 555-0123`,
+  `020 7946 0958`, `090-1234-5678`, `8 (495) 123-45-67`; `format_international`
+  returns `+44 20 7946 0958`, `+55 11 98765-4321`, and so on. A plan with no
+  rule for the shape still falls back to the ungrouped form.
+- `nationalPrefixForParsing` is used when a plan publishes it, so a number that
+  can be dialled with more than one trunk spelling parses the same way.
+- `PhoneNumber` implements `Debug`, so a test failure prints the number rather
+  than only its fields.
+- Generated round-trip tests: for every fixed-line and mobile example, the
+  national rendering must parse back to the same number in the same region.
+- Unit tests for the grouping of a dozen plans, the fallback path and the
+  round-trip invariant.
+
+### Changed
+
+- `format_international` now groups the national part by the plan's rules
+  instead of printing the bare digits.
+- `format_national` now returns the plan's grouped form with its national-prefix
+  rule applied, instead of trunk prefix plus ungrouped digits.
+- The demo, README, reproducible-demo record and retrospective cover the
+  formatting rules; the test count is now 332.
+
+### Known limitations
+
+- National dialling is not always the inverse of formatting (Argentina writes
+  `011 15-…` nationally and `9 11 …` internationally, Belarus drops a digit).
+  The rewrite machinery (`nationalPrefixForParsing` with a transform rule) is not
+  implemented; the plans that publish one are skipped by the round-trip tests.
+
 ## [0.3.0] - 2026-10-20
 
 A real rule engine, a data pipeline that generates the plan table, and full
@@ -125,6 +166,7 @@ First release.
 - `scripts/check-docs.mjs`, which fails CI when the recorded documentation drifts
   from real output.
 
+[0.4.0]: https://github.com/sssssurf/dialnumber/releases/tag/v0.4.0
 [0.3.0]: https://github.com/sssssurf/dialnumber/releases/tag/v0.3.0
 [0.2.0]: https://github.com/sssssurf/dialnumber/releases/tag/v0.2.0
 [0.1.0]: https://github.com/sssssurf/dialnumber/releases/tag/v0.1.0

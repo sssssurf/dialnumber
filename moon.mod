@@ -3,7 +3,7 @@
 
 name = "sssssurf/dialnumber"
 
-version = "0.3.0"
+version = "0.4.0"
 
 readme = "README.mbt.md"
 
@@ -23,4 +23,4 @@ keywords = [
   "validation",
 ]
 
-description = "Phone number parsing, validation and formatting for MoonBit: 245 numbering plans behind E.164 and RFC 3966, a pattern engine that interprets each plan's published rules, valid versus possible verdicts, number types, the full NANP, international and national dialing, and a generated table with a reproducible data pipeline"
+description = "Phone number parsing, validation and formatting for MoonBit: 245 numbering plans behind E.164 and RFC 3966, a pattern engine that interprets each plan's published rules, valid versus possible verdicts, number types, the full NANP, grouping by each plan's own formatting rules, and a generated table with a reproducible data pipeline"
