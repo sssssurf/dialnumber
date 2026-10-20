@@ -217,6 +217,21 @@ fn main {
   types_of("+86 131 2345 6789", "")
   types_of("+44 7400 123456", "")
 
+  head("dialling from where you are")
+  // The same number, as a caller in three countries would dial it.
+  match @dn.parse("+442079460958", "") {
+    None => show("dialling", "unreadable")
+    Some(pn) => {
+      for from in ["US", "DE", "GB", "AU"] {
+        let written = match @dn.format_dialling(pn, from) {
+          Some(v) => v
+          None => "(unknown region)"
+        }
+        show("from " + from, written)
+      }
+    }
+  }
+
   head("region facts come from the table")
   let facts : Array[String] = ["US", "JP", "DE", "IT"]
   for code in facts {

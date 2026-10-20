@@ -92,6 +92,24 @@ test "format_national refuses a region with another calling code" {
 }
 
 ///|
+test "format_dialling renders the dial-out prefix of the caller's region" {
+  let gb = @dialnumber.PhoneNumber::new(44, "2079460958")
+  assert_eq(@dialnumber.format_dialling(gb, "US"), Some("011 442079460958"))
+  assert_eq(@dialnumber.format_dialling(gb, "DE"), Some("00 442079460958"))
+  // From inside the country, what is dialled is the national form.
+  assert_eq(@dialnumber.format_dialling(gb, "GB"), Some("020 7946 0958"))
+  assert_eq(@dialnumber.format_dialling(gb, "ZZ"), None)
+}
+
+///|
+test "format_dialling falls back to + when the prefix is an expression" {
+  // Australia publishes its dial-out prefix as a set of alternatives, which is
+  // not something to concatenate; the + form is the honest answer.
+  let gb = @dialnumber.PhoneNumber::new(44, "2079460958")
+  assert_eq(@dialnumber.format_dialling(gb, "AU"), Some("+442079460958"))
+}
+
+///|
 test "the grouped forms leave the ungrouped renderings alone" {
   let pn = @dialnumber.PhoneNumber::new(44, "2079460958")
   assert_eq(@dialnumber.format_e164(pn), "+442079460958")

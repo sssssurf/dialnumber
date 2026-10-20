@@ -328,6 +328,45 @@ pub fn format_national(pn : PhoneNumber, region : String) -> String? {
 }
 
 ///|
+/// True when the string is a run of digits, which is what a dial-out prefix has
+/// to be to be usable.
+fn is_all_digits(s : String) -> Bool {
+  if s == "" {
+    return false
+  }
+  for c in s {
+    if !is_digit(c) {
+      return false
+    }
+  }
+  true
+}
+
+///|
+/// The number as it is dialled from `from_region`: that region's international
+/// dial-out prefix followed by the calling code and the national number —
+/// `011 442079460958` from the NANP, `00 442079460958` from most of Europe.
+///
+/// When the number is inside `from_region`, what is dialled there is the
+/// national form, so that is what comes back. None when the region is unknown; a
+/// plan whose dial-out prefix is published as an expression rather than as
+/// digits needs a choice this library cannot make for the caller, so the `+`
+/// form comes back instead.
+pub fn format_dialling(pn : PhoneNumber, from_region : String) -> String? {
+  match find_region(from_region) {
+    None => None
+    Some(from) =>
+      if from.calling_code == pn.country_code {
+        format_national(pn, from_region)
+      } else if is_all_digits(from.idd) {
+        Some(from.idd + " " + pn.country_code.to_string() + pn.national_number)
+      } else {
+        Some(format_e164(pn))
+      }
+  }
+}
+
+///|
 /// The RFC 3966 `tel:` URI. The extension, when present, becomes `;ext=`. The
 /// subscriber is the ungrouped E.164 number, as the grammar expects.
 pub fn format_rfc3966(pn : PhoneNumber) -> String {
