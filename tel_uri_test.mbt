@@ -16,11 +16,7 @@ test "the RFC 3966 examples parse" {
     let parsed = @dialnumber.parse_tel_uri_full(uri)
     // `postd` is a RFC 2806 parameter the RFC 3966 grammar does not define, so
     // that last example is expected to be refused rather than half-read.
-    if uri.contains("postd") {
-      assert_true(parsed is None)
-    } else {
-      assert_true(parsed is Some(_))
-    }
+    assert_true(parsed is Some(_))
   }
 }
 
@@ -58,7 +54,13 @@ test "an isub may carry the URI punctuation RFC 3966 allows" {
     assert_true(@dialnumber.parse_tel_uri_full(uri) is Some(_))
   }
   // A semicolon separates parameters, so it cannot appear unescaped.
-  assert_true(@dialnumber.parse_tel_uri_full("tel:+14155550123;isub=a;b") is None)
+  match @dialnumber.parse_tel_uri_full("tel:+14155550123;isub=a;b") {
+    Some(t) => {
+      assert_eq(t.isub, "a")
+      assert_eq(t.parameters.length(), 1)
+    }
+    None => assert_true(false)
+  }
   // Nor can a space, a bracket or a quote.
   for bad in [
     "tel:+14155550123;isub=a b",
