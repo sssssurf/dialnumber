@@ -1,112 +1,70 @@
 // Numbering-plan metadata: one row per region, describing how to dial into and
-// out of it and which national-number lengths it uses.
+// out of it, which number types it defines, and the rule each type follows.
 //
-// The numbers come from Google's libphonenumber metadata (Apache-2.0), which in
-// turn tracks the national number plans. Only the length rules are reproduced
-// here; the leading-digit patterns are not, so `possible` is a length test and
-// not a proof that a line is assigned. See the README for that boundary.
+// The table itself is generated (`plan_data.mbt`, from
+// `data/numbering-plans.json` by `scripts/gen-metadata.mjs`) out of Google's
+// libphonenumber metadata (Apache-2.0). Nothing here is hand-maintained data:
+// this file is the lookup and expansion layer over the generated table.
+
+///|
+/// One number type inside a plan: the rule a national number must match, and the
+/// lengths the plan publishes for that type.
+///
+/// `national` is the set of possible lengths; `local_only` is the set of lengths
+/// that are only possible when dialled locally (kept for completeness and for
+/// the data-integrity tests, not used for `possible`).
+priv struct PlanType {
+  kind : NumberType
+  pattern : String
+  national : Array[Int]
+  local_only : Array[Int]
+}
 
 ///|
 /// A numbering plan.
 ///
 /// `idd` is the prefix dialled to reach another country from inside this one.
 /// `national_prefix` is the trunk prefix dialled before a national number; it is
-/// empty for plans (Italy, Portugal, Spain, ...) that have none. `types` is a
-/// compact per-type length spec, expanded by `parse_type_spec`.
+/// empty for plans that have none. `general` is the plan's overall rule, and
+/// `types` are the per-type rules. `primary` marks the region a bare calling
+/// code resolves to when several regions share it.
 priv struct Region {
   code : String
   name : String
   calling_code : Int
   idd : String
   national_prefix : String
-  types : String
   primary : Bool
+  general : String
+  types : Array[PlanType]
 }
 
 ///|
-/// One table row. Keeping this a function keeps the table below to one line per
-/// region and lets the field order read in the order the data is published.
-fn row(
+/// One type row. Keeping this a function keeps the generated table to one line
+/// per type and lets the field order read in the order the data is published.
+fn plan_type(
+  kind : NumberType,
+  pattern : String,
+  national : Array[Int],
+  local_only : Array[Int],
+) -> PlanType {
+  { kind, pattern, national, local_only }
+}
+
+///|
+/// One region row, used only by the generated table.
+fn plan_row(
   code : String,
   name : String,
   calling_code : Int,
   idd : String,
   national_prefix : String,
-  types : String,
+  primary : Bool,
+  general : String,
+  types : Array[PlanType],
 ) -> Region {
-  { code, name, calling_code, idd, national_prefix, types, primary: false }
+  { code, name, calling_code, idd, national_prefix, primary, general, types }
 }
-
-///|
-/// A row for the region that owns a shared calling code. When several regions
-/// share one code (`+1` covers both the United States and Canada here), the
-/// primary region is the one a bare calling code resolves to.
-fn row_primary(
-  code : String,
-  name : String,
-  calling_code : Int,
-  idd : String,
-  national_prefix : String,
-  types : String,
-) -> Region {
-  { code, name, calling_code, idd, national_prefix, types, primary: true }
-}
-
-///|
-/// The whole table, sorted by region code.
-let regions : Array[Region] = [
-  row("AE", "United Arab Emirates", 971, "00", "0", "f=8 m=9 t=5|6|7|8|9|10|11|12 p=9 s=9 u=9"),
-  row("AR", "Argentina", 54, "00", "0", "f=10 m=10|11 t=10|11 p=10 u=10"),
-  row("AT", "Austria", 43, "00", "0", "f=4|5|6|7|8|9|10|11|12|13 m=7|8|9|10|11|12|13 t=9|10|11|12|13 p=9|10|11|12|13 s=8|9|10|11|12|13 v=5|6|7|8|9|10|11|12|13"),
-  row("AU", "Australia", 61, "0011", "0", "f=9 m=9 t=7|10 p=10 s=6|8|10|12 v=9 g=5|6|7|8|9"),
-  row("BD", "Bangladesh", 880, "00", "0", "f=6|7|8|9|10 m=10 t=10 v=10"),
-  row("BE", "Belgium", 32, "00", "0", "f=8 m=9 t=8 p=8 s=8 u=8"),
-  row("BR", "Brazil", 55, "00", "0", "f=10 m=10|11 t=9|10 p=9|10 s=8|10"),
-  row("CA", "Canada", 1, "011", "1", "f=10 m=10 t=10 p=10 v=10 u=7 r=10"),
-  row("CH", "Switzerland", 41, "00", "0", "f=9 m=9 t=9 p=9 s=9 u=9 r=9 g=9 o=12"),
-  row("CL", "Chile", 56, "00", "", "f=9 m=9 t=9|11 s=10|11 v=9"),
-  row("CN", "China", 86, "00", "0", "f=7|8|9|10|11 m=11 t=10|12 p=8 s=7|8|9|10|11"),
-  row("CO", "Colombia", 57, "00", "0", "f=8|10 m=10 t=11 p=10|11"),
-  row("CZ", "Czechia", 420, "00", "", "f=9 m=9 t=9 p=9 s=9 v=9 u=9 r=9 o=9|10|11|12"),
-  row("DE", "Germany", 49, "00", "0", "f=5|6|7|8|9|10|11|12|13|14|15 m=10|11 t=10|11|12|13|14|15 p=10|11 s=7|8|9|10|11|12|13|14 u=8|9|10|11|12|13|14 r=11 g=4|5|6|7|8|9|10|11|12|13|14 o=12|13"),
-  row("DK", "Denmark", 45, "00", "", "f=8 m=8 t=8 p=8"),
-  row("EG", "Egypt", 20, "00", "0", "f=8|9 m=10 t=10 p=10"),
-  row("ES", "Spain", 34, "00", "", "f=9 m=9 t=9 p=9 s=9 u=9 r=9"),
-  row("FI", "Finland", 358, "00", "0", "f=5|6|7|8|9 m=6|7|8|9|10 t=7|8|9 p=8|9 u=5|6|7|8|9|10|11|12"),
-  row("FR", "France", 33, "00", "0", "f=9 m=9 t=9 p=9 s=9 v=9 u=9"),
-  row("GB", "United Kingdom", 44, "00", "0", "f=9|10 m=10 t=7|9|10 p=7|10 v=10 u=10 r=10 g=10"),
-  row("GR", "Greece", 30, "00", "", "f=10 m=10 t=10|11|12 p=10 s=10 u=10 r=10"),
-  row("HK", "Hong Kong", 852, "00", "", "f=8 m=8 t=9 p=5|6|7|8|11 u=8 r=8 g=8"),
-  row("ID", "Indonesia", 62, "00", "0", "f=7|8|9|10|11 m=9|10|11|12 t=8|9|10|11|12|13|14|15|16|17 p=10 s=10 u=7|10"),
-  row("IE", "Ireland", 353, "00", "0", "f=7|8|9|10 m=9 t=10 p=10 s=10 v=9 u=9 r=9 o=10"),
-  row("IL", "Israel", 972, "00", "0", "f=8|11|12 m=9 t=7|10 p=8|10 s=10 v=9 u=10 o=11|12"),
-  row("IN", "India", 91, "00", "0", "f=10 m=10 t=8|9|10|11|12|13 p=13 s=11 u=10"),
-  row("IT", "Italy", 39, "00", "", "f=6|7|8|9|10|11|12 m=9|10 t=6|9 p=6|8|9|10 s=6|9 v=10 r=9|10 o=11|12"),
-  row("JP", "Japan", 81, "010", "0", "f=9 m=10 t=8|9|10|11|12|13|14|15|16|17 p=9 v=10 u=9 r=9 g=10"),
-  row("KE", "Kenya", 254, "000", "0", "f=7|8|9 m=9 t=9|10 p=9"),
-  row("KR", "South Korea", 82, "00", "0", "f=5|6|8|9|10 m=9|10 t=9|11|12|13|14 p=9 v=10 u=8 r=10|11 g=9|10"),
-  row("MX", "Mexico", 52, "00", "", "f=10 m=10 t=10 p=10 s=10 r=10"),
-  row("MY", "Malaysia", 60, "00", "0", "f=8|9 m=9|10 t=10 p=10 v=10"),
-  row("NG", "Nigeria", 234, "009", "0", "f=10 m=10 t=10|11|12|13|14 u=10|11|12|13|14"),
-  row("NL", "Netherlands", 31, "00", "0", "f=9 m=9|11 t=7|8|9|10 p=7|8|9|10 v=9 u=5|6|9 g=9"),
-  row("NO", "Norway", 47, "00", "", "f=8 m=8 t=8 p=8 s=8 v=8 u=5|8 r=8 o=8"),
-  row("NZ", "New Zealand", 64, "00", "0", "f=8 m=8|9|10 t=8|9|10 p=7|8|9|10 u=5|6|7|8|9|10 r=9"),
-  row("PH", "Philippines", 63, "00", "0", "f=6|8|9|10 m=10 t=11|12|13"),
-  row("PK", "Pakistan", 92, "00", "0", "f=9|10 m=10 t=8|11 p=8 u=11|12 r=9"),
-  row("PL", "Poland", 48, "00", "", "f=7|9 m=9 t=9|10 p=9 s=9 v=9 u=9 g=6|7|8|9"),
-  row("PT", "Portugal", 351, "00", "", "f=9 m=9 t=9 p=9 s=9 v=9 u=9 r=9 g=9 o=9"),
-  row("RU", "Russia", 7, "810", "8", "f=10 m=10 t=10|14 p=10 r=10"),
-  row("SA", "Saudi Arabia", 966, "00", "0", "f=9 m=9 t=10 p=9 s=9"),
-  row("SE", "Sweden", 46, "00", "0", "f=7|8|9 m=9 t=6|7|8|9 p=7|8|9|10 s=9 u=9 r=9 g=9 o=12"),
-  row("SG", "Singapore", 65, "00", "", "f=8 m=8 t=10|11 p=11 v=8 u=11"),
-  row("TH", "Thailand", 66, "00", "0", "f=8 m=9 t=10|13 p=10 v=9"),
-  row("TR", "Turkey", 90, "00", "0", "f=10 m=10 t=10|12|13 p=10 v=10 u=7 r=10 g=10"),
-  row("TW", "Taiwan", 886, "00", "0", "f=8|9 m=9 t=8|9 p=7|9 v=10|11 u=9 r=9"),
-  row("UA", "Ukraine", 380, "00", "0", "f=9 m=9 t=9|10 p=9|10 v=9"),
-  row_primary("US", "United States", 1, "011", "1", "f=10 m=10 t=10 p=10 r=10"),
-  row("VN", "Vietnam", 84, "00", "0", "f=10 m=9 t=8|9|10 p=8|9|10 v=9 u=7|8"),
-  row("ZA", "South Africa", 27, "00", "0", "f=9 m=5|6|7|8|9 t=9 p=9 s=9 v=9 u=9|10"),
-]
 
 ///|
 /// Uppercase a region code so lookups are case-insensitive.
@@ -131,69 +89,12 @@ fn find_region(code : String) -> Region? {
 }
 
 ///|
-/// The letter that stands for a number type inside a `types` spec.
-fn type_of_letter(c : Char) -> NumberType? {
-  match c {
-    'f' => Some(FixedLine)
-    'm' => Some(Mobile)
-    't' => Some(TollFree)
-    'p' => Some(PremiumRate)
-    's' => Some(SharedCost)
-    'v' => Some(Voip)
-    'u' => Some(Uan)
-    'r' => Some(PersonalNumber)
-    'g' => Some(Pager)
-    'o' => Some(Voicemail)
-    _ => None
-  }
-}
-
-///|
-/// Expand a `types` spec such as `"f=8 m=9|10"` into `(type, lengths)` pairs.
-/// Unknown letters and malformed length fields are skipped rather than rejected:
-/// the spec is an internal constant.
-fn parse_type_spec(spec : String) -> Array[(NumberType, Array[Int])] {
-  let out : Array[(NumberType, Array[Int])] = []
-  for token in split_on(spec, ' ') {
-    if token == "" {
-      continue
-    }
-    let parts = split_on(token, '=')
-    if parts.length() != 2 {
-      continue
-    }
-    let letter = chars_of(parts[0])
-    if letter.length() != 1 {
-      continue
-    }
-    let ty = match type_of_letter(letter[0]) {
-      Some(t) => t
-      None => continue
-    }
-    let lens : Array[Int] = []
-    for field in split_on(parts[1], '|') {
-      match int_of_digits(field) {
-        Some(v) => lens.push(v)
-        None => ()
-      }
-    }
-    out.push((ty, lens))
-  }
-  out
-}
-
-///|
-/// The `(type, lengths)` pairs of a region, expanded from its spec.
-fn type_lengths(r : Region) -> Array[(NumberType, Array[Int])] {
-  parse_type_spec(r.types)
-}
-
-///|
-/// Every national-number length the region uses, sorted and without repeats.
+/// Every national-number length any type in the region uses, sorted, without
+/// repeats.
 fn lengths_of(r : Region) -> Array[Int] {
   let out : Array[Int] = []
-  for pair in type_lengths(r) {
-    for n in pair.1 {
+  for t in r.types {
+    for n in t.national {
       push_unique_sorted(out, n)
     }
   }
@@ -217,12 +118,64 @@ fn push_unique_sorted(a : Array[Int], v : Int) -> Unit {
 /// The number types whose length rule admits an `n`-digit national number.
 fn types_for_length(r : Region, n : Int) -> Array[NumberType] {
   let out : Array[NumberType] = []
-  for pair in type_lengths(r) {
-    if pair.1.contains(n) {
-      out.push(pair.0)
+  for t in r.types {
+    if t.national.contains(n) {
+      out.push(t.kind)
     }
   }
   out
+}
+
+///|
+/// The type whose rule the national number matches, in the precedence order
+/// libphonenumber uses: the special ranges win over the geographic ones, a
+/// number that fits both fixed-line and mobile is reported as the shared type,
+/// and a number outside the plan's general rule has no type at all.
+fn type_of_national_number(r : Region, national_number : String) -> NumberType? {
+  if !matches_pattern(r.general, national_number) {
+    return None
+  }
+  for t in r.types {
+    if t.kind != FixedLine && t.kind != Mobile && matches_pattern(t.pattern, national_number) {
+      return Some(t.kind)
+    }
+  }
+  let fixed = fits(r, FixedLine, national_number)
+  let mobile = fits(r, Mobile, national_number)
+  if fixed && mobile {
+    return Some(FixedLineOrMobile)
+  }
+  if fixed {
+    return Some(FixedLine)
+  }
+  if mobile {
+    return Some(Mobile)
+  }
+  None
+}
+
+///|
+/// True when the region publishes a rule of this type and the number matches it.
+fn fits(r : Region, kind : NumberType, national_number : String) -> Bool {
+  for t in r.types {
+    if t.kind == kind && matches_pattern(t.pattern, national_number) {
+      return true
+    }
+  }
+  false
+}
+
+///|
+/// True when the number matches any published rule of the region. This is the
+/// pattern-level test behind `is_valid`; the caller has already established that
+/// the calling codes agree.
+fn region_admits(r : Region, national_number : String) -> Bool {
+  for t in r.types {
+    if matches_pattern(t.pattern, national_number) {
+      return true
+    }
+  }
+  false
 }
 
 // ---------------------------------------------------------------------------
@@ -303,10 +256,29 @@ pub fn possible_lengths(code : String) -> Array[Int]? {
 }
 
 ///|
+/// The lengths a region accepts only for a number dialled locally (no trunk
+/// prefix or no area code), sorted and without repeats. Empty when the plan
+/// publishes none — which is most of them.
+pub fn local_only_lengths(code : String) -> Array[Int]? {
+  match find_region(code) {
+    None => None
+    Some(r) => {
+      let out : Array[Int] = []
+      for t in r.types {
+        for n in t.local_only {
+          push_unique_sorted(out, n)
+        }
+      }
+      Some(out)
+    }
+  }
+}
+
+///|
 /// One region that uses a calling code, or None when no region does. When
-/// several share the code (`+1` is both the United States and Canada here) the
-/// region marked primary wins; otherwise the first in code order. Use
-/// `regions_by_calling_code` for all of them.
+/// several share the code (the whole NANP is `+1`) the region marked primary
+/// wins; otherwise the first in code order. Use `regions_by_calling_code` for
+/// all of them.
 pub fn region_by_calling_code(cc : Int) -> String? {
   for r in regions {
     if r.calling_code == cc && r.primary {
@@ -331,4 +303,31 @@ pub fn regions_by_calling_code(cc : Int) -> Array[String] {
     }
   }
   out
+}
+
+///|
+/// The plan's overall rule for its national numbers, e.g. `"[2-9]\\d{9}"` for
+/// the NANP. Exposed so a caller can see the rule a verdict was based on.
+pub fn plan_pattern(code : String) -> String? {
+  match find_region(code) {
+    Some(r) => Some(r.general)
+    None => None
+  }
+}
+
+///|
+/// The rule published for one number type in one region, if the plan has that
+/// type. Lets a caller audit `is_valid` / `number_type` against the data.
+pub fn type_pattern(code : String, kind : NumberType) -> String? {
+  match find_region(code) {
+    None => None
+    Some(r) => {
+      for t in r.types {
+        if t.kind == kind {
+          return Some(t.pattern)
+        }
+      }
+      None
+    }
+  }
 }

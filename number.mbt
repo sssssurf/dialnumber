@@ -6,6 +6,7 @@
 /// length admits rather than a single value.
 pub(all) enum NumberType {
   FixedLine
+  FixedLineOrMobile
   Mobile
   TollFree
   PremiumRate
@@ -30,6 +31,7 @@ pub extend NumberType with @moonbitlang/core/debug.Debug::{to_repr}
 pub impl Show for NumberType with fn to_string(self) -> String {
   match self {
     FixedLine => "fixed-line"
+    FixedLineOrMobile => "fixed-line-or-mobile"
     Mobile => "mobile"
     TollFree => "toll-free"
     PremiumRate => "premium-rate"

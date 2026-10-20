@@ -26,13 +26,29 @@ pub fn is_possible_in_region(PhoneNumber, String) -> Bool
 
 pub fn is_possible_number(String, String) -> Bool
 
-pub fn nanp_canadian_area_codes() -> Array[String]
+pub fn is_valid(PhoneNumber) -> Bool
+
+pub fn is_valid_in_region(PhoneNumber, String) -> Bool
+
+pub fn is_valid_number(String, String) -> Bool
+
+pub fn local_only_lengths(String) -> Array[Int]?
+
+pub fn matches_pattern(String, String) -> Bool
+
+pub fn nanp_area_code(String) -> String?
 
 pub fn nanp_possible(String) -> Bool
+
+pub fn nanp_region_codes() -> Array[String]
 
 pub fn nanp_region_of(String) -> String?
 
 pub fn national_prefix(String) -> String?
+
+pub fn number_type(PhoneNumber) -> NumberType?
+
+pub fn number_type_in_region(PhoneNumber, String) -> NumberType?
 
 pub fn parse(String, String) -> PhoneNumber?
 
@@ -43,6 +59,10 @@ pub fn parse_national(String, String) -> PhoneNumber?
 pub fn parse_tel_uri(String) -> PhoneNumber?
 
 pub fn parse_tel_uri_full(String) -> TelUri?
+
+pub fn pattern_well_formed(String) -> Bool
+
+pub fn plan_pattern(String) -> String?
 
 pub fn possible_lengths(String) -> Array[Int]?
 
@@ -68,11 +88,14 @@ pub fn to_tel_uri(PhoneNumber) -> String
 
 pub fn to_tel_uri_full(TelUri) -> String?
 
+pub fn type_pattern(String, NumberType) -> String?
+
 // Errors
 
 // Types and methods
 pub(all) enum NumberType {
   FixedLine
+  FixedLineOrMobile
   Mobile
   TollFree
   PremiumRate
