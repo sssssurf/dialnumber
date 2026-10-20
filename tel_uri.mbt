@@ -214,32 +214,60 @@ fn canonical_phone_context(value : String) -> String? {
 }
 
 ///|
-/// True for the characters an `isub` value may contain. RFC 3966 makes it a
-/// run of URI characters, not a number, so it is preserved rather than parsed.
+/// True for the characters an `isub` value may contain on its own. RFC 3966
+/// makes it a run of URI characters (`uric`: unreserved, reserved and escapes),
+/// not a number, so it is preserved rather than parsed.
 fn is_isub_char(c : Char) -> Bool {
   if (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || is_digit(c) {
     return true
   }
+  // U+0027, the apostrophe: a sub-delimiter of RFC 3986, and one this grammar
+  // cannot spell as a character literal.
+  if c.to_int() == 39 {
+    return true
+  }
   match c {
-    '%' | '-' | '.' | '_' | '~' | '!' | '$' | '&' | '(' | ')' | '*' | '+' | ',' | '=' | ':' | '@' | '/' =>
+    '-' | '.' | '_' | '~' | '!' | '$' | '&' | '(' | ')' | '*' | '+' | ',' | '=' | ':' | '@' | '/' =>
       true
     _ => false
   }
 }
 
 ///|
-/// True when `s` is a usable ISDN-subaddress value: non-empty and made only of
-/// `isub` characters.
-fn is_isub_value(s : String) -> Bool {
-  if s == "" {
-    return false
+/// True for a hexadecimal digit, in either case.
+fn is_hex_digit(c : Char) -> Bool {
+  is_digit(c) || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f')
+}
+
+///|
+/// Canonicalise an `isub` value: non-empty, every character a URI character, and
+/// every `%` the start of a complete `%HH` escape. Hex digits inside an escape
+/// are uppercased so the value round-trips to one spelling.
+fn canonical_isub(s : String) -> String? {
+  let cs = chars_of(s)
+  if cs.length() == 0 {
+    return None
   }
-  for c in s {
-    if !is_isub_char(c) {
-      return false
+  let buf = StringBuilder()
+  let mut i = 0
+  while i < cs.length() {
+    let c = cs[i]
+    if c == '%' {
+      if i + 2 >= cs.length() || !is_hex_digit(cs[i + 1]) || !is_hex_digit(cs[i + 2]) {
+        return None
+      }
+      buf.write_char('%')
+      buf.write_char(upper_ascii(cs[i + 1]))
+      buf.write_char(upper_ascii(cs[i + 2]))
+      i = i + 3
+    } else if is_isub_char(c) {
+      buf.write_char(c)
+      i = i + 1
+    } else {
+      return None
     }
   }
-  true
+  Some(buf.to_string())
 }
 
 ///|
@@ -298,10 +326,10 @@ pub fn parse_tel_uri_full(uri : String) -> TelUri? {
       if isub is Some(_) || ext is Some(_) {
         return None
       }
-      if !is_isub_value(value) {
+      isub = canonical_isub(value)
+      if isub is None {
         return None
       }
-      isub = Some(value)
     } else if lower == "phone-context" {
       if context is Some(_) {
         return None
