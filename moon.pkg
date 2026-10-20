@@ -1,5 +1,6 @@
 import {
   "moonbitlang/core/debug",
+  "moonbitlang/core/ref",
 }
 
 warnings = "-deprecated_syntax"

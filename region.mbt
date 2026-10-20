@@ -18,6 +18,12 @@ priv struct PlanType {
   pattern : String
   national : Array[Int]
   local_only : Array[Int]
+  /// The compiled rule, filled in the first time the rule is used. A pattern
+  /// costs microseconds to compile, and a validation walks several of them, so
+  /// compiling once per rule (rather than once per call) is the difference
+  /// between a microsecond and a millisecond. The cell makes the cache survive
+  /// the value copy of the row it lives in.
+  cached : @ref.Ref[CompiledPattern?]
 }
 
 ///|
@@ -69,8 +75,11 @@ priv struct Region {
   /// The published pattern that recognises a trunk prefix while parsing; empty
   /// when the plan only publishes the plain prefix.
   prefix_parsing : String
+  /// The compiled trunk-prefix pattern, memoised like the type rules.
+  prefix_rule : @ref.Ref[CompiledPattern?]
   primary : Bool
   general : String
+  general_rule : @ref.Ref[CompiledPattern?]
   types : Array[PlanType]
   formats : Array[PhoneFormat]
 }
@@ -84,7 +93,49 @@ fn plan_type(
   national : Array[Int],
   local_only : Array[Int],
 ) -> PlanType {
-  { kind, pattern, national, local_only }
+  { kind, pattern, national, local_only, cached: @ref.Ref(None) }
+}
+
+///|
+/// The compiled trunk-prefix pattern of a region, memoised in the row.
+fn region_prefix_compiled(r : Region) -> CompiledPattern {
+  match r.prefix_rule.val {
+    Some(c) => c
+    None => {
+      let c = compile_pattern(r.prefix_parsing)
+      r.prefix_rule.val = Some(c)
+      c
+    }
+  }
+}
+
+///|
+/// True when the plan's overall rule accepts the text. Memoised like a type rule.
+fn region_general_matches(r : Region, text : String) -> Bool {
+  let compiled = match r.general_rule.val {
+    Some(c) => c
+    None => {
+      let c = compile_pattern(r.general)
+      r.general_rule.val = Some(c)
+      c
+    }
+  }
+  run_pattern(compiled, text)
+}
+
+///|
+/// True when the type's rule accepts the text. The compiled rule is memoised in
+/// the row, so the cost is paid once per rule rather than once per call.
+fn type_rule_matches(t : PlanType, text : String) -> Bool {
+  let compiled = match t.cached.val {
+    Some(c) => c
+    None => {
+      let c = compile_pattern(t.pattern)
+      t.cached.val = Some(c)
+      c
+    }
+  }
+  run_pattern(compiled, text)
 }
 
 ///|
@@ -108,8 +159,10 @@ fn plan_row(
     idd,
     national_prefix,
     prefix_parsing,
+    prefix_rule: @ref.Ref(None),
     primary,
     general,
+    general_rule: @ref.Ref(None),
     types,
     formats,
   }
@@ -181,11 +234,11 @@ fn types_for_length(r : Region, n : Int) -> Array[NumberType] {
 /// number that fits both fixed-line and mobile is reported as the shared type,
 /// and a number outside the plan's general rule has no type at all.
 fn type_of_national_number(r : Region, national_number : String) -> NumberType? {
-  if !matches_pattern(r.general, national_number) {
+  if !region_general_matches(r, national_number) {
     return None
   }
   for t in r.types {
-    if t.kind != FixedLine && t.kind != Mobile && matches_pattern(t.pattern, national_number) {
+    if t.kind != FixedLine && t.kind != Mobile && type_rule_matches(t, national_number) {
       return Some(t.kind)
     }
   }
@@ -207,7 +260,7 @@ fn type_of_national_number(r : Region, national_number : String) -> NumberType? 
 /// True when the region publishes a rule of this type and the number matches it.
 fn fits(r : Region, kind : NumberType, national_number : String) -> Bool {
   for t in r.types {
-    if t.kind == kind && matches_pattern(t.pattern, national_number) {
+    if t.kind == kind && type_rule_matches(t, national_number) {
       return true
     }
   }
@@ -237,7 +290,7 @@ fn formats_of(r : Region) -> Array[PhoneFormat] {
 /// the calling codes agree.
 fn region_admits(r : Region, national_number : String) -> Bool {
   for t in r.types {
-    if matches_pattern(t.pattern, national_number) {
+    if type_rule_matches(t, national_number) {
       return true
     }
   }

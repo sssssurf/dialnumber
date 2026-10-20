@@ -97,12 +97,15 @@ fn region_exists_at_code(cc : Int) -> Bool {
 /// usually means anyway.
 fn strip_national_prefix(r : Region, digits : String) -> String {
   let cs = chars_of(digits)
-  if r.prefix_parsing != "" && pattern_well_formed(r.prefix_parsing) {
+  let compiled = region_prefix_compiled(r)
+  // A pattern the engine cannot parse compiles to `start < 0` and is ignored,
+  // which is the same result as the old well-formedness check but paid once.
+  if compiled.start >= 0 {
     let limit = if cs.length() < 12 { cs.length() } else { 12 }
     let mut best = 0
     let mut k = 1
     while k <= limit {
-      if matches_pattern(r.prefix_parsing, slice(cs, 0, k)) {
+      if run_pattern(compiled, slice(cs, 0, k)) {
         best = k
       }
       k = k + 1

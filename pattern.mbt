@@ -426,12 +426,19 @@ fn pat_class_matches(cls : PatClassSet, c : Char) -> Bool {
 }
 
 ///|
-/// Add the epsilon closure of `state` to `set`.
-fn pat_closure(prog : PatProg, state : Int, set : Array[Bool]) -> Unit {
-  if state < 0 || set[state] {
+/// Add the epsilon closure of `state` to the active list, stamping each state
+/// with the current generation so it is added at most once per step.
+fn pat_closure(
+  prog : PatProg,
+  state : Int,
+  mark : Array[Int],
+  gen : Int,
+  out : Array[Int],
+) -> Unit {
+  if state < 0 || mark[state] == gen {
     return
   }
-  set[state] = true
+  mark[state] = gen
   let work : Array[Int] = [state]
   let mut head = 0
   while head < work.length() {
@@ -440,56 +447,53 @@ fn pat_closure(prog : PatProg, state : Int, set : Array[Bool]) -> Unit {
     if prog.code[s * 4] == st_split {
       let a = prog.code[s * 4 + 2]
       let b = prog.code[s * 4 + 3]
-      if a >= 0 && !set[a] {
-        set[a] = true
+      if a >= 0 && mark[a] != gen {
+        mark[a] = gen
         work.push(a)
       }
-      if b >= 0 && !set[b] {
-        set[b] = true
+      if b >= 0 && mark[b] != gen {
+        mark[b] = gen
         work.push(b)
       }
+    } else {
+      out.push(s)
     }
   }
 }
 
 ///|
 /// Run the program over the whole input.
+///
+/// The live states are kept as a list rather than a bitmap over every state: a
+/// plan rule is a large alternation, and after the first digit only a handful of
+/// its branches can still be alive. Walking those instead of the whole program is
+/// what keeps a validation cheap even for the longest published rule.
 fn pat_run(prog : PatProg, start : Int, input : Array[Char]) -> Bool {
   let states = prog.code.length() / 4
-  let mut cur = Array::make(states, false)
-  let mut nxt = Array::make(states, false)
-  pat_closure(prog, start, cur)
+  let mark = Array::make(states, 0)
+  let mut gen = 1
+  let mut cur : Array[Int] = []
+  pat_closure(prog, start, mark, gen, cur)
   for ch in input {
-    let mut i = 0
-    while i < states {
-      nxt[i] = false
-      i = i + 1
-    }
-    let mut any = false
-    let mut i = 0
-    while i < states {
-      if cur[i] && prog.code[i * 4] == st_char {
-        let cls = prog.code[i * 4 + 1]
-        if pat_class_matches(prog.classes[cls], ch) {
-          pat_closure(prog, prog.code[i * 4 + 2], nxt)
-          any = true
-        }
-      }
-      i = i + 1
-    }
-    if !any {
+    if cur.length() == 0 {
       return false
     }
-    let tmp = cur
+    gen = gen + 1
+    let nxt : Array[Int] = []
+    for s in cur {
+      if prog.code[s * 4] == st_char {
+        let cls = prog.code[s * 4 + 1]
+        if pat_class_matches(prog.classes[cls], ch) {
+          pat_closure(prog, prog.code[s * 4 + 2], mark, gen, nxt)
+        }
+      }
+    }
     cur = nxt
-    nxt = tmp
   }
-  let mut i = 0
-  while i < states {
-    if cur[i] && prog.code[i * 4] == st_match {
+  for s in cur {
+    if prog.code[s * 4] == st_match {
       return true
     }
-    i = i + 1
   }
   false
 }
@@ -497,6 +501,35 @@ fn pat_run(prog : PatProg, start : Int, input : Array[Char]) -> Bool {
 // ---------------------------------------------------------------------------
 // Public surface
 // ---------------------------------------------------------------------------
+
+///|
+/// A compiled pattern, ready to run: the program and its entry state.
+priv struct CompiledPattern {
+  prog : PatProg
+  start : Int
+}
+
+///|
+/// Compile a pattern once. A pattern outside the grammar compiles to a program
+/// that matches nothing, so the caller never has to carry the failure around.
+fn compile_pattern(pattern : String) -> CompiledPattern {
+  match parse_pattern(pattern) {
+    None => { prog: { code: [], classes: [] }, start: -1 }
+    Some(node) => {
+      let (prog, start) = pat_build(node)
+      { prog, start }
+    }
+  }
+}
+
+///|
+/// Run a compiled pattern over the whole text.
+fn run_pattern(c : CompiledPattern, text : String) -> Bool {
+  if c.start < 0 {
+    return false
+  }
+  pat_run(c.prog, c.start, chars_of(text))
+}
 
 ///|
 /// True when `text` matches `pattern` in full, under the numbering-plan grammar.
