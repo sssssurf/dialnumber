@@ -4,6 +4,11 @@ All notable changes to this project are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.2] - 2026-10-20
+
+Republished with the parameter tests in place: 0.7.1 went out before they were
+written, so the version moved instead of rewriting a published release.
+
 ## [0.7.0] - 2026-10-20
 
 The RFC 3966 grammar is now wider than it was, and the claim matches the code.
