@@ -205,6 +205,37 @@ rejected rather than dropped; spaces are not accepted as visual separators; and
 an `isub` value is checked as a run of URI characters, so a `%` must start a
 complete `%HH` escape.
 
+## RFC 3966: what the grammar actually covers
+
+A local number is not resolved by gluing strings together; the RFC gives it a
+context and states what that context means.
+
+```
+telephone-subscriber = global-number / local-number
+local-number         = local-number-digits *par context *par
+context              = ";phone-context=" descriptor
+descriptor           = domainname / global-number-digits
+```
+
+- A **numeric descriptor** (+1-914-555) is a prefix context. The RFC's own
+  example, 	el:863-1234;phone-context=+1-914-555, means +1 914 555 863 1234:
+  the context is normalised to its digits, the local digits follow it, and the
+  result is checked as a number of that calling code. The context stays a field
+  of its own, so parse_tel_uri_full and 	o_tel_uri_full are inverses.
+- A **domain descriptor** (example.com) names an authority. How a local number
+  reads inside that domain is the domain's answer, not something an offline
+  library can infer — so it parses, serialises and round-trips, and
+  esolve_tel_uri returns None instead of inventing a country code.
+
+Implemented: global-number/local-number, global-number-digits and
+local-number-digits (visual separators, HEXDIG, *, #), both descriptor
+shapes, ;ext=, ;isub= (validated as 1*uric, escapes checked and
+canonicalised), generic parameters (;pname, ;pname=pvalue, kept and written
+back in lexicographical order), case-insensitive scheme and names, and the RFC's
+parameter order (ext/isub, then phone-context, then the rest). Not
+implemented: authority resolution for a domain context, the decoded semantics of
+isub, carrier-code formatting, and incremental (AsYouType) rendering.
+
 ## Relationship to other MoonBit libraries
 
 The ecosystem has plenty of validators, and none of them do this. `moon_zod`,
