@@ -3,7 +3,7 @@
 
 name = "sssssurf/dialnumber"
 
-version = "0.6.0"
+version = "0.7.0"
 
 readme = "README.mbt.md"
 

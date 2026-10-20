@@ -4,6 +4,27 @@ All notable changes to this project are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2026-10-20
+
+The RFC 3966 grammar is now wider than it was, and the claim matches the code.
+
+### Added
+
+- Generic parameters (`;pname` and `;pname=pvalue`) are parsed, validated
+  against `pname`/`paramchar` and kept in `TelUri.parameters`; the serialiser
+  writes them back in lexicographical order, as RFC 3966 §5.1 asks.
+- `isub` accepts the two `uric` characters a parameter grammar tends to
+  swallow: `;` and `?`.
+
+### Changed
+
+- `to_tel_uri_full` writes parameters in RFC order: `ext`/`isub` first, then
+  `phone-context`, then the rest. A local number with an extension now
+  serialises as `tel:5550123;ext=42;phone-context=+1919`.
+- An unknown parameter is preserved instead of refused; a name or value outside
+  the grammar is still rejected.
+- The test count is now 339.
+
 ## [0.6.0] - 2026-10-20
 
 Leading digits as the first question, and the performance that follows from it.

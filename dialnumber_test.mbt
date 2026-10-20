@@ -336,7 +336,6 @@ test "tel uri parameters are validated, not dropped" {
     "tel:+12015550123;isub=abc;ext=42",
     "tel:+12015550123;ext=42;ext=43", // duplicate
     "tel:+12015550123;phone-context=+1;phone-context=+2",
-    "tel:+12015550123;foo=bar", // unknown parameter
     "tel:+12015550123;ext=", // empty value
     "tel:+12015550123;ext", // parameter without a value
     "tel:+1 201 555 0123", // space is not a visual separator
@@ -385,6 +384,7 @@ test "to_tel_uri_full refuses an incoherent struct" {
         phone_context: "",
         extension: "",
         isub: "",
+        parameters: [],
       },
     ) is None,
   )
@@ -396,6 +396,7 @@ test "to_tel_uri_full refuses an incoherent struct" {
         phone_context: "+1914",
         extension: "",
         isub: "",
+        parameters: [],
       },
     ) is None,
   )

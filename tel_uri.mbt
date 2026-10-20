@@ -32,6 +32,10 @@ pub(all) struct TelUri {
   phone_context : String
   extension : String
   isub : String
+  /// Generic parameters (`;pname` or `;pname=pvalue`) that this library does not
+  /// interpret. RFC 3966 lets other documents define them, so they are kept
+  /// and written back in lexicographical order rather than refused.
+  parameters : Array[(String, String)]
 } derive(Eq, Debug)
 
 ///|
@@ -218,6 +222,12 @@ fn canonical_phone_context(value : String) -> String? {
 /// makes it a run of URI characters (`uric`: unreserved, reserved and escapes),
 /// not a number, so it is preserved rather than parsed.
 fn is_isub_char(c : Char) -> Bool {
+  // `uric` is the reserved set plus the unreserved one; the two members a
+  // parameter grammar would otherwise swallow are the semicolon and the
+  // question mark, which are legal inside an isdn-subaddress.
+  if c == ';' || c == '?' {
+    return true
+  }
   if (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || is_digit(c) {
     return true
   }
@@ -269,6 +279,85 @@ fn canonical_isub(s : String) -> String? {
   }
   Some(buf.to_string())
 }
+///|
+/// True for a parameter name: alphanumerics and hyphens, at least one.
+fn is_pname(s : String) -> Bool {
+  if s == "" {
+    return false
+  }
+  for c in s {
+    let letter = (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
+    if !letter && !is_digit(c) && c != '-' {
+      return false
+    }
+  }
+  true
+}
+
+///|
+/// True for a generic parameter value: a run of paramchar, where a percent
+/// sign must start a complete escape.
+fn is_param_value(s : String) -> Bool {
+  let cs = chars_of(s)
+  if cs.length() == 0 {
+    return false
+  }
+  let mut i = 0
+  while i < cs.length() {
+    let c = cs[i]
+    if c == '%' {
+      if i + 2 >= cs.length() || !is_hex_digit(cs[i + 1]) || !is_hex_digit(cs[i + 2]) {
+        return false
+      }
+      i = i + 3
+    } else if is_param_char(c) {
+      i = i + 1
+    } else {
+      return false
+    }
+  }
+  true
+}
+
+///|
+/// The characters RFC 3966 allows in a generic parameter value.
+fn is_param_char(c : Char) -> Bool {
+  let letter = (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
+  if letter || is_digit(c) {
+    return true
+  }
+  // U+0027, a mark character this grammar cannot write as a literal.
+  if c.to_int() == 39 {
+    return true
+  }
+  match c {
+    '-' | '_' | '.' | '!' | '~' | '*' | '(' | ')' | '[' | ']' | '/' | ':' | '&' | '+' | '$' => true
+    _ => false
+  }
+}
+
+///|
+/// The parameters in lexicographical order, the order RFC 3966 asks for.
+fn sort_parameters(input : Array[(String, String)]) -> Array[(String, String)] {
+  let out : Array[(String, String)] = []
+  for p in input {
+    out.push(p)
+  }
+  let mut i = 1
+  while i < out.length() {
+    let cur = out[i]
+    let mut j = i
+    while j > 0 && out[j - 1].0 > cur.0 {
+      out[j] = out[j - 1]
+      j = j - 1
+    }
+    out[j] = cur
+    i = i + 1
+  }
+  out
+}
+
+
 
 ///|
 /// Parse a `tel:` URI into its parts, without resolving anything.
@@ -292,6 +381,7 @@ pub fn parse_tel_uri_full(uri : String) -> TelUri? {
   if subscriber == "" {
     return None
   }
+  let params : Array[(String, String)] = []
   let mut context : String? = None
   let mut ext : String? = None
   let mut isub : String? = None
@@ -302,10 +392,7 @@ pub fn parse_tel_uri_full(uri : String) -> TelUri? {
     }
     let (name, value) = match split_first(part, '=') {
       Some(pair) => pair
-      None => return None
-    }
-    if value == "" {
-      return None
+      None => (part, "")
     }
     let lower = {
       let buf = StringBuilder()
@@ -339,8 +426,27 @@ pub fn parse_tel_uri_full(uri : String) -> TelUri? {
         return None
       }
     } else {
-      return None
-    }
+      // A parameter this library does not define: `;pname` or `;pname=pvalue`.
+      // RFC 3966 lets other documents define parameters, so they are preserved
+      // instead of being refused; a name or value outside the grammar still is.
+      if !is_pname(name) {
+        return None
+      }
+      if index_of_sub(part, "=") is Some(_) {
+        if value == "" || !is_param_value(value) {
+          return None
+        }
+      }
+      let mut seen = false
+      for q in params {
+        if q.0 == name {
+          seen = true
+        }
+      }
+      if seen {
+        return None
+      }
+      params.push((name, value))
   }
   let mut global_number = ""
   let mut local_number = ""
@@ -367,6 +473,7 @@ pub fn parse_tel_uri_full(uri : String) -> TelUri? {
     global_number,
     local_number,
     phone_context,
+    parameters: sort_parameters(params),
     extension: match ext {
       Some(v) => v
       None => ""
@@ -403,14 +510,20 @@ pub fn to_tel_uri_full(t : TelUri) -> String? {
   } else {
     "tel:" + t.local_number
   }
-  if is_local {
-    out = out + ";phone-context=" + t.phone_context
-  }
   if t.extension != "" {
     out = out + ";ext=" + t.extension
   }
   if t.isub != "" {
     out = out + ";isub=" + t.isub
+  }
+  if is_local {
+    out = out + ";phone-context=" + t.phone_context
+  }
+  for prm in sort_parameters(t.parameters) {
+    out = out + ";" + prm.0
+    if prm.1 != "" {
+      out = out + "=" + prm.1
+    }
   }
   Some(out)
 }
