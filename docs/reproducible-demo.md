@@ -1,4 +1,4 @@
-﻿# Reproducible demonstration
+# Reproducible demonstration
 
 This page records a run that a reviewer can repeat, and `scripts/check-docs.mjs`
 compares the text below against a real run on every CI job, so it cannot go
@@ -15,7 +15,8 @@ different ways, reports both validation levels and the number type for each,
 shows the NANP's structural rejections, resolves +1 numbers across five
 territories, shows a number that is possible but not valid, prints a plan's
 published rule and runs the pattern engine on it, renders a dozen countries in
-their own grouping, reads a `tel:` URI with an extension, keeps a local number's
+their own grouping, shows the same number as a caller in four countries would
+dial it, reads a `tel:` URI with an extension, keeps a local number's
 `phone-context` intact (both the resolvable numeric form and the unresolvable
 domain form), lists the number types a length admits, and prints a few rows of
 region metadata. Every value printed comes from the library, so if the library
@@ -196,6 +197,12 @@ resolved: no (domain context)
 +86 131 2345 6789: fixed-line,mobile,shared-cost
 +44 7400 123456: fixed-line,mobile,toll-free,premium-rate,voip,personal-number,uan,pager
 
+== dialling from where you are ==
+from US: 011 442079460958
+from DE: 00 442079460958
+from GB: 020 7946 0958
+from AU: +442079460958
+
 == region facts come from the table ==
 US: United States +1  lengths {10}
 JP: Japan +81  lengths {8,9,10,11,12,13,14,15,16,17}
@@ -233,6 +240,12 @@ the area code in the NANP, `020` for London, `8 (495)` for Moscow, `(02)` for
 Sydney, `090-` for a Japanese mobile. Each of those strings is what the plan's
 rules produce, and each one parses back to the number it came from.
 
+The dialling block is the same number written for a caller elsewhere:
+`011 44…` from the United States, `00 44…` from Germany, the national `020 7946
+0958` from the United Kingdom, and the `+` form from Australia, whose published
+dial-out prefix is a set of alternatives rather than one string — a choice the
+library refuses to guess at.
+
 In the `tel:` section, the numeric context `+1919` is kept as a field and used to
 resolve the local number to `+19195550123`; the domain context `example.com` is
 equally valid RFC 3966, so it parses and serialises canonically, but resolution
@@ -248,7 +261,7 @@ node scripts/check-docs.mjs
 ## Test summary
 
 ```text
-Total tests: 332, passed: 332, failed: 0.
+Total tests: 339, passed: 339, failed: 0.
 ```
 
 ## Verifying the documentation itself

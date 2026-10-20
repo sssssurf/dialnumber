@@ -342,6 +342,7 @@ Formatting and `tel:` URIs:
 | `format_e164(pn)` | `+8613123456789` |
 | `format_international(pn)` | `+86 131 2345 6789`, grouped by the plan |
 | `format_national(pn, region)` | trunk prefix plus grouped national number |
+| `format_dialling(pn, from_region)` | `011 442079460958`, or the national form at home |
 | `format_rfc3966(pn)` | `tel:+8613123456789;ext=42` |
 | `parse_tel_uri(uri)` | parse and resolve a `tel:` URI |
 | `parse_tel_uri_full(uri)` | parse into a `TelUri?` without resolving |
@@ -373,12 +374,38 @@ The `NumberType` enum names the eleven categories. The `PhoneNumber` struct hold
 `country_code`, `national_number` (a string, so a significant leading zero
 survives), and `extension`. `TelUri` holds the five parts of a `tel:` URI.
 
+## Performance
+
+Two decisions keep a validation out of the millisecond range: a rule is compiled
+once and memoised in the table, and the matcher walks only the states that are
+alive rather than the whole program. A plan rule is a large alternation, and after
+the first digit only a few of its branches can still match.
+
+Measured with `moon bench benchmarks` (wasm target, mean per call; the first call
+for a rule pays its compilation, later calls reuse it):
+
+| Operation | Time |
+| --- | --- |
+| `is_possible` | 0.13 µs |
+| `format_e164` | 0.10 µs |
+| `parse` (E.164) | 4.9 µs |
+| `is_valid` (a single-plan number) | 4.8 µs |
+| `parse` (`tel:` URI) | 9.0 µs |
+| `parse` (national) | 15.8 µs |
+| `format_national` | 32.9 µs |
+| `region_of_number` | 45.1 µs |
+| `is_valid` (a NANP number, 25 territories to disambiguate) | 48.5 µs |
+| `format_international` | 70.4 µs |
+
+The benchmarks live in `benchmarks/` and are part of the repository so a
+regression shows up as a number, not as an opinion.
+
 ## Tests
 
-332 tests cover the public API, the pattern engine, the formatting rules, the
-generated table, the `tel:` grammar, and robustness against malformed input. The
-bulk of them are generated from the same data the library ships, so a data
-refresh grows the suite with it:
+339 tests cover the public API, the pattern engine, the formatting rules, the
+generated table, the `tel:` grammar, the invariants of random input, and
+robustness against malformed input. The bulk of them are generated from the same
+data the library ships, so a data refresh grows the suite with it:
 
 - one block per region, asserting that every published example number is
   accepted by its plan, resolves to the region the data says, reports a
@@ -387,6 +414,10 @@ refresh grows the suite with it:
 - a differential corpus that runs every published rule against its example and
   a mutated near miss, with the expected answer computed by an independent
   regular-expression engine;
+- property tests: a deterministic generator walks random numbers through the
+  invariants (an E.164 rendering parses back to itself, a valid number is always
+  possible, a reported type implies validity), and random text through every
+  entry point;
 - whitebox checks that the table matches the metadata counts, that every rule is
   inside the engine's grammar, and that the NANP is complete;
 - unit tests for the grammar, the operators, the refusals, matching time on long

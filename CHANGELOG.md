@@ -4,6 +4,33 @@ All notable changes to this project are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2026-10-20
+
+Speed, a dialling form, and property tests.
+
+### Added
+
+- `format_dialling(pn, from_region)`: the number as a caller in that region dials
+  it — `011 442079460958` from the NANP, `00 442079460958` from Europe, the
+  national form when the number is at home. A plan whose dial-out prefix is
+  published as an expression rather than digits falls back to the `+` form.
+- A benchmark suite in `benchmarks/` (`moon bench benchmarks`) for parsing,
+  validation, region resolution and rendering, so a performance regression shows
+  up as a number.
+- Property tests over a deterministic generator: E.164 round-trip, valid implies
+  possible, a reported type implies validity, and arbitrary text through every
+  entry point. 339 tests in total.
+
+### Changed
+
+- Type rules, the plan's overall rule and the trunk-prefix pattern are compiled
+  once and memoised in the table instead of being re-parsed on every call.
+- The pattern matcher now simulates only the live states of the NFA instead of
+  sweeping the whole program for each character.
+- Together these take `is_valid` on a single-plan number from ~489 µs to ~4.8 µs,
+  and on a NANP number (25 territories to disambiguate) from ~2.45 ms to
+  ~48 µs; `parse` of a national number drops from ~117 µs to ~16 µs.
+
 ## [0.4.0] - 2026-10-20
 
 Formatting from the plans' own rules, so a number is rendered the way its country
@@ -166,6 +193,7 @@ First release.
 - `scripts/check-docs.mjs`, which fails CI when the recorded documentation drifts
   from real output.
 
+[0.5.0]: https://github.com/sssssurf/dialnumber/releases/tag/v0.5.0
 [0.4.0]: https://github.com/sssssurf/dialnumber/releases/tag/v0.4.0
 [0.3.0]: https://github.com/sssssurf/dialnumber/releases/tag/v0.3.0
 [0.2.0]: https://github.com/sssssurf/dialnumber/releases/tag/v0.2.0
