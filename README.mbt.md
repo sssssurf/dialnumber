@@ -31,7 +31,9 @@ recorded checksum. Every public function is total — bad input comes back as
   territories share. All 25 territories of the `+1` space resolve from their own
   area-code allocation, so `+1 204…` is Canada, `+1 787…` is Puerto Rico and
   `+1 868…` is Trinidad and Tobago.
-- **Format** to E.164, international, national, or an RFC 3966 `tel:` URI.
+- **Format** to E.164, international, national, or an RFC 3966 `tel:` URI — and
+  the two human renderings carry the plan's own grouping: `(201) 555-0123`,
+  `020 7946 0958`, `090-1234-5678`, `+55 11 98765-4321`.
 - **Look up** regions by code or by calling code, with the plan's international
   and national prefixes, the lengths it uses and the raw rules behind a verdict.
 - **Read and write** RFC 3966 `tel:` URIs with the full grammar: global and
@@ -71,6 +73,39 @@ match pn {
 }
 ```
 
+## The plans' own grouping
+
+A number is not written the same way in two countries, and the library does not
+invent a grouping: `plan_data.mbt` carries each plan's formatting rules — a
+pattern of digit groups, the text between them, the leading digits that select
+the rule, and the plan's national-prefix rule — and `format_national` /
+`format_international` render through the first rule that fits. When a plan
+publishes no rule for a shape, the number falls back to its ungrouped form.
+
+```moonbit nocheck
+///|
+let us = @dialnumber.PhoneNumber::new(1, "2015550123")
+@dialnumber.format_national(us, "US")        // Some("(201) 555-0123")
+@dialnumber.format_international(us)         // "+1 201-555-0123"
+
+///|
+let gb = @dialnumber.PhoneNumber::new(44, "2079460958")
+@dialnumber.format_national(gb, "GB")        // Some("020 7946 0958")
+@dialnumber.format_international(gb)         // "+44 20 7946 0958"
+```
+
+Two rules make the output reproducible rather than plausible. A national
+rendering must read back as the same number in the same region — the generated
+tests assert exactly that for every fixed-line and mobile example — and the
+grouping comes from data, so a plan that changes its style changes with a data
+refresh.
+
+National dialling is not always the inverse of formatting: Argentina writes a
+mobile as `011 15-…` while its international form carries the `9`, and a few
+plans rewrite the number while parsing. That rewriting (`nationalPrefixForParsing`
+with a transform rule) is not implemented, and the generated round-trip tests
+skip the plans that publish one instead of pretending otherwise.
+
 ## The rule engine
 
 `pattern.mbt` is a small regular-expression engine built for exactly the grammar
@@ -107,7 +142,8 @@ PhoneNumberMetadata.xml          upstream, Apache-2.0, pinned by SHA-256
         |  scripts/update-metadata.mjs      fetch, extract, validate the grammar
         v
 data/numbering-plans.json        one record per region: prefixes, types,
-        |                        patterns, lengths, example numbers
+        |                        patterns, lengths, example numbers,
+        |                        and the formatting rules
         |  scripts/gen-metadata.mjs         emit MoonBit
         v
 plan_data.mbt                    the table the library compiles
@@ -132,8 +168,9 @@ node scripts/check-docs.mjs        # verify the docs still match real output
 ## Coverage: 245 plans and the whole NANP
 
 The table holds every geographic territory the upstream metadata describes, with
-the number types each plan defines: 245 regions, 1 132 per-type rules and 1 132
-published example numbers.
+the number types each plan defines and the way it writes its numbers: 245
+regions, 1 132 per-type rules, 740 formatting rules and 1 132 published example
+numbers.
 
 The North American Numbering Plan is the largest shared calling code: 25
 territories on `+1`. Each publishes its own area-code allocation, so resolution
@@ -201,7 +238,7 @@ let pn = @dialnumber.parse("011 44 20 7946 0958", "US")
 match pn {
   Some(n) => {
     @dialnumber.format_e164(n)           // "+442079460958"
-    @dialnumber.format_national(n, "GB") // Some("02079460958")
+    @dialnumber.format_national(n, "GB") // Some("020 7946 0958")
     @dialnumber.is_possible(n)           // true
     @dialnumber.is_valid(n)              // true
     @dialnumber.region_of_number(n)      // Some("GB")
@@ -303,8 +340,8 @@ Formatting and `tel:` URIs:
 | Function | Purpose |
 | --- | --- |
 | `format_e164(pn)` | `+8613123456789` |
-| `format_international(pn)` | `+86 13123456789` |
-| `format_national(pn, region)` | trunk prefix plus national number |
+| `format_international(pn)` | `+86 131 2345 6789`, grouped by the plan |
+| `format_national(pn, region)` | trunk prefix plus grouped national number |
 | `format_rfc3966(pn)` | `tel:+8613123456789;ext=42` |
 | `parse_tel_uri(uri)` | parse and resolve a `tel:` URI |
 | `parse_tel_uri_full(uri)` | parse into a `TelUri?` without resolving |
@@ -338,21 +375,22 @@ survives), and `extension`. `TelUri` holds the five parts of a `tel:` URI.
 
 ## Tests
 
-326 tests cover the public API, the pattern engine, the generated table, the
-`tel:` grammar, and robustness against malformed input. The bulk of them are
-generated from the same data the library ships, so a data refresh grows the suite
-with it:
+332 tests cover the public API, the pattern engine, the formatting rules, the
+generated table, the `tel:` grammar, and robustness against malformed input. The
+bulk of them are generated from the same data the library ships, so a data
+refresh grows the suite with it:
 
 - one block per region, asserting that every published example number is
-  accepted by its plan, resolves to the region the data says, and reports a
-  plausible type;
+  accepted by its plan, resolves to the region the data says, reports a
+  plausible type, and — for fixed-line and mobile examples — reads back as the
+  same number when its national rendering is parsed again;
 - a differential corpus that runs every published rule against its example and
   a mutated near miss, with the expected answer computed by an independent
   regular-expression engine;
 - whitebox checks that the table matches the metadata counts, that every rule is
   inside the engine's grammar, and that the NANP is complete;
-- unit tests for the grammar, the operators, the refusals, and matching time on
-  long input;
+- unit tests for the grammar, the operators, the refusals, matching time on long
+  input, the grouping of a dozen plans, and the round-trip invariant;
 - a robustness suite that feeds junk, 500-digit numbers and lone separators
   through every public entry point.
 

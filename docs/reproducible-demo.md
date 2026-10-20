@@ -11,14 +11,15 @@ moon run cmd/demo
 ```
 
 The tour exercises the public API end to end: it parses numbers written several
-different ways, reports both validation levels and the number type for each, shows
-the NANP's structural rejections, resolves +1 numbers across five territories,
-shows a number that is possible but not valid, prints a plan's published rule and
-runs the pattern engine on it, reads a `tel:` URI with an extension, keeps a local
-number's `phone-context` intact (both the resolvable numeric form and the
-unresolvable domain form), lists the number types a length admits, and prints a
-few rows of region metadata. Every value printed comes from the library, so if the
-library regresses this output changes and the documentation check fails.
+different ways, reports both validation levels and the number type for each,
+shows the NANP's structural rejections, resolves +1 numbers across five
+territories, shows a number that is possible but not valid, prints a plan's
+published rule and runs the pattern engine on it, renders a dozen countries in
+their own grouping, reads a `tel:` URI with an extension, keeps a local number's
+`phone-context` intact (both the resolvable numeric form and the unresolvable
+domain form), lists the number types a length admits, and prints a few rows of
+region metadata. Every value printed comes from the library, so if the library
+regresses this output changes and the documentation check fails.
 
 ## Recorded output
 
@@ -27,35 +28,35 @@ library regresses this output changes and the documentation check fails.
 == parse across the ways people write a number ==
 input: +1 201-555-0123
 e164: +12015550123
-international: +1 2015550123
+international: +1 201-555-0123
 region: US
 possible: yes
 valid: yes
 type: fixed-line-or-mobile
 input: 011 44 20 7946 0958  [region US]
 e164: +442079460958
-international: +44 2079460958
+international: +44 20 7946 0958
 region: GB
 possible: yes
 valid: yes
 type: fixed-line
 input: 090-1234-5678  [region JP]
 e164: +819012345678
-international: +81 9012345678
+international: +81 90-1234-5678
 region: JP
 possible: yes
 valid: yes
 type: mobile
 input: +86 (131) 2345-6789
 e164: +8613123456789
-international: +86 13123456789
+international: +86 131 2345 6789
 region: CN
 possible: yes
 valid: yes
 type: mobile
 input: 02 12345678  [region IT]
 e164: +390212345678
-international: +39 0212345678
+international: +39 02 1234 5678
 region: IT
 possible: yes
 valid: yes
@@ -80,47 +81,56 @@ valid: no
 type: (none)
 
 == national rendering needs a region ==
-national: 09012345678
+national: 090-1234-5678
+
+== each plan groups the number its own way ==
+US: national: (201) 555-0123   international: +1 201-555-0123
+GB: national: 020 7946 0958   international: +44 20 7946 0958
+DE: national: 030 123456   international: +49 30 123456
+FR: national: 01 23 45 67 89   international: +33 1 23 45 67 89
+JP: national: 090-1234-5678   international: +81 90-1234-5678
+BR: national: (11) 98765-4321   international: +55 11 98765-4321
+AU: national: (02) 1234 5678   international: +61 2 1234 5678
 
 == +1 is 25 territories, and each allocation decides ==
 input: +1 201-555-0123
 e164: +12015550123
-international: +1 2015550123
+international: +1 201-555-0123
 region: US
 possible: yes
 valid: yes
 type: fixed-line-or-mobile
 input: +1 204-254-5000
 e164: +12042545000
-international: +1 2042545000
+international: +1 204-254-5000
 region: CA
 possible: yes
 valid: yes
 type: fixed-line-or-mobile
 input: +1 787-234-5678
 e164: +17872345678
-international: +1 7872345678
+international: +1 787-234-5678
 region: PR
 possible: yes
 valid: yes
 type: fixed-line-or-mobile
 input: +1 876-523-0123
 e164: +18765230123
-international: +1 8765230123
+international: +1 876-523-0123
 region: JM
 possible: yes
 valid: yes
 type: fixed-line-or-mobile
 input: +1 242-345-6789
 e164: +12423456789
-international: +1 2423456789
+international: +1 242-345-6789
 region: BS
 possible: yes
 valid: yes
 type: fixed-line
 input: +1 868-221-1234
 e164: +18682211234
-international: +1 8682211234
+international: +1 868-221-1234
 region: TT
 possible: yes
 valid: yes
@@ -150,7 +160,7 @@ valid: no
 type: (none)
 input: +1 201-555-0123
 e164: +12015550123
-international: +1 2015550123
+international: +1 201-555-0123
 region: US
 possible: yes
 valid: yes
@@ -196,9 +206,10 @@ IT: Italy +39  lengths {6,7,8,9,10,11,12}
 Several things are worth pointing at in that output.
 
 The first block is the ordinary case: each number is parsed, resolved to a
-region, and run through both checks. The Italian number `02 12345678` keeps its
-leading zero, because Italy has no trunk prefix and the zero is part of the
-number — which is why the national number is a string.
+region, run through both checks, and rendered internationally in the grouping the
+plan publishes — `+81 90-1234-5678` rather than a bare run of digits. The Italian
+number `02 12345678` keeps its leading zero, because Italy has no trunk prefix and
+the zero is part of the number — which is why the national number is a string.
 
 The two `+1` numbers of the wrong length resolve to no region and check as
 impossible, which is the length rule doing its job. `+999 555 0000` is
@@ -217,6 +228,11 @@ assigned area code, so no rule claims it and it is not valid. `+81 90-1234-567`
 is the same story one digit short: Japan uses nine-digit mobiles, so the number is
 possible, but its rule does not match.
 
+The grouping block is the plans' own formatting data at work: parentheses around
+the area code in the NANP, `020` for London, `8 (495)` for Moscow, `(02)` for
+Sydney, `090-` for a Japanese mobile. Each of those strings is what the plan's
+rules produce, and each one parses back to the number it came from.
+
 In the `tel:` section, the numeric context `+1919` is kept as a field and used to
 resolve the local number to `+19195550123`; the domain context `example.com` is
 equally valid RFC 3966, so it parses and serialises canonically, but resolution
@@ -225,14 +241,14 @@ answers `no` instead of inventing a country code.
 ## Regenerating this page
 
 ```bash
-moon run cmd/demo > docs/demo-output.txt
+moon run cmd/demo > demo-output.txt
 node scripts/check-docs.mjs
 ```
 
 ## Test summary
 
 ```text
-Total tests: 326, passed: 326, failed: 0.
+Total tests: 332, passed: 332, failed: 0.
 ```
 
 ## Verifying the documentation itself

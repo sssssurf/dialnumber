@@ -48,6 +48,8 @@ For each territory the upstream metadata describes:
 | `types[].national` | `possibleLengths national` | the "possible" length test |
 | `types[].local_only` | `possibleLengths localOnly` | `local_only_lengths` |
 | `types[].example` | `exampleNumber` | the generated golden tests |
+| `formats[]` | `availableFormats/numberFormat` | grouped national and international rendering |
+| `prefix_parsing` | `nationalPrefixForParsing` | recognising a trunk prefix while parsing |
 
 Two details are worth recording because they are easy to get wrong:
 
