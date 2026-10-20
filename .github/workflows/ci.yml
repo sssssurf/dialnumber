@@ -79,3 +79,19 @@ jobs:
 
       - name: Test (${{ matrix.target }})
         run: moon test --target ${{ matrix.target }}
+
+  # The benchmarks are committed, so they have to keep compiling and running.
+  # The numbers are not asserted on (a shared runner is too noisy for that), but
+  # a broken or removed benchmark fails here instead of being noticed by nobody.
+  benchmarks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install MoonBit
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+
+      - name: Benchmarks
+        run: moon bench benchmarks
