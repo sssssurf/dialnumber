@@ -123,6 +123,31 @@ fn main {
     }
   }
 
+  head("each plan groups the number its own way")
+  // The grouping is the plans' own: each publishes the shapes its numbers are
+  // written in, and the renderer picks the rule that fits.
+  let styled : Array[(String, String)] = [
+    ("+1 201-555-0123", "US"),
+    ("+44 20 7946 0958", "GB"),
+    ("+49 30 123456", "DE"),
+    ("+33 1 23 45 67 89", "FR"),
+    ("+81 90-1234-5678", "JP"),
+    ("+55 11 98765-4321", "BR"),
+    ("+61 2 1234 5678", "AU"),
+  ]
+  for pair in styled {
+    match @dn.parse(pair.0, "") {
+      None => show(pair.1, "unreadable")
+      Some(pn) => {
+        let nat = match @dn.format_national(pn, pair.1) {
+          Some(v) => v
+          None => "(none)"
+        }
+        show(pair.1, "national: " + nat + "   international: " + @dn.format_international(pn))
+      }
+    }
+  }
+
   head("+1 is 25 territories, and each allocation decides")
   // Every +1 territory publishes its own area-code allocation; the engine
   // resolves the number against it instead of a hard-coded US/CA split.
