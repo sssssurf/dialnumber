@@ -35,8 +35,19 @@ test "arbitrary junk never panics" {
     let _ = @dialnumber.parse_tel_uri(w)
     let _ = @dialnumber.parse_tel_uri_full(w)
     let _ = @dialnumber.is_possible_number(w, "US")
+    let _ = @dialnumber.is_valid_number(w, "US")
     let _ = @dialnumber.nanp_possible(w)
     let _ = @dialnumber.nanp_region_of(w)
+    let _ = @dialnumber.nanp_area_code(w)
+    // The pattern engine takes arbitrary text on both sides: a malformed
+    // pattern must be a parse failure, never a panic.
+    let _ = @dialnumber.matches_pattern(w, w)
+    let _ = @dialnumber.matches_pattern(w, "12345")
+    let _ = @dialnumber.matches_pattern("\\d+", w)
+    let _ = @dialnumber.pattern_well_formed(w)
+    let _ = @dialnumber.plan_pattern(w)
+    let _ = @dialnumber.type_pattern(w, @dialnumber.Mobile)
+    let _ = @dialnumber.local_only_lengths(w)
   }
 }
 
@@ -51,8 +62,10 @@ test "a very long national number is handled" {
     Some(pn) => {
       assert_eq(pn.country_code, 1)
       assert_false(@dialnumber.is_possible(pn))
+      assert_false(@dialnumber.is_valid(pn))
       assert_eq(@dialnumber.possible_types(pn).length(), 0)
       assert_true(@dialnumber.region_of_number(pn) is None)
+      assert_true(@dialnumber.number_type(pn) is None)
     }
     None => assert_true(false)
   }

@@ -213,7 +213,7 @@ test "possible_types is empty for an impossible length" {
 
 ///|
 test "region table basics" {
-  assert_eq(@dialnumber.region_codes().length(), 51)
+  assert_eq(@dialnumber.region_codes().length(), 245)
   assert_true(@dialnumber.region_exists("jp"))
   assert_true(@dialnumber.region_exists("JP"))
   assert_false(@dialnumber.region_exists("ZZ"))
@@ -237,7 +237,7 @@ test "calling codes map back to regions" {
   assert_eq(@dialnumber.region_by_calling_code(81), Some("JP"))
   assert_eq(@dialnumber.region_by_calling_code(1), Some("US"))
   let nanp = @dialnumber.regions_by_calling_code(1)
-  assert_eq(nanp.length(), 2)
+  assert_eq(nanp.length(), 25)
   assert_true(nanp.contains("CA"))
   assert_true(nanp.contains("US"))
   assert_eq(@dialnumber.region_by_calling_code(999), None)

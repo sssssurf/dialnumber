@@ -77,14 +77,55 @@ test "nanp_region_of classifies by area code" {
 }
 
 ///|
-test "the Canadian area-code set is exposed for tooling" {
-  let ca = @dialnumber.nanp_canadian_area_codes()
-  assert_eq(ca.length(), 59)
-  assert_true(ca.contains("204"))
-  assert_true(ca.contains("905"))
-  assert_true(ca.contains("600"))
-  assert_true(ca.contains("622"))
-  assert_true(ca.contains("633"))
-  assert_false(ca.contains("201"))
-  assert_false(ca.contains("800"))
+test "the NANP territories are enumerated from the plans" {
+  let nanp = @dialnumber.nanp_region_codes()
+  assert_eq(nanp.length(), 25)
+  for code in ["US", "CA", "PR", "JM", "AG", "AI", "AS", "BB", "BM", "BS", "DM",
+    "DO", "GD", "GU", "KN", "KY", "LC", "MP", "MS", "SX", "TC", "TT", "VC",
+    "VG", "VI"] {
+    assert_true(nanp.contains(code))
+  }
+}
+
+///|
+test "an area code is the first three digits of a NANP number" {
+  assert_eq(@dialnumber.nanp_area_code("2042545000"), Some("204"))
+  assert_eq(@dialnumber.nanp_area_code("2015550123"), Some("201"))
+  assert_eq(@dialnumber.nanp_area_code("201555012"), None)
+  assert_eq(@dialnumber.nanp_area_code("201-555-0123"), None)
+}
+
+///|
+test "every NANP territory is resolved by its own allocation" {
+  // One real example per territory, taken from the plans' published examples.
+  let cases : Array[(String, String)] = [
+    ("2015550123", "US"),
+    ("2042545000", "CA"),
+    ("7872345678", "PR"),
+    ("8765230123", "JM"),
+    ("2423456789", "BS"),
+    ("2684601234", "AG"),
+    ("2642350123", "AI"),
+    ("6846221234", "AS"),
+    ("2464123456", "BB"),
+    ("4412345678", "BM"),
+    ("7672451234", "DM"),
+    ("8092345678", "DO"),
+    ("4734031234", "GD"),
+    ("6713001234", "GU"),
+    ("8692361234", "KN"),
+    ("3452221234", "KY"),
+    ("7582841234", "LC"),
+    ("6702341234", "MP"),
+    ("6644911234", "MS"),
+    ("7215421234", "SX"),
+    ("6492311234", "TC"),
+    ("8682211234", "TT"),
+    ("7844301234", "VC"),
+    ("2844421234", "VG"),
+    ("3406421234", "VI"),
+  ]
+  for pair in cases {
+    assert_eq(@dialnumber.nanp_region_of(pair.0), Some(pair.1))
+  }
 }

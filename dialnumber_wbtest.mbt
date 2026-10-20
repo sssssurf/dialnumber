@@ -96,24 +96,6 @@ test "slice clamps to the string" {
 }
 
 ///|
-test "parse_type_spec expands the compact spec" {
-  let pairs = parse_type_spec("f=8 m=9|10")
-  assert_eq(pairs.length(), 2)
-  let first = pairs[0]
-  let first_lens = first.1
-  assert_eq(first.0, FixedLine)
-  assert_eq(first_lens.length(), 1)
-  assert_eq(first_lens[0], 8)
-  let second = pairs[1]
-  assert_eq(second.0, Mobile)
-  assert_eq(second.1.length(), 2)
-  // Malformed tokens are skipped, not fatal.
-  assert_eq(parse_type_spec("").length(), 0)
-  assert_eq(parse_type_spec("z=1 f=8").length(), 1)
-  assert_eq(parse_type_spec("bad f=8").length(), 1)
-}
-
-///|
 test "lengths_of unions the per-type lengths" {
   match find_region("BE") {
     Some(r) => assert_eq(lengths_of(r), [8, 9])
