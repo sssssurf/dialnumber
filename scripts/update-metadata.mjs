@@ -117,6 +117,46 @@ function expandLengths(raw) {
   return out;
 }
 
+// Formatting rules. Each rule is a pattern made only of capture groups over
+// digit runs, a format string referring to them as $1..$9, and optionally the
+// national-prefix rule ($NP) and an international variant.
+function formatsOf(body) {
+  const af = body.match(/<availableFormats>([\s\S]*?)<\/availableFormats>/);
+  if (!af) return [];
+  const out = [];
+  for (const m of af[1].matchAll(/<numberFormat\b([^>]*)>([\s\S]*?)<\/numberFormat>/g)) {
+    const attrs = {};
+    for (const a of m[1].matchAll(/(\w+)="([^"]*)"/g)) attrs[a[1]] = a[2];
+    const pattern = strip(attrs.pattern ?? "");
+    if (!formatPatternOk(pattern)) {
+      throw new Error(`unsupported format pattern ${JSON.stringify(pattern)}`);
+    }
+    const leading = [...m[2].matchAll(/<leadingDigits>([\s\S]*?)<\/leadingDigits>/g)].map((x) => strip(x[1]));
+    const format = trimTag(m[2], "format");
+    const intl = trimTag(m[2], "intlFormat");
+    const prefixRule = (attrs.nationalPrefixFormattingRule ?? "").trim();
+    const rule = {
+      pattern,
+      leading,
+      format,
+      ...(intl ? { intl } : {}),
+      ...(prefixRule ? { prefix_rule: prefixRule } : {}),
+      ...(attrs.nationalPrefixOptionalWhenFormatting === "true" ? { optional: true } : {}),
+    };
+    out.push(rule);
+  }
+  return out;
+}
+
+function trimTag(body, tag) {
+  const m = body.match(new RegExp(`<${tag}>([\\s\\S]*?)</${tag}>`));
+  return m ? m[1].trim() : "";
+}
+
+function formatPatternOk(pattern) {
+  return /^(?:\(\\d(?:\{\d+(?:,\d*)?\}|[+*?])?\))+$/.test(pattern);
+}
+
 const display = new Intl.DisplayNames(["en"], { type: "region" });
 
 function regionName(code) {
@@ -171,20 +211,34 @@ async function main() {
       });
     }
 
+    const formats = formatsOf(body);
+
     regions.push({
       code,
       name: regionName(code),
       calling_code: Number(attrs.countryCode),
       idd: shortIid(strip(attrs.internationalPrefix ?? "")),
       national_prefix: attrs.nationalPrefix ?? "",
+      // How a national number's trunk prefix is recognised when parsing. It is
+      // usually the plain prefix, but some plans publish a pattern ("0|80?")
+      // because more than one spelling is dialled.
+      prefix_parsing: strip(attrs.nationalPrefixForParsing ?? ""),
+      // Some plans rewrite the national number while parsing (Argentina turns
+      // "011 15-…" into "9 11 …", Belarus drops an extra trunk digit). That
+      // machinery is `nationalPrefixForParsing` plus a transform rule; this
+      // library does not implement it, and records the fact so the generated
+      // round-trip tests do not claim otherwise.
+      dial_transform: Boolean(attrs.nationalPrefixTransformRule),
       primary: attrs.mainCountryForCode === "true",
       general,
       types,
+      formats,
     });
   }
 
   regions.sort((a, b) => a.code.localeCompare(b.code));
 
+  const formatCount = regions.reduce((n, r) => n + r.formats.length, 0);
   const doc = {
     meta: {
       source: "google/libphonenumber resources/PhoneNumberMetadata.xml",
@@ -194,6 +248,7 @@ async function main() {
       retrieved: new Date().toISOString().slice(0, 10),
       regions: regions.length,
       patterns: patternCount,
+      formats: formatCount,
       generator: "scripts/update-metadata.mjs",
     },
     regions,
@@ -205,7 +260,7 @@ async function main() {
   const bytes = fs.statSync(OUT).size;
   const types = regions.reduce((n, r) => n + r.types.length, 0);
   console.log(
-    `regions=${regions.length} types=${types} patterns=${patternCount} ` +
+    `regions=${regions.length} types=${types} patterns=${patternCount} formats=${formatCount} ` +
       `bytes=${bytes} skipped_non_geo=${skipped.length} sha256=${sha.slice(0, 12)}`,
   );
   const noPatterns = regions.filter((r) => r.types.length === 0).map((r) => r.code);

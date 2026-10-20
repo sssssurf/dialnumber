@@ -87,6 +87,43 @@ fn region_exists_at_code(cc : Int) -> Bool {
 }
 
 ///|
+/// Strip the trunk prefix a national number is dialled with.
+///
+/// Most plans publish the prefix itself (`"0"`, `"1"`, `"8"`), but some publish a
+/// pattern instead, because more than one spelling is dialled: Belarus accepts
+/// `0`, `8` and `80`, so one number can arrive three ways. When the published
+/// pattern is inside the engine's grammar it is used to find the longest prefix
+/// that matches; otherwise the plain prefix is stripped, which is what the plan
+/// usually means anyway.
+fn strip_national_prefix(r : Region, digits : String) -> String {
+  let cs = chars_of(digits)
+  if r.prefix_parsing != "" && pattern_well_formed(r.prefix_parsing) {
+    let limit = if cs.length() < 12 { cs.length() } else { 12 }
+    let mut best = 0
+    let mut k = 1
+    while k <= limit {
+      if matches_pattern(r.prefix_parsing, slice(cs, 0, k)) {
+        best = k
+      }
+      k = k + 1
+    }
+    if best > 0 && best < cs.length() {
+      return slice(cs, best, cs.length() - best)
+    }
+  }
+  if r.national_prefix != "" && starts_with(digits, r.national_prefix) {
+    match drop(digits, r.national_prefix.length()) {
+      Some(stripped) =>
+        if stripped != "" {
+          return stripped
+        }
+      None => ()
+    }
+  }
+  digits
+}
+
+///|
 /// Parse a number written in any of the accepted shapes.
 ///
 /// `default_region` is the ISO 3166-1 alpha-2 code the number should be read in
@@ -149,16 +186,7 @@ pub fn parse(input : String, default_region : String) -> PhoneNumber? {
   match find_region(default_region) {
     None => None
     Some(r) => {
-      let mut nsn = body
-      if r.national_prefix != "" && starts_with(nsn, r.national_prefix) {
-        match drop(nsn, r.national_prefix.length()) {
-          Some(stripped) =>
-            if stripped != "" {
-              nsn = stripped
-            }
-          None => ()
-        }
-      }
+      let nsn = strip_national_prefix(r, body)
       Some({ country_code: r.calling_code, national_number: nsn, extension: ext })
     }
   }

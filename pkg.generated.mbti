@@ -117,11 +117,12 @@ pub(all) struct PhoneNumber {
   country_code : Int
   national_number : String
   extension : String
-} derive(Eq)
+} derive(Eq, @debug.Debug)
 pub fn PhoneNumber::equal(Self, Self) -> Bool
 pub fn PhoneNumber::new(Int, String) -> Self
 pub fn PhoneNumber::not_equal(Self, Self) -> Bool
 pub fn PhoneNumber::output(Self, &Logger) -> Unit
+pub fn PhoneNumber::to_repr(Self) -> @debug.Repr
 pub fn PhoneNumber::to_string(Self) -> String
 pub fn PhoneNumber::with_extension(Self, String) -> Self
 pub impl Show for PhoneNumber

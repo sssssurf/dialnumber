@@ -21,6 +21,38 @@ priv struct PlanType {
 }
 
 ///|
+/// One formatting rule: how a national number of a given shape is split into
+/// groups, and what goes between them.
+///
+/// `pattern` is a sequence of capture groups over digit runs (`(\d{3})(\d{4})`);
+/// `format` refers to them as `$1`..`$9`. `leading` holds the plan's published
+/// leading-digit patterns for selecting the rule; the last one is the most
+/// specific and is the one that decides. `intl_format` overrides `format` when
+/// the number is rendered internationally (`"NA"` means the plan has no
+/// international rendering). `prefix_rule` is the plan's national-prefix rule,
+/// written with `$NP` (the trunk prefix) and `$FG` (the formatted number), and
+/// `prefix_optional` says the prefix may be left out.
+priv struct PhoneFormat {
+  pattern : String
+  leading : Array[String]
+  format : String
+  intl_format : String
+  prefix_rule : String
+}
+
+///|
+/// One formatting row, used only by the generated table.
+fn plan_format(
+  pattern : String,
+  leading : Array[String],
+  format : String,
+  intl_format : String,
+  prefix_rule : String,
+) -> PhoneFormat {
+  { pattern, leading, format, intl_format, prefix_rule }
+}
+
+///|
 /// A numbering plan.
 ///
 /// `idd` is the prefix dialled to reach another country from inside this one.
@@ -34,9 +66,13 @@ priv struct Region {
   calling_code : Int
   idd : String
   national_prefix : String
+  /// The published pattern that recognises a trunk prefix while parsing; empty
+  /// when the plan only publishes the plain prefix.
+  prefix_parsing : String
   primary : Bool
   general : String
   types : Array[PlanType]
+  formats : Array[PhoneFormat]
 }
 
 ///|
@@ -59,11 +95,24 @@ fn plan_row(
   calling_code : Int,
   idd : String,
   national_prefix : String,
+  prefix_parsing : String,
   primary : Bool,
   general : String,
   types : Array[PlanType],
+  formats : Array[PhoneFormat],
 ) -> Region {
-  { code, name, calling_code, idd, national_prefix, primary, general, types }
+  {
+    code,
+    name,
+    calling_code,
+    idd,
+    national_prefix,
+    prefix_parsing,
+    primary,
+    general,
+    types,
+    formats,
+  }
 }
 
 ///|
@@ -163,6 +212,23 @@ fn fits(r : Region, kind : NumberType, national_number : String) -> Bool {
     }
   }
   false
+}
+
+///|
+/// The formatting rules that apply to a region. A territory that shares a
+/// calling code and publishes no rules of its own (Canada, Puerto Rico and the
+/// other NANP territories under `+1`) inherits the primary region's rules,
+/// which is what the upstream metadata means by leaving them out.
+fn formats_of(r : Region) -> Array[PhoneFormat] {
+  if r.formats.length() > 0 {
+    return r.formats
+  }
+  for other in regions {
+    if other.calling_code == r.calling_code && other.primary {
+      return other.formats
+    }
+  }
+  []
 }
 
 ///|

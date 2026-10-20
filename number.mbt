@@ -61,12 +61,17 @@ pub(all) struct PhoneNumber {
   country_code : Int
   national_number : String
   extension : String
-} derive(Eq)
+} derive(Eq, Debug)
 
 ///|
 /// `Eq` promotes both methods; name them so the promotion is stated rather than
 /// implied (the compiler flags the alternative, E0079).
 pub extend PhoneNumber with Eq::{not_equal, equal}
+
+///|
+/// `Debug` promotes `to_repr` the same way; name it too. A parsed number is
+/// worth printing in a test failure, which is what this is for.
+pub extend PhoneNumber with @moonbitlang/core/debug.Debug::{to_repr}
 
 ///|
 /// Build a number with no extension.

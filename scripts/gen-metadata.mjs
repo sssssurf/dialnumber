@@ -35,6 +35,7 @@ const TYPES = {
 
 const q = (s) => '"' + s.replace(/\\/g, "\\\\").replace(/"/g, '\\"') + '"';
 const ints = (a) => "[" + a.join(", ") + "]";
+const strs = (a) => "[" + a.map(q).join(", ") + "]";
 
 function table(doc) {
   const out = [];
@@ -51,13 +52,20 @@ function table(doc) {
   for (const r of doc.regions) {
     out.push("  plan_row(");
     out.push(
-      `    ${q(r.code)}, ${q(r.name)}, ${r.calling_code}, ${q(r.idd)}, ${q(r.national_prefix)}, ${r.primary},`,
+      `    ${q(r.code)}, ${q(r.name)}, ${r.calling_code}, ${q(r.idd)}, ${q(r.national_prefix)}, ${q(r.prefix_parsing ?? "")}, ${r.primary},`,
     );
     out.push(`    ${q(r.general)},`);
     out.push("    [");
     for (const t of r.types) {
       out.push(
         `      plan_type(${TYPES[t.kind]}, ${q(t.pattern)}, ${ints(t.national)}, ${ints(t.local_only ?? [])}),`,
+      );
+    }
+    out.push("    ],");
+    out.push("    [");
+    for (const f of r.formats ?? []) {
+      out.push(
+        `      plan_format(${q(f.pattern)}, ${strs(f.leading)}, ${q(f.format)}, ${q(f.intl ?? "")}, ${q(f.prefix_rule ?? "")}),`,
       );
     }
     out.push("    ],");
@@ -127,6 +135,17 @@ function examplesTest(doc) {
       out.push(`  assert_eq(@dialnumber.region_of_number(${pn}), Some("${region}"))`);
       if (kind === "FixedLine" || kind === "Mobile") {
         out.push(`  assert_true(matches_kind(@dialnumber.number_type(${pn}), ${kind}))`);
+        // The national rendering must read back as the same number in the same
+        // region: that is what "as dialled in the country" has to mean. Plans
+        // that rewrite the number while parsing (see dial_transform in the
+        // data) are skipped, because this library does not implement that
+        // transformation and would be testing a known gap.
+        if (!r.dial_transform) {
+          out.push(`  match @dialnumber.format_national(${pn}, "${r.code}") {`);
+          out.push(`    Some(written) => assert_eq(@dialnumber.parse(written, "${r.code}"), Some(${pn}))`);
+          out.push("    None => assert_true(false)");
+          out.push("  }");
+        }
       } else {
         out.push(`  assert_eq(@dialnumber.number_type(${pn}), Some(${kind}))`);
       }

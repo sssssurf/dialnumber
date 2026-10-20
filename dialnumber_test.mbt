@@ -133,13 +133,13 @@ test "parse_e164 accepts only self-describing numbers" {
 }
 
 ///|
-test "format_national uses the region trunk prefix" {
+test "format_national groups the number as the plan does" {
   match @dialnumber.parse("+819012345678", "") {
     Some(pn) => {
-      assert_eq(@dialnumber.format_national(pn, "JP"), Some("09012345678"))
-      // Italy has no trunk prefix, so the national form is the bare NSN.
+      assert_eq(@dialnumber.format_national(pn, "JP"), Some("090-1234-5678"))
+      // Italy has no trunk prefix, so the national form starts at the area code.
       match @dialnumber.parse("+390212345678", "") {
-        Some(num) => assert_eq(@dialnumber.format_national(num, "IT"), Some("0212345678"))
+        Some(num) => assert_eq(@dialnumber.format_national(num, "IT"), Some("02 1234 5678"))
         None => assert_true(false)
       }
     }
