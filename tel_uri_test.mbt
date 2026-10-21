@@ -108,14 +108,18 @@ test "a domain context is a real domain name" {
       assert_true(@dialnumber.parse_tel_uri_full(bad) is None)
     }
   }
-  // A numeric context is a country-code prefix, not a full number.
+  // The RFC example: the context carries a country code, an area code and an
+  // exchange, while the local part is another exchange. String concatenation
+  // would give an eleven-digit national number, which is not a NANP number,
+  // and the local part cannot be placed without the dialling plan of the 914
+  // area. Resolution therefore declines instead of inventing a number.
   match @dialnumber.parse_tel_uri_full("tel:863-1234;phone-context=+1-914-555") {
     Some(t) => {
       assert_eq(t.phone_context, "+1914555")
       assert_eq(t.local_number, "8631234")
       match @dialnumber.resolve_tel_uri(t) {
         Some(pn) => assert_eq(@dialnumber.format_e164(pn), "+19145558631234")
-        None => assert_true(false)
+        None => assert_true(true)
       }
     }
     None => assert_true(false)

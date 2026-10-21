@@ -551,7 +551,12 @@ pub fn resolve_tel_uri(t : TelUri) -> PhoneNumber? {
     None
   }
   match pn {
-    Some(v) => Some(v.with_extension(t.extension))
+    Some(v) =>
+      if is_valid(v) {
+        Some(v.with_extension(t.extension))
+      } else {
+        None
+      }
     None => None
   }
 }
