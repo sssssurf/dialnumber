@@ -530,6 +530,37 @@ pub fn to_tel_uri_full(t : TelUri) -> String? {
 }
 
 ///|
+/// Resolve a local number against a numeric context.
+///
+/// The context supplies the plan, not a prefix: the local digits are read the
+/// way that plan reads a national number (its trunk prefix is stripped by
+/// `parse`), and only a number that validates is returned. Plain concatenation
+/// is the fallback for the plans where the context does end exactly at a number
+/// boundary, and it too has to validate — a candidate that merely "looks valid"
+/// may point at a different subscriber.
+fn resolve_local_context(context : String, local : String) -> PhoneNumber? {
+  let by_plan = match country_code_prefix(digits_of(context)) {
+    None => None
+    Some(code) =>
+      match region_by_calling_code(code) {
+        None => None
+        Some(region) =>
+          match parse(local, region) {
+            Some(p) => if is_valid(p) { Some(p) } else { None }
+            None => None
+          }
+      }
+  }
+  match by_plan {
+    Some(p) => Some(p)
+    None =>
+      match parse(context + local, "") {
+        Some(p) => if is_valid(p) { Some(p) } else { None }
+        None => None
+      }
+  }
+}
+///|
 /// Turn parsed parts into an E.164 number when that is possible without asking
 /// an external authority.
 ///
@@ -543,7 +574,7 @@ pub fn resolve_tel_uri(t : TelUri) -> PhoneNumber? {
     parse(t.global_number, "")
   } else if t.local_number != "" && starts_with(t.phone_context, "+") {
     if digits_of(t.local_number) == t.local_number {
-      parse(t.phone_context + t.local_number, "")
+      resolve_local_context(t.phone_context, t.local_number)
     } else {
       None
     }
