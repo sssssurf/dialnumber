@@ -28,7 +28,7 @@ The RFC 3966 grammar is now wider than it was, and the claim matches the code.
   serialises as `tel:5550123;ext=42;phone-context=+1919`.
 - An unknown parameter is preserved instead of refused; a name or value outside
   the grammar is still rejected.
-- The test count is now 345.
+- The test count is now 346.
 
 ## [0.6.0] - 2026-10-20
 
