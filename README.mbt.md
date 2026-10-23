@@ -435,7 +435,7 @@ regression shows up as a number, not as an opinion.
 
 ## Tests
 
-344 tests cover the public API, the pattern engine, the formatting rules, the
+345 tests cover the public API, the pattern engine, the formatting rules, the
 generated table, the `tel:` grammar, the invariants of random input, and
 robustness against malformed input. The bulk of them are generated from the same
 data the library ships, so a data refresh grows the suite with it:

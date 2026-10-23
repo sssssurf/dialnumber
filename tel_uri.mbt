@@ -538,14 +538,14 @@ pub fn to_tel_uri_full(t : TelUri) -> String? {
 /// is the fallback for the plans where the context does end exactly at a number
 /// boundary, and it too has to validate — a candidate that merely "looks valid"
 /// may point at a different subscriber.
-fn resolve_local_context(context : String, local : String) -> PhoneNumber? {
+fn resolve_local_context(context : String, local_number : String) -> PhoneNumber? {
   let by_plan = match country_code_prefix(digits_of(context)) {
     None => None
     Some(code) =>
       match region_by_calling_code(code) {
         None => None
         Some(region) =>
-          match parse(local, region) {
+          match parse(local_number, region) {
             Some(p) => if is_valid(p) { Some(p) } else { None }
             None => None
           }
@@ -554,7 +554,7 @@ fn resolve_local_context(context : String, local : String) -> PhoneNumber? {
   match by_plan {
     Some(p) => Some(p)
     None =>
-      match parse(context + local, "") {
+      match parse(context + local_number, "") {
         Some(p) => if is_valid(p) { Some(p) } else { None }
         None => None
       }
