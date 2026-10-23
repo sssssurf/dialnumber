@@ -42,9 +42,16 @@ pub fn region_of_number(pn : PhoneNumber) -> String? {
   if candidates.length() == 0 {
     return if find_non_geo(pn.country_code) is Some(_) { Some("001") } else { None }
   }
+  // A territory that publishes leading digits and matches them is more specific
+  // than the primary territory of a shared calling code, so it wins first.
   for r in candidates {
-    if r.primary && region_leading_matches(r, pn.national_number) &&
+    if r.leading_digits != "" && region_leading_matches(r, pn.national_number) &&
       region_admits(r, pn.national_number) {
+      return Some(r.code)
+    }
+  }
+  for r in candidates {
+    if r.primary && region_admits(r, pn.national_number) {
       return Some(r.code)
     }
   }
