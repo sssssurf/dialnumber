@@ -83,7 +83,7 @@ fn country_code_prefix(digits : String) -> Int? {
 ///|
 /// True when some region uses this calling code.
 fn region_exists_at_code(cc : Int) -> Bool {
-  region_by_calling_code(cc) is Some(_)
+  region_by_calling_code(cc) is Some(_) || find_non_geo(cc) is Some(_)
 }
 
 ///|

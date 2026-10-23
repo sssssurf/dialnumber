@@ -40,7 +40,7 @@ pub fn region_of_number(pn : PhoneNumber) -> String? {
   }
   let candidates = regions_with_code(pn.country_code)
   if candidates.length() == 0 {
-    return None
+    return if find_non_geo(pn.country_code) is Some(_) { Some("001") } else { None }
   }
   for r in candidates {
     if r.primary && region_leading_matches(r, pn.national_number) &&
@@ -97,6 +97,9 @@ pub fn is_valid(pn : PhoneNumber) -> Bool {
 /// True when the number matches a rule of this named region. Also false when the
 /// region is unknown or its calling code differs from the number's.
 pub fn is_valid_in_region(pn : PhoneNumber, region : String) -> Bool {
+  if region == "001" {
+    return non_geo_admits(pn)
+  }
   match find_region(region) {
     Some(r) => r.calling_code == pn.country_code && region_admits(r, pn.national_number)
     None => false
@@ -120,6 +123,9 @@ pub fn number_type(pn : PhoneNumber) -> NumberType? {
 /// The number type inside one named region, or None when the region is unknown,
 /// uses a different calling code, or does not accept the number.
 pub fn number_type_in_region(pn : PhoneNumber, region : String) -> NumberType? {
+  if region == "001" {
+    return non_geo_type(pn)
+  }
   match find_region(region) {
     Some(r) =>
       if r.calling_code == pn.country_code {
