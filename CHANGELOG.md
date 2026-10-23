@@ -4,6 +4,17 @@ All notable changes to this project are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.9] - 2026-10-23
+
+Scope completion: the numbers outside a region, the two comparison APIs, and a
+recorded compatibility run.
+
+- The nine non-geographic networks (+800, +808, +870, +878, +881, +882, +883, +888, +979) have their own calling-code keyed table; `is_valid`, `number_type` and `region_of_number` handle them (region `001`).
+- `is_number_match` compares two numbers at the four levels of libphonenumber.
+- `AsYouTypeFormatter` renders a number as it is typed, through the same formatting table as the complete renderings.
+- Region resolution prefers a territory whose leading digits match over the primary territory of a shared calling code, so the +212 528 numbers resolve to EH rather than MA.
+- `docs/compatibility.md` records a 1 132-example comparison with libphonenumber-js: 1 128 agree, four differ for two understood reasons.
+
 ## [0.7.2] - 2026-10-20
 
 Republished with the parameter tests in place: 0.7.1 went out before they were
