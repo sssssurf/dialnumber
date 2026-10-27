@@ -1,0 +1,8 @@
+e164: +442079460958
+valid: true
+network_region: 001
+network_valid: true
+different_country_match: none
+as_you_type: 020 7946 0958
+numeric_context: +4930123456
+explicit_authority: +12015550123

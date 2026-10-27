@@ -14,6 +14,22 @@ pipeline regenerates the whole table from Google's libphonenumber metadata with 
 recorded checksum. Every public function is total — bad input comes back as
 `None` or `false`, never as an exception.
 
+## October acceptance
+
+The project has already passed application review. Final acceptance materials:
+[criteria and evidence](docs/验收材料.md),
+[development decisions and AI use](docs/development-retrospective.md),
+[delivery status](docs/acceptance-status.md).
+
+Run the technical acceptance checks with Node.js 18+ and MoonBit on PATH:
+
+    node scripts/acceptance.mjs
+
+On Windows without a C compiler, use --targets js,wasm,wasm-gc; native is also
+verified on Linux with GCC. The runner writes a machine-readable report under
+.cache/acceptance, exits non-zero on any failure, and performs no publication.
+For a small public-API example, run moon run --target js examples/basic.
+
 ## What it does
 
 - **Parse** an E.164 number (`+81 90-1234-5678`), a number dialled
@@ -176,6 +192,7 @@ drifting silently.
 node scripts/update-metadata.mjs   # fetch a fresh copy of the upstream XML
 node scripts/gen-metadata.mjs      # regenerate the table and the example tests
 node scripts/gen-corpus.mjs        # regenerate the differential corpus
+node scripts/gen-non-geo.mjs        # regenerate the network table
 node scripts/check-docs.mjs        # verify the docs still match real output
 ```
 
@@ -201,9 +218,9 @@ resolves to the plan's main country.
 @dialnumber.nanp_region_of("2011550123")  // None: NXX starts with 1
 ```
 
-Non-geographic calling codes (`+800` international freephone and its neighbours)
-describe networks rather than territories, so they are outside a region-keyed
-table by design; the README's boundary note applies to them.
+Nine non-geographic calling codes are handled by a separate network table,
+including possibility lengths, validation and number types; region is 001.
+They are not omitted from the library. See non_geo.mbt and non_geo_data.mbt.
 
 ## RFC 3966: context, parsing and resolution
 
@@ -452,6 +469,6 @@ moon test
 
 ## License
 
-Apache-2.0. See `LICENSE`. The numbering-plan data is derived from Google's
+Apache-2.0. See `LICENSE` and [third-party notices](THIRD_PARTY_NOTICES.md). The numbering-plan data is derived from Google's
 [libphonenumber](https://github.com/google/libphonenumber) (Apache-2.0), and the
 region display names come from CLDR through the generator's `Intl.DisplayNames`.

@@ -11,21 +11,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
       - name: Install MoonBit
         run: |
           curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
           echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
 
-      # The acceptance criteria set a floor of moonc 0.10.14. The installer
-      # takes whatever "latest" resolves to at run time, which is normally well
-      # ahead of that floor — but nothing recorded which compiler actually built
-      # the code, so a mirror that lagged behind (or a cached runner image)
-      # could have dropped under the floor without anyone noticing. Echo the
-      # versions for the record and fail the run if moonc has fallen behind.
+      # Project toolchain baseline, not an extra contest requirement.
       - name: Toolchain meets the required moonc version
         run: |
           moon version --all
-          required=0.10.14
+          required=0.10.17
           actual=$(moonc -v | sed -E 's/^v([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
           echo "moonc $actual (required >= $required)"
           lowest=$(printf '%s\n%s\n' "$required" "$actual" | sort -V | head -n 1)
@@ -34,31 +33,15 @@ jobs:
             exit 1
           fi
 
-      - name: Check
-        run: moon check
+      - name: Final acceptance checks
+        run: node scripts/acceptance.mjs --targets js,wasm-gc --skip-bench
 
-      # The plan table and the two generated test files are committed. If a
-      # generator is not re-run after a data change the repository drifts from
-      # its own source of truth, so each generator runs in check mode here: any
-      # difference fails the job instead of being silently rewritten.
-      - name: Generated data matches its source
-        run: |
-          node scripts/gen-metadata.mjs --check
-          node scripts/gen-corpus.mjs --check
-          node scripts/gen-non-geo.mjs --check
-          node scripts/gen-compat.mjs --check
-          node scripts/gen-google-compat.mjs --check
-          node scripts/sync-readme.mjs --check
-
-      - name: Test
-        run: moon test
-
-      # README.md and docs/reproducible-demo.md both record command output as
-      # literal text. Without this step a renamed field or an extra demo line
-      # would leave the documented output quietly wrong, which is exactly what
-      # the acceptance criteria ask not to happen.
-      - name: Documentation matches real output
-        run: node scripts/check-docs.mjs
+      - name: Acceptance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: acceptance-evidence
+          path: .cache/acceptance/
 
   # The README and the project description both claim the library compiles for
   # native, wasm and wasm-gc. Verifying only the default target let that claim

@@ -1,0 +1,7 @@
+import {
+  "sssssurf/dialnumber",
+}
+
+options(
+  "is-main": true,
+)

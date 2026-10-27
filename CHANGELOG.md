@@ -4,6 +4,13 @@ All notable changes to this project are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.1] - 2026-10-27
+
+- Use current moon.mod/moon.pkg manifests for the isolated published consumer.
+- Initialize the registry index before installing and verify the resolved module
+  comes from the exact registry version, with no local dependency override.
+- Retain the final acceptance checks and source/compatibility notices from 0.8.0.
+
 ## [0.8.0] - 2026-10-27
 
 - Fix matching across different explicit calling codes and extension presence.
@@ -14,7 +21,9 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   refuse arbitrary numeric contexts and unknown mandatory parameters.
 - Commit a pinned independent 2,299-case compatibility corpus, six typing traces,
   all 30 known field differences, an offline generator and CI drift checks.
-- Replace contradictory scope claims and update the resubmission materials.
+- Replace contradictory scope claims and update the delivery documentation.
+- Add a public-API example, one-command acceptance checks, source notices and
+  final-acceptance evidence; synchronize the installable release with the repository.
 
 ## [0.7.9] - 2026-10-23
 
