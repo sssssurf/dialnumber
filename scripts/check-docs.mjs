@@ -20,7 +20,7 @@
 // Reads only committed files, so it fails loudly when a doc update is forgotten.
 
 import { readFile } from 'node:fs/promises';
-import { readFileSync, rmSync, mkdtempSync } from 'node:fs';
+import { readFileSync, rmSync, mkdtempSync, openSync, closeSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
@@ -48,19 +48,19 @@ async function readDoc(rel) {
  * Run a command from the repo root and return its combined output.
  *
  * Output is captured through a shell redirection into a scratch file rather than
- * a pipe. Piped stdio is the one thing this project's development sandbox
- * forbids, so `execFileSync(..., {stdio: 'pipe'})` dies with EPERM while a
- * redirected shell works. The indirection also keeps this script portable: only
- * `shell: true` and `>` are required, both available on Windows and Linux.
+ * a pipe. Passing explicit file descriptors works in the development sandbox
+ * and keeps argument boundaries intact on both Windows and Linux.
  */
 function run(file, args) {
   const outFile = path.join(SCRATCH, `out-${scratchSeq++}.txt`);
-  // Quote every argument for the shell. Double quotes are sufficient here: none
-  // of the arguments contain quotes, and this keeps the command readable.
-  const cmd =
-    [file, ...args].map((a) => (/[\s]/.test(a) ? `"${a}"` : a)).join(' ') +
-    ` > "${outFile}" 2>&1`;
-  const res = spawnSync(cmd, { cwd: ROOT, shell: true, stdio: 'ignore' });
+  // File descriptors avoid named pipes and shell interpretation of URI text.
+  const fd = openSync(outFile, 'w');
+  let res;
+  try {
+    res = spawnSync(file, args, { cwd: ROOT, stdio: ['ignore', fd, fd] });
+  } finally {
+    closeSync(fd);
+  }
   if (res.error) {
     return { failed: true, code: null, out: `spawn error: ${res.error.message}` };
   }
@@ -76,6 +76,11 @@ function run(file, args) {
 
 function lines(text) {
   return text.split(/\r?\n/).filter((l) => l.trim() !== '');
+}
+
+function cliArguments(text) {
+  return (text.match(/"[^"]*"|'[^']*'|\S+/g) ?? []).map(arg =>
+    arg.startsWith('"') || arg.startsWith("'") ? arg.slice(1, -1) : arg);
 }
 
 /**
@@ -171,7 +176,7 @@ for (const block of allTextBlocks(readme)) {
       note(`skipping non-CLI recorded command: ${cmd}`);
       continue;
     }
-    const cliArgs = cmd.replace('moon run cmd/main -- ', '').trim().split(/\s+/);
+    const cliArgs = cliArguments(cmd.replace('moon run cmd/main -- ', '').trim());
     const res = run('moon', ['run', 'cmd/main', '--', ...cliArgs]);
     if (res.failed) {
       fail(`recorded README command failed: ${cmd} (exit ${res.code})`);
@@ -251,7 +256,7 @@ if (!cliBlock) {
   }
   let ok = 0;
   for (const cmd of cmds) {
-    const cliArgs = cmd.replace('moon run cmd/main -- ', '').trim().split(/\s+/);
+    const cliArgs = cliArguments(cmd.replace('moon run cmd/main -- ', '').trim());
     const res = run('moon', ['run', 'cmd/main', '--', ...cliArgs]);
     if (res.failed) {
       fail(`listed README command does not run: ${cmd} (exit ${res.code})`);

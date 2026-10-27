@@ -1,53 +1,51 @@
-# Known limitations, and where they are tracked
+# Implemented scope and remaining limitations
 
-This page lists the gaps the library knowingly has. Each one is a real issue with
-a scope, not a wish: the repository keeps them here so a reviewer can see the
-boundary without reading the source.
+## Implemented
 
-## 1. Argentina-style national dialing is not reversible
+- Nine non-geographic networks: +800, +808, +870, +878, +881, +882, +883, +888, +979.
+  Validation, types and possible lengths use a calling-code keyed table; region is 001.
+  The table is generated from data/non-geographic.json and checked by CI.
+- is_number_match: exact / NSN / short NSN / none; different explicit calling
+  codes do not match, conflicting explicit extensions do not match, and a
+  missing extension can produce only a short match. Country code 0 means unknown.
+- AsYouTypeFormatter: national trunk input and leading + international input,
+  grouping through the plan table, clear/current_output, digit preservation on
+  overflow, and six independently recorded per-keystroke oracle traces.
+- RFC 3966 parsing/serialization preserves numeric or domain contexts and
+  generic parameters. Resolution is separate, with an optional context authority.
 
-Some plans rewrite the number while parsing. Argentina writes a mobile as
-`011 15-2345-6789` nationally while its international form carries the `9`
-(`9 11 2345 6789`), and Belarus accepts more than one trunk spelling. The
-rewrite is published as `nationalPrefixForParsing` plus a
-`nationalPrefixTransformRule`; this library implements the prefix *match* (so
-`0|80?` is understood) but not the transform.
+## Context resolution is a policy, not a prefix operation
 
-Consequence: the generated round-trip test skips the plans that publish a
-transform rule, instead of asserting something that would not hold. See
-`data/numbering-plans.json` — each region carries `dial_transform`.
+[RFC 3966 §5.1.5](https://www.rfc-editor.org/rfc/rfc3966.html#section-5.1.5)
+does not define phone-context as digits to prepend. The default resolver supports
+documented public-plan conventions: a context exactly equal to a calling code
+reads the local part as a national number, and +1 plus a three-digit area code
+can complete a seven-digit NANP local number. Both require final validity.
+These conventions are not a universal interpretation of every numeric context.
 
-Scope if picked up: a small capture-group matcher (the formatting code already
-has one) plus applying `$1..$9` in the published transform.
+Arbitrary longer numeric contexts and domains return None by default, even if
+ignoring the context could produce a valid number. Pass context_resolver to
+resolve_tel_uri when an authority supplies the mapping. The callback is not
+called by parsing, so an unresolved URI still round-trips intact. Unknown m-
+mandatory parameters prevent resolution. ISDN subaddresses remain in TelUri;
+PhoneNumber has no isub field, so callers that need it must retain TelUri.
 
-## 2. Incremental (`AsYouType`) formatting is out of scope
+## Remaining boundaries
 
-`format_national` / `format_international` render a complete number. Formatting
-digit by digit while the user types needs a different model — the plan's
-formatting rules applied to a prefix, with the grouping changing as digits
-arrive. It is a natural extension of `PhoneFormat`, but it is a separate user
-experience and is not implemented.
+1. National-prefix transform rules (for example Argentina mobile rewrites) are
+   not implemented; the metadata and generated round-trip tests mark that scope.
+2. Incremental formatting is intentionally smaller than libphonenumber's full
+   interactive editor. It ignores non-digit keystrokes except an initial +; it
+   does not provide deletion/cursor editing, vanity-letter conversion or all
+   operator-specific dialling prefixes. Six traces are coverage, not universal parity.
+3. Published international grouping separators are preserved. The JavaScript
+   oracle normalizes some separators to spaces; E.164 digits agree.
+4. Validation tests range rules, not existence, reachability or ownership of a line.
+5. The broad independent corpus uses libphonenumber-js 1.11.20/max. A separate
+   29-scenario recording executes the original Java 9.0.17 runtime directly;
+   All known metadata, local-only scope and formatting differences remain in the
+   committed corpus, explicitly explained in compatibility.md.
 
-## 3. Non-geographic calling codes are not in the table
-
-`+800` (international freephone), `+870` (Inmarsat), `+878`, `+881`, `+882`,
-`+883`, `+888` and `+979` describe networks, not places. The table is keyed by
-region, so these nine territories are skipped at extraction time (the script
-prints how many it skipped). `parse` accepts their digits as a calling code only
-when a region uses that code, so they currently resolve to nothing.
-
-Scope if picked up: a second table keyed by calling code, with its own type
-patterns, and `region_of_number` returning a synthetic code such as `001`.
-
-## 4. Carrier-code and dial-out prefix expressions
-
-A few plans publish their international dial-out prefix as a set of alternatives
-(Australia: `001[14-689]|14(?:…)0011`) rather than one string.
-`format_dialling` refuses to guess and falls back to the `+` form; `idd_prefix`
-returns the published expression.
-
-## 5. Line-level assignment is out of reach
-
-`is_valid` says the number falls inside a range the plan allocates. It cannot say
-the line exists, is reachable, or belongs to anyone; that needs operator-level
-records this library does not carry.
+The direct Java check has 13 explicitly recorded intermediate spacing/parenthesis
+differences across four typing traces; completed outputs and all digits agree.
+See google-compatibility.md. Neither suite is a claim of universal parity.

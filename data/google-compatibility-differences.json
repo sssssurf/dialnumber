@@ -1,0 +1,67 @@
+{
+  "typing-1/2": {
+    "oracle": "201",
+    "actual": "(201)",
+    "reason": "Intermediate layout convention only: parentheses/spacing appear at different input lengths. All entered digits are identical; completed outputs agree."
+  },
+  "typing-1/3": {
+    "oracle": "201-5",
+    "actual": "(201) 5",
+    "reason": "Intermediate layout convention only: parentheses/spacing appear at different input lengths. All entered digits are identical; completed outputs agree."
+  },
+  "typing-1/4": {
+    "oracle": "201-55",
+    "actual": "(201) 55",
+    "reason": "Intermediate layout convention only: parentheses/spacing appear at different input lengths. All entered digits are identical; completed outputs agree."
+  },
+  "typing-1/5": {
+    "oracle": "201-555",
+    "actual": "(201) 555",
+    "reason": "Intermediate layout convention only: parentheses/spacing appear at different input lengths. All entered digits are identical; completed outputs agree."
+  },
+  "typing-1/6": {
+    "oracle": "201-5550",
+    "actual": "(201) 555-0",
+    "reason": "Intermediate layout convention only: parentheses/spacing appear at different input lengths. All entered digits are identical; completed outputs agree."
+  },
+  "typing-2/1": {
+    "oracle": "12",
+    "actual": "1 2",
+    "reason": "Intermediate layout convention only: parentheses/spacing appear at different input lengths. All entered digits are identical; completed outputs agree."
+  },
+  "typing-2/3": {
+    "oracle": "1 (201",
+    "actual": "1 (201)",
+    "reason": "Intermediate layout convention only: parentheses/spacing appear at different input lengths. All entered digits are identical; completed outputs agree."
+  },
+  "typing-3/2": {
+    "oracle": "+44 ",
+    "actual": "+44",
+    "reason": "Intermediate layout convention only: parentheses/spacing appear at different input lengths. All entered digits are identical; completed outputs agree."
+  },
+  "typing-5/2": {
+    "oracle": "201",
+    "actual": "(201)",
+    "reason": "Intermediate layout convention only: parentheses/spacing appear at different input lengths. All entered digits are identical; completed outputs agree."
+  },
+  "typing-5/3": {
+    "oracle": "201-5",
+    "actual": "(201) 5",
+    "reason": "Intermediate layout convention only: parentheses/spacing appear at different input lengths. All entered digits are identical; completed outputs agree."
+  },
+  "typing-5/4": {
+    "oracle": "201-55",
+    "actual": "(201) 55",
+    "reason": "Intermediate layout convention only: parentheses/spacing appear at different input lengths. All entered digits are identical; completed outputs agree."
+  },
+  "typing-5/5": {
+    "oracle": "201-555",
+    "actual": "(201) 555",
+    "reason": "Intermediate layout convention only: parentheses/spacing appear at different input lengths. All entered digits are identical; completed outputs agree."
+  },
+  "typing-5/6": {
+    "oracle": "201-5550",
+    "actual": "(201) 555-0",
+    "reason": "Intermediate layout convention only: parentheses/spacing appear at different input lengths. All entered digits are identical; completed outputs agree."
+  }
+}

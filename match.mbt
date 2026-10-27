@@ -10,7 +10,7 @@
 pub(all) enum NumberMatch {
   /// Calling code, national number and extension all agree.
   ExactMatch
-  /// The national numbers and extensions agree; the calling codes do not.
+  /// National numbers and extensions agree; one calling code is unspecified (0).
   NsnMatch
   /// One national number is a suffix of the other: the classic "stored without
   /// the area code" case.
@@ -61,16 +61,35 @@ fn is_suffix(short : String, long : String) -> Bool {
 ///|
 /// Compare two parsed numbers, in libphonenumber's four levels.
 ///
-/// An extension has to agree before any match is reported: two entries for the
-/// same line but different extensions are different destinations.
+/// Different explicit calling codes never match. Zero means an unspecified
+/// calling code. Conflicting explicit extensions never match; a missing
+/// extension permits only a short match, following libphonenumber.
 pub fn is_number_match(a : PhoneNumber, b : PhoneNumber) -> NumberMatch {
-  if a.extension != b.extension {
+  if a.country_code < 0 ||
+    b.country_code < 0 ||
+    a.national_number == "" ||
+    b.national_number == "" ||
+    digits_of(a.national_number) != a.national_number ||
+    digits_of(b.national_number) != b.national_number {
     return NoMatch
   }
-  if a.national_number == b.national_number {
-    return if a.country_code == b.country_code { ExactMatch } else { NsnMatch }
+  if a.extension != "" && b.extension != "" && a.extension != b.extension {
+    return NoMatch
   }
-  if is_suffix(a.national_number, b.national_number) ||
+  if a.country_code != 0 &&
+    b.country_code != 0 &&
+    a.country_code != b.country_code {
+    return NoMatch
+  }
+  if a.national_number == b.national_number && a.extension == b.extension {
+    return if a.country_code == b.country_code && a.country_code != 0 {
+      ExactMatch
+    } else {
+      NsnMatch
+    }
+  }
+  if a.national_number == b.national_number ||
+    is_suffix(a.national_number, b.national_number) ||
     is_suffix(b.national_number, a.national_number) {
     ShortNsnMatch
   } else {
@@ -82,13 +101,17 @@ pub fn is_number_match(a : PhoneNumber, b : PhoneNumber) -> NumberMatch {
 test "number matching" {
   let a = PhoneNumber::new(1, "2015550123")
   assert_eq(is_number_match(a, PhoneNumber::new(1, "2015550123")), ExactMatch)
-  assert_eq(is_number_match(a, PhoneNumber::new(44, "2015550123")), NsnMatch)
+  assert_eq(is_number_match(a, PhoneNumber::new(44, "2015550123")), NoMatch)
+  assert_eq(is_number_match(a, PhoneNumber::new(0, "2015550123")), NsnMatch)
   assert_eq(is_number_match(a, PhoneNumber::new(1, "5550123")), ShortNsnMatch)
   assert_eq(is_number_match(a, PhoneNumber::new(1, "2015550124")), NoMatch)
   // Different extensions are different destinations.
-  assert_eq(is_number_match(a.with_extension("42"), a), NoMatch)
+  assert_eq(is_number_match(a.with_extension("42"), a), ShortNsnMatch)
   assert_eq(
-    is_number_match(a.with_extension("42"), PhoneNumber::new(1, "2015550123").with_extension("42")),
+    is_number_match(
+      a.with_extension("42"),
+      PhoneNumber::new(1, "2015550123").with_extension("42"),
+    ),
     ExactMatch,
   )
 }

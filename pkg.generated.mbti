@@ -6,7 +6,7 @@ import {
 }
 
 // Values
-pub fn calling_code(String) -> Int?
+pub fn calling_code(String) -> Int32?
 
 pub fn canonical_region_code(String) -> String?
 
@@ -22,6 +22,8 @@ pub fn format_rfc3966(PhoneNumber) -> String
 
 pub fn idd_prefix(String) -> String?
 
+pub fn is_number_match(PhoneNumber, PhoneNumber) -> NumberMatch
+
 pub fn is_possible(PhoneNumber) -> Bool
 
 pub fn is_possible_in_region(PhoneNumber, String) -> Bool
@@ -34,7 +36,7 @@ pub fn is_valid_in_region(PhoneNumber, String) -> Bool
 
 pub fn is_valid_number(String, String) -> Bool
 
-pub fn local_only_lengths(String) -> Array[Int]?
+pub fn local_only_lengths(String) -> Array[Int32]?
 
 pub fn matches_pattern(String, String) -> Bool
 
@@ -66,13 +68,13 @@ pub fn pattern_well_formed(String) -> Bool
 
 pub fn plan_pattern(String) -> String?
 
-pub fn possible_lengths(String) -> Array[Int]?
+pub fn possible_lengths(String) -> Array[Int32]?
 
 pub fn possible_types(PhoneNumber) -> Array[NumberType]
 
 pub fn possible_types_in_region(PhoneNumber, String) -> Array[NumberType]
 
-pub fn region_by_calling_code(Int) -> String?
+pub fn region_by_calling_code(Int32) -> String?
 
 pub fn region_codes() -> Array[String]
 
@@ -82,9 +84,9 @@ pub fn region_name(String) -> String?
 
 pub fn region_of_number(PhoneNumber) -> String?
 
-pub fn regions_by_calling_code(Int) -> Array[String]
+pub fn regions_by_calling_code(Int32) -> Array[String]
 
-pub fn resolve_tel_uri(TelUri) -> PhoneNumber?
+pub fn resolve_tel_uri(TelUri, context_resolver? : (String, String) -> PhoneNumber?) -> PhoneNumber?
 
 pub fn to_tel_uri(PhoneNumber) -> String
 
@@ -95,6 +97,27 @@ pub fn type_pattern(String, NumberType) -> String?
 // Errors
 
 // Types and methods
+pub(all) struct AsYouTypeFormatter {
+  // private fields
+}
+pub fn AsYouTypeFormatter::clear(Self) -> Unit
+pub fn AsYouTypeFormatter::current_output(Self) -> String
+pub fn AsYouTypeFormatter::input_digit(Self, Char) -> String
+pub fn AsYouTypeFormatter::new(String) -> Self
+
+pub(all) enum NumberMatch {
+  ExactMatch
+  NsnMatch
+  ShortNsnMatch
+  NoMatch
+} derive(Eq, @debug.Debug)
+pub fn NumberMatch::equal(Self, Self) -> Bool
+pub fn NumberMatch::not_equal(Self, Self) -> Bool
+pub fn NumberMatch::output(Self, &Logger) -> Unit
+pub fn NumberMatch::to_repr(Self) -> @debug.Repr
+pub fn NumberMatch::to_string(Self) -> String
+pub impl Show for NumberMatch
+
 pub(all) enum NumberType {
   FixedLine
   FixedLineOrMobile
@@ -116,12 +139,12 @@ pub fn NumberType::to_string(Self) -> String
 pub impl Show for NumberType
 
 pub(all) struct PhoneNumber {
-  country_code : Int
+  country_code : Int32
   national_number : String
   extension : String
 } derive(Eq, @debug.Debug)
 pub fn PhoneNumber::equal(Self, Self) -> Bool
-pub fn PhoneNumber::new(Int, String) -> Self
+pub fn PhoneNumber::new(Int32, String) -> Self
 pub fn PhoneNumber::not_equal(Self, Self) -> Bool
 pub fn PhoneNumber::output(Self, &Logger) -> Unit
 pub fn PhoneNumber::to_repr(Self) -> @debug.Repr
@@ -135,6 +158,7 @@ pub(all) struct TelUri {
   phone_context : String
   extension : String
   isub : String
+  parameters : Array[(String, String)]
 } derive(Eq, @debug.Debug)
 pub fn TelUri::equal(Self, Self) -> Bool
 pub fn TelUri::not_equal(Self, Self) -> Bool

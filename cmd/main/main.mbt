@@ -25,6 +25,8 @@ fn main {
     "cc" => run_cc(arg)
     "tel" => run_tel(arg)
     "match" => run_match(arg, region)
+    "compare" => run_compare(arg, region, arg_at(args, 4))
+    "as-you-type" => run_as_you_type(arg, region)
     "list" => run_list()
     _ => print_usage()
   }
@@ -32,7 +34,7 @@ fn main {
 
 ///|
 /// The argument at `i`, or "" when the command line is shorter.
-fn arg_at(args : Array[String], i : Int) -> String {
+fn arg_at(args : Array[String], i : Int32) -> String {
   if i < args.length() {
     args[i]
   } else {
@@ -54,6 +56,8 @@ fn print_usage() -> Unit {
     "  cc <region>                 just the calling code\n" +
     "  tel <uri>                   parse an RFC 3966 tel: URI\n" +
     "  match <pattern> <text>      run the numbering-plan pattern engine\n" +
+    "  compare <a> <b> [region]    compare two telephone numbers\n" +
+    "  as-you-type <digits> <region>  show every incremental rendering\n" +
     "  list                        every region code in the table",
   )
 }
@@ -212,10 +216,18 @@ fn run_tel(uri : String) -> Unit {
   match @dialnumber.parse_tel_uri_full(uri) {
     None => println("tel: invalid uri")
     Some(t) => {
-      println("global_number: \{if t.global_number == "" { "(none)" } else { t.global_number }}")
-      println("local_number: \{if t.local_number == "" { "(none)" } else { t.local_number }}")
-      println("phone_context: \{if t.phone_context == "" { "(none)" } else { t.phone_context }}")
-      println("extension: \{if t.extension == "" { "(none)" } else { t.extension }}")
+      println(
+        "global_number: \{if t.global_number == "" { "(none)" } else { t.global_number }}",
+      )
+      println(
+        "local_number: \{if t.local_number == "" { "(none)" } else { t.local_number }}",
+      )
+      println(
+        "phone_context: \{if t.phone_context == "" { "(none)" } else { t.phone_context }}",
+      )
+      println(
+        "extension: \{if t.extension == "" { "(none)" } else { t.extension }}",
+      )
       println("isub: \{if t.isub == "" { "(none)" } else { t.isub }}")
       match @dialnumber.resolve_tel_uri(t) {
         None => println("resolved: no")
@@ -231,8 +243,29 @@ fn run_list() -> Unit {
 }
 
 ///|
+fn run_compare(a : String, b : String, region : String) -> Unit {
+  match (@dialnumber.parse(a, region), @dialnumber.parse(b, region)) {
+    (Some(left), Some(right)) =>
+      println("match: " + @dialnumber.is_number_match(left, right).to_string())
+    _ => println("compare: invalid input")
+  }
+}
+
+///|
+fn run_as_you_type(input : String, region : String) -> Unit {
+  let formatter = @dialnumber.AsYouTypeFormatter::new(region)
+  for digit in input {
+    println(digit.to_string() + " => " + formatter.input_digit(digit))
+  }
+}
+
+///|
 fn yes_no(b : Bool) -> String {
-  if b { "yes" } else { "no" }
+  if b {
+    "yes"
+  } else {
+    "no"
+  }
 }
 
 ///|

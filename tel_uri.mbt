@@ -237,8 +237,22 @@ fn is_isub_char(c : Char) -> Bool {
     return true
   }
   match c {
-    '-' | '.' | '_' | '~' | '!' | '$' | '&' | '(' | ')' | '*' | '+' | ',' | '=' | ':' | '@' | '/' =>
-      true
+    '-'
+    | '.'
+    | '_'
+    | '~'
+    | '!'
+    | '$'
+    | '&'
+    | '('
+    | ')'
+    | '*'
+    | '+'
+    | ','
+    | '='
+    | ':'
+    | '@'
+    | '/' => true
     _ => false
   }
 }
@@ -263,7 +277,9 @@ fn canonical_isub(s : String) -> String? {
   while i < cs.length() {
     let c = cs[i]
     if c == '%' {
-      if i + 2 >= cs.length() || !is_hex_digit(cs[i + 1]) || !is_hex_digit(cs[i + 2]) {
+      if i + 2 >= cs.length() ||
+        !is_hex_digit(cs[i + 1]) ||
+        !is_hex_digit(cs[i + 2]) {
         return None
       }
       buf.write_char('%')
@@ -279,6 +295,7 @@ fn canonical_isub(s : String) -> String? {
   }
   Some(buf.to_string())
 }
+
 ///|
 /// True for a parameter name: alphanumerics and hyphens, at least one.
 fn is_pname(s : String) -> Bool {
@@ -306,7 +323,9 @@ fn is_param_value(s : String) -> Bool {
   while i < cs.length() {
     let c = cs[i]
     if c == '%' {
-      if i + 2 >= cs.length() || !is_hex_digit(cs[i + 1]) || !is_hex_digit(cs[i + 2]) {
+      if i + 2 >= cs.length() ||
+        !is_hex_digit(cs[i + 1]) ||
+        !is_hex_digit(cs[i + 2]) {
         return false
       }
       i = i + 3
@@ -331,7 +350,21 @@ fn is_param_char(c : Char) -> Bool {
     return true
   }
   match c {
-    '-' | '_' | '.' | '!' | '~' | '*' | '(' | ')' | '[' | ']' | '/' | ':' | '&' | '+' | '$' => true
+    '-'
+    | '_'
+    | '.'
+    | '!'
+    | '~'
+    | '*'
+    | '('
+    | ')'
+    | '['
+    | ']'
+    | '/'
+    | ':'
+    | '&'
+    | '+'
+    | '$' => true
     _ => false
   }
 }
@@ -356,8 +389,6 @@ fn sort_parameters(input : Array[(String, String)]) -> Array[(String, String)] {
   }
   out
 }
-
-
 
 ///|
 /// Parse a `tel:` URI into its parts, without resolving anything.
@@ -534,11 +565,32 @@ pub fn to_tel_uri_full(t : TelUri) -> String? {
 ///
 /// The context supplies the plan, not a prefix: the local digits are read the
 /// way that plan reads a national number (its trunk prefix is stripped by
-/// `parse`), and only a number that validates is returned. Plain concatenation
-/// is the fallback for the plans where the context does end exactly at a number
-/// boundary, and it too has to validate — a candidate that merely "looks valid"
-/// may point at a different subscriber.
-fn resolve_local_context(context : String, local_number : String) -> PhoneNumber? {
+/// `parse`), and only a number that validates is returned. The separate NANP
+/// area-code convention accepts exactly an area code and seven local digits.
+/// Other numeric descriptors need an explicit authority, even if ignoring the
+/// descriptor would produce a valid-looking number.
+fn resolve_local_context(
+  context : String,
+  local_number : String,
+) -> PhoneNumber? {
+  if !starts_with(context, "+") || digits_of(local_number) != local_number {
+    return None
+  }
+  let code = match country_code_prefix(digits_of(context)) {
+    None => return None
+    Some(cc) => cc
+  }
+  // RFC 3966 does not define a numeric context as a prefix. These are
+  // public-plan conventions; arbitrary PBX contexts need an authority.
+  if context != "+" + code.to_string() {
+    if code == 1 && context.length() == 5 && local_number.length() == 7 {
+      return match parse(context + local_number, "") {
+        Some(p) => if is_valid(p) { Some(p) } else { None }
+        None => None
+      }
+    }
+    return None
+  }
   let by_plan = match country_code_prefix(digits_of(context)) {
     None => None
     Some(code) =>
@@ -553,31 +605,35 @@ fn resolve_local_context(context : String, local_number : String) -> PhoneNumber
   }
   match by_plan {
     Some(p) => Some(p)
-    None =>
-      match parse(context + local_number, "") {
-        Some(p) => if is_valid(p) { Some(p) } else { None }
-        None => None
-      }
+    None => None
   }
 }
+
 ///|
 /// Turn parsed parts into an E.164 number when that is possible without asking
 /// an external authority.
 ///
-/// A global number resolves directly. A local number resolves only when its
-/// context is a `+` prefix and its own digits are decimal; a domain context, or
-/// a local number containing `*`, `#` or hex digits, has no E.164 reading.
+/// A global number resolves directly. The default local resolver uses only
+/// the documented public national-plan and NANP area conventions. Supply an
+/// explicit `context_resolver` authority for a domain or private PBX context.
 /// `isub` is preserved in the TelUri but has no PhoneNumber field, so it does
 /// not survive resolution.
-pub fn resolve_tel_uri(t : TelUri) -> PhoneNumber? {
+pub fn resolve_tel_uri(
+  t : TelUri,
+  context_resolver~ : (String, String) -> PhoneNumber? = resolve_local_context,
+) -> PhoneNumber? {
+  if to_tel_uri_full(t) is None {
+    return None
+  }
+  for param in t.parameters {
+    if starts_with(param.0, "m-") {
+      return None
+    }
+  }
   let pn = if t.global_number != "" {
     parse(t.global_number, "")
-  } else if t.local_number != "" && starts_with(t.phone_context, "+") {
-    if digits_of(t.local_number) == t.local_number {
-      resolve_local_context(t.phone_context, t.local_number)
-    } else {
-      None
-    }
+  } else if t.local_number != "" {
+    context_resolver(t.phone_context, t.local_number)
   } else {
     None
   }

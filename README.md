@@ -40,6 +40,20 @@ recorded checksum. Every public function is total — bad input comes back as
   local numbers, numeric or domain `;phone-context=`, `;ext=` and `;isub=`.
   Parsing keeps each part separate, and the parser and serialiser are inverses.
 
+## Additional general-purpose capabilities
+
+- Nine non-geographic networks, with region 001 and their own length/type rules.
+- is_number_match for exact, NSN and short NSN comparison, including extension rules.
+- AsYouTypeFormatter for national or + international input, clear/reset and safe overflow.
+- An independent 2,299-case end-to-end corpus plus six per-keystroke typing traces.
+  [Compatibility results and every difference](docs/compatibility.md) are committed.
+- [Response to the initial review](docs/初审补充说明.md).
+
+The original Google Java libphonenumber 9.0.17 is also executed directly for
+29 scenarios (17 phone workflows, six comparisons, six typing traces). See
+[the direct Java comparison](docs/google-compatibility.md), including all
+13 intermediate spacing/parenthesis differences.
+
 ## Two levels of validation
 
 The distinction is the same one libphonenumber draws, and it is worth being
@@ -185,56 +199,28 @@ Non-geographic calling codes (`+800` international freephone and its neighbours)
 describe networks rather than territories, so they are outside a region-keyed
 table by design; the README's boundary note applies to them.
 
-## RFC 3966 without losing the context
+## RFC 3966: context, parsing and resolution
 
-A `tel:` URI can carry a *local* number whose meaning depends on a
-`phone-context` — either a numeric prefix (`+1-919`) or a domain
-(`example.com`). The two forms are handled differently:
+The parser keeps global/local number, phone_context, extension, isub and generic
+parameters separate. Unknown optional parameters round-trip; duplicates,
+malformed values and ext/isub conflicts are rejected. Serialization uses RFC
+parameter order. Unknown mandatory m- parameters prevent resolution.
 
-- **numeric context** resolves: the context prefix and the local digits form an
-  E.164 number;
-- **domain context** parses, serialises and round-trips, but does **not**
-  resolve, because answering it requires asking that domain.
+A context is an authority identifier, not a prefix to concatenate. By default,
+the resolver accepts two documented public-plan conventions: an exact calling
+code context reads a national number through that plan, and a NANP calling code
+plus a three-digit area code completes a seven-digit local number. Thus
+`tel:030123456;phone-context=+49` becomes `+4930123456` after the trunk prefix
+is interpreted. `tel:5550123;phone-context=+1-914` becomes `+19145550123`.
 
-The parsed `TelUri` keeps `global_number`, `local_number`, `phone_context`,
-`extension` and `isub` in separate fields; nothing is merged into the digits.
-`parse_tel_uri_full` and `to_tel_uri_full` are inverses, and resolution is a
-separate step (`resolve_tel_uri`). Extensions and ISDN subaddresses are mutually
-exclusive, as the RFC requires; unknown, duplicate and empty parameters are
-rejected rather than dropped; spaces are not accepted as visual separators; and
-an `isub` value is checked as a run of URI characters, so a `%` must start a
-complete `%HH` escape.
+An arbitrary longer numeric context is never ignored or blindly concatenated.
+A domain or PBX context needs an authority. Supply a `context_resolver` callback
+to `resolve_tel_uri`; without one the unknown context returns None while the
+parsed TelUri remains available for round-trip serialization. These are explicit
+resolution policies, not a claim that RFC 3966 defines universal context mapping.
 
-## RFC 3966: what the grammar actually covers
-
-A local number is not resolved by gluing strings together; the RFC gives it a
-context and states what that context means.
-
-```
-telephone-subscriber = global-number / local-number
-local-number         = local-number-digits *par context *par
-context              = ";phone-context=" descriptor
-descriptor           = domainname / global-number-digits
-```
-
-- A **numeric descriptor** (+1-914-555) is a prefix context. The RFC's own
-  example, 	el:863-1234;phone-context=+1-914-555, means +1 914 555 863 1234:
-  the context is normalised to its digits, the local digits follow it, and the
-  result is checked as a number of that calling code. The context stays a field
-  of its own, so parse_tel_uri_full and 	o_tel_uri_full are inverses.
-- A **domain descriptor** (example.com) names an authority. How a local number
-  reads inside that domain is the domain's answer, not something an offline
-  library can infer — so it parses, serialises and round-trips, and
-  esolve_tel_uri returns None instead of inventing a country code.
-
-Implemented: global-number/local-number, global-number-digits and
-local-number-digits (visual separators, HEXDIG, *, #), both descriptor
-shapes, ;ext=, ;isub= (validated as 1*uric, escapes checked and
-canonicalised), generic parameters (;pname, ;pname=pvalue, kept and written
-back in lexicographical order), case-insensitive scheme and names, and the RFC's
-parameter order (ext/isub, then phone-context, then the rest). Not
-implemented: authority resolution for a domain context, the decoded semantics of
-isub, carrier-code formatting, and incremental (AsYouType) rendering.
+See [known-limitations.md](docs/known-limitations.md) and
+[RFC 3966 §5.1.5](https://www.rfc-editor.org/rfc/rfc3966.html#section-5.1.5).
 
 ## Relationship to other MoonBit libraries
 
@@ -286,6 +272,8 @@ moon run cmd/main -- info JP
 moon run cmd/main -- cc de
 moon run cmd/main -- tel "tel:555-0123;phone-context=+1-919;ext=42"
 moon run cmd/main -- match "\d{8}" 12345678
+moon run cmd/main -- compare +12015550123 +12015550123
+moon run cmd/main -- as-you-type 02079460958 GB
 moon run cmd/main -- list
 ```
 
@@ -395,7 +383,7 @@ The NANP and the region table:
 
 The `NumberType` enum names the eleven categories. The `PhoneNumber` struct holds
 `country_code`, `national_number` (a string, so a significant leading zero
-survives), and `extension`. `TelUri` holds the five parts of a `tel:` URI.
+survives), and `extension`. `TelUri` holds six fields: the five core parts and generic parameters; it preserves all parts of a `tel:` URI.
 
 ## Performance
 
@@ -427,7 +415,7 @@ regression shows up as a number, not as an opinion.
 
 ## Tests
 
-346 tests cover the public API, the pattern engine, the formatting rules, the
+632 tests cover the public API, the pattern engine, the formatting rules, the
 generated table, the `tel:` grammar, the invariants of random input, and
 robustness against malformed input. The bulk of them are generated from the same
 data the library ships, so a data refresh grows the suite with it:

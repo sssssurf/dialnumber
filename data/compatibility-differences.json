@@ -1,0 +1,152 @@
+{
+  "BL:p/valid": {
+    "oracle": false,
+    "actual": true,
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "BL:p/region": {
+    "oracle": "",
+    "actual": "GP",
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "BL:p/type": {
+    "oracle": "",
+    "actual": "premium-rate",
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "CA:u/valid": {
+    "oracle": true,
+    "actual": false,
+    "reason": "Scope: CA 3101234 is a seven-digit local-only UAN; this library requires a complete NANP national number."
+  },
+  "CA:u/region": {
+    "oracle": "CA",
+    "actual": "",
+    "reason": "Scope: CA 3101234 is a seven-digit local-only UAN; this library requires a complete NANP national number."
+  },
+  "CA:u/type": {
+    "oracle": "uan",
+    "actual": "",
+    "reason": "Scope: CA 3101234 is a seven-digit local-only UAN; this library requires a complete NANP national number."
+  },
+  "CL:f/valid": {
+    "oracle": false,
+    "actual": true,
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "CL:f/type": {
+    "oracle": "",
+    "actual": "fixed-line",
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "EH:f/region": {
+    "oracle": "EH",
+    "actual": "MA",
+    "reason": "Metadata association: the committed Morocco plan has leading digits [5-8] and accepts 5288; it wins before EH. The older oracle assigns this example to EH."
+  },
+  "GF:p/valid": {
+    "oracle": false,
+    "actual": true,
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "GF:p/type": {
+    "oracle": "",
+    "actual": "premium-rate",
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "GP:p/valid": {
+    "oracle": false,
+    "actual": true,
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "GP:p/region": {
+    "oracle": "",
+    "actual": "GP",
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "GP:p/type": {
+    "oracle": "",
+    "actual": "premium-rate",
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "MF:p/valid": {
+    "oracle": false,
+    "actual": true,
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "MF:p/region": {
+    "oracle": "",
+    "actual": "GP",
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "MF:p/type": {
+    "oracle": "",
+    "actual": "premium-rate",
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "MU:g/valid": {
+    "oracle": false,
+    "actual": true,
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "MU:g/type": {
+    "oracle": "",
+    "actual": "pager",
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "SR:t/valid": {
+    "oracle": false,
+    "actual": true,
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "SR:t/type": {
+    "oracle": "",
+    "actual": "toll-free",
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "SR:p/valid": {
+    "oracle": false,
+    "actual": true,
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "SR:p/type": {
+    "oracle": "",
+    "actual": "premium-rate",
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "TA:f/type": {
+    "oracle": "fixed-line-or-mobile",
+    "actual": "fixed-line",
+    "reason": "Metadata type: this plan publishes only a fixed-line rule; the older oracle also classifies it as mobile."
+  },
+  "UY:u/valid": {
+    "oracle": false,
+    "actual": true,
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "UY:u/possible": {
+    "oracle": false,
+    "actual": true,
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "UY:u/type": {
+    "oracle": "",
+    "actual": "uan",
+    "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
+  },
+  "format:US/international": {
+    "oracle": "+1 201 555 0123",
+    "actual": "+1 201-555-0123",
+    "reason": "Formatting convention: libphonenumber-js formatInternational normalizes separators to spaces; dialnumber preserves the published international grouping separator. E.164 digits agree."
+  },
+  "format:JP/international": {
+    "oracle": "+81 90 1234 5678",
+    "actual": "+81 90-1234-5678",
+    "reason": "Formatting convention: libphonenumber-js formatInternational normalizes separators to spaces; dialnumber preserves the published international grouping separator. E.164 digits agree."
+  },
+  "format:BR/international": {
+    "oracle": "+55 11 98765 4321",
+    "actual": "+55 11 98765-4321",
+    "reason": "Formatting convention: libphonenumber-js formatInternational normalizes separators to spaces; dialnumber preserves the published international grouping separator. E.164 digits agree."
+  }
+}

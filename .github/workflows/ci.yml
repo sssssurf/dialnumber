@@ -45,6 +45,9 @@ jobs:
         run: |
           node scripts/gen-metadata.mjs --check
           node scripts/gen-corpus.mjs --check
+          node scripts/gen-non-geo.mjs --check
+          node scripts/gen-compat.mjs --check
+          node scripts/gen-google-compat.mjs --check
           node scripts/sync-readme.mjs --check
 
       - name: Test

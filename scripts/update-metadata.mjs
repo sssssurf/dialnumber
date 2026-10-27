@@ -175,6 +175,7 @@ async function main() {
 
   const territories = [...text.matchAll(/<territory\b([^>]*)>([\s\S]*?)<\/territory>/g)];
   const regions = [];
+  const networks = [];
   let patternCount = 0;
   const skipped = [];
 
@@ -182,13 +183,13 @@ async function main() {
     const attrs = {};
     for (const a of rawAttrs.matchAll(/(\w+)="([^"]*)"/g)) attrs[a[1]] = a[2];
     const code = attrs.id;
-    if (!/^[A-Z]{2}$/.test(code)) {
-      // The "001" rows are the non-geographic codes (+800, +870, ...): they have
-      // no region to resolve to, so they stay out of a region-keyed table.
+    if (code !== '001' && !/^[A-Z]{2}$/.test(code)) {
+      // Geographic regions and 001 networks are extracted into separate tables.
       skipped.push(attrs.countryCode);
       continue;
     }
 
+    const beforePatterns = patternCount;
     const general = patternOf(pick(body, "generalDesc"));
     if (general) { checkPattern(general, `${code} general`); patternCount++; }
 
@@ -211,6 +212,11 @@ async function main() {
       });
     }
 
+    if (code === '001') {
+      networks.push({ calling_code:Number(attrs.countryCode), general, types });
+      patternCount = beforePatterns;
+      continue;
+    }
     const formats = formatsOf(body);
 
     regions.push({
@@ -260,6 +266,11 @@ async function main() {
 
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
   fs.writeFileSync(OUT, JSON.stringify(doc, null, 1) + "\n");
+  fs.writeFileSync(path.join(ROOT, 'data/non-geographic.json'), JSON.stringify({
+    meta:{ source:doc.meta.source, license:doc.meta.license, sha256:sha,
+      retrieved:doc.meta.retrieved, generator:'scripts/update-metadata.mjs' },
+    networks:networks.sort((a,b)=>a.calling_code-b.calling_code),
+  },null,2)+'\n');
 
   const bytes = fs.statSync(OUT).size;
   const types = regions.reduce((n, r) => n + r.types.length, 0);

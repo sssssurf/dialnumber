@@ -15,7 +15,7 @@
 
 ///|
 /// The regions that share a calling code, in table order.
-fn regions_with_code(cc : Int) -> Array[Region] {
+fn regions_with_code(cc : Int32) -> Array[Region] {
   let out : Array[Region] = []
   for r in regions {
     if r.calling_code == cc {
@@ -40,12 +40,17 @@ pub fn region_of_number(pn : PhoneNumber) -> String? {
   }
   let candidates = regions_with_code(pn.country_code)
   if candidates.length() == 0 {
-    return if find_non_geo(pn.country_code) is Some(_) { Some("001") } else { None }
+    return if find_non_geo(pn.country_code) is Some(_) {
+      Some("001")
+    } else {
+      None
+    }
   }
   // A territory that publishes leading digits and matches them is more specific
   // than the primary territory of a shared calling code, so it wins first.
   for r in candidates {
-    if r.leading_digits != "" && region_leading_matches(r, pn.national_number) &&
+    if r.leading_digits != "" &&
+      region_leading_matches(r, pn.national_number) &&
       region_admits(r, pn.national_number) {
       return Some(r.code)
     }
@@ -63,7 +68,8 @@ pub fn region_of_number(pn : PhoneNumber) -> String? {
   }
   let n = chars_of(pn.national_number).length()
   for r in candidates {
-    if r.primary && region_leading_matches(r, pn.national_number) &&
+    if r.primary &&
+      region_leading_matches(r, pn.national_number) &&
       lengths_of(r).contains(n) {
       return Some(r.code)
     }
@@ -83,6 +89,9 @@ pub fn region_of_number(pn : PhoneNumber) -> String? {
 /// structural shape, which rejects an area code or exchange that cannot exist.
 /// Possible is not the same as assigned; use `is_valid` for that.
 pub fn is_possible(pn : PhoneNumber) -> Bool {
+  if find_non_geo(pn.country_code) is Some(_) {
+    return non_geo_possible(pn)
+  }
   if pn.country_code == 1 {
     return nanp_possible(pn.national_number)
   }
@@ -108,7 +117,8 @@ pub fn is_valid_in_region(pn : PhoneNumber, region : String) -> Bool {
     return non_geo_admits(pn)
   }
   match find_region(region) {
-    Some(r) => r.calling_code == pn.country_code && region_admits(r, pn.national_number)
+    Some(r) =>
+      r.calling_code == pn.country_code && region_admits(r, pn.national_number)
     None => false
   }
 }
@@ -151,6 +161,9 @@ pub fn number_type_in_region(pn : PhoneNumber, region : String) -> NumberType? {
 /// structure and its area code must belong to `region`. For other calling codes
 /// it is the length test against that region's published lengths.
 pub fn is_possible_in_region(pn : PhoneNumber, region : String) -> Bool {
+  if region == "001" {
+    return non_geo_possible(pn)
+  }
   match find_region(region) {
     None => false
     Some(r) =>
@@ -184,6 +197,21 @@ pub fn possible_types_in_region(
   pn : PhoneNumber,
   region : String,
 ) -> Array[NumberType] {
+  if region == "001" {
+    let out : Array[NumberType] = []
+    match find_non_geo(pn.country_code) {
+      None => ()
+      Some(p) =>
+        if digits_of(pn.national_number) == pn.national_number {
+          for t in p.types {
+            if t.national.contains(pn.national_number.length()) {
+              out.push(t.kind)
+            }
+          }
+        }
+    }
+    return out
+  }
   match find_region(region) {
     None => []
     Some(r) =>

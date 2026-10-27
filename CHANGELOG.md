@@ -4,6 +4,18 @@ All notable changes to this project are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] - 2026-10-27
+
+- Fix matching across different explicit calling codes and extension presence.
+- Preserve digits in incremental formatting, handle entered trunk prefixes and + input.
+- Bound non-geographic possibility checks by the network's published lengths.
+- Generate the non-geographic table from committed, traceable data.
+- Resolve contexts through documented public-plan conventions or an explicit authority;
+  refuse arbitrary numeric contexts and unknown mandatory parameters.
+- Commit a pinned independent 2,299-case compatibility corpus, six typing traces,
+  all 30 known field differences, an offline generator and CI drift checks.
+- Replace contradictory scope claims and update the resubmission materials.
+
 ## [0.7.9] - 2026-10-23
 
 Scope completion: the numbers outside a region, the two comparison APIs, and a
