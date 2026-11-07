@@ -33,3 +33,10 @@ Reproducibility and known differences are documented in
 [data maintenance](docs/data-maintenance.md),
 [JavaScript comparison](docs/compatibility.md) and
 [original Java comparison](docs/google-compatibility.md).
+
+
+The 0.9.0 supplement also derives 32 nationalPrefixTransformRule attributes from
+Google libphonenumber v9.0.17/resources/PhoneNumberMetadata.xml (Apache-2.0).
+Its exact source SHA-256 and matching-prefix verification are recorded under
+meta.prefixTransformSource in data/numbering-plans.json and checked by
+scripts/import-prefix-transforms.mjs. The original XML is not vendored.

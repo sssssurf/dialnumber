@@ -59,3 +59,27 @@ The acceptance runner and CI execute these checks and verify that literal CLI
 output still matches the documentation. Generated tables and tests are derived
 data, not a substitute for the handwritten parsing, matching and formatting work.
 License and attribution details are in [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md).
+
+
+## Prefix transform repair (2026-11-07)
+
+The original extractor stored a boolean instead of nationalPrefixTransformRule.
+The JSON now stores the complete prefix_transform string, and the normal XML
+extractor preserves it. All fixed/mobile national round trips are generated.
+The supplement imports the 32 missing attributes from original Google v9.0.17
+XML; every prefix pattern was verified identical to the archived plan table.
+Only these missing attributes are supplemented, with a separate SHA-256 and
+source URL under meta.prefixTransformSource; the old XML provenance is retained
+for the other attributes. Reproduce the supplement with:
+
+    node scripts/import-prefix-transforms.mjs --xml /path/to/v9.0.17/PhoneNumberMetadata.xml
+
+The pinned XML SHA-256 is 71ccaff82d09321450143f55cceb6ea2a7965339e7a6a82e86263038bacc8ca7.
+Do not run the pinned supplement as a way of downgrading newly refreshed data;
+it refuses changed prefix patterns or transforms. The additional independent
+capture corpus is generated from JS RegExp.exec (1,872 cases, all 32 plans):
+
+    node scripts/gen-prefix-corpus.mjs --check
+
+The acceptance runner now checks seven generated artifacts. Original Java phone
+recordings include a national parse-back assertion for every geographic case.

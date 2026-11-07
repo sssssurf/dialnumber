@@ -17,11 +17,15 @@
 /// `x` inside ordinary text is not mistaken for an extension.
 fn split_extension(input : String) -> (String, String) {
   let s = trim(input)
-  match index_of_sub(s, ";ext=") {
+  let lower = StringBuilder()
+  for c in s {
+    lower.write_char(lower_ascii(c))
+  }
+  match index_of_sub(lower.to_string(), ";ext=") {
     Some(i) => {
-      let digits = match drop(s, i + 5) {
-        Some(rest) => digits_of(rest)
-        None => ""
+      let digits = match canonical_extension(drop(s, i + 5).unwrap()) {
+        Some(v) => v
+        None => return ("", "")
       }
       return (trim(slice(chars_of(s), 0, i)), digits)
     }
@@ -61,16 +65,13 @@ fn split_extension(input : String) -> (String, String) {
 /// of `digits`, or None. Calling codes are assigned so that none is a prefix of
 /// another, but the table holds only 51 of them, so the longest match against
 /// the table is what decides.
-fn country_code_prefix(digits : String) -> Int? {
+fn country_code_prefix(digits : String) -> Int32? {
   let mut n = 3
   while n >= 1 {
     match take(digits, n) {
       Some(head) =>
         match int_of_digits(head) {
-          Some(cc) =>
-            if region_exists_at_code(cc) {
-              return Some(cc)
-            }
+          Some(cc) => if region_exists_at_code(cc) { return Some(cc) }
           None => ()
         }
       None => ()
@@ -82,48 +83,53 @@ fn country_code_prefix(digits : String) -> Int? {
 
 ///|
 /// True when some region uses this calling code.
-fn region_exists_at_code(cc : Int) -> Bool {
+fn region_exists_at_code(cc : Int32) -> Bool {
   region_by_calling_code(cc) is Some(_) || find_non_geo(cc) is Some(_)
 }
 
 ///|
-/// Strip the trunk prefix a national number is dialled with.
-///
-/// Most plans publish the prefix itself (`"0"`, `"1"`, `"8"`), but some publish a
-/// pattern instead, because more than one spelling is dialled: Belarus accepts
-/// `0`, `8` and `80`, so one number can arrive three ways. When the published
-/// pattern is inside the engine's grammar it is used to find the longest prefix
-/// that matches; otherwise the plain prefix is stripped, which is what the plan
-/// usually means anyway.
+/// Apply the plan's prefix pattern and capture replacement. A viable original
+/// number is never replaced by a nonviable candidate; too-short candidates are
+/// also retained in their original form, as in the reference parser.
 fn strip_national_prefix(r : Region, digits : String) -> String {
-  let cs = chars_of(digits)
-  let compiled = region_prefix_compiled(r)
-  // A pattern the engine cannot parse compiles to `start < 0` and is ignored,
-  // which is the same result as the old well-formedness check but paid once.
-  if compiled.start >= 0 {
-    let limit = if cs.length() < 12 { cs.length() } else { 12 }
-    let mut best = 0
-    let mut k = 1
-    while k <= limit {
-      if run_pattern(compiled, slice(cs, 0, k)) {
-        best = k
+  let pattern = if r.prefix_parsing == "" {
+    r.national_prefix
+  } else {
+    r.prefix_parsing
+  }
+  if pattern == "" {
+    return digits
+  }
+  let matched = match match_national_prefix(pattern, digits) {
+    None => return digits
+    Some(v) => v
+  }
+  let last = matched.captures.length() - 1
+  let candidate = if r.prefix_transform != "" &&
+    last > 0 &&
+    matched.captures[last] is Some(_) {
+    replace_prefix(r.prefix_transform, matched, digits)
+  } else {
+    drop(digits, matched.end).unwrap()
+  }
+  if candidate == "" {
+    return digits
+  }
+  if region_general_matches(r, digits) && !region_general_matches(r, candidate) {
+    return digits
+  }
+  let mut min_length = 1000
+  for t in r.types {
+    for n in t.national {
+      if n < min_length {
+        min_length = n
       }
-      k = k + 1
-    }
-    if best > 0 && best < cs.length() {
-      return slice(cs, best, cs.length() - best)
     }
   }
-  if r.national_prefix != "" && starts_with(digits, r.national_prefix) {
-    match drop(digits, r.national_prefix.length()) {
-      Some(stripped) =>
-        if stripped != "" {
-          return stripped
-        }
-      None => ()
-    }
+  if candidate.length() < min_length {
+    return digits
   }
-  digits
+  candidate
 }
 
 ///|
@@ -181,7 +187,7 @@ pub fn parse(input : String, default_region : String) -> PhoneNumber? {
         if nsn == "" {
           return None
         }
-        return Some({ country_code: cc, national_number: nsn, extension: ext })
+        return Some({ country_code: cc, national_number: nsn, extension: ext, })
       }
       None => return None
     }
@@ -190,7 +196,11 @@ pub fn parse(input : String, default_region : String) -> PhoneNumber? {
     None => None
     Some(r) => {
       let nsn = strip_national_prefix(r, body)
-      Some({ country_code: r.calling_code, national_number: nsn, extension: ext })
+      Some({
+        country_code: r.calling_code,
+        national_number: nsn,
+        extension: ext,
+      })
     }
   }
 }

@@ -20,8 +20,8 @@
 /// One capture group of a formatting rule: a digit run of at least `min` and at
 /// most `max` digits, where a negative `max` means unbounded.
 priv struct FormatGroup {
-  min : Int
-  max : Int
+  min : Int32
+  max : Int32
 }
 
 ///|
@@ -73,7 +73,7 @@ fn parse_format_groups(pattern : String) -> Array[FormatGroup]? {
       return None
     }
     i = i + 1
-    out.push({ min, max })
+    out.push({ min, max, })
   }
   if out.length() == 0 {
     None
@@ -86,7 +86,10 @@ fn parse_format_groups(pattern : String) -> Array[FormatGroup]? {
 /// Split `total` digits over the groups, left to right and greedily, the way a
 /// regex engine's greedy quantifiers would. None when the shapes cannot cover
 /// the number.
-fn distribute_digits(groups : Array[FormatGroup], total : Int) -> Array[Int]? {
+fn distribute_digits(
+  groups : Array[FormatGroup],
+  total : Int32,
+) -> Array[Int32]? {
   let mut need = 0
   for g in groups {
     need = need + g.min
@@ -94,7 +97,7 @@ fn distribute_digits(groups : Array[FormatGroup], total : Int) -> Array[Int]? {
   if total < need {
     return None
   }
-  let lens : Array[Int] = []
+  let lens : Array[Int32] = []
   let mut remaining = total
   let mut i = 0
   while i < groups.length() {
@@ -128,8 +131,12 @@ fn distribute_digits(groups : Array[FormatGroup], total : Int) -> Array[Int]? {
 
 ///|
 /// Replace `$1`..`$9` in `rule` with the corresponding digit groups.
-fn apply_format_rule(rule : String, digits : Array[Char], lens : Array[Int]) -> String {
-  let starts : Array[Int] = []
+fn apply_format_rule(
+  rule : String,
+  digits : Array[Char],
+  lens : Array[Int32],
+) -> String {
+  let starts : Array[Int32] = []
   let mut acc = 0
   for n in lens {
     starts.push(acc)
@@ -165,7 +172,11 @@ fn apply_format_rule(rule : String, digits : Array[Char], lens : Array[Int]) -> 
 /// published rules wrap the prefix and the leading group (`($NP$FG)` for
 /// Australia, `($FG)` for Brazil), and the rest of the format follows outside
 /// the wrapper.
-fn expand_prefix_rule(rule : String, prefix : String) -> String {
+fn expand_prefix_rule(
+  rule : String,
+  prefix : String,
+  first_group : String,
+) -> String {
   let cs = chars_of(rule)
   let buf = StringBuilder()
   let mut i = 0
@@ -179,7 +190,7 @@ fn expand_prefix_rule(rule : String, prefix : String) -> String {
         continue
       }
       if a == 'F' && b == 'G' {
-        buf.write_string("$1")
+        buf.write_string(first_group)
         i = i + 3
         continue
       }
@@ -191,24 +202,23 @@ fn expand_prefix_rule(rule : String, prefix : String) -> String {
 }
 
 ///|
-/// The part of a format string after its first group: `$1 $2-$3` becomes
-/// ` $2-$3`. This is what gets appended to a prefix rule, whose `$FG` only
-/// stands for the leading group.
-fn format_tail(format : String) -> String {
+/// Insert the national-prefix rule at the first referenced capture, which is
+/// not always $1 (Argentina's mobile national rendering starts with $2).
+fn national_format_rule(
+  format : String,
+  rule : String,
+  prefix : String,
+) -> String {
   let cs = chars_of(format)
-  let buf = StringBuilder()
-  let mut i = 0
-  let mut removed = false
-  while i < cs.length() {
-    if !removed && cs[i] == '$' && i + 1 < cs.length() && cs[i + 1] == '1' {
-      removed = true
-      i = i + 2
-      continue
+  for i = 0; i + 1 < cs.length(); i = i + 1 {
+    if cs[i] == '$' && cs[i + 1] >= '1' && cs[i + 1] <= '9' {
+      let group = slice(cs, i, 2)
+      return slice(cs, 0, i) +
+        expand_prefix_rule(rule, prefix, group) +
+        slice(cs, i + 2, cs.length() - i - 2)
     }
-    buf.write_char(cs[i])
-    i = i + 1
   }
-  buf.to_string()
+  format
 }
 
 ///|
@@ -273,7 +283,7 @@ fn render_with_formats(
         f.format
       }
     } else if f.prefix_rule != "" {
-      expand_prefix_rule(f.prefix_rule, r.national_prefix) + format_tail(f.format)
+      national_format_rule(f.format, f.prefix_rule, r.national_prefix)
     } else {
       f.format
     }

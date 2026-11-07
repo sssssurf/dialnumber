@@ -1,0 +1,286 @@
+{
+  "date": "2026-10-27",
+  "moduleVersion": "0.8.1",
+  "technicalStatus": "passed",
+  "organizerFinalDecision": "pending",
+  "scriptedRun": {
+    "schema": 1,
+    "date": "2026-10-27T07:50:01.653Z",
+    "platform": "win32",
+    "status": "passed",
+    "targets": [
+      "js",
+      "wasm",
+      "wasm-gc"
+    ],
+    "checks": [
+      {
+        "label": "Toolchain",
+        "command": [
+          "moon",
+          "version",
+          "--all"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 79
+      },
+      {
+        "label": "Generated artifact: gen-metadata",
+        "command": [
+          "node",
+          "scripts/gen-metadata.mjs",
+          "--check"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 95
+      },
+      {
+        "label": "Generated artifact: gen-corpus",
+        "command": [
+          "node",
+          "scripts/gen-corpus.mjs",
+          "--check"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 89
+      },
+      {
+        "label": "Generated artifact: gen-non-geo",
+        "command": [
+          "node",
+          "scripts/gen-non-geo.mjs",
+          "--check"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 77
+      },
+      {
+        "label": "Generated artifact: gen-compat",
+        "command": [
+          "node",
+          "scripts/gen-compat.mjs",
+          "--check"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 737
+      },
+      {
+        "label": "Generated artifact: gen-google-compat",
+        "command": [
+          "node",
+          "scripts/gen-google-compat.mjs",
+          "--check"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 86
+      },
+      {
+        "label": "Generated artifact: sync-readme",
+        "command": [
+          "node",
+          "scripts/sync-readme.mjs",
+          "--check"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 44
+      },
+      {
+        "label": "Check js",
+        "command": [
+          "moon",
+          "check",
+          "--target",
+          "js"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 79
+      },
+      {
+        "label": "Build js",
+        "command": [
+          "moon",
+          "build",
+          "--target",
+          "js"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 75
+      },
+      {
+        "label": "Tests js",
+        "command": [
+          "moon",
+          "test",
+          "--target",
+          "js"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 499,
+        "tests": {
+          "total": 632,
+          "passed": 632,
+          "failed": 0
+        }
+      },
+      {
+        "label": "Check wasm",
+        "command": [
+          "moon",
+          "check",
+          "--target",
+          "wasm"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 80
+      },
+      {
+        "label": "Build wasm",
+        "command": [
+          "moon",
+          "build",
+          "--target",
+          "wasm"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 74
+      },
+      {
+        "label": "Tests wasm",
+        "command": [
+          "moon",
+          "test",
+          "--target",
+          "wasm"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 1174,
+        "tests": {
+          "total": 632,
+          "passed": 632,
+          "failed": 0
+        }
+      },
+      {
+        "label": "Check wasm-gc",
+        "command": [
+          "moon",
+          "check",
+          "--target",
+          "wasm-gc"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 71
+      },
+      {
+        "label": "Build wasm-gc",
+        "command": [
+          "moon",
+          "build",
+          "--target",
+          "wasm-gc"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 66
+      },
+      {
+        "label": "Tests wasm-gc",
+        "command": [
+          "moon",
+          "test",
+          "--target",
+          "wasm-gc"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 693,
+        "tests": {
+          "total": 632,
+          "passed": 632,
+          "failed": 0
+        }
+      },
+      {
+        "label": "Documented CLI output",
+        "command": [
+          "node",
+          "scripts/check-docs.mjs"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 4531
+      },
+      {
+        "label": "Public API example",
+        "command": [
+          "moon",
+          "run",
+          "--target",
+          "js",
+          "examples/basic"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 155
+      },
+      {
+        "label": "Benchmarks",
+        "command": [
+          "moon",
+          "bench",
+          "benchmarks"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 15320,
+        "tests": {
+          "total": 12,
+          "passed": 12,
+          "failed": 0
+        }
+      },
+      {
+        "label": "Publishable module",
+        "command": [
+          "moon",
+          "package",
+          "--list"
+        ],
+        "status": "passed",
+        "exitCode": 0,
+        "durationMs": 217
+      }
+    ],
+    "compiledSourceSha256": "e587df5d03aa5161086e981d54715e3fe33429b329a3c526a2fe1111059d55e8"
+  },
+  "supplementalNative": {
+    "platform": "WSL Ubuntu 24.04",
+    "toolchain": "moonc 0.10.17",
+    "compiler": "GCC",
+    "commands": [
+      "moon build --target native",
+      "moon test --target native"
+    ],
+    "status": "passed",
+    "tests": {
+      "total": 632,
+      "passed": 632,
+      "failed": 0
+    },
+    "scope": "Current 0.8.1 source including examples/basic"
+  }
+}

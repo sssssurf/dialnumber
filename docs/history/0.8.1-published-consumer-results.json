@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-27T07:52:22.433Z",
+  "module": "sssssurf/dialnumber",
+  "version": "0.8.1",
+  "source": "Mooncakes registry dependency in a separate module; no local path override",
+  "status": "passed",
+  "resolvedVersion": "0.8.1",
+  "output": [
+    "e164: +442079460958",
+    "valid: true",
+    "network_region: 001",
+    "network_valid: true",
+    "different_country_match: none",
+    "as_you_type: 020 7946 0958",
+    "numeric_context: +4930123456",
+    "explicit_authority: +12015550123"
+  ],
+  "registry": {
+    "module": "sssssurf/dialnumber",
+    "version": "0.8.1",
+    "checksum": "b6d52953db0624a0223953fcd8770dc86ba86fb1c8fda02814b0a0920d9690fe",
+    "createdAt": "2026-10-27T07:51:53.774843+00:00"
+  }
+}

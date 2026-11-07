@@ -52,7 +52,7 @@ function table(doc) {
   for (const r of doc.regions) {
     out.push("  plan_row(");
     out.push(
-      `    ${q(r.code)}, ${q(r.name)}, ${r.calling_code}, ${q(r.idd)}, ${q(r.national_prefix)}, ${q(r.prefix_parsing ?? "")}, ${q(r.leading_digits ?? "")}, ${r.primary},`,
+      `    ${q(r.code)}, ${q(r.name)}, ${r.calling_code}, ${q(r.idd)}, ${q(r.national_prefix)}, ${q(r.prefix_parsing ?? "")}, ${q(r.prefix_transform ?? "")}, ${q(r.leading_digits ?? "")}, ${r.primary},`,
     );
     out.push(`    ${q(r.general)},`);
     out.push("    [");
@@ -135,17 +135,12 @@ function examplesTest(doc) {
       out.push(`  assert_eq(@dialnumber.region_of_number(${pn}), Some("${region}"))`);
       if (kind === "FixedLine" || kind === "Mobile") {
         out.push(`  assert_true(matches_kind(@dialnumber.number_type(${pn}), ${kind}))`);
-        // The national rendering must read back as the same number in the same
-        // region: that is what "as dialled in the country" has to mean. Plans
-        // that rewrite the number while parsing (see dial_transform in the
-        // data) are skipped, because this library does not implement that
-        // transformation and would be testing a known gap.
-        if (!r.dial_transform) {
-          out.push(`  match @dialnumber.format_national(${pn}, "${r.code}") {`);
-          out.push(`    Some(written) => assert_eq(@dialnumber.parse(written, "${r.code}"), Some(${pn}))`);
-          out.push("    None => assert_true(false)");
-          out.push("  }");
-        }
+        // Every fixed/mobile example must survive the national round trip,
+        // including plans with capture-based national prefix transforms.
+        out.push(`  match @dialnumber.format_national(${pn}, "${r.code}") {`);
+        out.push(`    Some(written) => assert_eq(@dialnumber.parse(written, "${r.code}"), Some(${pn}))`);
+        out.push("    None => assert_true(false)");
+        out.push("  }");
       } else {
         out.push(`  assert_eq(@dialnumber.number_type(${pn}), Some(${kind}))`);
       }

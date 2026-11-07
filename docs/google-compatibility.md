@@ -6,8 +6,9 @@ This is separate from the broader libphonenumber-js corpus.
 
 Artifact SHA-256: c280b2493de61a070edbc9a83e27023dfd0453cc1295601a48802af907926bcd.
 
-- 17 complete phone scenarios: eight national-input parse/format round trips
-  and all nine non-geographic networks. E.164, possibility, validity, region
+- 90 complete phone scenarios, including all 32 transform plans,
+  real national-input transform cases and all nine non-geographic networks.
+  E.164, possibility, validity, region
   and number type agree; regional national/international formatting agrees.
 - Six number comparisons use PhoneNumberUtil.isNumberMatch directly and agree,
   including different explicit calling codes, unknown code, short suffix,

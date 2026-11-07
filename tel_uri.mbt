@@ -101,10 +101,24 @@ fn is_domain_label(s : String) -> Bool {
 ///|
 /// True when `s` is a domain name: one or more non-empty labels joined by dots.
 fn is_domain_name(s : String) -> Bool {
-  for label in split_on(s, '.') {
+  let labels = split_on(s, '.')
+  let end = if labels[labels.length() - 1] == "" {
+    labels.length() - 1
+  } else {
+    labels.length()
+  }
+  if end == 0 {
+    return false
+  }
+  for i = 0; i < end; i = i + 1 {
+    let label = labels[i]
     if !is_domain_label(label) {
       return false
     }
+  }
+  let top = chars_of(labels[end - 1])[0]
+  if !((top >= 'a' && top <= 'z') || (top >= 'A' && top <= 'Z')) {
+    return false
   }
   true
 }
@@ -163,6 +177,10 @@ fn canonical_local_number(s : String) -> String? {
 ///|
 /// Canonicalise an extension: digits and visual separators, at least one digit.
 fn canonical_extension(s : String) -> String? {
+  let s = match tel_unescape_unreserved(s) {
+    None => return None
+    Some(v) => v
+  }
   let buf = StringBuilder()
   let mut any = false
   for c in s {
@@ -261,6 +279,52 @@ fn is_isub_char(c : Char) -> Bool {
 /// True for a hexadecimal digit, in either case.
 fn is_hex_digit(c : Char) -> Bool {
   is_digit(c) || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f')
+}
+
+///|
+/// RFC 3966 section 3: unreserved characters and their percent encodings are
+/// equivalent. Reserved delimiters remain escaped, never split into parameters.
+fn tel_unescape_unreserved(s : String) -> String? {
+  let cs = chars_of(s)
+  let buf = StringBuilder()
+  let mut i = 0
+  while i < cs.length() {
+    if cs[i] == '%' {
+      if i + 2 >= cs.length() ||
+        !is_hex_digit(cs[i + 1]) ||
+        !is_hex_digit(cs[i + 2]) {
+        return None
+      }
+      let hi = tel_hex_value(cs[i + 1])
+      let lo = tel_hex_value(cs[i + 2])
+      let decoded = (hi * 16 + lo).unsafe_to_char()
+      let unreserved = is_digit(decoded) ||
+        (decoded >= 'a' && decoded <= 'z') ||
+        (decoded >= 'A' && decoded <= 'Z') ||
+        "-_.!~*'()".contains(slice([decoded], 0, 1))
+      if unreserved {
+        buf.write_char(decoded)
+      } else {
+        buf.write_char('%')
+        buf.write_char(upper_ascii(cs[i + 1]))
+        buf.write_char(upper_ascii(cs[i + 2]))
+      }
+      i = i + 3
+    } else {
+      buf.write_char(cs[i])
+      i = i + 1
+    }
+  }
+  Some(buf.to_string())
+}
+
+///|
+fn tel_hex_value(c : Char) -> Int32 {
+  if is_digit(c) {
+    c.to_int() - '0'.to_int()
+  } else {
+    upper_ascii(c).to_int() - 'A'.to_int() + 10
+  }
 }
 
 ///|
@@ -421,9 +485,13 @@ pub fn parse_tel_uri_full(uri : String) -> TelUri? {
     if part == "" {
       return None
     }
-    let (name, value) = match split_first(part, '=') {
+    let (raw_name, value) = match split_first(part, '=') {
       Some(pair) => pair
       None => (part, "")
+    }
+    let name = match tel_unescape_unreserved(raw_name) {
+      None => return None
+      Some(v) => v
     }
     let lower = {
       let buf = StringBuilder()
@@ -470,14 +538,18 @@ pub fn parse_tel_uri_full(uri : String) -> TelUri? {
       }
       let mut seen = false
       for q in params {
-        if q.0 == name {
+        if starts_with_ci(q.0, lower) && q.0.length() == lower.length() {
           seen = true
         }
       }
       if seen {
         return None
       }
-      params.push((name, value))
+      let value = match tel_unescape_unreserved(value) {
+        None => return None
+        Some(v) => v
+      }
+      params.push((lower, value))
     }
   }
   let mut global_number = ""
@@ -519,7 +591,7 @@ pub fn parse_tel_uri_full(uri : String) -> TelUri? {
 
 ///|
 /// Serialise the parts back to a canonical `tel:` URI. Parameters are written in
-/// RFC 3966's order: `phone-context` (local numbers only), then `ext` or `isub`.
+/// RFC 3966's order: `ext` or `isub`, then `phone-context`, then sorted extras.
 /// None for a combination the grammar cannot represent, such as a local number
 /// without a context or both numbers set.
 pub fn to_tel_uri_full(t : TelUri) -> String? {
@@ -537,21 +609,72 @@ pub fn to_tel_uri_full(t : TelUri) -> String? {
   if t.extension != "" && t.isub != "" {
     return None
   }
-  let mut out = if is_global {
-    "tel:" + t.global_number
+  // TelUri is publicly constructible: validate every field independently so
+  // embedded delimiters cannot inject a parameter or bypass mandatory checks.
+  let subscriber = if is_global {
+    if !starts_with(t.global_number, "+") {
+      return None
+    }
+    match canonical_global_number(t.global_number) {
+      None => return None
+      Some(v) => v
+    }
   } else {
-    "tel:" + t.local_number
+    match canonical_local_number(t.local_number) {
+      None => return None
+      Some(v) => v
+    }
+  }
+  let mut out = if is_global {
+    "tel:" + subscriber
+  } else {
+    "tel:" + subscriber
   }
   if t.extension != "" {
-    out = out + ";ext=" + t.extension
+    let ext = match canonical_extension(t.extension) {
+      None => return None
+      Some(v) => v
+    }
+    out = out + ";ext=" + ext
   }
   if t.isub != "" {
-    out = out + ";isub=" + t.isub
+    let isub = match canonical_isub(t.isub) {
+      None => return None
+      Some(v) => v
+    }
+    out = out + ";isub=" + isub
   }
   if is_local {
-    out = out + ";phone-context=" + t.phone_context
+    let context = match canonical_phone_context(t.phone_context) {
+      None => return None
+      Some(v) => v
+    }
+    out = out + ";phone-context=" + context
   }
-  for prm in sort_parameters(t.parameters) {
+  let parameters : Array[(String, String)] = []
+  for (name, value) in t.parameters {
+    let buf = StringBuilder()
+    for c in name {
+      buf.write_char(lower_ascii(c))
+    }
+    let lower = buf.to_string()
+    if !is_pname(lower) ||
+      lower == "ext" ||
+      lower == "isub" ||
+      lower == "phone-context" {
+      return None
+    }
+    if value != "" && !is_param_value(value) {
+      return None
+    }
+    for existing in parameters {
+      if existing.0 == lower {
+        return None
+      }
+    }
+    parameters.push((lower, value))
+  }
+  for prm in sort_parameters(parameters) {
     out = out + ";" + prm.0
     if prm.1 != "" {
       out = out + "=" + prm.1
@@ -622,25 +745,30 @@ pub fn resolve_tel_uri(
   t : TelUri,
   context_resolver~ : (String, String) -> PhoneNumber? = resolve_local_context,
 ) -> PhoneNumber? {
-  if to_tel_uri_full(t) is None {
-    return None
+  let serialized = match to_tel_uri_full(t) {
+    None => return None
+    Some(v) => v
   }
-  for param in t.parameters {
-    if starts_with(param.0, "m-") {
+  let canonical = match parse_tel_uri_full(serialized) {
+    None => return None
+    Some(v) => v
+  }
+  for param in canonical.parameters {
+    if starts_with_ci(param.0, "m-") {
       return None
     }
   }
-  let pn = if t.global_number != "" {
-    parse(t.global_number, "")
-  } else if t.local_number != "" {
-    context_resolver(t.phone_context, t.local_number)
+  let pn = if canonical.global_number != "" {
+    parse(canonical.global_number, "")
+  } else if canonical.local_number != "" {
+    context_resolver(canonical.phone_context, canonical.local_number)
   } else {
     None
   }
   match pn {
     Some(v) =>
       if is_valid(v) {
-        Some(v.with_extension(t.extension))
+        Some(v.with_extension(canonical.extension))
       } else {
         None
       }

@@ -44,7 +44,7 @@ try {
     if (!fs.readFileSync(path.join(root,file),'utf8').trim()) throw new Error('Empty acceptance artifact: '+file);
   }
   for (const script of ['gen-metadata','gen-corpus','gen-non-geo','gen-compat',
-    'gen-google-compat','sync-readme']) run('Generated artifact: '+script,process.execPath,['scripts/'+script+'.mjs','--check']);
+    'gen-google-compat','gen-prefix-corpus','sync-readme']) run('Generated artifact: '+script,process.execPath,['scripts/'+script+'.mjs','--check']);
   for (const target of targets) {
     run('Check '+target,'moon',['check','--target',target]);
     run('Build '+target,'moon',['build','--target',target]);
@@ -57,6 +57,10 @@ try {
   const example = run('Public API example','moon',['run','--target','js','examples/basic']);
   const expected = fs.readFileSync(path.join(root,'examples/basic/expected.txt'),'utf8').trim();
   if (example.trim() !== expected) throw new Error('Public API example output changed');
+  const review = run('Formal review regression example','moon',['run','--target','js','examples/review']);
+  if (review.trim() !== fs.readFileSync(path.join(root,'examples/review/expected.txt'),'utf8').trim()) {
+    throw new Error('Formal review regression example output changed');
+  }
   if (!process.argv.includes('--skip-bench')) run('Benchmarks','moon',['bench','benchmarks']);
   run('Publishable module','moon',['package','--list']);
   const files = [];

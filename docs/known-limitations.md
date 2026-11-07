@@ -2,6 +2,14 @@
 
 ## Implemented
 
+- All 32 archived national-prefix transform plans execute their actual capture
+  replacements, including Argentina mobile and Brazilian carrier prefixes.
+  National round-trip assertions no longer exclude transform plans.
+- Public pattern repetition parsing is checked for overflow and compilation
+  budgets; invalid or oversized patterns fail closed.
+- RFC parameter names normalize before duplicate and mandatory checks; public
+  TelUri serialization validates every field against parameter injection.
+
 - Nine non-geographic networks: +800, +808, +870, +878, +881, +882, +883, +888, +979.
   Validation, types and possible lengths use a calling-code keyed table; region is 001.
   The table is generated from data/non-geographic.json and checked by CI.
@@ -32,8 +40,8 @@ PhoneNumber has no isub field, so callers that need it must retain TelUri.
 
 ## Remaining boundaries
 
-1. National-prefix transform rules (for example Argentina mobile rewrites) are
-   not implemented; the metadata and generated round-trip tests mark that scope.
+1. The capture evaluator is for trusted plan-prefix rules; the public boolean
+   pattern API is bounded and does not expose a general regex capture interface.
 2. Incremental formatting is intentionally smaller than libphonenumber's full
    interactive editor. It ignores non-digit keystrokes except an initial +; it
    does not provide deletion/cursor editing, vanity-letter conversion or all
@@ -42,7 +50,7 @@ PhoneNumber has no isub field, so callers that need it must retain TelUri.
    oracle normalizes some separators to spaces; E.164 digits agree.
 4. Validation tests range rules, not existence, reachability or ownership of a line.
 5. The broad independent corpus uses libphonenumber-js 1.11.20/max. A separate
-   29-scenario recording executes the original Java 9.0.17 runtime directly;
+   102-scenario recording executes the original Java 9.0.17 runtime directly;
    All known metadata, local-only scope and formatting differences remain in the
    committed corpus, explicitly explained in compatibility.md.
 

@@ -16,6 +16,15 @@ const phones = [['GB','020 7946 0958'],['US','(201) 555-0123'],['JP','090-1234-5
   ...['+80012345678','+80812345678','+870301234567','+878101234567890',
     '+8816123456789','+88213001234','+883510012345','+88812345678901',
     '+979123456789'].map(input=>['',input])];
+const plans = JSON.parse(fs.readFileSync(path.join(root, 'data/numbering-plans.json')));
+// Every formerly skipped plan is exercised against the original Java library.
+phones.push(...plans.regions.filter(r=>r.prefix_transform).flatMap(r=>
+  r.types.filter(t=>['f','m'].includes(t.kind) && t.example)
+    .map(t=>[r.code, '+' + r.calling_code + t.example])));
+phones.push(['AR','011 15-2345-6789'], ['AR','11 15-2345-6789'],
+  ['AR','0343 15-555-1212'], ['AR','03437 15-55-1212'],
+  ['AR','011 2345-6789'], ['AR','+54 9 11 2345-6789'],
+  ['BR','0 21 11 96123-4567'], ['AG','4601234'], ['AI','4612345']);
 const traces = [['GB','02079460958'],['US','2015550123'],['US','12015550123'],
   ['US','+442079460958'],['JP','09012345678'],['US','201555012345678']];
 const matches = [[1,'2015550123',1,'2015550123','',''],
@@ -69,7 +78,8 @@ for (const row of doc.rows) {
     // Non-geographic network grouping is outside the region-keyed formatting
     // table. Its parsing/validation/type still runs through the original oracle.
     if (hint) out.push(`  assert_eq(@dialnumber.format_international(p), ${q(row[7])})`,
-      `  assert_eq(@dialnumber.format_national(p, ${q(hint)}), Some(${q(row[8])}))`);
+      `  assert_eq(@dialnumber.format_national(p, ${q(hint)}), Some(${q(row[8])}))`,
+      `  assert_eq(@dialnumber.parse(${q(row[8])}, ${q(hint)}), Some(p))`);
   } else if (row[1] === 'typing') {
     out.push(`  let f = @dialnumber.AsYouTypeFormatter::new(${q(request[2])})`,
       '  let mismatches : Array[String] = []');
@@ -107,8 +117,9 @@ const report = ['# Direct verification against Google Java libphonenumber', '',
   'from its official Maven Central artifact, through scripts/ReferenceOracle.java.',
   'This is separate from the broader libphonenumber-js corpus.', '',
   `Artifact SHA-256: ${jarHash}.`, '',
-  '- 17 complete phone scenarios: eight national-input parse/format round trips',
-  '  and all nine non-geographic networks. E.164, possibility, validity, region',
+  `- ${phones.length} complete phone scenarios, including all 32 transform plans,`,
+  '  real national-input transform cases and all nine non-geographic networks.',
+  '  E.164, possibility, validity, region',
   '  and number type agree; regional national/international formatting agrees.',
   '- Six number comparisons use PhoneNumberUtil.isNumberMatch directly and agree,',
   '  including different explicit calling codes, unknown code, short suffix,',

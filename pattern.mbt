@@ -29,7 +29,8 @@ priv enum PatNode {
   PatClass(Array[(Char, Char)])
   PatSeq(Array[PatNode])
   PatAlt(Array[PatNode])
-  PatRep(PatNode, Int, Int) // minimum, maximum; -1 means unbounded
+  PatRep(PatNode, Int32, Int32) // minimum, maximum; -1 means unbounded
+  PatCapture(Int32, PatNode)
 }
 
 // ---------------------------------------------------------------------------
@@ -40,15 +41,42 @@ priv enum PatNode {
 /// Parse a whole pattern. None when the text is not a member of the grammar.
 fn parse_pattern(text : String) -> PatNode? {
   let src = chars_of(text)
+  if src.length() > 8192 {
+    return None
+  }
+  let mut depth = 0
+  let mut in_class = false
+  for i = 0; i < src.length(); i = i + 1 {
+    if src[i] == '[' {
+      in_class = true
+    }
+    if src[i] == ']' {
+      in_class = false
+    }
+    if !in_class && src[i] == '(' {
+      depth = depth + 1
+    }
+    if !in_class && src[i] == ')' {
+      depth = depth - 1
+    }
+    if depth > 64 {
+      return None
+    }
+  }
   match parse_alt(src, 0) {
     None => None
-    Some((node, end)) => if end == src.length() { Some(node) } else { None }
+    Some((node, end)) =>
+      if end == src.length() && pattern_cost(node, 65536) is Some(_) {
+        Some(node)
+      } else {
+        None
+      }
   }
 }
 
 ///|
 /// `alt := seq ('|' seq)*`
-fn parse_alt(src : Array[Char], pos : Int) -> (PatNode, Int)? {
+fn parse_alt(src : Array[Char], pos : Int32) -> (PatNode, Int32)? {
   let branches : Array[PatNode] = []
   let mut p = pos
   let (first, np) = match parse_seq(src, p) {
@@ -74,7 +102,7 @@ fn parse_alt(src : Array[Char], pos : Int) -> (PatNode, Int)? {
 
 ///|
 /// `seq := atom*`, stopping at end of input, `|` or `)`.
-fn parse_seq(src : Array[Char], pos : Int) -> (PatNode, Int)? {
+fn parse_seq(src : Array[Char], pos : Int32) -> (PatNode, Int32)? {
   let items : Array[PatNode] = []
   let mut p = pos
   while p < src.length() && src[p] != '|' && src[p] != ')' {
@@ -94,7 +122,7 @@ fn parse_seq(src : Array[Char], pos : Int) -> (PatNode, Int)? {
 
 ///|
 /// `atom := base quantifier?`
-fn parse_atom(src : Array[Char], pos : Int) -> (PatNode, Int)? {
+fn parse_atom(src : Array[Char], pos : Int32) -> (PatNode, Int32)? {
   let (base, p) = match parse_base(src, pos) {
     None => return None
     Some(v) => v
@@ -113,10 +141,17 @@ fn parse_atom(src : Array[Char], pos : Int) -> (PatNode, Int)? {
 
 ///|
 /// `{n}`, `{n,}` and `{n,m}` after an atom.
-fn parse_braces(src : Array[Char], pos : Int, base : PatNode) -> (PatNode, Int)? {
+fn parse_braces(
+  src : Array[Char],
+  pos : Int32,
+  base : PatNode,
+) -> (PatNode, Int32)? {
   let (min, p0) = match parse_int(src, pos + 1) {
     None => return None
     Some(v) => v
+  }
+  if min > 10000 {
+    return None
   }
   if p0 >= src.length() {
     return None
@@ -134,7 +169,7 @@ fn parse_braces(src : Array[Char], pos : Int, base : PatNode) -> (PatNode, Int)?
     None => return None
     Some(v) => v
   }
-  if p1 >= src.length() || src[p1] != '}' || max < min {
+  if p1 >= src.length() || src[p1] != '}' || max < min || max > 10000 {
     return None
   }
   Some((PatRep(base, min, max), p1 + 1))
@@ -142,11 +177,15 @@ fn parse_braces(src : Array[Char], pos : Int, base : PatNode) -> (PatNode, Int)?
 
 ///|
 /// A run of decimal digits.
-fn parse_int(src : Array[Char], pos : Int) -> (Int, Int)? {
+fn parse_int(src : Array[Char], pos : Int32) -> (Int32, Int32)? {
   let mut p = pos
   let mut v = 0
   while p < src.length() && is_digit(src[p]) {
-    v = v * 10 + (src[p].to_int() - '0'.to_int())
+    let digit = src[p].to_int() - '0'.to_int()
+    if v > (2147483647 - digit) / 10 {
+      return None
+    }
+    v = v * 10 + digit
     p = p + 1
   }
   if p == pos {
@@ -158,7 +197,7 @@ fn parse_int(src : Array[Char], pos : Int) -> (Int, Int)? {
 
 ///|
 /// A literal, `\d`, a class, or a group.
-fn parse_base(src : Array[Char], pos : Int) -> (PatNode, Int)? {
+fn parse_base(src : Array[Char], pos : Int32) -> (PatNode, Int32)? {
   if pos >= src.length() {
     return None
   }
@@ -178,9 +217,10 @@ fn parse_base(src : Array[Char], pos : Int) -> (PatNode, Int)? {
 
 ///|
 /// `(?:alt)` or `(alt)`.
-fn parse_group(src : Array[Char], pos : Int) -> (PatNode, Int)? {
+fn parse_group(src : Array[Char], pos : Int32) -> (PatNode, Int32)? {
   let mut p = pos + 1
-  if p + 1 < src.length() && src[p] == '?' && src[p + 1] == ':' {
+  let noncapturing = p + 1 < src.length() && src[p] == '?' && src[p + 1] == ':'
+  if noncapturing {
     p = p + 2
   }
   let (inner, np) = match parse_alt(src, p) {
@@ -190,12 +230,87 @@ fn parse_group(src : Array[Char], pos : Int) -> (PatNode, Int)? {
   if np >= src.length() || src[np] != ')' {
     return None
   }
-  Some((inner, np + 1))
+  Some(
+    (
+      if noncapturing {
+        inner
+      } else {
+        PatCapture(capture_count(src, pos) + 1, inner)
+      },
+      np + 1,
+    ),
+  )
+}
+
+///|
+/// Capturing group numbers are lexical, including groups in unmatched branches.
+fn capture_count(src : Array[Char], end : Int32) -> Int32 {
+  let mut count = 0
+  let mut in_class = false
+  let mut i = 0
+  while i < end {
+    if src[i] == '\\' {
+      i = i + 2
+      continue
+    }
+    if src[i] == '[' {
+      in_class = true
+    }
+    if src[i] == ']' {
+      in_class = false
+    }
+    if !in_class &&
+      src[i] == '(' &&
+      !(i + 1 < src.length() && src[i + 1] == '?') {
+      count = count + 1
+    }
+    i = i + 1
+  }
+  count
+}
+
+///|
+/// Bound expanded NFA size before allocation; arithmetic is checked against
+/// remaining budget before addition/multiplication, including nested repeats.
+fn pattern_cost(node : PatNode, budget : Int32) -> Int32? {
+  if budget < 4 {
+    return None
+  }
+  match node {
+    PatLit(_) | PatDigit | PatClass(_) => Some(1)
+    PatCapture(_, inner) => pattern_cost(inner, budget)
+    PatSeq(items) | PatAlt(items) => {
+      let mut sum = 2
+      for item in items {
+        let cost = match pattern_cost(item, budget - sum) {
+          None => return None
+          Some(v) => v
+        }
+        if cost + 2 > budget - sum {
+          return None
+        }
+        sum = sum + cost + 2
+      }
+      Some(sum)
+    }
+    PatRep(inner, min, max) => {
+      let cost = match pattern_cost(inner, budget - 4) {
+        None => return None
+        Some(v) => v + 2
+      }
+      let copies = if max < 0 { min + 1 } else { max }
+      if copies > (budget - 4) / cost {
+        None
+      } else {
+        Some(4 + cost * copies)
+      }
+    }
+  }
 }
 
 ///|
 /// `[...]` with single characters and `a-b` ranges.
-fn parse_class(src : Array[Char], pos : Int) -> (PatNode, Int)? {
+fn parse_class(src : Array[Char], pos : Int32) -> (PatNode, Int32)? {
   let ranges : Array[(Char, Char)] = []
   let mut p = pos + 1
   if p < src.length() && src[p] == '^' {
@@ -229,9 +344,14 @@ fn parse_class(src : Array[Char], pos : Int) -> (PatNode, Int)? {
 // Thompson NFA
 // ---------------------------------------------------------------------------
 
-let st_char : Int = 0
-let st_split : Int = 1
-let st_match : Int = 2
+///|
+let st_char : Int32 = 0
+
+///|
+let st_split : Int32 = 1
+
+///|
+let st_match : Int32 = 2
 
 ///|
 /// A character predicate: explicit ranges, and whether `\d` is included.
@@ -243,20 +363,26 @@ priv struct PatClassSet {
 ///|
 /// A compiled program: four integers per state (kind, class index, out1, out2).
 priv struct PatProg {
-  code : Array[Int]
+  code : Array[Int32]
   classes : Array[PatClassSet]
 }
 
 ///|
 /// A fragment under construction: an entry state and the edges still dangling.
 priv struct PatFrag {
-  start : Int
-  holes : Array[(Int, Int)] // (state index, 0 = out1, 1 = out2)
+  start : Int32
+  holes : Array[(Int32, Int32)] // (state index, 0 = out1, 1 = out2)
 }
 
 ///|
 /// Append a state and return its index.
-fn pat_emit(prog : PatProg, kind : Int, cls : Int, out1 : Int, out2 : Int) -> Int {
+fn pat_emit(
+  prog : PatProg,
+  kind : Int32,
+  cls : Int32,
+  out1 : Int32,
+  out2 : Int32,
+) -> Int32 {
   let idx = prog.code.length() / 4
   prog.code.push(kind)
   prog.code.push(cls)
@@ -267,7 +393,11 @@ fn pat_emit(prog : PatProg, kind : Int, cls : Int, out1 : Int, out2 : Int) -> In
 
 ///|
 /// Point every dangling edge at `target`.
-fn pat_patch(prog : PatProg, holes : Array[(Int, Int)], target : Int) -> Unit {
+fn pat_patch(
+  prog : PatProg,
+  holes : Array[(Int32, Int32)],
+  target : Int32,
+) -> Unit {
   for h in holes {
     let slot = h.0 * 4 + 2 + h.1
     prog.code[slot] = target
@@ -278,30 +408,31 @@ fn pat_patch(prog : PatProg, holes : Array[(Int, Int)], target : Int) -> Unit {
 /// An empty fragment: a single epsilon edge that is still dangling.
 fn pat_epsilon(prog : PatProg) -> PatFrag {
   let idx = pat_emit(prog, st_split, -1, -1, -1)
-  { start: idx, holes: [(idx, 0)] }
+  { start: idx, holes: [(idx, 0)], }
 }
 
 ///|
 /// Compile a syntax tree into one fragment.
 fn pat_compile(prog : PatProg, node : PatNode) -> PatFrag {
   match node {
+    PatCapture(_, inner) => pat_compile(prog, inner)
     PatLit(c) => {
       let cls = prog.classes.length()
-      prog.classes.push({ ranges: [(c, c)], digits: false })
+      prog.classes.push({ ranges: [(c, c)], digits: false, })
       let idx = pat_emit(prog, st_char, cls, -1, -1)
-      { start: idx, holes: [(idx, 0)] }
+      { start: idx, holes: [(idx, 0)], }
     }
     PatDigit => {
       let cls = prog.classes.length()
-      prog.classes.push({ ranges: [], digits: true })
+      prog.classes.push({ ranges: [], digits: true, })
       let idx = pat_emit(prog, st_char, cls, -1, -1)
-      { start: idx, holes: [(idx, 0)] }
+      { start: idx, holes: [(idx, 0)], }
     }
     PatClass(ranges) => {
       let cls = prog.classes.length()
-      prog.classes.push({ ranges, digits: false })
+      prog.classes.push({ ranges, digits: false, })
       let idx = pat_emit(prog, st_char, cls, -1, -1)
-      { start: idx, holes: [(idx, 0)] }
+      { start: idx, holes: [(idx, 0)], }
     }
     PatSeq(items) => pat_compile_seq(prog, items)
     PatAlt(items) => pat_compile_alt(prog, items)
@@ -320,7 +451,7 @@ fn pat_compile_seq(prog : PatProg, items : Array[PatNode]) -> PatFrag {
   while i < items.length() {
     let next = pat_compile(prog, items[i])
     pat_patch(prog, frag.holes, next.start)
-    frag = { start: frag.start, holes: next.holes }
+    frag = { start: frag.start, holes: next.holes, }
     i = i + 1
   }
   frag
@@ -339,14 +470,14 @@ fn pat_compile_alt(prog : PatProg, items : Array[PatNode]) -> PatFrag {
     i = i - 1
     let left = pat_compile(prog, items[i])
     let split = pat_emit(prog, st_split, -1, left.start, frag.start)
-    let holes : Array[(Int, Int)] = []
+    let holes : Array[(Int32, Int32)] = []
     for h in left.holes {
       holes.push(h)
     }
     for h in frag.holes {
       holes.push(h)
     }
-    frag = { start: split, holes }
+    frag = { start: split, holes, }
   }
   frag
 }
@@ -358,8 +489,8 @@ fn pat_compile_alt(prog : PatProg, items : Array[PatNode]) -> PatFrag {
 fn pat_compile_rep(
   prog : PatProg,
   body : PatNode,
-  min : Int,
-  max : Int,
+  min : Int32,
+  max : Int32,
 ) -> PatFrag {
   if max == 0 {
     return pat_epsilon(prog)
@@ -370,14 +501,14 @@ fn pat_compile_rep(
     let inner = pat_compile(prog, body)
     let split = pat_emit(prog, st_split, -1, inner.start, tail.start)
     pat_patch(prog, inner.holes, split)
-    tail = { start: split, holes: tail.holes }
+    tail = { start: split, holes: tail.holes, }
   } else {
     let mut copies = max - min
     while copies > 0 {
       let inner = pat_compile(prog, body)
       let split = pat_emit(prog, st_split, -1, inner.start, tail.start)
       pat_patch(prog, inner.holes, tail.start)
-      tail = { start: split, holes: tail.holes }
+      tail = { start: split, holes: tail.holes, }
       copies = copies - 1
     }
   }
@@ -387,11 +518,11 @@ fn pat_compile_rep(
   while made < min {
     let copy = pat_compile(prog, body)
     pat_patch(prog, head.holes, copy.start)
-    head = { start: head.start, holes: copy.holes }
+    head = { start: head.start, holes: copy.holes, }
     made = made + 1
   }
   pat_patch(prog, head.holes, tail.start)
-  { start: head.start, holes: tail.holes }
+  { start: head.start, holes: tail.holes, }
 }
 
 ///|
@@ -399,8 +530,8 @@ fn pat_compile_rep(
 /// not always the first emitted one (an alternation is a split emitted after its
 /// branches, a repetition an epsilon emitted before its body), so it is returned
 /// alongside the program.
-fn pat_build(node : PatNode) -> (PatProg, Int) {
-  let prog : PatProg = { code: [], classes: [] }
+fn pat_build(node : PatNode) -> (PatProg, Int32) {
+  let prog : PatProg = { code: [], classes: [], }
   let frag = pat_compile(prog, node)
   let accept = pat_emit(prog, st_match, -1, -1, -1)
   pat_patch(prog, frag.holes, accept)
@@ -430,16 +561,16 @@ fn pat_class_matches(cls : PatClassSet, c : Char) -> Bool {
 /// with the current generation so it is added at most once per step.
 fn pat_closure(
   prog : PatProg,
-  state : Int,
-  mark : Array[Int],
-  gen : Int,
-  out : Array[Int],
+  state : Int32,
+  mark : Array[Int32],
+  gen : Int32,
+  out : Array[Int32],
 ) -> Unit {
   if state < 0 || mark[state] == gen {
     return
   }
   mark[state] = gen
-  let work : Array[Int] = [state]
+  let work : Array[Int32] = [state]
   let mut head = 0
   while head < work.length() {
     let s = work[head]
@@ -468,18 +599,18 @@ fn pat_closure(
 /// plan rule is a large alternation, and after the first digit only a handful of
 /// its branches can still be alive. Walking those instead of the whole program is
 /// what keeps a validation cheap even for the longest published rule.
-fn pat_run(prog : PatProg, start : Int, input : Array[Char]) -> Bool {
+fn pat_run(prog : PatProg, start : Int32, input : Array[Char]) -> Bool {
   let states = prog.code.length() / 4
   let mark = Array::make(states, 0)
   let mut gen = 1
-  let mut cur : Array[Int] = []
+  let mut cur : Array[Int32] = []
   pat_closure(prog, start, mark, gen, cur)
   for ch in input {
     if cur.length() == 0 {
       return false
     }
     gen = gen + 1
-    let nxt : Array[Int] = []
+    let nxt : Array[Int32] = []
     for s in cur {
       if prog.code[s * 4] == st_char {
         let cls = prog.code[s * 4 + 1]
@@ -502,11 +633,11 @@ fn pat_run(prog : PatProg, start : Int, input : Array[Char]) -> Bool {
 /// Run the program and stop as soon as a prefix of the input has been accepted.
 /// This is `lookingAt` semantics: the pattern has to match where the number
 /// starts, not the whole of it.
-fn pat_run_prefix(prog : PatProg, start : Int, input : Array[Char]) -> Bool {
+fn pat_run_prefix(prog : PatProg, start : Int32, input : Array[Char]) -> Bool {
   let states = prog.code.length() / 4
   let mark = Array::make(states, 0)
   let mut gen = 1
-  let mut cur : Array[Int] = []
+  let mut cur : Array[Int32] = []
   pat_closure(prog, start, mark, gen, cur)
   let mut step = 0
   while step <= input.length() {
@@ -523,7 +654,7 @@ fn pat_run_prefix(prog : PatProg, start : Int, input : Array[Char]) -> Bool {
       return false
     }
     gen = gen + 1
-    let nxt : Array[Int] = []
+    let nxt : Array[Int32] = []
     for s in cur {
       if prog.code[s * 4] == st_char {
         let cls = prog.code[s * 4 + 1]
@@ -546,7 +677,7 @@ fn pat_run_prefix(prog : PatProg, start : Int, input : Array[Char]) -> Bool {
 /// A compiled pattern, ready to run: the program and its entry state.
 priv struct CompiledPattern {
   prog : PatProg
-  start : Int
+  start : Int32
 }
 
 ///|
@@ -554,10 +685,10 @@ priv struct CompiledPattern {
 /// that matches nothing, so the caller never has to carry the failure around.
 fn compile_pattern(pattern : String) -> CompiledPattern {
   match parse_pattern(pattern) {
-    None => { prog: { code: [], classes: [] }, start: -1 }
+    None => { prog: { code: [], classes: [], }, start: -1, }
     Some(node) => {
       let (prog, start) = pat_build(node)
-      { prog, start }
+      { prog, start, }
     }
   }
 }

@@ -163,8 +163,7 @@ fn render_partial(
         f.format
       }
     } else if trunk && f.prefix_rule != "" {
-      expand_prefix_rule(f.prefix_rule, r.national_prefix) +
-      format_tail(f.format)
+      national_format_rule(f.format, f.prefix_rule, r.national_prefix)
     } else {
       f.format
     }

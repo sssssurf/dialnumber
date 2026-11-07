@@ -103,9 +103,17 @@ test "plan examples: AG Antigua & Barbuda" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "2684601234"), "AG"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "2684601234")), Some("AG"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "2684601234")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "2684601234"), "AG") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "AG"), Some(@dialnumber.PhoneNumber::new(1, "2684601234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "2684641234"), "AG"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "2684641234")), Some("AG"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "2684641234")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "2684641234"), "AG") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "AG"), Some(@dialnumber.PhoneNumber::new(1, "2684641234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002123456"), "AG"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002123456")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002123456")), Some(TollFree))
@@ -128,9 +136,17 @@ test "plan examples: AI Anguilla" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "2644612345"), "AI"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "2644612345")), Some("AI"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "2644612345")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "2644612345"), "AI") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "AI"), Some(@dialnumber.PhoneNumber::new(1, "2644612345")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "2642351234"), "AI"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "2642351234")), Some("AI"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "2642351234")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "2642351234"), "AI") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "AI"), Some(@dialnumber.PhoneNumber::new(1, "2642351234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002123456"), "AI"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002123456")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002123456")), Some(TollFree))
@@ -228,9 +244,17 @@ test "plan examples: AR Argentina" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(54, "1123456789"), "AR"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(54, "1123456789")), Some("AR"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(54, "1123456789")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(54, "1123456789"), "AR") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "AR"), Some(@dialnumber.PhoneNumber::new(54, "1123456789")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(54, "91123456789"), "AR"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(54, "91123456789")), Some("AR"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(54, "91123456789")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(54, "91123456789"), "AR") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "AR"), Some(@dialnumber.PhoneNumber::new(54, "91123456789")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(54, "8001234567"), "AR"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(54, "8001234567")), Some("AR"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(54, "8001234567")), Some(TollFree))
@@ -247,9 +271,17 @@ test "plan examples: AS American Samoa" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "6846221234"), "AS"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "6846221234")), Some("AS"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "6846221234")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "6846221234"), "AS") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "AS"), Some(@dialnumber.PhoneNumber::new(1, "6846221234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "6847331234"), "AS"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "6847331234")), Some("AS"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "6847331234")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "6847331234"), "AS") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "AS"), Some(@dialnumber.PhoneNumber::new(1, "6847331234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002123456"), "AS"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002123456")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002123456")), Some(TollFree))
@@ -437,9 +469,17 @@ test "plan examples: BB Barbados" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "2464123456"), "BB"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "2464123456")), Some("BB"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "2464123456")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "2464123456"), "BB") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "BB"), Some(@dialnumber.PhoneNumber::new(1, "2464123456")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "2462501234"), "BB"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "2462501234")), Some("BB"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "2462501234")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "2462501234"), "BB") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "BB"), Some(@dialnumber.PhoneNumber::new(1, "2462501234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002123456"), "BB"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002123456")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002123456")), Some(TollFree))
@@ -657,9 +697,17 @@ test "plan examples: BM Bermuda" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "4414123456"), "BM"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "4414123456")), Some("BM"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "4414123456")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "4414123456"), "BM") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "BM"), Some(@dialnumber.PhoneNumber::new(1, "4414123456")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "4413701234"), "BM"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "4413701234")), Some("BM"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "4413701234")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "4413701234"), "BM") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "BM"), Some(@dialnumber.PhoneNumber::new(1, "4413701234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002123456"), "BM"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002123456")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002123456")), Some(TollFree))
@@ -739,9 +787,17 @@ test "plan examples: BR Brazil" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(55, "1123456789"), "BR"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(55, "1123456789")), Some("BR"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(55, "1123456789")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(55, "1123456789"), "BR") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "BR"), Some(@dialnumber.PhoneNumber::new(55, "1123456789")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(55, "11961234567"), "BR"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(55, "11961234567")), Some("BR"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(55, "11961234567")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(55, "11961234567"), "BR") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "BR"), Some(@dialnumber.PhoneNumber::new(55, "11961234567")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(55, "800123456"), "BR"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(55, "800123456")), Some("BR"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(55, "800123456")), Some(TollFree))
@@ -758,9 +814,17 @@ test "plan examples: BS Bahamas" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "2423456789"), "BS"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "2423456789")), Some("BS"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "2423456789")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "2423456789"), "BS") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "BS"), Some(@dialnumber.PhoneNumber::new(1, "2423456789")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "2423591234"), "BS"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "2423591234")), Some("BS"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "2423591234")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "2423591234"), "BS") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "BS"), Some(@dialnumber.PhoneNumber::new(1, "2423591234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002123456"), "BS"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002123456")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002123456")), Some(TollFree))
@@ -906,9 +970,17 @@ test "plan examples: CC Cocos (Keeling) Islands" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(61, "891621234"), "CC"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(61, "891621234")), Some("CC"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(61, "891621234")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(61, "891621234"), "CC") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "CC"), Some(@dialnumber.PhoneNumber::new(61, "891621234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(61, "412345678"), "CC"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(61, "412345678")), Some("AU"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(61, "412345678")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(61, "412345678"), "CC") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "CC"), Some(@dialnumber.PhoneNumber::new(61, "412345678")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(61, "1800123456"), "CC"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(61, "1800123456")), Some("AU"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(61, "1800123456")), Some(TollFree))
@@ -1261,9 +1333,17 @@ test "plan examples: CX Christmas Island" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(61, "891641234"), "CX"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(61, "891641234")), Some("CX"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(61, "891641234")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(61, "891641234"), "CX") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "CX"), Some(@dialnumber.PhoneNumber::new(61, "891641234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(61, "412345678"), "CX"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(61, "412345678")), Some("AU"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(61, "412345678")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(61, "412345678"), "CX") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "CX"), Some(@dialnumber.PhoneNumber::new(61, "412345678")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(61, "1800123456"), "CX"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(61, "1800123456")), Some("AU"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(61, "1800123456")), Some(TollFree))
@@ -1436,9 +1516,17 @@ test "plan examples: DM Dominica" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "7674201234"), "DM"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "7674201234")), Some("DM"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "7674201234")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "7674201234"), "DM") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "DM"), Some(@dialnumber.PhoneNumber::new(1, "7674201234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "7672251234"), "DM"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "7672251234")), Some("DM"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "7672251234")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "7672251234"), "DM") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "DM"), Some(@dialnumber.PhoneNumber::new(1, "7672251234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002123456"), "DM"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002123456")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002123456")), Some(TollFree))
@@ -1827,9 +1915,17 @@ test "plan examples: GA Gabon" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(241, "01441234"), "GA"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(241, "01441234")), Some("GA"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(241, "01441234")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(241, "01441234"), "GA") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "GA"), Some(@dialnumber.PhoneNumber::new(241, "01441234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(241, "06031234"), "GA"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(241, "06031234")), Some("GA"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(241, "06031234")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(241, "06031234"), "GA") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "GA"), Some(@dialnumber.PhoneNumber::new(241, "06031234")))
+    None => assert_true(false)
+  }
 }
 
 ///|
@@ -1873,9 +1969,17 @@ test "plan examples: GD Grenada" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "4732691234"), "GD"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "4732691234")), Some("GD"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "4732691234")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "4732691234"), "GD") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "GD"), Some(@dialnumber.PhoneNumber::new(1, "4732691234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "4734031234"), "GD"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "4734031234")), Some("GD"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "4734031234")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "4734031234"), "GD") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "GD"), Some(@dialnumber.PhoneNumber::new(1, "4734031234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002123456"), "GD"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002123456")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002123456")), Some(TollFree))
@@ -1943,9 +2047,17 @@ test "plan examples: GG Guernsey" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(44, "1481256789"), "GG"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(44, "1481256789")), Some("GG"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(44, "1481256789")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(44, "1481256789"), "GG") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "GG"), Some(@dialnumber.PhoneNumber::new(44, "1481256789")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(44, "7781123456"), "GG"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(44, "7781123456")), Some("GG"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(44, "7781123456")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(44, "7781123456"), "GG") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "GG"), Some(@dialnumber.PhoneNumber::new(44, "7781123456")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(44, "8001234567"), "GG"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(44, "8001234567")), Some("GB"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(44, "8001234567")), Some(TollFree))
@@ -2181,9 +2293,17 @@ test "plan examples: GU Guam" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "6713001234"), "GU"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "6713001234")), Some("GU"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "6713001234")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "6713001234"), "GU") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "GU"), Some(@dialnumber.PhoneNumber::new(1, "6713001234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "6713001234"), "GU"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "6713001234")), Some("GU"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "6713001234")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "6713001234"), "GU") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "GU"), Some(@dialnumber.PhoneNumber::new(1, "6713001234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002123456"), "GU"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002123456")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002123456")), Some(TollFree))
@@ -2491,9 +2611,17 @@ test "plan examples: IM Isle of Man" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(44, "1624756789"), "IM"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(44, "1624756789")), Some("IM"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(44, "1624756789")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(44, "1624756789"), "IM") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "IM"), Some(@dialnumber.PhoneNumber::new(44, "1624756789")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(44, "7924123456"), "IM"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(44, "7924123456")), Some("GB"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(44, "7924123456")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(44, "7924123456"), "IM") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "IM"), Some(@dialnumber.PhoneNumber::new(44, "7924123456")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(44, "8081624567"), "IM"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(44, "8081624567")), Some("GB"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(44, "8081624567")), Some(TollFree))
@@ -2672,9 +2800,17 @@ test "plan examples: JE Jersey" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(44, "1534456789"), "JE"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(44, "1534456789")), Some("JE"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(44, "1534456789")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(44, "1534456789"), "JE") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "JE"), Some(@dialnumber.PhoneNumber::new(44, "1534456789")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(44, "7797712345"), "JE"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(44, "7797712345")), Some("JE"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(44, "7797712345")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(44, "7797712345"), "JE") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "JE"), Some(@dialnumber.PhoneNumber::new(44, "7797712345")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(44, "8007354567"), "JE"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(44, "8007354567")), Some("GB"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(44, "8007354567")), Some(TollFree))
@@ -2763,9 +2899,17 @@ test "plan examples: JP Japan" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(81, "312345678"), "JP"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(81, "312345678")), Some("JP"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(81, "312345678")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(81, "312345678"), "JP") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "JP"), Some(@dialnumber.PhoneNumber::new(81, "312345678")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(81, "9012345678"), "JP"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(81, "9012345678")), Some("JP"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(81, "9012345678")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(81, "9012345678"), "JP") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "JP"), Some(@dialnumber.PhoneNumber::new(81, "9012345678")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(81, "120123456"), "JP"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(81, "120123456")), Some("JP"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(81, "120123456")), Some(TollFree))
@@ -2902,9 +3046,17 @@ test "plan examples: KN St. Kitts & Nevis" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8692361234"), "KN"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8692361234")), Some("KN"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8692361234")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "8692361234"), "KN") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "KN"), Some(@dialnumber.PhoneNumber::new(1, "8692361234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8697652917"), "KN"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8697652917")), Some("KN"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8697652917")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "8697652917"), "KN") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "KN"), Some(@dialnumber.PhoneNumber::new(1, "8697652917")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002123456"), "KN"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002123456")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002123456")), Some(TollFree))
@@ -2996,9 +3148,17 @@ test "plan examples: KY Cayman Islands" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "3452221234"), "KY"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "3452221234")), Some("KY"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "3452221234")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "3452221234"), "KY") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "KY"), Some(@dialnumber.PhoneNumber::new(1, "3452221234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "3453231234"), "KY"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "3453231234")), Some("KY"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "3453231234")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "3453231234"), "KY") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "KY"), Some(@dialnumber.PhoneNumber::new(1, "3453231234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002345678"), "KY"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002345678")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002345678")), Some(TollFree))
@@ -3087,9 +3247,17 @@ test "plan examples: LC St. Lucia" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "7584305678"), "LC"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "7584305678")), Some("LC"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "7584305678")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "7584305678"), "LC") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "LC"), Some(@dialnumber.PhoneNumber::new(1, "7584305678")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "7582845678"), "LC"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "7582845678")), Some("LC"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "7582845678")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "7582845678"), "LC") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "LC"), Some(@dialnumber.PhoneNumber::new(1, "7582845678")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002123456"), "LC"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002123456")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002123456")), Some(TollFree))
@@ -3448,9 +3616,17 @@ test "plan examples: MG Madagascar" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(261, "202123456"), "MG"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(261, "202123456")), Some("MG"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(261, "202123456")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(261, "202123456"), "MG") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "MG"), Some(@dialnumber.PhoneNumber::new(261, "202123456")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(261, "321234567"), "MG"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(261, "321234567")), Some("MG"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(261, "321234567")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(261, "321234567"), "MG") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "MG"), Some(@dialnumber.PhoneNumber::new(261, "321234567")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(261, "221234567"), "MG"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(261, "221234567")), Some("MG"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(261, "221234567")), Some(Voip))
@@ -3596,9 +3772,17 @@ test "plan examples: MP Northern Mariana Islands" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "6702345678"), "MP"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "6702345678")), Some("MP"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "6702345678")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "6702345678"), "MP") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "MP"), Some(@dialnumber.PhoneNumber::new(1, "6702345678")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "6702345678"), "MP"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "6702345678")), Some("MP"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "6702345678")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "6702345678"), "MP") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "MP"), Some(@dialnumber.PhoneNumber::new(1, "6702345678")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002123456"), "MP"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002123456")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002123456")), Some(TollFree))
@@ -3663,9 +3847,17 @@ test "plan examples: MS Montserrat" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "6644912345"), "MS"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "6644912345")), Some("MS"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "6644912345")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "6644912345"), "MS") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "MS"), Some(@dialnumber.PhoneNumber::new(1, "6644912345")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "6644923456"), "MS"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "6644923456")), Some("MS"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "6644923456")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "6644923456"), "MS") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "MS"), Some(@dialnumber.PhoneNumber::new(1, "6644923456")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002123456"), "MS"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002123456")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002123456")), Some(TollFree))
@@ -3943,9 +4135,17 @@ test "plan examples: NF Norfolk Island" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(672, "106609"), "NF"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(672, "106609")), Some("NF"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(672, "106609")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(672, "106609"), "NF") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "NF"), Some(@dialnumber.PhoneNumber::new(672, "106609")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(672, "381234"), "NF"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(672, "381234")), Some("NF"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(672, "381234")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(672, "381234"), "NF") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "NF"), Some(@dialnumber.PhoneNumber::new(672, "381234")))
+    None => assert_true(false)
+  }
 }
 
 ///|
@@ -5006,9 +5206,17 @@ test "plan examples: SM San Marino" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(378, "0549886377"), "SM"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(378, "0549886377")), Some("SM"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(378, "0549886377")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(378, "0549886377"), "SM") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "SM"), Some(@dialnumber.PhoneNumber::new(378, "0549886377")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(378, "66661212"), "SM"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(378, "66661212")), Some("SM"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(378, "66661212")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(378, "66661212"), "SM") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "SM"), Some(@dialnumber.PhoneNumber::new(378, "66661212")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(378, "71123456"), "SM"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(378, "71123456")), Some("SM"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(378, "71123456")), Some(PremiumRate))
@@ -5157,9 +5365,17 @@ test "plan examples: SX Sint Maarten" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "7215425678"), "SX"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "7215425678")), Some("SX"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "7215425678")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "7215425678"), "SX") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "SX"), Some(@dialnumber.PhoneNumber::new(1, "7215425678")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "7215205678"), "SX"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "7215205678")), Some("SX"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "7215205678")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "7215205678"), "SX") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "SX"), Some(@dialnumber.PhoneNumber::new(1, "7215205678")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002123456"), "SX"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002123456")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002123456")), Some(TollFree))
@@ -5232,9 +5448,17 @@ test "plan examples: TC Turks & Caicos Islands" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "6497121234"), "TC"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "6497121234")), Some("TC"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "6497121234")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "6497121234"), "TC") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "TC"), Some(@dialnumber.PhoneNumber::new(1, "6497121234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "6492311234"), "TC"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "6492311234")), Some("TC"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "6492311234")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "6492311234"), "TC") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "TC"), Some(@dialnumber.PhoneNumber::new(1, "6492311234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002345678"), "TC"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002345678")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002345678")), Some(TollFree))
@@ -5485,9 +5709,17 @@ test "plan examples: TT Trinidad & Tobago" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8682211234"), "TT"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8682211234")), Some("TT"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8682211234")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "8682211234"), "TT") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "TT"), Some(@dialnumber.PhoneNumber::new(1, "8682211234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8682911234"), "TT"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8682911234")), Some("TT"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8682911234")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "8682911234"), "TT") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "TT"), Some(@dialnumber.PhoneNumber::new(1, "8682911234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002345678"), "TT"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002345678")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002345678")), Some(TollFree))
@@ -5747,9 +5979,17 @@ test "plan examples: VC St. Vincent & Grenadines" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "7842661234"), "VC"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "7842661234")), Some("VC"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "7842661234")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "7842661234"), "VC") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "VC"), Some(@dialnumber.PhoneNumber::new(1, "7842661234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "7844301234"), "VC"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "7844301234")), Some("VC"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "7844301234")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "7844301234"), "VC") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "VC"), Some(@dialnumber.PhoneNumber::new(1, "7844301234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002345678"), "VC"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002345678")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002345678")), Some(TollFree))
@@ -5796,9 +6036,17 @@ test "plan examples: VG British Virgin Islands" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "2842291234"), "VG"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "2842291234")), Some("VG"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "2842291234")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "2842291234"), "VG") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "VG"), Some(@dialnumber.PhoneNumber::new(1, "2842291234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "2843001234"), "VG"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "2843001234")), Some("VG"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "2843001234")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "2843001234"), "VG") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "VG"), Some(@dialnumber.PhoneNumber::new(1, "2843001234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002345678"), "VG"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002345678")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002345678")), Some(TollFree))
@@ -5815,9 +6063,17 @@ test "plan examples: VI U.S. Virgin Islands" {
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "3406421234"), "VI"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "3406421234")), Some("VI"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "3406421234")), FixedLine))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "3406421234"), "VI") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "VI"), Some(@dialnumber.PhoneNumber::new(1, "3406421234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "3406421234"), "VI"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "3406421234")), Some("VI"))
   assert_true(matches_kind(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "3406421234")), Mobile))
+  match @dialnumber.format_national(@dialnumber.PhoneNumber::new(1, "3406421234"), "VI") {
+    Some(written) => assert_eq(@dialnumber.parse(written, "VI"), Some(@dialnumber.PhoneNumber::new(1, "3406421234")))
+    None => assert_true(false)
+  }
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "8002345678"), "VI"))
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "8002345678")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "8002345678")), Some(TollFree))

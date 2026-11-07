@@ -233,12 +233,8 @@ async function main() {
       // calling code tell each other apart, and much cheaper to test than the
       // full type rules.
       leading_digits: strip(attrs.leadingDigits ?? ""),
-      // Some plans rewrite the national number while parsing (Argentina turns
-      // "011 15-…" into "9 11 …", Belarus drops an extra trunk digit). That
-      // machinery is `nationalPrefixForParsing` plus a transform rule; this
-      // library does not implement it, and records the fact so the generated
-      // round-trip tests do not claim otherwise.
-      dial_transform: Boolean(attrs.nationalPrefixTransformRule),
+      // Preserve the actual capture replacement, not merely its presence.
+      prefix_transform: attrs.nationalPrefixTransformRule ?? "",
       primary: attrs.mainCountryForCode === "true",
       general,
       types,

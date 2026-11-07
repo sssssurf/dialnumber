@@ -6,7 +6,15 @@
 
 ///|
 fn main {
-  let args = @env.args()
+  let raw_args = @env.args()
+  let mut start = 1
+  while start < raw_args.length() && !is_command(raw_args[start]) {
+    start = start + 1
+  }
+  let args : Array[String] = [""]
+  for i = start; i < raw_args.length(); i = i + 1 {
+    args.push(raw_args[i])
+  }
   if args.length() < 2 {
     print_usage()
     return
@@ -278,4 +286,24 @@ fn join(items : Array[String], sep : String) -> String {
     buf.write_string(items[i])
   }
   buf.to_string()
+}
+
+///|
+fn is_command(text : String) -> Bool {
+  match text {
+    "parse"
+    | "info"
+    | "possible"
+    | "valid"
+    | "format"
+    | "types"
+    | "region"
+    | "cc"
+    | "tel"
+    | "match"
+    | "compare"
+    | "as-you-type"
+    | "list" => true
+    _ => false
+  }
 }

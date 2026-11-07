@@ -59,10 +59,29 @@ const installed = tree.modules?.find(m=>m.name==='sssssurf/dialnumber');
 if (tree.status !== 'success' || installed?.version !== version || installed?.source?.kind !== 'registry') {
   throw new Error('Expected the exact registry version with no local path override');
 }
+// The formal-review regressions must also run through the registry package,
+// not merely through the source checkout or the old generic example.
+fs.copyFileSync(path.join(root,'examples/review/main.mbt'),path.join(directory,'main/main.mbt'));
+const reviewLog = path.join(directory,'review-output.log');
+const reviewFd = fs.openSync(reviewLog,'w');
+let reviewResult;
+try {
+  reviewResult = spawnSync('moon',['run','--target','js','main'],{
+    cwd:directory,stdio:['ignore',reviewFd,reviewFd],
+  });
+} finally { fs.closeSync(reviewFd); }
+const reviewOutput = fs.readFileSync(reviewLog,'utf8').replace(/\r\n/g,'\n');
+const reviewStart = reviewOutput.indexOf('argentina_e164: ');
+const reviewExpected = fs.readFileSync(path.join(root,'examples/review/expected.txt'),'utf8').trim();
+if (reviewResult.error || reviewResult.status !== 0 || reviewStart < 0 || reviewOutput.slice(reviewStart).trim() !== reviewExpected) {
+  throw new Error('Published formal-review regressions failed: '+(reviewResult.error?.message ?? reviewOutput));
+}
 const report = { date:new Date().toISOString(),module:'sssssurf/dialnumber',version,
   source:'Mooncakes registry dependency in a separate module; no local path override',
   status:'passed', resolvedVersion:installed.version,
-  output:output.slice(start).trim().split('\n') };
+  output:output.slice(start).trim().split('\n'),
+  reviewOutput:reviewOutput.slice(reviewStart).trim().split('\n') };
 fs.writeFileSync(path.join(directory,'report.json'),JSON.stringify(report,null,2)+'\n');
 console.log(`Published consumer passed: sssssurf/dialnumber@${version}`);
 console.log(report.output.join('\n'));
+console.log(report.reviewOutput.join('\n'));

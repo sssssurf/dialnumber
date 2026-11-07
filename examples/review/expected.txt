@@ -1,0 +1,8 @@
+argentina_e164: +5491123456789
+argentina_valid: true
+argentina_national: 011 15-2345-6789
+national_roundtrip: true
+overflow_well_formed: false
+overflow_matches_empty: false
+uppercase_mandatory_rejected: true
+duplicate_parameter_rejected: true

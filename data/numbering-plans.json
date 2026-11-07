@@ -8,7 +8,14 @@
   "regions": 245,
   "patterns": 1377,
   "formats": 740,
-  "generator": "scripts/update-metadata.mjs"
+  "generator": "scripts/update-metadata.mjs",
+  "prefixTransformSource": {
+   "url": "https://raw.githubusercontent.com/google/libphonenumber/v9.0.17/resources/PhoneNumberMetadata.xml",
+   "license": "Apache-2.0",
+   "sha256": "71ccaff82d09321450143f55cceb6ea2a7965339e7a6a82e86263038bacc8ca7",
+   "regions": 32,
+   "note": "Only previously omitted transform attributes; all prefix patterns verified identical. Original plan metadata provenance is unchanged."
+  }
  },
  "regions": [
   {
@@ -19,7 +26,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[01589]\\d|[2-467])\\d{4}",
    "types": [
@@ -48,7 +54,8 @@
      "example": "542011"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "AD",
@@ -58,7 +65,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:1|6\\d)\\d{7}|[135-9]\\d{5}",
    "types": [
@@ -118,7 +124,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "AE",
@@ -128,7 +135,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[4-7]\\d|9[0-689])\\d{7}|800\\d{2,9}|[2-4679]\\d{7}",
    "types": [
@@ -222,7 +228,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "AF",
@@ -232,7 +239,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[2-7]\\d{8}",
    "types": [
@@ -276,7 +282,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "AG",
@@ -286,7 +293,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([457]\\d{6})$|1",
    "leading_digits": "268",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:268|[58]\\d\\d|900)\\d{7}",
    "types": [
@@ -359,7 +365,8 @@
      "example": "2684061234"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "268$1"
   },
   {
    "code": "AI",
@@ -369,7 +376,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([2457]\\d{6})$|1",
    "leading_digits": "264",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:264|[58]\\d\\d|900)\\d{7}",
    "types": [
@@ -431,7 +437,8 @@
      "example": "2647241234"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "264$1"
   },
   {
    "code": "AL",
@@ -441,7 +448,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:700\\d\\d|900)\\d{3}|8\\d{5,7}|(?:[2-5]|6\\d)\\d{7}",
    "types": [
@@ -540,7 +546,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "AM",
@@ -550,7 +557,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[1-489]\\d|55|60|77)\\d{6}",
    "types": [
@@ -640,7 +646,8 @@
      "format": "$1 $2",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "AO",
@@ -650,7 +657,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[29]\\d{8}",
    "types": [
@@ -679,7 +685,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "AR",
@@ -689,7 +696,6 @@
    "national_prefix": "0",
    "prefix_parsing": "0?(?:(11|2(?:2(?:02?|[13]|2[13-79]|4[1-6]|5[2457]|6[124-8]|7[1-4]|8[13-6]|9[1267])|3(?:02?|1[467]|2[03-6]|3[13-8]|[49][2-6]|5[2-8]|[67])|4(?:7[3-578]|9)|6(?:[0136]|2[24-6]|4[6-8]?|5[15-8])|80|9(?:0[1-3]|[19]|2\\d|3[1-6]|4[02568]?|5[2-4]|6[2-46]|72?|8[23]?))|3(?:3(?:2[79]|6|8[2578])|4(?:0[0-24-9]|[12]|3[5-8]?|4[24-7]|5[4-68]?|6[02-9]|7[126]|8[2379]?|9[1-36-8])|5(?:1|2[1245]|3[237]?|4[1-46-9]|6[2-4]|7[1-6]|8[2-5]?)|6[24]|7(?:[069]|1[1568]|2[15]|3[145]|4[13]|5[14-8]|7[2-57]|8[126])|8(?:[01]|2[15-7]|3[2578]?|4[13-6]|5[4-8]?|6[1-357-9]|7[36-8]?|8[5-8]?|9[124])))15)?",
    "leading_digits": "",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:11|[89]\\d\\d)\\d{8}|[2368]\\d{9}",
    "types": [
@@ -856,7 +862,8 @@
      "intl": "$1 $2 $3-$4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": "9$1"
   },
   {
    "code": "AS",
@@ -866,7 +873,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([267]\\d{6})$|1",
    "leading_digits": "684",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:[58]\\d\\d|684|900)\\d{7}",
    "types": [
@@ -917,7 +923,8 @@
      "example": "5002345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "684$1"
   },
   {
    "code": "AT",
@@ -927,7 +934,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "1\\d{3,12}|2\\d{6,12}|43(?:(?:0\\d|5[02-9])\\d{3,9}|2\\d{4,5}|[3467]\\d{4}|8\\d{4,6}|9\\d{4,7})|5\\d{4,12}|8\\d{7,12}|9\\d{8,12}|(?:[367]\\d|4[0-24-9])\\d{4,11}",
    "types": [
@@ -1093,7 +1099,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "AU",
@@ -1103,7 +1110,6 @@
    "national_prefix": "0",
    "prefix_parsing": "(183[12])|0",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": true,
    "general": "1(?:[0-79]\\d{7}(?:\\d(?:\\d{2})?)?|8[0-24-9]\\d{7})|[2-478]\\d{8}|1\\d{4,7}",
    "types": [
@@ -1256,7 +1262,8 @@
      "format": "$1 $2 $3",
      "intl": "NA"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "AW",
@@ -1266,7 +1273,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[25-79]\\d\\d|800)\\d{4}",
    "types": [
@@ -1319,7 +1325,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "AX",
@@ -1329,7 +1336,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "18",
-   "dial_transform": false,
    "primary": false,
    "general": "2\\d{4,9}|35\\d{4,5}|(?:60\\d\\d|800)\\d{4,6}|7\\d{5,11}|(?:[14]\\d|3[0-46-9]|50)\\d{4,8}",
    "types": [
@@ -1391,7 +1397,8 @@
      "example": "10112345"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "AZ",
@@ -1401,7 +1408,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "365\\d{6}|(?:[124579]\\d|60|88)\\d{7}",
    "types": [
@@ -1476,7 +1482,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "BA",
@@ -1486,7 +1493,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "6\\d{8}|(?:[35689]\\d|49|70)\\d{6}",
    "types": [
@@ -1576,7 +1582,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "BB",
@@ -1586,7 +1593,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([2-9]\\d{6})$|1",
    "leading_digits": "246",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:246|[58]\\d\\d|900)\\d{7}",
    "types": [
@@ -1662,7 +1668,8 @@
      "example": "2464301234"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "246$1"
   },
   {
    "code": "BD",
@@ -1672,7 +1679,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[1-469]\\d{9}|8[0-79]\\d{7,8}|[2-79]\\d{8}|[2-9]\\d{7}|[3-9]\\d{6}|[57-9]\\d{5}",
    "types": [
@@ -1746,7 +1752,8 @@
      "format": "$1-$2",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "BE",
@@ -1756,7 +1763,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "4\\d{8}|[1-9]\\d{7}",
    "types": [
@@ -1842,7 +1848,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "BF",
@@ -1852,7 +1859,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[024-7]\\d{7}",
    "types": [
@@ -1881,7 +1887,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "BG",
@@ -1891,7 +1898,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "00800\\d{7}|[2-7]\\d{6,7}|[89]\\d{6,8}|2\\d{5}",
    "types": [
@@ -2017,7 +2023,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "BH",
@@ -2027,7 +2034,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[136-9]\\d{7}",
    "types": [
@@ -2080,7 +2086,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "BI",
@@ -2090,7 +2097,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[267]\\d|31)\\d{6}",
    "types": [
@@ -2119,7 +2125,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "BJ",
@@ -2129,7 +2136,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:01\\d|8)\\d{7}",
    "types": [
@@ -2181,7 +2187,8 @@
      ],
      "format": "$1 $2 $3 $4 $5"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "BL",
@@ -2191,7 +2198,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "7090\\d{5}|(?:[56]9|[89]\\d)\\d{7}",
    "types": [
@@ -2236,7 +2242,8 @@
      "example": "976012345"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "BM",
@@ -2246,7 +2253,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([2-9]\\d{6})$|1",
    "leading_digits": "441",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:441|[58]\\d\\d|900)\\d{7}",
    "types": [
@@ -2297,7 +2303,8 @@
      "example": "5002345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "441$1"
   },
   {
    "code": "BN",
@@ -2307,7 +2314,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[2-578]\\d{6}",
    "types": [
@@ -2344,7 +2350,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "BO",
@@ -2354,7 +2361,6 @@
    "national_prefix": "0",
    "prefix_parsing": "0(1\\d)?",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[2-7]\\d\\d|8001)\\d{5}",
    "types": [
@@ -2419,7 +2425,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "BQ",
@@ -2429,7 +2436,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "[347]",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[34]1|7\\d)\\d{5}",
    "types": [
@@ -2450,7 +2456,8 @@
      "example": "3181234"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "BR",
@@ -2460,7 +2467,6 @@
    "national_prefix": "0",
    "prefix_parsing": "(?:0|90)(?:(1[245]|2[1-35]|31|4[13]|[56]5|99)(\\d{10,11}))?",
    "leading_digits": "",
-   "dial_transform": true,
    "primary": false,
    "general": "[1-467]\\d{9,10}|55[0-46-9]\\d{8}|[34]\\d{7}|55\\d{7,8}|(?:5[0-46-9]|[89]\\d)\\d{7,9}",
    "types": [
@@ -2574,7 +2580,8 @@
      "format": "$1 $2-$3",
      "prefix_rule": "($FG)"
     }
-   ]
+   ],
+   "prefix_transform": "$2"
   },
   {
    "code": "BS",
@@ -2584,7 +2591,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([3-8]\\d{6})$|1",
    "leading_digits": "242",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:242|[58]\\d\\d|900)\\d{7}",
    "types": [
@@ -2646,7 +2652,8 @@
      "example": "2422250123"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "242$1"
   },
   {
    "code": "BT",
@@ -2656,7 +2663,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[178]\\d{7}|[2-8]\\d{6}",
    "types": [
@@ -2703,7 +2709,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "BW",
@@ -2713,7 +2720,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:0800|(?:[37]|800)\\d)\\d{6}|(?:[2-6]\\d|90)\\d{5}",
    "types": [
@@ -2794,7 +2800,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "BY",
@@ -2804,7 +2811,6 @@
    "national_prefix": "8",
    "prefix_parsing": "0|80?",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[12]\\d|33|44|902)\\d{7}|8(?:0[0-79]\\d{5,7}|[1-7]\\d{9})|8(?:1[0-489]|[5-79]\\d)\\d{7}|8[1-79]\\d{6,7}|8[0-79]\\d{5}|8\\d{5}",
    "types": [
@@ -2909,7 +2915,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP $FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "BZ",
@@ -2919,7 +2926,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:0800\\d|[2-8])\\d{6}",
    "types": [
@@ -2963,7 +2969,8 @@
      ],
      "format": "$1-$2-$3-$4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "CA",
@@ -2973,7 +2980,6 @@
    "national_prefix": "1",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[2-9]\\d{9}|3\\d{6}",
    "types": [
@@ -3040,7 +3046,8 @@
      "example": "3101234"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "CC",
@@ -3050,7 +3057,6 @@
    "national_prefix": "0",
    "prefix_parsing": "([59]\\d{7})$|0",
    "leading_digits": "",
-   "dial_transform": true,
    "primary": false,
    "general": "1(?:[0-79]\\d{8}(?:\\d{2})?|8[0-24-9]\\d{7})|[148]\\d{8}|1\\d{5,7}",
    "types": [
@@ -3110,7 +3116,8 @@
      "example": "147101234"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "8$1"
   },
   {
    "code": "CD",
@@ -3120,7 +3127,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:(?:[189]|5\\d)\\d|2)\\d{7}|[1-68]\\d{6}",
    "types": [
@@ -3194,7 +3200,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "CF",
@@ -3204,7 +3211,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "8776\\d{4}|(?:[27]\\d|61)\\d{6}",
    "types": [
@@ -3241,7 +3247,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "CG",
@@ -3251,7 +3258,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "222\\d{6}|(?:0\\d|80)\\d{7}",
    "types": [
@@ -3295,7 +3301,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "CH",
@@ -3305,7 +3312,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "8\\d{11}|[2-9]\\d{8}",
    "types": [
@@ -3407,7 +3413,8 @@
      "format": "$1 $2 $3 $4 $5",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "CI",
@@ -3417,7 +3424,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[02]\\d{9}",
    "types": [
@@ -3453,7 +3459,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "CK",
@@ -3463,7 +3470,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[2-578]\\d{4}",
    "types": [
@@ -3492,7 +3498,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "CL",
@@ -3502,7 +3509,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "12300\\d{6}|6\\d{9,10}|[2-9]\\d{8}",
    "types": [
@@ -3625,7 +3631,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "CM",
@@ -3635,7 +3642,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[26]\\d{8}|88\\d{6,7}",
    "types": [
@@ -3680,7 +3686,8 @@
      ],
      "format": "$1 $2 $3 $4 $5"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "CN",
@@ -3690,7 +3697,6 @@
    "national_prefix": "0",
    "prefix_parsing": "(1(?:[12]\\d|79)\\d\\d)|0",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:(?:1[03-689]|2\\d)\\d\\d|6)\\d{8}|1\\d{10}|[126]\\d{6}(?:\\d(?:\\d{2})?)?|86\\d{5,6}|(?:[3-579]\\d|8[0-57-9])\\d{5,9}",
    "types": [
@@ -3913,7 +3919,8 @@
      "prefix_rule": "$NP$FG",
      "optional": true
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "CO",
@@ -3923,7 +3930,6 @@
    "national_prefix": "0",
    "prefix_parsing": "0([3579]|4(?:[14]4|56))?",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:46|60\\d\\d)\\d{6}|(?:1\\d|[39])\\d{9}",
    "types": [
@@ -3998,7 +4004,8 @@
      "intl": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "CR",
@@ -4008,7 +4015,6 @@
    "national_prefix": "",
    "prefix_parsing": "(19(?:0[0-2468]|1[09]|20|66|77|99))",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:8\\d|90)\\d{8}|(?:[24-8]\\d{3}|3005)\\d{4}",
    "types": [
@@ -4068,7 +4074,8 @@
      ],
      "format": "$1-$2-$3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "CU",
@@ -4078,7 +4085,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[2-7]|8\\d\\d)\\d{7}|[2-47]\\d{6}|[34]\\d{5}",
    "types": [
@@ -4155,7 +4161,8 @@
      "format": "$1 $2",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "CV",
@@ -4165,7 +4172,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[2-59]\\d\\d|800)\\d{4}",
    "types": [
@@ -4210,7 +4216,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "CW",
@@ -4220,7 +4227,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "[69]",
-   "dial_transform": false,
    "primary": true,
    "general": "(?:[34]1|60|(?:7|9\\d)\\d)\\d{5}",
    "types": [
@@ -4274,7 +4280,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "CX",
@@ -4284,7 +4291,6 @@
    "national_prefix": "0",
    "prefix_parsing": "([59]\\d{7})$|0",
    "leading_digits": "",
-   "dial_transform": true,
    "primary": false,
    "general": "1(?:[0-79]\\d{8}(?:\\d{2})?|8[0-24-9]\\d{7})|[148]\\d{8}|1\\d{5,7}",
    "types": [
@@ -4344,7 +4350,8 @@
      "example": "147101234"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "8$1"
   },
   {
    "code": "CY",
@@ -4354,7 +4361,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[279]\\d|[58]0)\\d{6}",
    "types": [
@@ -4423,7 +4429,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "CZ",
@@ -4433,7 +4440,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[2-578]\\d|60)\\d{7}|9\\d{8,11}",
    "types": [
@@ -4542,7 +4548,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "DE",
@@ -4552,7 +4559,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[2579]\\d{5,14}|49(?:[34]0|69|8\\d)\\d\\d?|49(?:37|49|60|7[089]|9\\d)\\d{1,3}|49(?:2[024-9]|3[2-689]|7[1-7])\\d{1,8}|(?:1|[368]\\d|4[0-8])\\d{3,13}|49(?:[015]\\d|2[13]|31|[46][1-8])\\d{1,9}",
    "types": [
@@ -4834,7 +4840,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "DJ",
@@ -4844,7 +4851,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:2\\d|77)\\d{6}",
    "types": [
@@ -4873,7 +4879,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "DK",
@@ -4883,7 +4890,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[2-9]\\d{7}",
    "types": [
@@ -4928,7 +4934,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "DM",
@@ -4938,7 +4945,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([2-7]\\d{6})$|1",
    "leading_digits": "767",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:[58]\\d\\d|767|900)\\d{7}",
    "types": [
@@ -4989,7 +4995,8 @@
      "example": "5002345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "767$1"
   },
   {
    "code": "DO",
@@ -4999,7 +5006,6 @@
    "national_prefix": "1",
    "prefix_parsing": "",
    "leading_digits": "8001|8[024]9",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[58]\\d\\d|900)\\d{7}",
    "types": [
@@ -5050,7 +5056,8 @@
      "example": "5002345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "DZ",
@@ -5060,7 +5067,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[1-4]|[5-79]\\d|80)\\d{7}",
    "types": [
@@ -5139,7 +5145,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "EC",
@@ -5149,7 +5156,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "1\\d{9,10}|(?:[2-7]|9\\d)\\d{7}",
    "types": [
@@ -5223,7 +5229,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "EE",
@@ -5233,7 +5240,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "8\\d{9}|[4578]\\d{7}|(?:[3-8]\\d|90)\\d{5}",
    "types": [
@@ -5313,7 +5319,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "EG",
@@ -5323,7 +5330,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[189]\\d{8,9}|[24-6]\\d{8}|[135]\\d{7}",
    "types": [
@@ -5398,7 +5404,8 @@
      "format": "$1 $2",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "EH",
@@ -5408,7 +5415,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[5-8]\\d{8}",
    "types": [
@@ -5453,7 +5459,8 @@
      "example": "592401234"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "ER",
@@ -5463,7 +5470,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[178]\\d{6}",
    "types": [
@@ -5496,7 +5502,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "ES",
@@ -5506,7 +5513,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:400|[5-9]\\d\\d)\\d{6}",
    "types": [
@@ -5599,7 +5605,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "ET",
@@ -5609,7 +5616,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:11|[2-57-9]\\d)\\d{7}",
    "types": [
@@ -5642,7 +5648,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "FI",
@@ -5652,7 +5659,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "1[03-79]|[2-9]",
-   "dial_transform": false,
    "primary": true,
    "general": "[1-35689]\\d{4}|7\\d{10,11}|(?:[124-7]\\d|3[0-46-9])\\d{8}|[1-9]\\d{5,8}",
    "types": [
@@ -5773,7 +5779,8 @@
      "format": "$1 $2",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "FJ",
@@ -5783,7 +5790,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "45\\d{5}|(?:0800\\d|[235-9])\\d{6}",
    "types": [
@@ -5827,7 +5833,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "FK",
@@ -5837,7 +5844,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[2-7]\\d{4}",
    "types": [
@@ -5858,7 +5864,8 @@
      "example": "51234"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "FM",
@@ -5868,7 +5875,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[39]\\d\\d|820)\\d{4}",
    "types": [
@@ -5897,7 +5903,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "FO",
@@ -5907,7 +5914,6 @@
    "national_prefix": "",
    "prefix_parsing": "(10(?:01|[12]0|88))",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[2-9]\\d{5}",
    "types": [
@@ -5960,7 +5966,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "FR",
@@ -5970,7 +5977,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[1-9]\\d{8}",
    "types": [
@@ -6064,7 +6070,8 @@
      "format": "$1 $2 $3 $4 $5",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "GA",
@@ -6074,7 +6081,6 @@
    "national_prefix": "",
    "prefix_parsing": "0(11\\d{6}|60\\d{6}|61\\d{6}|6[256]\\d{6}|7[467]\\d{6})",
    "leading_digits": "",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:[067]\\d|11)\\d{6}|[2-7]\\d{6}",
    "types": [
@@ -6120,7 +6126,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "0$FG"
     }
-   ]
+   ],
+   "prefix_transform": "$1"
   },
   {
    "code": "GB",
@@ -6130,7 +6137,6 @@
    "national_prefix": "0",
    "prefix_parsing": "0|180020",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": true,
    "general": "[1-357-9]\\d{9}|[18]\\d{8}|8\\d{6}",
    "types": [
@@ -6285,7 +6291,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "GD",
@@ -6295,7 +6302,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([2-9]\\d{6})$|1",
    "leading_digits": "473",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:473|[58]\\d\\d|900)\\d{7}",
    "types": [
@@ -6346,7 +6352,8 @@
      "example": "5002345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "473$1"
   },
   {
    "code": "GE",
@@ -6356,7 +6363,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[3-57]\\d\\d|800)\\d{6}",
    "types": [
@@ -6429,7 +6435,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "GF",
@@ -6439,7 +6446,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:694\\d|7093)\\d{5}|(?:59|[89]\\d)\\d{7}",
    "types": [
@@ -6501,7 +6507,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "GG",
@@ -6511,7 +6518,6 @@
    "national_prefix": "0",
    "prefix_parsing": "([25-9]\\d{5})$|0|180020",
    "leading_digits": "",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:1481|[357-9]\\d{3})\\d{6}|8\\d{6}(?:\\d{2})?",
    "types": [
@@ -6586,7 +6592,8 @@
      "example": "7640123456"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "1481$1"
   },
   {
    "code": "GH",
@@ -6596,7 +6603,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[235]\\d{8}|800\\d{5,6}",
    "types": [
@@ -6654,7 +6660,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "GI",
@@ -6664,7 +6671,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[25]\\d|60)\\d{6}",
    "types": [
@@ -6693,7 +6699,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "GL",
@@ -6703,7 +6710,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:19|[2-689]\\d|70)\\d{4}",
    "types": [
@@ -6748,7 +6754,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "GM",
@@ -6758,7 +6765,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[48]\\d{8}|[2-9]\\d{6}",
    "types": [
@@ -6796,7 +6802,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "GN",
@@ -6806,7 +6813,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "722\\d{6}|(?:3|6\\d)\\d{7}",
    "types": [
@@ -6850,7 +6856,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "GP",
@@ -6860,7 +6867,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": true,
    "general": "7090\\d{5}|(?:[56]9|[89]\\d)\\d{7}",
    "types": [
@@ -6922,7 +6928,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "GQ",
@@ -6932,7 +6939,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "222\\d{6}|(?:3\\d|55|[89]0)\\d{7}",
    "types": [
@@ -6984,7 +6990,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "GR",
@@ -6994,7 +7001,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "5005000\\d{3}|8\\d{9,11}|(?:[269]\\d|70)\\d{8}",
    "types": [
@@ -7086,7 +7092,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "GT",
@@ -7096,7 +7103,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "80\\d{6}|(?:1\\d{3}|[2-7])\\d{7}",
    "types": [
@@ -7148,7 +7154,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "GU",
@@ -7158,7 +7165,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([2-9]\\d{6})$|1",
    "leading_digits": "671",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:[58]\\d\\d|671|900)\\d{7}",
    "types": [
@@ -7209,7 +7215,8 @@
      "example": "5002345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "671$1"
   },
   {
    "code": "GW",
@@ -7219,7 +7226,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[49]\\d{8}|4\\d{6}",
    "types": [
@@ -7263,7 +7269,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "GY",
@@ -7273,7 +7280,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[2-8]\\d{3}|9008)\\d{3}",
    "types": [
@@ -7326,7 +7332,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "HK",
@@ -7336,7 +7343,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "8[0-46-9]\\d{6,7}|9\\d{4,7}|(?:[2-7]|9\\d{3})\\d{7}",
    "types": [
@@ -7431,7 +7437,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "HN",
@@ -7441,7 +7448,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "8\\d{10}|[237-9]\\d{7}",
    "types": [
@@ -7486,7 +7492,8 @@
      "format": "$1 $2 $3",
      "intl": "NA"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "HR",
@@ -7496,7 +7503,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[2-69]\\d{8}|80\\d{5,7}|[1-79]\\d{7}|6\\d{6}",
    "types": [
@@ -7616,7 +7622,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "HT",
@@ -7626,7 +7633,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[2-589]\\d{7}",
    "types": [
@@ -7671,7 +7677,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "HU",
@@ -7681,7 +7688,6 @@
    "national_prefix": "06",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[235-7]\\d{8}|[1-9]\\d{7}",
    "types": [
@@ -7764,7 +7770,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP $FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "ID",
@@ -7774,7 +7781,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "00[1-9]\\d{9,14}|(?:[1-36]|8\\d{5})\\d{6}|00\\d{9}|[1-9]\\d{8,10}|[2-9]\\d{7}",
    "types": [
@@ -7936,7 +7942,8 @@
      "format": "$1 $2 $3 $4",
      "intl": "NA"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "IE",
@@ -7946,7 +7953,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:1\\d|[2569])\\d{6,8}|4\\d{6,9}|7\\d{8}|8\\d{8,9}",
    "types": [
@@ -8110,7 +8116,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "IL",
@@ -8120,7 +8127,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "1\\d{6}(?:\\d{3,5})?|[57]\\d{8}|[1-489]\\d{7}",
    "types": [
@@ -8256,7 +8262,8 @@
      ],
      "format": "$1-$2 $3-$4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "IM",
@@ -8266,7 +8273,6 @@
    "national_prefix": "0",
    "prefix_parsing": "([25-8]\\d{5})$|0|180020",
    "leading_digits": "74576|(?:16|7[56])24",
-   "dial_transform": true,
    "primary": false,
    "general": "1624\\d{6}|(?:[3578]\\d|90)\\d{8}",
    "types": [
@@ -8330,7 +8336,8 @@
      "example": "5512345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "1624$1"
   },
   {
    "code": "IN",
@@ -8340,7 +8347,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:000800|[2-9]\\d\\d)\\d{7}|1\\d{7,12}",
    "types": [
@@ -8506,7 +8512,8 @@
      "format": "$1 $2 $3 $4",
      "optional": true
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "IO",
@@ -8516,7 +8523,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "3\\d{6}",
    "types": [
@@ -8545,7 +8551,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "IQ",
@@ -8555,7 +8562,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:1|7\\d\\d)\\d{7}|[2-6]\\d{7,8}",
    "types": [
@@ -8606,7 +8612,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "IR",
@@ -8616,7 +8623,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[1-9]\\d{9}|(?:[1-8]\\d\\d|9)\\d{3,4}",
    "types": [
@@ -8686,7 +8692,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "IS",
@@ -8696,7 +8703,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:38\\d|[4-9])\\d{6}",
    "types": [
@@ -8773,7 +8779,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "IT",
@@ -8783,7 +8790,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": true,
    "general": "0\\d{5,11}|1\\d{8,10}|3(?:[0-8]\\d{7,10}|9\\d{7,8})|(?:43|55|70)\\d{8}|8\\d{5}(?:\\d{2,4})?",
    "types": [
@@ -8955,7 +8961,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "JE",
@@ -8965,7 +8972,6 @@
    "national_prefix": "0",
    "prefix_parsing": "([0-24-8]\\d{5})$|0|180020",
    "leading_digits": "",
-   "dial_transform": true,
    "primary": false,
    "general": "1534\\d{6}|(?:[3578]\\d|90)\\d{8}",
    "types": [
@@ -9037,7 +9043,8 @@
      "example": "7640123456"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "1534$1"
   },
   {
    "code": "JM",
@@ -9047,7 +9054,6 @@
    "national_prefix": "1",
    "prefix_parsing": "",
    "leading_digits": "658|876",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[58]\\d\\d|658|900)\\d{7}",
    "types": [
@@ -9098,7 +9104,8 @@
      "example": "5002345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "JO",
@@ -9108,7 +9115,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:(?:[2689]|7\\d)\\d|32|427|53)\\d{6}",
    "types": [
@@ -9210,7 +9216,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "JP",
@@ -9220,7 +9227,6 @@
    "national_prefix": "0",
    "prefix_parsing": "(000[2569]\\d{4,6})$|(?:(?:003768)0?)|0",
    "leading_digits": "",
-   "dial_transform": true,
    "primary": false,
    "general": "00[1-9]\\d{6,14}|[25-9]\\d{9}|(?:00|[1-9]\\d\\d)\\d{6}",
    "types": [
@@ -9436,7 +9442,8 @@
      "format": "$1-$2-$3",
      "intl": "NA"
     }
-   ]
+   ],
+   "prefix_transform": "$1"
   },
   {
    "code": "KE",
@@ -9446,7 +9453,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[17]\\d\\d|900)\\d{6}|(?:2|80)0\\d{6,7}|[4-6]\\d{6,8}",
    "types": [
@@ -9511,7 +9517,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "KG",
@@ -9521,7 +9528,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "8\\d{9}|[235-9]\\d{8}",
    "types": [
@@ -9580,7 +9586,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "KH",
@@ -9590,7 +9597,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "1\\d{9}|[1-9]\\d{7,8}",
    "types": [
@@ -9649,7 +9655,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "KI",
@@ -9659,7 +9666,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[37]\\d|6[0-79])\\d{6}|(?:[2-48]\\d|50)\\d{3}",
    "types": [
@@ -9689,7 +9695,8 @@
      "example": "30010000"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "KM",
@@ -9699,7 +9706,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[3478]\\d{6}",
    "types": [
@@ -9739,7 +9745,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "KN",
@@ -9749,7 +9756,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([2-7]\\d{6})$|1",
    "leading_digits": "869",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:[58]\\d\\d|900)\\d{7}",
    "types": [
@@ -9800,7 +9806,8 @@
      "example": "5002345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "869$1"
   },
   {
    "code": "KP",
@@ -9810,7 +9817,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "85\\d{6}|(?:19\\d|[2-7])\\d{7}",
    "types": [
@@ -9861,7 +9867,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "KR",
@@ -9871,7 +9878,6 @@
    "national_prefix": "0",
    "prefix_parsing": "0(8(?:[1-46-8]|5\\d\\d))?",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "00[1-9]\\d{8,11}|(?:[12]|5\\d{3})\\d{7}|[13-6]\\d{9}|(?:[1-6]\\d|80)\\d{7}|[3-6]\\d{4,5}|(?:00|7)0\\d{8}",
    "types": [
@@ -10048,7 +10054,8 @@
      "format": "$1 $2 $3 $4",
      "intl": "NA"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "KW",
@@ -10058,7 +10065,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "18\\d{5}|(?:[2569]\\d|41)\\d{6}",
    "types": [
@@ -10102,7 +10108,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "KY",
@@ -10112,7 +10119,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([2-9]\\d{6})$|1",
    "leading_digits": "345",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:345|[58]\\d\\d|900)\\d{7}",
    "types": [
@@ -10163,7 +10169,8 @@
      "example": "5002345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "345$1"
   },
   {
    "code": "KZ",
@@ -10173,7 +10180,6 @@
    "national_prefix": "8",
    "prefix_parsing": "",
    "leading_digits": "7",
-   "dial_transform": false,
    "primary": false,
    "general": "8\\d{13}|[78]\\d{9}",
    "types": [
@@ -10232,7 +10238,8 @@
      "example": "8081234567"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "LA",
@@ -10242,7 +10249,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[23]\\d{9}|3\\d{8}|(?:[235-8]\\d|41)\\d{6}",
    "types": [
@@ -10292,7 +10298,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "LB",
@@ -10302,7 +10309,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[27-9]\\d{7}|[13-9]\\d{6}",
    "types": [
@@ -10357,7 +10363,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "LC",
@@ -10367,7 +10374,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([2-8]\\d{6})$|1",
    "leading_digits": "758",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:[58]\\d\\d|758|900)\\d{7}",
    "types": [
@@ -10418,7 +10424,8 @@
      "example": "5002345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "758$1"
   },
   {
    "code": "LI",
@@ -10428,7 +10435,6 @@
    "national_prefix": "0",
    "prefix_parsing": "(1001)|0",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[68]\\d{8}|(?:[2378]\\d|90)\\d{5}",
    "types": [
@@ -10513,7 +10519,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "LK",
@@ -10523,7 +10530,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[1-9]\\d{8}",
    "types": [
@@ -10572,7 +10578,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "LR",
@@ -10582,7 +10589,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[2457]\\d|33|88)\\d{7}|(?:2\\d|[4-6])\\d{6}",
    "types": [
@@ -10637,7 +10643,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "LS",
@@ -10647,7 +10654,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[256]\\d\\d|800)\\d{5}",
    "types": [
@@ -10684,7 +10690,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "LT",
@@ -10694,7 +10701,6 @@
    "national_prefix": "0",
    "prefix_parsing": "[08]",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[3469]\\d|52|[78]0)\\d{6}",
    "types": [
@@ -10800,7 +10806,8 @@
      "prefix_rule": "($NP-$FG)",
      "optional": true
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "LU",
@@ -10810,7 +10817,6 @@
    "national_prefix": "",
    "prefix_parsing": "(15(?:0[06]|1[12]|[35]5|4[04]|6[26]|77|88|99)\\d)",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "35[013-9]\\d{4,8}|6\\d{8}|35\\d{2,4}|(?:[2457-9]\\d|3[0-46-9])\\d{2,9}",
    "types": [
@@ -10940,7 +10946,8 @@
      ],
      "format": "$1 $2 $3 $4 $5"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "LV",
@@ -10950,7 +10957,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[268]\\d|78|90)\\d{6}",
    "types": [
@@ -11003,7 +11009,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "LY",
@@ -11013,7 +11020,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[2-9]\\d{8}",
    "types": [
@@ -11046,7 +11052,8 @@
      "format": "$1-$2",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "MA",
@@ -11056,7 +11063,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "[5-8]",
-   "dial_transform": false,
    "primary": true,
    "general": "[5-8]\\d{8}",
    "types": [
@@ -11126,7 +11132,8 @@
      "format": "$1 $2 $3 $4 $5",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "MC",
@@ -11136,7 +11143,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[3489]|[67]\\d)\\d{7}",
    "types": [
@@ -11198,7 +11204,8 @@
      "format": "$1 $2 $3 $4 $5",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "MD",
@@ -11208,7 +11215,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[235-7]\\d|[89]0)\\d{6}",
    "types": [
@@ -11294,7 +11300,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "ME",
@@ -11304,7 +11311,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:20|[3-79]\\d)\\d{6}|80\\d{6,7}",
    "types": [
@@ -11370,7 +11376,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "MF",
@@ -11380,7 +11387,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "7090\\d{5}|(?:[56]9|[89]\\d)\\d{7}",
    "types": [
@@ -11425,7 +11431,8 @@
      "example": "976012345"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "MG",
@@ -11435,7 +11442,6 @@
    "national_prefix": "0",
    "prefix_parsing": "([24-9]\\d{6})$|0",
    "leading_digits": "",
-   "dial_transform": true,
    "primary": false,
    "general": "[23]\\d{8}",
    "types": [
@@ -11476,7 +11482,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": "20$1"
   },
   {
    "code": "MH",
@@ -11486,7 +11493,6 @@
    "national_prefix": "1",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "329\\d{4}|(?:[256]\\d|45)\\d{5}",
    "types": [
@@ -11523,7 +11529,8 @@
      ],
      "format": "$1-$2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "MK",
@@ -11533,7 +11540,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[2-578]\\d{7}",
    "types": [
@@ -11607,7 +11613,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "ML",
@@ -11617,7 +11624,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[24-9]\\d{7}",
    "types": [
@@ -11663,7 +11669,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "MM",
@@ -11673,7 +11680,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "1\\d{5,7}|95\\d{6}|(?:[4-7]|9[0-46-9])\\d{6,8}|(?:2|8\\d)\\d{5,8}",
    "types": [
@@ -11793,7 +11799,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "MN",
@@ -11803,7 +11810,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[12]\\d{7,9}|[5-9]\\d{7}",
    "types": [
@@ -11880,7 +11886,8 @@
      "format": "$1 $2",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "MO",
@@ -11890,7 +11897,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "0800\\d{3}|(?:28|[68]\\d)\\d{6}",
    "types": [
@@ -11934,7 +11940,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "MP",
@@ -11944,7 +11951,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([2-9]\\d{6})$|1",
    "leading_digits": "670",
-   "dial_transform": true,
    "primary": false,
    "general": "[58]\\d{9}|(?:67|90)0\\d{7}",
    "types": [
@@ -11995,7 +12001,8 @@
      "example": "5002345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "670$1"
   },
   {
    "code": "MQ",
@@ -12005,7 +12012,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "7091\\d{5}|(?:[56]9|[89]\\d)\\d{7}",
    "types": [
@@ -12067,7 +12073,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "MR",
@@ -12077,7 +12084,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[2-4]\\d\\d|800)\\d{5}",
    "types": [
@@ -12114,7 +12120,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "MS",
@@ -12124,7 +12131,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([34]\\d{6})$|1",
    "leading_digits": "664",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:[58]\\d\\d|664|900)\\d{7}",
    "types": [
@@ -12175,7 +12181,8 @@
      "example": "5002345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "664$1"
   },
   {
    "code": "MT",
@@ -12185,7 +12192,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "3550\\d{4}|(?:[2579]\\d\\d|800)\\d{5}",
    "types": [
@@ -12254,7 +12260,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "MU",
@@ -12264,7 +12271,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[57]|8\\d\\d)\\d{7}|[2-468]\\d{6}",
    "types": [
@@ -12341,7 +12347,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "MV",
@@ -12351,7 +12358,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:800|9[0-57-9]\\d)\\d{7}|[34679]\\d{6}",
    "types": [
@@ -12411,7 +12417,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "MW",
@@ -12421,7 +12428,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[1289]\\d|31|77)\\d{7}|1\\d{6}",
    "types": [
@@ -12459,7 +12465,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "MX",
@@ -12469,7 +12476,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[2-9]\\d{9}",
    "types": [
@@ -12553,7 +12559,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "MY",
@@ -12563,7 +12570,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "1\\d{8,9}|(?:3\\d|[4-9])\\d{7}",
    "types": [
@@ -12663,7 +12669,8 @@
      "format": "$1-$2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "MZ",
@@ -12673,7 +12680,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:2|8\\d)\\d{7}",
    "types": [
@@ -12717,7 +12723,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "NA",
@@ -12727,7 +12734,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[68]\\d{7,8}",
    "types": [
@@ -12807,7 +12813,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "NC",
@@ -12817,7 +12824,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:050|[2-57-9]\\d\\d)\\d{3}",
    "types": [
@@ -12870,7 +12876,8 @@
      ],
      "format": "$1.$2.$3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "NE",
@@ -12880,7 +12887,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[027-9]\\d{7}",
    "types": [
@@ -12932,7 +12938,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "NF",
@@ -12942,7 +12949,6 @@
    "national_prefix": "",
    "prefix_parsing": "([0-258]\\d{4})$",
    "leading_digits": "",
-   "dial_transform": true,
    "primary": false,
    "general": "[13]\\d{5}",
    "types": [
@@ -12984,7 +12990,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": "3$1"
   },
   {
    "code": "NG",
@@ -12994,7 +13001,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:20|9\\d)\\d{8}|[78]\\d{9,13}",
    "types": [
@@ -13084,7 +13090,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "NI",
@@ -13094,7 +13101,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:1800|[25-8]\\d{3})\\d{4}",
    "types": [
@@ -13131,7 +13137,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "NL",
@@ -13141,7 +13148,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[124-7]\\d\\d|3(?:[02-9]\\d|1[0-8]))\\d{6}|8\\d{6,9}|9\\d{6,10}|1\\d{4,5}",
    "types": [
@@ -13284,7 +13290,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "NO",
@@ -13294,7 +13301,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "[02-689]|7[0-8]",
-   "dial_transform": false,
    "primary": true,
    "general": "(?:0|[2-9]\\d{3})\\d{4}",
    "types": [
@@ -13387,7 +13393,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "NP",
@@ -13397,7 +13404,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:1\\d|9)\\d{9}|[1-9]\\d{7}",
    "types": [
@@ -13462,7 +13468,8 @@
      "format": "$1-$2-$3",
      "intl": "NA"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "NR",
@@ -13472,7 +13479,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:222|444|(?:55|8\\d)\\d|666|777|999)\\d{4}",
    "types": [
@@ -13501,7 +13507,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "NU",
@@ -13511,7 +13518,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[4-7]|888\\d)\\d{3}",
    "types": [
@@ -13541,7 +13547,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "NZ",
@@ -13551,7 +13558,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[1289]\\d{9}|50\\d{5}(?:\\d{2,3})?|[27-9]\\d{7,8}|(?:[34]\\d|6[0-35-9])\\d{6}|8\\d{4,6}",
    "types": [
@@ -13669,7 +13675,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "OM",
@@ -13679,7 +13686,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:1505|[279]\\d{3}|500)\\d{4}|800\\d{5,6}",
    "types": [
@@ -13740,7 +13746,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "PA",
@@ -13750,7 +13757,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:00800|8\\d{3})\\d{6}|[68]\\d{7}|[1-57-9]\\d{6}",
    "types": [
@@ -13813,7 +13819,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "PE",
@@ -13823,7 +13830,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[14-8]|9\\d)\\d{7}",
    "types": [
@@ -13912,7 +13918,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "PF",
@@ -13922,7 +13929,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "4\\d{5}(?:\\d{2})?|8\\d{7,8}",
    "types": [
@@ -13989,7 +13995,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "PG",
@@ -13999,7 +14006,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:180|[78]\\d{3})\\d{4}|(?:[2-589]\\d|64)\\d{5}",
    "types": [
@@ -14059,7 +14065,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "PH",
@@ -14069,7 +14076,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[2-7]|9\\d)\\d{8}|2\\d{5}|(?:1800|8)\\d{7,9}",
    "types": [
@@ -14173,7 +14179,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "PK",
@@ -14183,7 +14190,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "122\\d{6}|[24-8]\\d{10,11}|9(?:[013-9]\\d{8,10}|2(?:[01]\\d\\d|2(?:[06-8]\\d|1[01]))\\d{7})|(?:[2-8]\\d{3}|92(?:[0-7]\\d|8[1-9]))\\d{6}|[24-9]\\d{8}|[89]\\d{7}",
    "types": [
@@ -14310,7 +14316,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "($NP$FG)"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "PL",
@@ -14320,7 +14327,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:6|8\\d\\d)\\d{7}|[1-9]\\d{6}(?:\\d{2})?|[26]\\d{5}",
    "types": [
@@ -14445,7 +14451,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "PM",
@@ -14455,7 +14462,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[78]\\d{8}|[2-9]\\d{5}",
    "types": [
@@ -14518,7 +14524,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "PR",
@@ -14528,7 +14535,6 @@
    "national_prefix": "1",
    "prefix_parsing": "",
    "leading_digits": "787|939",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[589]\\d\\d|787)\\d{7}",
    "types": [
@@ -14579,7 +14585,8 @@
      "example": "5002345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "PS",
@@ -14589,7 +14596,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[2489]2\\d{6}|(?:1\\d|5)\\d{8}",
    "types": [
@@ -14653,7 +14659,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "PT",
@@ -14663,7 +14670,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "1693\\d{5}|(?:[26-9]\\d|30)\\d{7}",
    "types": [
@@ -14763,7 +14769,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "PW",
@@ -14773,7 +14780,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[24-8]\\d\\d|345|900)\\d{4}",
    "types": [
@@ -14802,7 +14808,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "PY",
@@ -14812,7 +14819,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[36-8]\\d{5,8}|4\\d{6,8}|59\\d{6}|9\\d{5,10}|(?:2\\d|5[0-8])\\d{6,7}",
    "types": [
@@ -14939,7 +14945,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "QA",
@@ -14949,7 +14956,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "800\\d{4}|(?:2|800)\\d{6}|(?:0080|[3-7])\\d{7}",
    "types": [
@@ -15003,7 +15009,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "RE",
@@ -15013,7 +15020,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": true,
    "general": "709\\d{6}|(?:26|[689]\\d)\\d{7}",
    "types": [
@@ -15075,7 +15081,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "RO",
@@ -15085,7 +15092,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[236-8]\\d|90)\\d{7}|[23]\\d{5}",
    "types": [
@@ -15173,7 +15179,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "RS",
@@ -15183,7 +15190,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "38[02-9]\\d{6,9}|6\\d{7,9}|90\\d{4,8}|38\\d{5,6}|(?:7\\d\\d|800)\\d{3,9}|(?:[12]\\d|3[0-79])\\d{5,10}",
    "types": [
@@ -15273,7 +15279,8 @@
      "format": "$1 $2",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "RU",
@@ -15283,7 +15290,6 @@
    "national_prefix": "8",
    "prefix_parsing": "",
    "leading_digits": "[3489]",
-   "dial_transform": false,
    "primary": true,
    "general": "8\\d{13}|[347-9]\\d{9}",
    "types": [
@@ -15389,7 +15395,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP ($FG)"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "RW",
@@ -15399,7 +15406,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:06|[27]\\d\\d|[89]00)\\d{6}",
    "types": [
@@ -15460,7 +15466,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "SA",
@@ -15470,7 +15477,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[15]\\d|800|92)\\d{7}",
    "types": [
@@ -15549,7 +15555,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "SB",
@@ -15559,7 +15566,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[6-9]\\d{6}|[1-6]\\d{4}",
    "types": [
@@ -15605,7 +15611,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "SC",
@@ -15615,7 +15622,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[2489]\\d|64)\\d{5}",
    "types": [
@@ -15668,7 +15674,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "SD",
@@ -15678,7 +15685,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[19]\\d{8}",
    "types": [
@@ -15708,7 +15714,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "SE",
@@ -15718,7 +15725,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[26]\\d\\d|9)\\d{9}|[1-9]\\d{8}|[1-689]\\d{7}|[1-4689]\\d{6}|2\\d{5}",
    "types": [
@@ -15912,7 +15918,8 @@
      "intl": "$1 $2 $3 $4 $5",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "SG",
@@ -15922,7 +15929,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:(?:1\\d|8)\\d\\d|7000)\\d{7}|[3689]\\d{7}",
    "types": [
@@ -16014,7 +16020,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "SH",
@@ -16024,7 +16031,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "[256]",
-   "dial_transform": false,
    "primary": true,
    "general": "(?:[256]\\d|8)\\d{3}",
    "types": [
@@ -16054,7 +16060,8 @@
      "example": "26212"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "SI",
@@ -16064,7 +16071,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[1-7]\\d{7}|8\\d{4,7}|90\\d{4,6}",
    "types": [
@@ -16150,7 +16156,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "($NP$FG)"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "SJ",
@@ -16160,7 +16167,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "79",
-   "dial_transform": false,
    "primary": false,
    "general": "0\\d{4}|(?:[489]\\d|79)\\d{6}",
    "types": [
@@ -16238,7 +16244,8 @@
      "example": "81212345"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "SK",
@@ -16248,7 +16255,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[2-689]\\d{8}|[2-59]\\d{6}|[2-5]\\d{5}",
    "types": [
@@ -16371,7 +16377,8 @@
      "format": "$1 $2 $3 $4",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "SL",
@@ -16381,7 +16388,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[237-9]\\d|66)\\d{6}",
    "types": [
@@ -16414,7 +16420,8 @@
      "format": "$1 $2",
      "prefix_rule": "($NP$FG)"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "SM",
@@ -16424,7 +16431,6 @@
    "national_prefix": "",
    "prefix_parsing": "([89]\\d{5})$",
    "leading_digits": "",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:0549|[5-7]\\d)\\d{6}",
    "types": [
@@ -16487,7 +16493,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": "0549$1"
   },
   {
    "code": "SN",
@@ -16497,7 +16504,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[378]\\d|93)\\d{7}",
    "types": [
@@ -16565,7 +16571,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "SO",
@@ -16575,7 +16582,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[346-9]\\d{8}|[12679]\\d{7}|[1-5]\\d{6}|[1348]\\d{5}",
    "types": [
@@ -16642,7 +16648,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "SR",
@@ -16652,7 +16659,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[2-5]|[6-9]\\d)\\d{5}",
    "types": [
@@ -16720,7 +16726,8 @@
      ],
      "format": "$1-$2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "SS",
@@ -16730,7 +16737,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[19]\\d{8}",
    "types": [
@@ -16760,7 +16766,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "ST",
@@ -16770,7 +16777,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:22|9\\d)\\d{5}",
    "types": [
@@ -16799,7 +16805,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "SV",
@@ -16809,7 +16816,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[25-7]\\d{7}|(?:80\\d|900)\\d{4}(?:\\d{4})?",
    "types": [
@@ -16870,7 +16876,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "SX",
@@ -16880,7 +16887,6 @@
    "national_prefix": "1",
    "prefix_parsing": "(5\\d{6})$|1",
    "leading_digits": "721",
-   "dial_transform": true,
    "primary": false,
    "general": "7215\\d{6}|(?:[58]\\d\\d|900)\\d{7}",
    "types": [
@@ -16931,7 +16937,8 @@
      "example": "5002345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "721$1"
   },
   {
    "code": "SY",
@@ -16941,7 +16948,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[1-359]\\d{8}|[1-5]\\d{7}",
    "types": [
@@ -16986,7 +16992,8 @@
      "prefix_rule": "$NP$FG",
      "optional": true
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "SZ",
@@ -16996,7 +17003,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "0800\\d{4}|(?:[237]\\d|900)\\d{6}",
    "types": [
@@ -17056,7 +17062,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "TA",
@@ -17066,7 +17073,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "8",
-   "dial_transform": false,
    "primary": false,
    "general": "8\\d{3}",
    "types": [
@@ -17079,7 +17085,8 @@
      "example": "8999"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "TC",
@@ -17089,7 +17096,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([2-479]\\d{6})$|1",
    "leading_digits": "649",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:[58]\\d\\d|649|900)\\d{7}",
    "types": [
@@ -17151,7 +17157,8 @@
      "example": "5002345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "649$1"
   },
   {
    "code": "TD",
@@ -17161,7 +17168,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:22|[3689]\\d|77)\\d{6}",
    "types": [
@@ -17190,7 +17196,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "TG",
@@ -17200,7 +17207,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[279]\\d{7}",
    "types": [
@@ -17229,7 +17235,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "TH",
@@ -17239,7 +17246,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:001800|[2-57]|[689]\\d)\\d{7}|1\\d{7,9}",
    "types": [
@@ -17309,7 +17315,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "TJ",
@@ -17319,7 +17326,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[0-57-9]\\d|66)\\d{7}",
    "types": [
@@ -17376,7 +17382,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "TK",
@@ -17386,7 +17393,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[2-47]\\d{3,6}",
    "types": [
@@ -17413,7 +17419,8 @@
      "example": "7290"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "TL",
@@ -17423,7 +17430,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "7\\d{7}|(?:[2-47]\\d|[89]0)\\d{5}",
    "types": [
@@ -17483,7 +17489,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "TM",
@@ -17493,7 +17500,6 @@
    "national_prefix": "8",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[1-7]\\d{7}",
    "types": [
@@ -17539,7 +17545,8 @@
      "format": "$1 $2",
      "prefix_rule": "$NP $FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "TN",
@@ -17549,7 +17556,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[2-57-9]\\d{7}",
    "types": [
@@ -17602,7 +17608,8 @@
      ],
      "format": "$1 $2 $3"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "TO",
@@ -17612,7 +17619,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:0800|(?:[5-8]\\d\\d|999)\\d)\\d{3}|[2-8]\\d{4}",
    "types": [
@@ -17671,7 +17677,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "TR",
@@ -17681,7 +17688,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "4\\d{6}|8\\d{11,12}|(?:[2-58]\\d\\d|900)\\d{7}",
    "types": [
@@ -17798,7 +17804,8 @@
      "prefix_rule": "$NP$FG",
      "optional": true
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "TT",
@@ -17808,7 +17815,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([2-46-8]\\d{6})$|1",
    "leading_digits": "868",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:[58]\\d\\d|900)\\d{7}",
    "types": [
@@ -17870,7 +17876,8 @@
      "example": "8686191234"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "868$1"
   },
   {
    "code": "TV",
@@ -17880,7 +17887,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:2|7\\d\\d|90)\\d{4}",
    "types": [
@@ -17924,7 +17930,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "TW",
@@ -17934,7 +17941,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[2-689]\\d{8}|7\\d{9,10}|[2-8]\\d{7}|2\\d{6}",
    "types": [
@@ -18065,7 +18071,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "TZ",
@@ -18075,7 +18082,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[25-8]\\d|41|90)\\d{7}",
    "types": [
@@ -18160,7 +18166,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "UA",
@@ -18170,7 +18177,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[89]\\d{9}|[3-9]\\d{8}",
    "types": [
@@ -18257,7 +18263,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "UG",
@@ -18267,7 +18274,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "800\\d{6}|(?:[29]0|[347]\\d)\\d{7}",
    "types": [
@@ -18337,7 +18343,8 @@
      "format": "$1 $2",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "US",
@@ -18347,7 +18354,6 @@
    "national_prefix": "1",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": true,
    "general": "[2-9]\\d{9}|3\\d{6}",
    "types": [
@@ -18424,7 +18430,8 @@
      "intl": "$1-$2-$3",
      "optional": true
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "UY",
@@ -18434,7 +18441,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "0004\\d{2,9}|[1249]\\d{7}|2\\d{3,4}|(?:[49]\\d|80)\\d{5}",
    "types": [
@@ -18542,7 +18548,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "UZ",
@@ -18552,7 +18559,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:20|33|[5-9]\\d)\\d{7}",
    "types": [
@@ -18581,7 +18587,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "VA",
@@ -18591,7 +18598,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "06698",
-   "dial_transform": false,
    "primary": false,
    "general": "0\\d{5,10}|3[0-8]\\d{7,10}|55\\d{8}|8\\d{5}(?:\\d{2,4})?|(?:1\\d|39)\\d{7,8}",
    "types": [
@@ -18673,7 +18679,8 @@
      "example": "33101234501"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "VC",
@@ -18683,7 +18690,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([2-7]\\d{6})$|1",
    "leading_digits": "784",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:[58]\\d\\d|784|900)\\d{7}",
    "types": [
@@ -18745,7 +18751,8 @@
      "example": "5002345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "784$1"
   },
   {
    "code": "VE",
@@ -18755,7 +18762,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[68]00\\d{7}|(?:[24]\\d|[59]0)\\d{8}",
    "types": [
@@ -18815,7 +18821,8 @@
      "format": "$1-$2",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "VG",
@@ -18825,7 +18832,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([2-578]\\d{6})$|1",
    "leading_digits": "284",
-   "dial_transform": true,
    "primary": false,
    "general": "(?:284|[58]\\d\\d|900)\\d{7}",
    "types": [
@@ -18876,7 +18882,8 @@
      "example": "5002345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "284$1"
   },
   {
    "code": "VI",
@@ -18886,7 +18893,6 @@
    "national_prefix": "1",
    "prefix_parsing": "([2-9]\\d{6})$|1",
    "leading_digits": "340",
-   "dial_transform": true,
    "primary": false,
    "general": "[58]\\d{9}|(?:34|90)0\\d{7}",
    "types": [
@@ -18937,7 +18943,8 @@
      "example": "5002345678"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": "340$1"
   },
   {
    "code": "VN",
@@ -18947,7 +18954,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[12]\\d{9}|[135-9]\\d{8}|[16]\\d{6,7}|7\\d{6}",
    "types": [
@@ -19070,7 +19076,8 @@
      "prefix_rule": "$NP$FG",
      "optional": true
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "VU",
@@ -19080,7 +19087,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[57-9]\\d{6}|(?:[238]\\d|48)\\d{3}",
    "types": [
@@ -19134,7 +19140,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "WF",
@@ -19144,7 +19151,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:40|72|8\\d{4})\\d{4}|[89]\\d{5}",
    "types": [
@@ -19204,7 +19210,8 @@
      ],
      "format": "$1 $2 $3 $4"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "WS",
@@ -19214,7 +19221,6 @@
    "national_prefix": "",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:[2-6]|8\\d{5})\\d{4}|[78]\\d{6}|[68]\\d{5}",
    "types": [
@@ -19267,7 +19273,8 @@
      ],
      "format": "$1 $2"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "XK",
@@ -19277,7 +19284,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "2\\d{7,8}|3\\d{7,11}|(?:4\\d\\d|[89]00)\\d{5}",
    "types": [
@@ -19351,7 +19357,8 @@
      "format": "$1 $2",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "YE",
@@ -19361,7 +19368,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:1|7\\d)\\d{7}|[1-7]\\d{6}",
    "types": [
@@ -19403,7 +19409,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "YT",
@@ -19413,7 +19420,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:639\\d|7093)\\d{5}|(?:26|80|9\\d)\\d{7}",
    "types": [
@@ -19450,7 +19456,8 @@
      "example": "939801234"
     }
    ],
-   "formats": []
+   "formats": [],
+   "prefix_transform": ""
   },
   {
    "code": "ZA",
@@ -19460,7 +19467,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "[1-79]\\d{8}|8\\d{4,9}",
    "types": [
@@ -19567,7 +19573,8 @@
      "format": "$1 $2 $3",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "ZM",
@@ -19577,7 +19584,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "800\\d{6}|(?:21|[579]\\d|63)\\d{7}",
    "types": [
@@ -19642,7 +19648,8 @@
      "format": "$1 $2",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   },
   {
    "code": "ZW",
@@ -19652,7 +19659,6 @@
    "national_prefix": "0",
    "prefix_parsing": "",
    "leading_digits": "",
-   "dial_transform": false,
    "primary": false,
    "general": "(?:13|8\\d{4})\\d{5}|[235-8]\\d{8}|[23568]\\d{6}",
    "types": [
@@ -19769,7 +19775,8 @@
      "format": "$1 $2",
      "prefix_rule": "$NP$FG"
     }
-   ]
+   ],
+   "prefix_transform": ""
   }
  ]
 }

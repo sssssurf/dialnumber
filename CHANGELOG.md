@@ -4,6 +4,25 @@ All notable changes to this project are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.0] - 2026-11-07
+
+- Repair formal-review findings after the October submission; this is not an
+  organizer acceptance claim or a backdated delivery.
+- Preserve and execute all 32 national-prefix capture transform rules. Restore
+  fixed/mobile national round-trip assertions for every affected region.
+- Apply national-prefix formatting to the first actual referenced capture,
+  fixing Argentina mobile's $2 area code and domestic 15 insertion.
+- Reject integer overflow in public repeat counts before arithmetic; bound
+  pattern length, depth, repeat size and expanded NFA compilation cost.
+- Normalize RFC parameter names before duplicate and mandatory checks, validate
+  publicly constructed URI fields, normalize unreserved escapes, and repair
+  domain-context syntax. Plain ;ext= no longer swallows extra parameters.
+- Add 1,872 independent JS-regex capture cases and extend original Google Java
+  verification to 102 scenarios, including all 32 transform plans.
+- Add 11 formal-review regression tests; 748 test blocks in total. Add a public
+  regression example and require it in the acceptance runner.
+- Fix CLI argument handling when the JS runtime includes the script path.
+
 ## [0.8.1] - 2026-10-27
 
 - Use current moon.mod/moon.pkg manifests for the isolated published consumer.

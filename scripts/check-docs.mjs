@@ -178,7 +178,7 @@ for (const block of allTextBlocks(readme)) {
     }
     const cliArgs = cliArguments(cmd.replace('moon run cmd/main -- ', '').trim());
     const res = run('moon', ['run', 'cmd/main', '--', ...cliArgs]);
-    if (res.failed) {
+    if (res.failed || /^usage: dialnumber/m.test(res)) {
       fail(`recorded README command failed: ${cmd} (exit ${res.code})`);
       continue;
     }
@@ -258,7 +258,7 @@ if (!cliBlock) {
   for (const cmd of cmds) {
     const cliArgs = cliArguments(cmd.replace('moon run cmd/main -- ', '').trim());
     const res = run('moon', ['run', 'cmd/main', '--', ...cliArgs]);
-    if (res.failed) {
+    if (res.failed || /^usage: dialnumber/m.test(res)) {
       fail(`listed README command does not run: ${cmd} (exit ${res.code})`);
     } else {
       ok++;

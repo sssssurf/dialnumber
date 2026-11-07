@@ -1,0 +1,5 @@
+import {
+  "sssssurf/dialnumber",
+}
+
+pkgtype(kind: "executable")

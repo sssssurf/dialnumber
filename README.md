@@ -1,5 +1,14 @@
 # dialnumber
 
+Version 0.9.0 repairs the formal acceptance findings received after the October
+submission. The organizer rejected 0.8.1; passing local checks did not establish
+complete national-prefix correctness. The dated correction and reproducible
+regressions are in [the response](docs/正式验收修正说明.md).
+
+```bash
+moon run --target js examples/review
+```
+
 Phone number parsing, validation and formatting for MoonBit, driven by the
 national numbering plans behind ITU-T E.164.
 
@@ -66,7 +75,7 @@ For a small public-API example, run moon run --target js examples/basic.
 - [Response to the initial review](docs/初审补充说明.md).
 
 The original Google Java libphonenumber 9.0.17 is also executed directly for
-29 scenarios (17 phone workflows, six comparisons, six typing traces). See
+102 scenarios (90 phone workflows, six comparisons, six typing traces). See
 [the direct Java comparison](docs/google-compatibility.md), including all
 13 intermediate spacing/parenthesis differences.
 
@@ -126,13 +135,20 @@ tests assert exactly that for every fixed-line and mobile example — and the
 grouping comes from data, so a plan that changes its style changes with a data
 refresh.
 
-National dialling is not always the inverse of formatting: Argentina writes a
-mobile as `011 15-…` while its international form carries the `9`, and a few
-plans rewrite the number while parsing. That rewriting (`nationalPrefixForParsing`
-with a transform rule) is not implemented, and the generated round-trip tests
-skip the plans that publish one instead of pretending otherwise.
+National parsing executes the metadata's capture-based prefix transforms in all
+32 plans that publish them. Argentina's `011 15-2345-6789` becomes
+`+5491123456789`; national formatting reinserts `0` and `15` at the correct
+capture. Every fixed/mobile example, including these 32 plans, has a national
+round-trip assertion. An additional 1,872-case JS-regex oracle checks prefix
+captures, and original Google Java recordings verify complete phone flows.
 
 ## The rule engine
+
+Public patterns are limited to 8,192 characters, nesting depth 64, bounded
+repeat counts up to 10,000 and an estimated expanded-NFA budget of 65,536
+states. Integer parsing checks before arithmetic; malformed or over-budget
+patterns are not well formed and match nothing, including overflowed counts.
+
 
 `pattern.mbt` is a small regular-expression engine built for exactly the grammar
 the numbering plans use: literals, `\d`, character classes with ranges,
@@ -432,7 +448,7 @@ regression shows up as a number, not as an opinion.
 
 ## Tests
 
-632 tests cover the public API, the pattern engine, the formatting rules, the
+748 tests cover the public API, the pattern engine, the formatting rules, the
 generated table, the `tel:` grammar, the invariants of random input, and
 robustness against malformed input. The bulk of them are generated from the same
 data the library ships, so a data refresh grows the suite with it:
@@ -464,3 +480,14 @@ moon test
 Apache-2.0. See `LICENSE` and [third-party notices](THIRD_PARTY_NOTICES.md). The numbering-plan data is derived from Google's
 [libphonenumber](https://github.com/google/libphonenumber) (Apache-2.0), and the
 region display names come from CLDR through the generator's `Intl.DisplayNames`.
+
+
+The corrected Argentina mobile round trip can also be exercised through the CLI:
+
+```text
+$ moon run cmd/main -- format "011 15-2345-6789" AR
+e164: +5491123456789
+international: +54 9 11 2345-6789
+national: 011 15-2345-6789
+rfc3966: tel:+5491123456789
+```

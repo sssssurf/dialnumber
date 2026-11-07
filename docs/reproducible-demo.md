@@ -260,7 +260,7 @@ node scripts/check-docs.mjs
 ## Test summary
 
 ```text
-Total tests: 632, passed: 632, failed: 0.
+Total tests: 748, passed: 748, failed: 0.
 ```
 
 ## Verifying the documentation itself
@@ -278,7 +278,7 @@ The 2026-10-27 acceptance check uses moon 0.1.20261023 / moonc 0.10.17.
 The independent corpus is in data/compatibility-corpus.json; see compatibility.md
 for all 15 differing cases (30 fields), the pinned oracle and reproduction commands.
 CI checks gen-metadata, gen-corpus, gen-non-geo, gen-compat and sync-readme, then
-runs the tests and verifies this tour. The current suite contains 632 tests.
+runs the tests and verifies this tour. The current suite contains 748 tests.
 
 The full repeatable acceptance command is node scripts/acceptance.mjs. It also
 checks examples/basic and publishable package contents. See 验收材料.md for the

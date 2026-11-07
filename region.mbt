@@ -16,8 +16,8 @@
 priv struct PlanType {
   kind : NumberType
   pattern : String
-  national : Array[Int]
-  local_only : Array[Int]
+  national : Array[Int32]
+  local_only : Array[Int32]
   /// The compiled rule, filled in the first time the rule is used. A pattern
   /// costs microseconds to compile, and a validation walks several of them, so
   /// compiling once per rule (rather than once per call) is the difference
@@ -58,7 +58,14 @@ fn plan_format(
   intl_format : String,
   prefix_rule : String,
 ) -> PhoneFormat {
-  { pattern, leading, format, intl_format, prefix_rule, leading_rule: @ref.Ref(None) }
+  {
+    pattern,
+    leading,
+    format,
+    intl_format,
+    prefix_rule,
+    leading_rule: @ref.Ref(None),
+  }
 }
 
 ///|
@@ -72,18 +79,17 @@ fn plan_format(
 priv struct Region {
   code : String
   name : String
-  calling_code : Int
+  calling_code : Int32
   idd : String
   national_prefix : String
   /// The published pattern that recognises a trunk prefix while parsing; empty
   /// when the plan only publishes the plain prefix.
   prefix_parsing : String
+  prefix_transform : String
   /// The territory's leading-digit pattern, or empty when it publishes none.
   leading_digits : String
   /// The compiled leading-digit pattern, memoised like the type rules.
   leading_rule : @ref.Ref[CompiledPattern?]
-  /// The compiled trunk-prefix pattern, memoised like the type rules.
-  prefix_rule : @ref.Ref[CompiledPattern?]
   primary : Bool
   general : String
   general_rule : @ref.Ref[CompiledPattern?]
@@ -97,10 +103,10 @@ priv struct Region {
 fn plan_type(
   kind : NumberType,
   pattern : String,
-  national : Array[Int],
-  local_only : Array[Int],
+  national : Array[Int32],
+  local_only : Array[Int32],
 ) -> PlanType {
-  { kind, pattern, national, local_only, cached: @ref.Ref(None) }
+  { kind, pattern, national, local_only, cached: @ref.Ref(None), }
 }
 
 ///|
@@ -124,19 +130,6 @@ fn region_leading_matches(r : Region, national_number : String) -> Bool {
     return true
   }
   run_pattern_prefix(compiled, national_number)
-}
-
-///|
-/// The compiled trunk-prefix pattern of a region, memoised in the row.
-fn region_prefix_compiled(r : Region) -> CompiledPattern {
-  match r.prefix_rule.val {
-    Some(c) => c
-    None => {
-      let c = compile_pattern(r.prefix_parsing)
-      r.prefix_rule.val = Some(c)
-      c
-    }
-  }
 }
 
 ///|
@@ -173,10 +166,11 @@ fn type_rule_matches(t : PlanType, text : String) -> Bool {
 fn plan_row(
   code : String,
   name : String,
-  calling_code : Int,
+  calling_code : Int32,
   idd : String,
   national_prefix : String,
   prefix_parsing : String,
+  prefix_transform : String,
   leading_digits : String,
   primary : Bool,
   general : String,
@@ -190,9 +184,9 @@ fn plan_row(
     idd,
     national_prefix,
     prefix_parsing,
+    prefix_transform,
     leading_digits,
     leading_rule: @ref.Ref(None),
-    prefix_rule: @ref.Ref(None),
     primary,
     general,
     general_rule: @ref.Ref(None),
@@ -226,8 +220,8 @@ fn find_region(code : String) -> Region? {
 ///|
 /// Every national-number length any type in the region uses, sorted, without
 /// repeats.
-fn lengths_of(r : Region) -> Array[Int] {
-  let out : Array[Int] = []
+fn lengths_of(r : Region) -> Array[Int32] {
+  let out : Array[Int32] = []
   for t in r.types {
     for n in t.national {
       push_unique_sorted(out, n)
@@ -238,7 +232,7 @@ fn lengths_of(r : Region) -> Array[Int] {
 
 ///|
 /// Insert `v` into a sorted, unique array, keeping it sorted.
-fn push_unique_sorted(a : Array[Int], v : Int) -> Unit {
+fn push_unique_sorted(a : Array[Int32], v : Int32) -> Unit {
   let mut i = 0
   while i < a.length() && a[i] < v {
     i = i + 1
@@ -251,7 +245,7 @@ fn push_unique_sorted(a : Array[Int], v : Int) -> Unit {
 
 ///|
 /// The number types whose length rule admits an `n`-digit national number.
-fn types_for_length(r : Region, n : Int) -> Array[NumberType] {
+fn types_for_length(r : Region, n : Int32) -> Array[NumberType] {
   let out : Array[NumberType] = []
   for t in r.types {
     if t.national.contains(n) {
@@ -271,7 +265,9 @@ fn type_of_national_number(r : Region, national_number : String) -> NumberType? 
     return None
   }
   for t in r.types {
-    if t.kind != FixedLine && t.kind != Mobile && type_rule_matches(t, national_number) {
+    if t.kind != FixedLine &&
+      t.kind != Mobile &&
+      type_rule_matches(t, national_number) {
       return Some(t.kind)
     }
   }
@@ -371,7 +367,7 @@ pub fn region_name(code : String) -> String? {
 
 ///|
 /// The E.164 calling code of a region, without a leading `+`.
-pub fn calling_code(code : String) -> Int? {
+pub fn calling_code(code : String) -> Int32? {
   match find_region(code) {
     Some(r) => Some(r.calling_code)
     None => None
@@ -393,14 +389,19 @@ pub fn idd_prefix(code : String) -> String? {
 /// none (Italy, Spain, Portugal and others).
 pub fn national_prefix(code : String) -> String? {
   match find_region(code) {
-    Some(r) => if r.national_prefix == "" { None } else { Some(r.national_prefix) }
+    Some(r) =>
+      if r.national_prefix == "" {
+        None
+      } else {
+        Some(r.national_prefix)
+      }
     None => None
   }
 }
 
 ///|
 /// The national-number lengths the region uses, sorted, without repeats.
-pub fn possible_lengths(code : String) -> Array[Int]? {
+pub fn possible_lengths(code : String) -> Array[Int32]? {
   match find_region(code) {
     Some(r) => Some(lengths_of(r))
     None => None
@@ -411,11 +412,11 @@ pub fn possible_lengths(code : String) -> Array[Int]? {
 /// The lengths a region accepts only for a number dialled locally (no trunk
 /// prefix or no area code), sorted and without repeats. Empty when the plan
 /// publishes none — which is most of them.
-pub fn local_only_lengths(code : String) -> Array[Int]? {
+pub fn local_only_lengths(code : String) -> Array[Int32]? {
   match find_region(code) {
     None => None
     Some(r) => {
-      let out : Array[Int] = []
+      let out : Array[Int32] = []
       for t in r.types {
         for n in t.local_only {
           push_unique_sorted(out, n)
@@ -431,7 +432,7 @@ pub fn local_only_lengths(code : String) -> Array[Int]? {
 /// several share the code (the whole NANP is `+1`) the region marked primary
 /// wins; otherwise the first in code order. Use `regions_by_calling_code` for
 /// all of them.
-pub fn region_by_calling_code(cc : Int) -> String? {
+pub fn region_by_calling_code(cc : Int32) -> String? {
   for r in regions {
     if r.calling_code == cc && r.primary {
       return Some(r.code)
@@ -447,7 +448,7 @@ pub fn region_by_calling_code(cc : Int) -> String? {
 
 ///|
 /// Every region that shares a calling code, in table order.
-pub fn regions_by_calling_code(cc : Int) -> Array[String] {
+pub fn regions_by_calling_code(cc : Int32) -> Array[String] {
   let out : Array[String] = []
   for r in regions {
     if r.calling_code == cc {
