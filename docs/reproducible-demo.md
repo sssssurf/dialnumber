@@ -223,16 +223,18 @@ unreadable, because no plan in the table uses calling code 999.
 
 In the `+1` section, `201` is New Jersey (United States), `204` is Manitoba
 (Canada), `787` is Puerto Rico, `876` is Jamaica, `242` is the Bahamas and `868`
-is Trinidad and Tobago. The same calling code and the same length, separated only
-by the published area-code allocation — the engine reads that allocation out of
-the table. `111` is not an assignable NPA and `201-155-…` has an exchange starting
-with 1, so the NANP shape rejects both before any rule is consulted.
+is Trinidad and Tobago. Their valid regions are distinguished by published
+area-code allocations. `111` is not an assignable NPA and `201-155-…` has an
+exchange starting with 1, so the NANP structure helper and validity check reject
+these shapes. Their ten-digit length can still be possible; possibility does
+not imply an allocated area code or a valid number.
 
 The `possible` / `valid` section is the distinction the two levels exist for:
 `+1 555-555-0123` has the right shape, so it is possible, but 555 is not an
 assigned area code, so no rule claims it and it is not valid. `+81 90-1234-567`
-is the same story one digit short: Japan uses nine-digit mobiles, so the number is
-possible, but its rule does not match.
+has a nine-digit national number, a length accepted somewhere in the Japanese
+plan, so it is possible; it does not satisfy the concrete type rules for this
+number. The mobile rule itself expects ten national digits.
 
 The grouping block is the plans' own formatting data at work: parentheses around
 the area code in the NANP, `020` for London, `8 (495)` for Moscow, `(02)` for
@@ -272,14 +274,19 @@ node scripts/check-docs.mjs
 This re-runs the demo, re-runs every command recorded in the README, and reads the
 test count out of a real `moon test`, failing if any of them disagrees with the
 text in this repository.
-## October acceptance checks
+## Current audit checks and historical dates
 
-The 2026-10-27 acceptance check uses moon 0.1.20261023 / moonc 0.10.17.
-The independent corpus is in data/compatibility-corpus.json; see compatibility.md
-for all 15 differing cases (30 fields), the pinned oracle and reproduction commands.
-CI checks gen-metadata, gen-corpus, gen-non-geo, gen-compat and sync-readme, then
-runs the tests and verifies this tour. The current suite contains 748 tests.
+The original October check was recorded on 2026-10-27. This page's current
+literal output and test summary were verified for 0.10.0 on 2026-11-09 with
+moon 0.1.20261023 / moonc 0.10.17; the current suite contains 776 tests.
+The independent JavaScript corpus and its 15 differing cases / 28 fields are
+recorded in compatibility.md. The original Java recording now has 121 scenarios;
+see google-compatibility.md. The old October/0.9.0 results are historical records,
+not a claim that the November repairs existed before the contest deadline.
 
-The full repeatable acceptance command is node scripts/acceptance.mjs. It also
-checks examples/basic and publishable package contents. See 验收材料.md for the
-official criteria and acceptance-status.md for the release/consumer evidence.
+CI checks seven generated artifacts, the complete oracle request/response
+manifests and a seven-mutation integrity probe, then runs the tests and verifies
+this tour. The full repeatable command is node scripts/acceptance.mjs; it also
+checks both public examples, benchmarks and publishable package contents.
+See 完整复核.md for this audit, 验收材料.md for the original criteria, and
+acceptance-status.md for current release/consumer and organizer status.

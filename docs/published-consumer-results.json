@@ -1,6 +1,44 @@
 {
+  "date": "2026-11-09T08:40:26.092Z",
   "module": "sssssurf/dialnumber",
   "version": "0.10.0",
-  "status": "pending final CI and publication verification",
-  "note": "Post-publication record is recorded on GitHub main. Prior release evidence is under docs/history."
+  "source": "Mooncakes registry dependency in a separate module; no local path override",
+  "status": "passed",
+  "resolvedVersion": "0.10.0",
+  "output": [
+    "e164: +442079460958",
+    "valid: true",
+    "network_region: 001",
+    "network_valid: true",
+    "different_country_match: none",
+    "as_you_type: 020 7946 0958",
+    "numeric_context: +4930123456",
+    "explicit_authority: +12015550123"
+  ],
+  "reviewOutput": [
+    "argentina_e164: +5491123456789",
+    "argentina_valid: true",
+    "argentina_national: 011 15-2345-6789",
+    "national_roundtrip: true",
+    "overflow_well_formed: false",
+    "overflow_matches_empty: false",
+    "uppercase_mandatory_rejected: true",
+    "duplicate_parameter_rejected: true",
+    "carrier_idd_e164: +442079460958",
+    "extension_display: +44 20 7946 0958 x0042",
+    "unassigned_length_possible: true",
+    "canada_local_uan_valid: true"
+  ],
+  "installedDependency": {
+    "name": "sssssurf/dialnumber",
+    "version": "0.10.0",
+    "source": {
+      "kind": "registry"
+    },
+    "workspace_member": false
+  },
+  "releaseCodeCommit": "ac2ba1deaa68fcce4a1eb85ee380f71a81b99400",
+  "releaseCodeCi": "https://github.com/sssssurf/dialnumber/actions/runs/42586699497",
+  "releaseCodeCiStatus": "success",
+  "compiledSourceSha256": "7135a5592de2dd979bc0e2ff61a4927151c9b201e6fbc743d640254e09a47e81"
 }
