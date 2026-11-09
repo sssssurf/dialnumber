@@ -50,10 +50,15 @@ PhoneNumber has no isub field, so callers that need it must retain TelUri.
    oracle normalizes some separators to spaces; E.164 digits agree.
 4. Validation tests range rules, not existence, reachability or ownership of a line.
 5. The broad independent corpus uses libphonenumber-js 1.11.20/max. A separate
-   102-scenario recording executes the original Java 9.0.17 runtime directly;
-   All known metadata, local-only scope and formatting differences remain in the
+   121-scenario recording executes the original Java 9.0.17 runtime directly;
+   All known metadata, reference semantic and formatting differences remain in the
    committed corpus, explicitly explained in compatibility.md.
 
 The direct Java check has 13 explicitly recorded intermediate spacing/parenthesis
 differences across four typing traces; completed outputs and all digits agree.
 See google-compatibility.md. Neither suite is a claim of universal parity.
+
+
+Version0.10.0 also preserves complete IDD expressions and extensions, supports
+Canadian seven-digit UAN/local lengths, and separates possibility from validity.
+See 完整复核.md; the former local-only scope waiver is removed.

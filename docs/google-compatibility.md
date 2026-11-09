@@ -6,10 +6,16 @@ This is separate from the broader libphonenumber-js corpus.
 
 Artifact SHA-256: c280b2493de61a070edbc9a83e27023dfd0453cc1295601a48802af907926bcd.
 
-- 90 complete phone scenarios, including all 32 transform plans,
-  real national-input transform cases and all nine non-geographic networks.
+- 109 complete phone scenarios, including all 32 transform plans,
+  real national-input transform cases, international dial-out/carrier prefixes,
+  default-region country codes, extensions, local-only/invalid NANP cases,
+  and all nine non-geographic networks.
   E.164, possibility, validity, region
-  and number type agree; regional national/international formatting agrees.
+  number type and preserved extension are asserted even for invalid cases.
+  Geographic formatting is asserted against the resolved national region.
+  Valid cases also parse back the reference national and RFC3966 forms and
+  the library RFC3966 output, preserving the complete PhoneNumber.
+  The recorded possible-reason column distinguishes local-only possibility.
 - Six number comparisons use PhoneNumberUtil.isNumberMatch directly and agree,
   including different explicit calling codes, unknown code, short suffix,
   missing extension and conflicting extensions.
@@ -55,5 +61,8 @@ node scripts/gen-google-compat.mjs --jar /path/to/libphonenumber-9.0.17.jar
 git diff -- data/google-compatibility-corpus.json google_compatibility_test.mbt
 ```
 
-The generator verifies the jar checksum before running Java. CI consumes the
+The generator verifies the jar checksum before running Java. The adapter hash,
+full request list and one-to-one complete response coverage are checked offline.
+Missing/duplicate responses cannot silently remove an inconvenient scenario.
+CI consumes the
 committed data and generated MoonBit assertions without installing Java.

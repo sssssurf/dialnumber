@@ -4,6 +4,17 @@ All notable changes to this project are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.0] - 2026-11-09
+
+- Preserve complete IDD expressions and extension markers, normalize common
+  international input, and preserve extensions in all display/dialling paths.
+- Separate length possibility from assignment; reject nondigit public NSNs and
+  support local lengths and Canadian UAN identifiers without the old scope waiver.
+- Encode ISDN delimiters, reject RFC field injection and normalize unreserved escapes.
+- Expand original Java verification to121 scenarios; verify both corpus input/output
+  completeness and adapter hashes, with seven damaged-recording rejection checks.
+- Full audit release: 776 tests and independent package-consumer checks.
+
 ## [0.9.0] - 2026-11-07
 
 - Repair formal-review findings after the October submission; this is not an

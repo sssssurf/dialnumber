@@ -139,14 +139,14 @@ input: +1 111-555-0123
 e164: +11115550123
 international: +1 1115550123
 region: unresolved
-possible: no
+possible: yes
 valid: no
 type: (none)
 input: +1 201-155-0123
 e164: +12011550123
 international: +1 2011550123
 region: unresolved
-possible: no
+possible: yes
 valid: no
 type: (none)
 
@@ -260,7 +260,7 @@ node scripts/check-docs.mjs
 ## Test summary
 
 ```text
-Total tests: 748, passed: 748, failed: 0.
+Total tests: 776, passed: 776, failed: 0.
 ```
 
 ## Verifying the documentation itself

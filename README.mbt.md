@@ -1,5 +1,8 @@
 # dialnumber
 
+Current audit release: **0.10.0**, 2026-11-09. See [full audit findings](docs/完整复核.md) for newly reproduced defects, fixes and validation coverage. Formal acceptance has not been granted.
+
+
 Version 0.9.0 repairs the formal acceptance findings received after the October
 submission. The organizer rejected 0.8.1; passing local checks did not establish
 complete national-prefix correctness. The dated correction and reproducible
@@ -75,7 +78,7 @@ For a small public-API example, run moon run --target js examples/basic.
 - [Response to the initial review](docs/初审补充说明.md).
 
 The original Google Java libphonenumber 9.0.17 is also executed directly for
-102 scenarios (90 phone workflows, six comparisons, six typing traces). See
+121 scenarios (109 phone workflows, six comparisons, six typing traces). See
 [the direct Java comparison](docs/google-compatibility.md), including all
 13 intermediate spacing/parenthesis differences.
 
@@ -87,12 +90,12 @@ assigned".
 
 | Level | Question | Answer comes from |
 | --- | --- | --- |
-| `is_possible` | known calling code, length the plan uses? | published lengths (and the NANP's shape rules for `+1`) |
+| `is_possible` | known calling code, length the plan uses? | published national and local-only lengths |
 | `is_valid` | does the number match a published rule? | the plan's per-type patterns, interpreted by the engine |
 | `number_type` | which rule matched? | the same walk, in libphonenumber's precedence order |
 
 For `+1` the structural rule runs first: ten digits, area code and exchange
-starting 2–9, no N11 area code. A number can therefore be *possible* and not
+starting 2–9, no N11 area code. These structural checks belong to validity; possibility checks length only. A number can be *possible* and not
 *valid* — `+1 555-555-0123` has the right shape, but 555 is not an assigned area
 code, so no territory's allocation claims it.
 
@@ -143,7 +146,7 @@ National parsing executes the metadata's capture-based prefix transforms in all
 32 plans that publish them. Argentina's `011 15-2345-6789` becomes
 `+5491123456789`; national formatting reinserts `0` and `15` at the correct
 capture. Every fixed/mobile example, including these 32 plans, has a national
-round-trip assertion. An additional 1,872-case JS-regex oracle checks prefix
+round-trip assertion. An additional 1,874-case JS-regex oracle checks prefix
 captures, and original Google Java recordings verify complete phone flows.
 
 ## The rule engine
@@ -366,7 +369,7 @@ Parsing and validation:
 | `parse(input, region)` | read any written form into a `PhoneNumber?` |
 | `parse_e164(input)` | read only a `+`-prefixed number |
 | `parse_national(input, region)` | read a number as dialled in a region |
-| `is_possible(pn)` | known code and a length the plan uses, plus NANP shape for `+1` |
+| `is_possible(pn)` | known code and a national or local-only length the plan uses |
 | `is_possible_in_region(pn, region)` | the same, against one named region |
 | `is_possible_number(input, region)` | parse then check, in one call |
 | `is_valid(pn)` | the national number matches a published rule |
@@ -456,7 +459,7 @@ regression shows up as a number, not as an opinion.
 
 ## Tests
 
-748 tests cover the public API, the pattern engine, the formatting rules, the
+776 tests cover the public API, the pattern engine, the formatting rules, the
 generated table, the `tel:` grammar, the invariants of random input, and
 robustness against malformed input. The bulk of them are generated from the same
 data the library ships, so a data refresh grows the suite with it:

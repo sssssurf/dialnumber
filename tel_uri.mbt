@@ -127,6 +127,10 @@ fn is_domain_name(s : String) -> Bool {
 /// Canonicalise a global number (which starts with `+`): digits and visual
 /// separators, with at least one digit. Returns `+` followed by the digits.
 fn canonical_global_number(s : String) -> String? {
+  let s = match tel_unescape_unreserved(s) {
+    None => return None
+    Some(v) => v
+  }
   let cs = chars_of(s)
   let buf = StringBuilder()
   let mut any = false
@@ -152,6 +156,10 @@ fn canonical_global_number(s : String) -> String? {
 /// Canonicalise a local number: digits, `A`–`F` (uppercased), `*`, `#` and
 /// visual separators, with at least one of the former. Separators are dropped.
 fn canonical_local_number(s : String) -> String? {
+  let s = match tel_unescape_unreserved(s) {
+    None => return None
+    Some(v) => v
+  }
   let buf = StringBuilder()
   let mut any = false
   for c in s {
@@ -204,6 +212,10 @@ fn canonical_extension(s : String) -> String? {
 /// Canonicalise a phone-context descriptor: either `+` and at least one digit
 /// (visual separators allowed and dropped), or a domain name in lower case.
 fn canonical_phone_context(value : String) -> String? {
+  let value = match tel_unescape_unreserved(value) {
+    None => return None
+    Some(v) => v
+  }
   if starts_with(value, "+") {
     let cs = chars_of(value)
     let buf = StringBuilder()
@@ -350,6 +362,18 @@ fn canonical_isub(s : String) -> String? {
       buf.write_char(upper_ascii(cs[i + 1]))
       buf.write_char(upper_ascii(cs[i + 2]))
       i = i + 3
+    } else if c == ';' || c == '=' || c == '?' || c == '+' {
+      // Parameter delimiters in a public isub value must remain value bytes,
+      // not become new URI components when serialized (RFC 3966 section 3).
+      buf.write_string(
+        match c {
+          ';' => "%3B"
+          '=' => "%3D"
+          '?' => "%3F"
+          _ => "%2B"
+        },
+      )
+      i = i + 1
     } else if is_isub_char(c) {
       buf.write_char(c)
       i = i + 1

@@ -1,6 +1,6 @@
 # Acceptance status
 
-Updated: 2026-11-07. Current repair version: 0.9.0.
+Updated: 2026-11-09. Current full audit release: 0.10.0.
 
 - Application review: passed, as confirmed by the participant's organizer email.
 - Formal acceptance of the October 0.8.1 submission: **rejected**. The organizer
@@ -8,6 +8,7 @@ Updated: 2026-11-07. Current repair version: 0.9.0.
   repeat-count overflow and RFC3966 compatibility defects.
 - 0.9.0 repairs are after that submission and are dated honestly. They do not
   establish retrospective October completion or renewed organizer approval.
+- Full audit findings and corrected coverage: 完整复核.md.
 - Current engineering evidence is recorded in acceptance-results.json; the
   public review regression example is examples/review.
 - Publication and isolated consumer evidence: published-consumer-results.json.

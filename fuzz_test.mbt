@@ -31,7 +31,7 @@ fn fuzz_digits(state : Int, n : Int) -> (String, Int) {
 }
 
 ///|
-test "property: every E.164 rendering parses back to itself" {
+test "property: international normalization is valid-improving and idempotent" {
   let codes = @dialnumber.region_codes()
   let mut s = 7919
   let mut i = 0
@@ -47,7 +47,15 @@ test "property: every E.164 rendering parses back to itself" {
     let (digits, next) = fuzz_digits(s, n)
     s = next
     let pn = @dialnumber.PhoneNumber::new(cc, digits)
-    assert_eq(@dialnumber.parse(@dialnumber.format_e164(pn), ""), Some(pn))
+    let parsed = @dialnumber.parse(@dialnumber.format_e164(pn), "").unwrap()
+    if parsed != pn {
+      // A structural value may contain a redundant domestic trunk prefix.
+      // Normalization is allowed only if it turns invalid input into valid NSN.
+      assert_false(@dialnumber.is_valid(pn))
+      assert_true(@dialnumber.is_valid(parsed))
+      assert_eq(parsed.country_code, pn.country_code)
+    }
+    assert_eq(@dialnumber.parse(@dialnumber.format_e164(parsed), ""), Some(parsed))
     i = i + 1
   }
 }

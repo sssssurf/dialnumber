@@ -304,7 +304,7 @@ pub fn format_e164(pn : PhoneNumber) -> String {
 /// The international rendering, grouped by the plan that owns the number:
 /// `+44 20 7946 0958`. Falls back to the ungrouped form when the plan publishes
 /// no rule for the number's shape.
-pub fn format_international(pn : PhoneNumber) -> String {
+fn format_international_base(pn : PhoneNumber) -> String {
   let base = "+" + pn.country_code.to_string() + " "
   match region_of_number(pn) {
     None => base + pn.national_number
@@ -327,7 +327,7 @@ pub fn format_international(pn : PhoneNumber) -> String {
 /// unknown or uses a different calling code than the number. A plan that
 /// publishes no rule for the shape falls back to trunk prefix plus ungrouped
 /// number.
-pub fn format_national(pn : PhoneNumber, region : String) -> String? {
+fn format_national_base(pn : PhoneNumber, region : String) -> String? {
   match find_region(region) {
     None => None
     Some(r) =>
@@ -336,9 +336,49 @@ pub fn format_national(pn : PhoneNumber, region : String) -> String? {
       } else {
         match render_with_formats(r, pn.national_number, false) {
           Some(v) => Some(v)
-          None => Some(r.national_prefix + pn.national_number)
+          None => Some(pn.national_number)
         }
       }
+  }
+}
+
+///|
+fn extension_prefix_for(pn : PhoneNumber) -> String {
+  match region_of_number(pn) {
+    Some(code) =>
+      match find_region(code) {
+        Some(r) => r.extension_prefix
+        None => " ext. "
+      }
+    None => " ext. "
+  }
+}
+
+///|
+/// Grouped international representation, retaining a declared extension with
+/// the destination plan's published preferred extension marker.
+pub fn format_international(pn : PhoneNumber) -> String {
+  let base = format_international_base(pn)
+  if pn.extension == "" {
+    base
+  } else {
+    base + extension_prefix_for(pn) + pn.extension
+  }
+}
+
+///|
+/// Domestic representation, retaining the extension. A number with no matching
+/// format is left as its NSN; formatting must not fabricate a trunk prefix.
+pub fn format_national(pn : PhoneNumber, region : String) -> String? {
+  match format_national_base(pn, region) {
+    None => None
+    Some(base) => {
+      let prefix = match find_region(region) {
+        Some(r) => r.extension_prefix
+        None => " ext. "
+      }
+      Some(if pn.extension == "" { base } else { base + prefix + pn.extension })
+    }
   }
 }
 
@@ -374,9 +414,26 @@ pub fn format_dialling(pn : PhoneNumber, from_region : String) -> String? {
       if from.calling_code == pn.country_code {
         format_national(pn, from_region)
       } else if is_all_digits(from.idd) {
-        Some(from.idd + " " + pn.country_code.to_string() + pn.national_number)
+        Some(
+          from.idd +
+          " " +
+          pn.country_code.to_string() +
+          pn.national_number +
+          (if pn.extension == "" {
+            ""
+          } else {
+            extension_prefix_for(pn) + pn.extension
+          }),
+        )
       } else {
-        Some(format_e164(pn))
+        Some(
+          format_e164(pn) +
+          (if pn.extension == "" {
+            ""
+          } else {
+            extension_prefix_for(pn) + pn.extension
+          }),
+        )
       }
   }
 }
@@ -385,10 +442,19 @@ pub fn format_dialling(pn : PhoneNumber, from_region : String) -> String? {
 /// The RFC 3966 `tel:` URI. The extension, when present, becomes `;ext=`. The
 /// subscriber is the ungrouped E.164 number, as the grammar expects.
 pub fn format_rfc3966(pn : PhoneNumber) -> String {
-  let base = "tel:" + format_e164(pn)
-  if pn.extension == "" {
-    base
-  } else {
-    base + ";ext=" + pn.extension
+  if pn.country_code <= 0 || !is_all_digits(pn.national_number) {
+    return "tel:invalid"
+  }
+  match
+    to_tel_uri_full({
+      global_number: format_e164(pn),
+      local_number: "",
+      phone_context: "",
+      extension: pn.extension,
+      isub: "",
+      parameters: [],
+    }) {
+    Some(uri) => uri
+    None => "tel:invalid"
   }
 }

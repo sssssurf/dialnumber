@@ -24,7 +24,9 @@ class ReferenceOracle {
             util.format(p, PhoneNumberUtil.PhoneNumberFormat.E164),
             region == null ? "" : region, type.equals("unknown") ? "" : type,
             util.format(p, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL),
-            util.format(p, PhoneNumberUtil.PhoneNumberFormat.NATIONAL)));
+            util.format(p, PhoneNumberUtil.PhoneNumberFormat.NATIONAL),
+            p.getExtension(), util.format(p, PhoneNumberUtil.PhoneNumberFormat.RFC3966),
+            util.isPossibleNumberWithReason(p).name()));
           break;
         }
         case "typing": {

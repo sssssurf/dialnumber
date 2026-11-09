@@ -54,6 +54,7 @@ try {
     }
   }
   run('Documented CLI output',process.execPath,['scripts/check-docs.mjs']);
+  run('Oracle completeness rejects damaged recordings',process.execPath,['scripts/check-oracle-integrity.mjs']);
   const example = run('Public API example','moon',['run','--target','js','examples/basic']);
   const expected = fs.readFileSync(path.join(root,'examples/basic/expected.txt'),'utf8').trim();
   if (example.trim() !== expected) throw new Error('Public API example output changed');

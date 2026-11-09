@@ -1,0 +1,313 @@
+{
+  "schema": 1,
+  "date": "2026-11-07T03:16:15.285Z",
+  "platform": "win32",
+  "status": "passed",
+  "targets": [
+    "js",
+    "wasm",
+    "wasm-gc"
+  ],
+  "checks": [
+    {
+      "label": "Toolchain",
+      "command": [
+        "moon",
+        "version",
+        "--all"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 78
+    },
+    {
+      "label": "Generated artifact: gen-metadata",
+      "command": [
+        "node",
+        "scripts/gen-metadata.mjs",
+        "--check"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 95
+    },
+    {
+      "label": "Generated artifact: gen-corpus",
+      "command": [
+        "node",
+        "scripts/gen-corpus.mjs",
+        "--check"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 89
+    },
+    {
+      "label": "Generated artifact: gen-non-geo",
+      "command": [
+        "node",
+        "scripts/gen-non-geo.mjs",
+        "--check"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 93
+    },
+    {
+      "label": "Generated artifact: gen-compat",
+      "command": [
+        "node",
+        "scripts/gen-compat.mjs",
+        "--check"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 751
+    },
+    {
+      "label": "Generated artifact: gen-google-compat",
+      "command": [
+        "node",
+        "scripts/gen-google-compat.mjs",
+        "--check"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 114
+    },
+    {
+      "label": "Generated artifact: gen-prefix-corpus",
+      "command": [
+        "node",
+        "scripts/gen-prefix-corpus.mjs",
+        "--check"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 156
+    },
+    {
+      "label": "Generated artifact: sync-readme",
+      "command": [
+        "node",
+        "scripts/sync-readme.mjs",
+        "--check"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 46
+    },
+    {
+      "label": "Check js",
+      "command": [
+        "moon",
+        "check",
+        "--target",
+        "js"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 837
+    },
+    {
+      "label": "Build js",
+      "command": [
+        "moon",
+        "build",
+        "--target",
+        "js"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 405
+    },
+    {
+      "label": "Tests js",
+      "command": [
+        "moon",
+        "test",
+        "--target",
+        "js"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 2214,
+      "tests": {
+        "total": 748,
+        "passed": 748,
+        "failed": 0
+      }
+    },
+    {
+      "label": "Check wasm",
+      "command": [
+        "moon",
+        "check",
+        "--target",
+        "wasm"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 837
+    },
+    {
+      "label": "Build wasm",
+      "command": [
+        "moon",
+        "build",
+        "--target",
+        "wasm"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 434
+    },
+    {
+      "label": "Tests wasm",
+      "command": [
+        "moon",
+        "test",
+        "--target",
+        "wasm"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 3290,
+      "tests": {
+        "total": 748,
+        "passed": 748,
+        "failed": 0
+      }
+    },
+    {
+      "label": "Check wasm-gc",
+      "command": [
+        "moon",
+        "check",
+        "--target",
+        "wasm-gc"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 821
+    },
+    {
+      "label": "Build wasm-gc",
+      "command": [
+        "moon",
+        "build",
+        "--target",
+        "wasm-gc"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 407
+    },
+    {
+      "label": "Tests wasm-gc",
+      "command": [
+        "moon",
+        "test",
+        "--target",
+        "wasm-gc"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 2715,
+      "tests": {
+        "total": 748,
+        "passed": 748,
+        "failed": 0
+      }
+    },
+    {
+      "label": "Documented CLI output",
+      "command": [
+        "node",
+        "scripts/check-docs.mjs"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 5126
+    },
+    {
+      "label": "Public API example",
+      "command": [
+        "moon",
+        "run",
+        "--target",
+        "js",
+        "examples/basic"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 165
+    },
+    {
+      "label": "Formal review regression example",
+      "command": [
+        "moon",
+        "run",
+        "--target",
+        "js",
+        "examples/review"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 162
+    },
+    {
+      "label": "Benchmarks",
+      "command": [
+        "moon",
+        "bench",
+        "benchmarks"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 15403,
+      "tests": {
+        "total": 12,
+        "passed": 12,
+        "failed": 0
+      }
+    },
+    {
+      "label": "Publishable module",
+      "command": [
+        "moon",
+        "package",
+        "--list"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 337
+    }
+  ],
+  "compiledSourceSha256": "6ceebc28f601621f65ddf1e2cb9a1816b62a04a3a627e5b8df2c6ec332145813",
+  "supplementalNative": {
+    "platform": "WSL Ubuntu 24.04/GCC",
+    "toolchain": "moon 0.1.20261023; moonc 0.10.17+d971670cd",
+    "status": "passed",
+    "check": "passed",
+    "build": "passed",
+    "tests": {
+      "total": 748,
+      "passed": 748,
+      "failed": 0
+    },
+    "commands": [
+      "moon check --target native",
+      "moon build --target native",
+      "moon test --target native"
+    ]
+  },
+  "formalAcceptance": {
+    "submittedVersion": "0.8.1",
+    "organizerDecision": "rejected",
+    "repairVersion": "0.9.0",
+    "repairDate": "2026-11-07",
+    "resubmission": "not submitted",
+    "organizerApproval": false
+  }
+}

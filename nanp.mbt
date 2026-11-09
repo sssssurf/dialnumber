@@ -15,7 +15,7 @@
 
 ///|
 /// The number of digits in a NANP national number.
-let nanp_length : Int = 10
+let nanp_length : Int32 = 10
 
 ///|
 /// The digits of the number, or None when it is not exactly ten digits.
@@ -92,7 +92,20 @@ pub fn nanp_region_codes() -> Array[String] {
 /// when the number is structurally valid but no territory's allocation claims it
 /// — possible, but not assigned.
 pub fn nanp_region_of(national_number : String) -> String? {
+  if !is_all_digits(national_number) {
+    return None
+  }
   if !nanp_possible(national_number) {
+    // Published service identifiers need not have geographic NPA-NXX shape.
+    for r in regions {
+      if r.calling_code != 1 {
+        continue
+      }
+      match type_of_national_number(r, national_number) {
+        Some(FixedLine) | Some(Mobile) | Some(FixedLineOrMobile) | None => ()
+        Some(_) => return Some(r.code)
+      }
+    }
     return None
   }
   let mut fallback : String? = None

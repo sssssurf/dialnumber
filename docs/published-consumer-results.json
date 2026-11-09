@@ -1,28 +1,6 @@
 {
-  "date": "2026-11-07T03:19:32.372Z",
   "module": "sssssurf/dialnumber",
-  "version": "0.9.0",
-  "source": "Mooncakes registry dependency in a separate module; no local path override",
-  "status": "passed",
-  "resolvedVersion": "0.9.0",
-  "output": [
-    "e164: +442079460958",
-    "valid: true",
-    "network_region: 001",
-    "network_valid: true",
-    "different_country_match: none",
-    "as_you_type: 020 7946 0958",
-    "numeric_context: +4930123456",
-    "explicit_authority: +12015550123"
-  ],
-  "reviewOutput": [
-    "argentina_e164: +5491123456789",
-    "argentina_valid: true",
-    "argentina_national: 011 15-2345-6789",
-    "national_roundtrip: true",
-    "overflow_well_formed: false",
-    "overflow_matches_empty: false",
-    "uppercase_mandatory_rejected: true",
-    "duplicate_parameter_rejected: true"
-  ]
+  "version": "0.10.0",
+  "status": "pending final CI and publication verification",
+  "note": "Post-publication record is recorded on GitHub main. Prior release evidence is under docs/history."
 }

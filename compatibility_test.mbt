@@ -26,6 +26,11 @@ test "end-to-end oracle: AC" {
           @dialnumber.format_e164(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AC:f/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AC" {
         differences.push(
           "AC:f/region expected=AC actual=" +
@@ -62,6 +67,11 @@ test "end-to-end oracle: AC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AC:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+24740123", "") {
@@ -83,6 +93,11 @@ test "end-to-end oracle: AC" {
         differences.push(
           "AC:m/e164 expected=+24740123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AC:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AC" {
@@ -121,6 +136,11 @@ test "end-to-end oracle: AC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AC:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+247542011", "") {
@@ -142,6 +162,11 @@ test "end-to-end oracle: AC" {
         differences.push(
           "AC:u/e164 expected=+247542011 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AC:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AC" {
@@ -180,6 +205,11 @@ test "end-to-end oracle: AC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AC:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -210,6 +240,11 @@ test "end-to-end oracle: AD" {
         differences.push(
           "AD:f/e164 expected=+376712345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AD:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AD" {
@@ -248,6 +283,11 @@ test "end-to-end oracle: AD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AD:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+376312345", "") {
@@ -269,6 +309,11 @@ test "end-to-end oracle: AD" {
         differences.push(
           "AD:m/e164 expected=+376312345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AD:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AD" {
@@ -307,6 +352,11 @@ test "end-to-end oracle: AD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AD:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37618001234", "") {
@@ -328,6 +378,11 @@ test "end-to-end oracle: AD" {
         differences.push(
           "AD:t/e164 expected=+37618001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AD:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AD" {
@@ -366,6 +421,11 @@ test "end-to-end oracle: AD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AD:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+376912345", "") {
@@ -387,6 +447,11 @@ test "end-to-end oracle: AD" {
         differences.push(
           "AD:p/e164 expected=+376912345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AD:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AD" {
@@ -425,6 +490,11 @@ test "end-to-end oracle: AD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AD:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -455,6 +525,11 @@ test "end-to-end oracle: AE" {
         differences.push(
           "AE:f/e164 expected=+97122345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AE:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AE" {
@@ -493,6 +568,11 @@ test "end-to-end oracle: AE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AE:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+971501234567", "") {
@@ -514,6 +594,11 @@ test "end-to-end oracle: AE" {
         differences.push(
           "AE:m/e164 expected=+971501234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AE:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AE" {
@@ -552,6 +637,11 @@ test "end-to-end oracle: AE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AE:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+971800123456", "") {
@@ -573,6 +663,11 @@ test "end-to-end oracle: AE" {
         differences.push(
           "AE:t/e164 expected=+971800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AE:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AE" {
@@ -611,6 +706,11 @@ test "end-to-end oracle: AE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AE:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+971900234567", "") {
@@ -632,6 +732,11 @@ test "end-to-end oracle: AE" {
         differences.push(
           "AE:p/e164 expected=+971900234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AE:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AE" {
@@ -670,6 +775,11 @@ test "end-to-end oracle: AE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AE:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+971700012345", "") {
@@ -691,6 +801,11 @@ test "end-to-end oracle: AE" {
         differences.push(
           "AE:s/e164 expected=+971700012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AE:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AE" {
@@ -729,6 +844,11 @@ test "end-to-end oracle: AE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AE:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+971600212345", "") {
@@ -750,6 +870,11 @@ test "end-to-end oracle: AE" {
         differences.push(
           "AE:u/e164 expected=+971600212345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AE:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AE" {
@@ -788,6 +913,11 @@ test "end-to-end oracle: AE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AE:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -818,6 +948,11 @@ test "end-to-end oracle: AF" {
         differences.push(
           "AF:f/e164 expected=+93234567890 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AF:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AF" {
@@ -856,6 +991,11 @@ test "end-to-end oracle: AF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AF:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+93701234567", "") {
@@ -877,6 +1017,11 @@ test "end-to-end oracle: AF" {
         differences.push(
           "AF:m/e164 expected=+93701234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AF:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AF" {
@@ -915,6 +1060,11 @@ test "end-to-end oracle: AF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AF:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -945,6 +1095,11 @@ test "end-to-end oracle: AG" {
         differences.push(
           "AG:f/e164 expected=+12684601234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AG:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AG" {
@@ -983,6 +1138,11 @@ test "end-to-end oracle: AG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AG:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+12684641234", "") {
@@ -1004,6 +1164,11 @@ test "end-to-end oracle: AG" {
         differences.push(
           "AG:m/e164 expected=+12684641234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AG:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AG" {
@@ -1042,6 +1207,11 @@ test "end-to-end oracle: AG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AG:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002123456", "") {
@@ -1063,6 +1233,11 @@ test "end-to-end oracle: AG" {
         differences.push(
           "AG:t/e164 expected=+18002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AG:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -1101,6 +1276,11 @@ test "end-to-end oracle: AG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AG:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002123456", "") {
@@ -1122,6 +1302,11 @@ test "end-to-end oracle: AG" {
         differences.push(
           "AG:p/e164 expected=+19002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AG:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -1160,6 +1345,11 @@ test "end-to-end oracle: AG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AG:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+12684801234", "") {
@@ -1181,6 +1371,11 @@ test "end-to-end oracle: AG" {
         differences.push(
           "AG:v/e164 expected=+12684801234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AG:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AG" {
@@ -1219,6 +1414,11 @@ test "end-to-end oracle: AG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AG:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -1240,6 +1440,11 @@ test "end-to-end oracle: AG" {
         differences.push(
           "AG:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AG:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -1278,6 +1483,11 @@ test "end-to-end oracle: AG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AG:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+12684061234", "") {
@@ -1299,6 +1509,11 @@ test "end-to-end oracle: AG" {
         differences.push(
           "AG:g/e164 expected=+12684061234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AG:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AG" {
@@ -1337,6 +1552,11 @@ test "end-to-end oracle: AG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AG:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -1367,6 +1587,11 @@ test "end-to-end oracle: AI" {
         differences.push(
           "AI:f/e164 expected=+12644612345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AI:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AI" {
@@ -1405,6 +1630,11 @@ test "end-to-end oracle: AI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AI:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+12642351234", "") {
@@ -1426,6 +1656,11 @@ test "end-to-end oracle: AI" {
         differences.push(
           "AI:m/e164 expected=+12642351234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AI:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AI" {
@@ -1464,6 +1699,11 @@ test "end-to-end oracle: AI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AI:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002123456", "") {
@@ -1485,6 +1725,11 @@ test "end-to-end oracle: AI" {
         differences.push(
           "AI:t/e164 expected=+18002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AI:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -1523,6 +1768,11 @@ test "end-to-end oracle: AI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AI:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002123456", "") {
@@ -1544,6 +1794,11 @@ test "end-to-end oracle: AI" {
         differences.push(
           "AI:p/e164 expected=+19002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AI:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -1582,6 +1837,11 @@ test "end-to-end oracle: AI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AI:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -1603,6 +1863,11 @@ test "end-to-end oracle: AI" {
         differences.push(
           "AI:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AI:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -1641,6 +1906,11 @@ test "end-to-end oracle: AI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AI:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+12647241234", "") {
@@ -1662,6 +1932,11 @@ test "end-to-end oracle: AI" {
         differences.push(
           "AI:g/e164 expected=+12647241234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AI:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AI" {
@@ -1700,6 +1975,11 @@ test "end-to-end oracle: AI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AI:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -1730,6 +2010,11 @@ test "end-to-end oracle: AL" {
         differences.push(
           "AL:f/e164 expected=+35522345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AL:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AL" {
@@ -1768,6 +2053,11 @@ test "end-to-end oracle: AL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AL:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+355672123456", "") {
@@ -1789,6 +2079,11 @@ test "end-to-end oracle: AL" {
         differences.push(
           "AL:m/e164 expected=+355672123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AL:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AL" {
@@ -1827,6 +2122,11 @@ test "end-to-end oracle: AL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AL:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3558001234", "") {
@@ -1848,6 +2148,11 @@ test "end-to-end oracle: AL" {
         differences.push(
           "AL:t/e164 expected=+3558001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AL:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AL" {
@@ -1886,6 +2191,11 @@ test "end-to-end oracle: AL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AL:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+355900123", "") {
@@ -1907,6 +2217,11 @@ test "end-to-end oracle: AL" {
         differences.push(
           "AL:p/e164 expected=+355900123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AL:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AL" {
@@ -1945,6 +2260,11 @@ test "end-to-end oracle: AL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AL:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+355808123", "") {
@@ -1966,6 +2286,11 @@ test "end-to-end oracle: AL" {
         differences.push(
           "AL:s/e164 expected=+355808123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AL:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AL" {
@@ -2004,6 +2329,11 @@ test "end-to-end oracle: AL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AL:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35570021234", "") {
@@ -2025,6 +2355,11 @@ test "end-to-end oracle: AL" {
         differences.push(
           "AL:r/e164 expected=+35570021234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AL:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AL" {
@@ -2063,6 +2398,11 @@ test "end-to-end oracle: AL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AL:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -2093,6 +2433,11 @@ test "end-to-end oracle: AM" {
         differences.push(
           "AM:f/e164 expected=+37410123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AM:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AM" {
@@ -2131,6 +2476,11 @@ test "end-to-end oracle: AM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AM:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37477123456", "") {
@@ -2152,6 +2502,11 @@ test "end-to-end oracle: AM" {
         differences.push(
           "AM:m/e164 expected=+37477123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AM:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AM" {
@@ -2190,6 +2545,11 @@ test "end-to-end oracle: AM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AM:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37480012345", "") {
@@ -2211,6 +2571,11 @@ test "end-to-end oracle: AM" {
         differences.push(
           "AM:t/e164 expected=+37480012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AM:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AM" {
@@ -2249,6 +2614,11 @@ test "end-to-end oracle: AM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AM:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37490012345", "") {
@@ -2270,6 +2640,11 @@ test "end-to-end oracle: AM" {
         differences.push(
           "AM:p/e164 expected=+37490012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AM:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AM" {
@@ -2308,6 +2683,11 @@ test "end-to-end oracle: AM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AM:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37480112345", "") {
@@ -2329,6 +2709,11 @@ test "end-to-end oracle: AM" {
         differences.push(
           "AM:s/e164 expected=+37480112345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AM:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AM" {
@@ -2367,6 +2752,11 @@ test "end-to-end oracle: AM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AM:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37460271234", "") {
@@ -2388,6 +2778,11 @@ test "end-to-end oracle: AM" {
         differences.push(
           "AM:v/e164 expected=+37460271234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AM:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AM" {
@@ -2426,6 +2821,11 @@ test "end-to-end oracle: AM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AM:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -2456,6 +2856,11 @@ test "end-to-end oracle: AO" {
         differences.push(
           "AO:f/e164 expected=+244222123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AO:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AO" {
@@ -2494,6 +2899,11 @@ test "end-to-end oracle: AO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AO:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+244923123456", "") {
@@ -2515,6 +2925,11 @@ test "end-to-end oracle: AO" {
         differences.push(
           "AO:m/e164 expected=+244923123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AO:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AO" {
@@ -2553,6 +2968,11 @@ test "end-to-end oracle: AO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AO:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -2583,6 +3003,11 @@ test "end-to-end oracle: AR" {
         differences.push(
           "AR:f/e164 expected=+541123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AR:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AR" {
@@ -2621,6 +3046,11 @@ test "end-to-end oracle: AR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AR:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5491123456789", "") {
@@ -2642,6 +3072,11 @@ test "end-to-end oracle: AR" {
         differences.push(
           "AR:m/e164 expected=+5491123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AR:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AR" {
@@ -2680,6 +3115,11 @@ test "end-to-end oracle: AR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AR:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+548001234567", "") {
@@ -2701,6 +3141,11 @@ test "end-to-end oracle: AR" {
         differences.push(
           "AR:t/e164 expected=+548001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AR:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AR" {
@@ -2739,6 +3184,11 @@ test "end-to-end oracle: AR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AR:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+546001234567", "") {
@@ -2760,6 +3210,11 @@ test "end-to-end oracle: AR" {
         differences.push(
           "AR:p/e164 expected=+546001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AR:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AR" {
@@ -2798,6 +3253,11 @@ test "end-to-end oracle: AR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AR:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+548101234567", "") {
@@ -2819,6 +3279,11 @@ test "end-to-end oracle: AR" {
         differences.push(
           "AR:u/e164 expected=+548101234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AR:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AR" {
@@ -2857,6 +3322,11 @@ test "end-to-end oracle: AR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AR:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -2887,6 +3357,11 @@ test "end-to-end oracle: AS" {
         differences.push(
           "AS:f/e164 expected=+16846221234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AS:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AS" {
@@ -2925,6 +3400,11 @@ test "end-to-end oracle: AS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AS:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+16847331234", "") {
@@ -2946,6 +3426,11 @@ test "end-to-end oracle: AS" {
         differences.push(
           "AS:m/e164 expected=+16847331234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AS:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AS" {
@@ -2984,6 +3469,11 @@ test "end-to-end oracle: AS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AS:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002123456", "") {
@@ -3005,6 +3495,11 @@ test "end-to-end oracle: AS" {
         differences.push(
           "AS:t/e164 expected=+18002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AS:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -3043,6 +3538,11 @@ test "end-to-end oracle: AS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AS:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002123456", "") {
@@ -3064,6 +3564,11 @@ test "end-to-end oracle: AS" {
         differences.push(
           "AS:p/e164 expected=+19002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AS:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -3102,6 +3607,11 @@ test "end-to-end oracle: AS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AS:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -3123,6 +3633,11 @@ test "end-to-end oracle: AS" {
         differences.push(
           "AS:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AS:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -3161,6 +3676,11 @@ test "end-to-end oracle: AS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AS:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -3191,6 +3711,11 @@ test "end-to-end oracle: AT" {
         differences.push(
           "AT:f/e164 expected=+431234567890 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AT:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AT" {
@@ -3229,6 +3754,11 @@ test "end-to-end oracle: AT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AT:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+43664123456", "") {
@@ -3250,6 +3780,11 @@ test "end-to-end oracle: AT" {
         differences.push(
           "AT:m/e164 expected=+43664123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AT:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AT" {
@@ -3288,6 +3823,11 @@ test "end-to-end oracle: AT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AT:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+43800123456", "") {
@@ -3309,6 +3849,11 @@ test "end-to-end oracle: AT" {
         differences.push(
           "AT:t/e164 expected=+43800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AT:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AT" {
@@ -3347,6 +3892,11 @@ test "end-to-end oracle: AT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AT:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+43900123456", "") {
@@ -3368,6 +3918,11 @@ test "end-to-end oracle: AT" {
         differences.push(
           "AT:p/e164 expected=+43900123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AT:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AT" {
@@ -3406,6 +3961,11 @@ test "end-to-end oracle: AT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AT:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+43810123456", "") {
@@ -3427,6 +3987,11 @@ test "end-to-end oracle: AT" {
         differences.push(
           "AT:s/e164 expected=+43810123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AT:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AT" {
@@ -3465,6 +4030,11 @@ test "end-to-end oracle: AT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AT:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+43780123456", "") {
@@ -3486,6 +4056,11 @@ test "end-to-end oracle: AT" {
         differences.push(
           "AT:v/e164 expected=+43780123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AT:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AT" {
@@ -3524,6 +4099,11 @@ test "end-to-end oracle: AT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AT:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -3554,6 +4134,11 @@ test "end-to-end oracle: AU" {
         differences.push(
           "AU:f/e164 expected=+61212345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AU:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AU" {
@@ -3592,6 +4177,11 @@ test "end-to-end oracle: AU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AU:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+61412345678", "") {
@@ -3613,6 +4203,11 @@ test "end-to-end oracle: AU" {
         differences.push(
           "AU:m/e164 expected=+61412345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AU:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AU" {
@@ -3651,6 +4246,11 @@ test "end-to-end oracle: AU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AU:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+611800123456", "") {
@@ -3672,6 +4272,11 @@ test "end-to-end oracle: AU" {
         differences.push(
           "AU:t/e164 expected=+611800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AU:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AU" {
@@ -3710,6 +4315,11 @@ test "end-to-end oracle: AU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AU:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+611900123456", "") {
@@ -3731,6 +4341,11 @@ test "end-to-end oracle: AU" {
         differences.push(
           "AU:p/e164 expected=+611900123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AU:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AU" {
@@ -3769,6 +4384,11 @@ test "end-to-end oracle: AU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AU:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+611300123456", "") {
@@ -3790,6 +4410,11 @@ test "end-to-end oracle: AU" {
         differences.push(
           "AU:s/e164 expected=+611300123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AU:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AU" {
@@ -3828,6 +4453,11 @@ test "end-to-end oracle: AU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AU:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+61147101234", "") {
@@ -3849,6 +4479,11 @@ test "end-to-end oracle: AU" {
         differences.push(
           "AU:v/e164 expected=+61147101234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AU:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AU" {
@@ -3887,6 +4522,11 @@ test "end-to-end oracle: AU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AU:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+611631234", "") {
@@ -3908,6 +4548,11 @@ test "end-to-end oracle: AU" {
         differences.push(
           "AU:g/e164 expected=+611631234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AU:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AU" {
@@ -3946,6 +4591,11 @@ test "end-to-end oracle: AU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AU:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -3976,6 +4626,11 @@ test "end-to-end oracle: AW" {
         differences.push(
           "AW:f/e164 expected=+2975212345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AW:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AW" {
@@ -4014,6 +4669,11 @@ test "end-to-end oracle: AW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AW:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2975601234", "") {
@@ -4035,6 +4695,11 @@ test "end-to-end oracle: AW" {
         differences.push(
           "AW:m/e164 expected=+2975601234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AW:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AW" {
@@ -4073,6 +4738,11 @@ test "end-to-end oracle: AW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AW:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2978001234", "") {
@@ -4094,6 +4764,11 @@ test "end-to-end oracle: AW" {
         differences.push(
           "AW:t/e164 expected=+2978001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AW:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AW" {
@@ -4132,6 +4807,11 @@ test "end-to-end oracle: AW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AW:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2979001234", "") {
@@ -4153,6 +4833,11 @@ test "end-to-end oracle: AW" {
         differences.push(
           "AW:p/e164 expected=+2979001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AW:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AW" {
@@ -4191,6 +4876,11 @@ test "end-to-end oracle: AW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AW:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2975011234", "") {
@@ -4212,6 +4902,11 @@ test "end-to-end oracle: AW" {
         differences.push(
           "AW:v/e164 expected=+2975011234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AW:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AW" {
@@ -4250,6 +4945,11 @@ test "end-to-end oracle: AW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AW:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -4280,6 +4980,11 @@ test "end-to-end oracle: AX" {
         differences.push(
           "AX:f/e164 expected=+358181234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AX:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AX" {
@@ -4318,6 +5023,11 @@ test "end-to-end oracle: AX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AX:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+358412345678", "") {
@@ -4339,6 +5049,11 @@ test "end-to-end oracle: AX" {
         differences.push(
           "AX:m/e164 expected=+358412345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AX:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FI" {
@@ -4377,6 +5092,11 @@ test "end-to-end oracle: AX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AX:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+358800123456", "") {
@@ -4398,6 +5118,11 @@ test "end-to-end oracle: AX" {
         differences.push(
           "AX:t/e164 expected=+358800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AX:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FI" {
@@ -4436,6 +5161,11 @@ test "end-to-end oracle: AX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AX:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+358600123456", "") {
@@ -4457,6 +5187,11 @@ test "end-to-end oracle: AX" {
         differences.push(
           "AX:p/e164 expected=+358600123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AX:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FI" {
@@ -4495,6 +5230,11 @@ test "end-to-end oracle: AX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AX:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35810112345", "") {
@@ -4516,6 +5256,11 @@ test "end-to-end oracle: AX" {
         differences.push(
           "AX:u/e164 expected=+35810112345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AX:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FI" {
@@ -4554,6 +5299,11 @@ test "end-to-end oracle: AX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AX:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -4584,6 +5334,11 @@ test "end-to-end oracle: AZ" {
         differences.push(
           "AZ:f/e164 expected=+994123123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AZ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AZ" {
@@ -4622,6 +5377,11 @@ test "end-to-end oracle: AZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AZ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+994401234567", "") {
@@ -4643,6 +5403,11 @@ test "end-to-end oracle: AZ" {
         differences.push(
           "AZ:m/e164 expected=+994401234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AZ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AZ" {
@@ -4681,6 +5446,11 @@ test "end-to-end oracle: AZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AZ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+994881234567", "") {
@@ -4702,6 +5472,11 @@ test "end-to-end oracle: AZ" {
         differences.push(
           "AZ:t/e164 expected=+994881234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AZ:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AZ" {
@@ -4740,6 +5515,11 @@ test "end-to-end oracle: AZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AZ:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+994900200123", "") {
@@ -4761,6 +5541,11 @@ test "end-to-end oracle: AZ" {
         differences.push(
           "AZ:p/e164 expected=+994900200123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "AZ:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AZ" {
@@ -4799,6 +5584,11 @@ test "end-to-end oracle: AZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "AZ:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -4829,6 +5619,11 @@ test "end-to-end oracle: BA" {
         differences.push(
           "BA:f/e164 expected=+38730212345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BA:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BA" {
@@ -4867,6 +5662,11 @@ test "end-to-end oracle: BA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BA:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38761123456", "") {
@@ -4888,6 +5688,11 @@ test "end-to-end oracle: BA" {
         differences.push(
           "BA:m/e164 expected=+38761123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BA:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BA" {
@@ -4926,6 +5731,11 @@ test "end-to-end oracle: BA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BA:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38780123456", "") {
@@ -4947,6 +5757,11 @@ test "end-to-end oracle: BA" {
         differences.push(
           "BA:t/e164 expected=+38780123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BA:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BA" {
@@ -4985,6 +5800,11 @@ test "end-to-end oracle: BA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BA:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38790123456", "") {
@@ -5006,6 +5826,11 @@ test "end-to-end oracle: BA" {
         differences.push(
           "BA:p/e164 expected=+38790123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BA:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BA" {
@@ -5044,6 +5869,11 @@ test "end-to-end oracle: BA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BA:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38782123456", "") {
@@ -5065,6 +5895,11 @@ test "end-to-end oracle: BA" {
         differences.push(
           "BA:s/e164 expected=+38782123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BA:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BA" {
@@ -5103,6 +5938,11 @@ test "end-to-end oracle: BA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BA:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38770341234", "") {
@@ -5124,6 +5964,11 @@ test "end-to-end oracle: BA" {
         differences.push(
           "BA:u/e164 expected=+38770341234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BA:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BA" {
@@ -5162,6 +6007,11 @@ test "end-to-end oracle: BA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BA:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -5192,6 +6042,11 @@ test "end-to-end oracle: BB" {
         differences.push(
           "BB:f/e164 expected=+12464123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BB:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BB" {
@@ -5230,6 +6085,11 @@ test "end-to-end oracle: BB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BB:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+12462501234", "") {
@@ -5251,6 +6111,11 @@ test "end-to-end oracle: BB" {
         differences.push(
           "BB:m/e164 expected=+12462501234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BB:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BB" {
@@ -5289,6 +6154,11 @@ test "end-to-end oracle: BB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BB:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002123456", "") {
@@ -5310,6 +6180,11 @@ test "end-to-end oracle: BB" {
         differences.push(
           "BB:t/e164 expected=+18002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BB:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -5348,6 +6223,11 @@ test "end-to-end oracle: BB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BB:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002123456", "") {
@@ -5369,6 +6249,11 @@ test "end-to-end oracle: BB" {
         differences.push(
           "BB:p/e164 expected=+19002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BB:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -5407,6 +6292,11 @@ test "end-to-end oracle: BB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BB:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+12463101234", "") {
@@ -5428,6 +6318,11 @@ test "end-to-end oracle: BB" {
         differences.push(
           "BB:v/e164 expected=+12463101234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BB:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BB" {
@@ -5466,6 +6361,11 @@ test "end-to-end oracle: BB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BB:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -5487,6 +6387,11 @@ test "end-to-end oracle: BB" {
         differences.push(
           "BB:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BB:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -5525,6 +6430,11 @@ test "end-to-end oracle: BB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BB:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+12464301234", "") {
@@ -5546,6 +6456,11 @@ test "end-to-end oracle: BB" {
         differences.push(
           "BB:u/e164 expected=+12464301234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BB:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BB" {
@@ -5584,6 +6499,11 @@ test "end-to-end oracle: BB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BB:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -5614,6 +6534,11 @@ test "end-to-end oracle: BD" {
         differences.push(
           "BD:f/e164 expected=+88027111234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BD:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BD" {
@@ -5652,6 +6577,11 @@ test "end-to-end oracle: BD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BD:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+8801812345678", "") {
@@ -5673,6 +6603,11 @@ test "end-to-end oracle: BD" {
         differences.push(
           "BD:m/e164 expected=+8801812345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BD:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BD" {
@@ -5711,6 +6646,11 @@ test "end-to-end oracle: BD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BD:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+8808001234567", "") {
@@ -5732,6 +6672,11 @@ test "end-to-end oracle: BD" {
         differences.push(
           "BD:t/e164 expected=+8808001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BD:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BD" {
@@ -5770,6 +6715,11 @@ test "end-to-end oracle: BD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BD:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+8809604123456", "") {
@@ -5791,6 +6741,11 @@ test "end-to-end oracle: BD" {
         differences.push(
           "BD:v/e164 expected=+8809604123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BD:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BD" {
@@ -5829,6 +6784,11 @@ test "end-to-end oracle: BD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BD:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -5859,6 +6819,11 @@ test "end-to-end oracle: BE" {
         differences.push(
           "BE:f/e164 expected=+3212345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BE:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BE" {
@@ -5897,6 +6862,11 @@ test "end-to-end oracle: BE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BE:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+32450001234", "") {
@@ -5918,6 +6888,11 @@ test "end-to-end oracle: BE" {
         differences.push(
           "BE:m/e164 expected=+32450001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BE:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BE" {
@@ -5956,6 +6931,11 @@ test "end-to-end oracle: BE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BE:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3280012345", "") {
@@ -5977,6 +6957,11 @@ test "end-to-end oracle: BE" {
         differences.push(
           "BE:t/e164 expected=+3280012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BE:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BE" {
@@ -6015,6 +7000,11 @@ test "end-to-end oracle: BE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BE:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3290012345", "") {
@@ -6036,6 +7026,11 @@ test "end-to-end oracle: BE" {
         differences.push(
           "BE:p/e164 expected=+3290012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BE:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BE" {
@@ -6074,6 +7069,11 @@ test "end-to-end oracle: BE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BE:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3278791234", "") {
@@ -6095,6 +7095,11 @@ test "end-to-end oracle: BE" {
         differences.push(
           "BE:s/e164 expected=+3278791234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BE:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BE" {
@@ -6133,6 +7138,11 @@ test "end-to-end oracle: BE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BE:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3278102345", "") {
@@ -6154,6 +7164,11 @@ test "end-to-end oracle: BE" {
         differences.push(
           "BE:u/e164 expected=+3278102345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BE:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BE" {
@@ -6192,6 +7207,11 @@ test "end-to-end oracle: BE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BE:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -6222,6 +7242,11 @@ test "end-to-end oracle: BF" {
         differences.push(
           "BF:f/e164 expected=+22620491234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BF:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BF" {
@@ -6260,6 +7285,11 @@ test "end-to-end oracle: BF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BF:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+22670123456", "") {
@@ -6281,6 +7311,11 @@ test "end-to-end oracle: BF" {
         differences.push(
           "BF:m/e164 expected=+22670123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BF:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BF" {
@@ -6319,6 +7354,11 @@ test "end-to-end oracle: BF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BF:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -6349,6 +7389,11 @@ test "end-to-end oracle: BG" {
         differences.push(
           "BG:f/e164 expected=+3592123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BG:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BG" {
@@ -6387,6 +7432,11 @@ test "end-to-end oracle: BG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BG:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35943012345", "") {
@@ -6408,6 +7458,11 @@ test "end-to-end oracle: BG" {
         differences.push(
           "BG:m/e164 expected=+35943012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BG:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BG" {
@@ -6446,6 +7501,11 @@ test "end-to-end oracle: BG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BG:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35980012345", "") {
@@ -6467,6 +7527,11 @@ test "end-to-end oracle: BG" {
         differences.push(
           "BG:t/e164 expected=+35980012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BG:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BG" {
@@ -6505,6 +7570,11 @@ test "end-to-end oracle: BG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BG:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35990123456", "") {
@@ -6526,6 +7596,11 @@ test "end-to-end oracle: BG" {
         differences.push(
           "BG:p/e164 expected=+35990123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BG:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BG" {
@@ -6564,6 +7639,11 @@ test "end-to-end oracle: BG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BG:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35970012345", "") {
@@ -6585,6 +7665,11 @@ test "end-to-end oracle: BG" {
         differences.push(
           "BG:s/e164 expected=+35970012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BG:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BG" {
@@ -6623,6 +7708,11 @@ test "end-to-end oracle: BG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BG:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -6653,6 +7743,11 @@ test "end-to-end oracle: BH" {
         differences.push(
           "BH:f/e164 expected=+97317001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BH:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BH" {
@@ -6691,6 +7786,11 @@ test "end-to-end oracle: BH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BH:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+97336001234", "") {
@@ -6712,6 +7812,11 @@ test "end-to-end oracle: BH" {
         differences.push(
           "BH:m/e164 expected=+97336001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BH:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BH" {
@@ -6750,6 +7855,11 @@ test "end-to-end oracle: BH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BH:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+97380123456", "") {
@@ -6771,6 +7881,11 @@ test "end-to-end oracle: BH" {
         differences.push(
           "BH:t/e164 expected=+97380123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BH:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BH" {
@@ -6809,6 +7924,11 @@ test "end-to-end oracle: BH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BH:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+97390123456", "") {
@@ -6830,6 +7950,11 @@ test "end-to-end oracle: BH" {
         differences.push(
           "BH:p/e164 expected=+97390123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BH:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BH" {
@@ -6868,6 +7993,11 @@ test "end-to-end oracle: BH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BH:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+97384123456", "") {
@@ -6889,6 +8019,11 @@ test "end-to-end oracle: BH" {
         differences.push(
           "BH:s/e164 expected=+97384123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BH:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BH" {
@@ -6927,6 +8062,11 @@ test "end-to-end oracle: BH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BH:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -6957,6 +8097,11 @@ test "end-to-end oracle: BI" {
         differences.push(
           "BI:f/e164 expected=+25722201234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BI:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BI" {
@@ -6995,6 +8140,11 @@ test "end-to-end oracle: BI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BI:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+25779561234", "") {
@@ -7016,6 +8166,11 @@ test "end-to-end oracle: BI" {
         differences.push(
           "BI:m/e164 expected=+25779561234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BI:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BI" {
@@ -7054,6 +8209,11 @@ test "end-to-end oracle: BI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BI:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -7084,6 +8244,11 @@ test "end-to-end oracle: BJ" {
         differences.push(
           "BJ:f/e164 expected=+2290120211234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BJ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BJ" {
@@ -7122,6 +8287,11 @@ test "end-to-end oracle: BJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BJ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2290195123456", "") {
@@ -7143,6 +8313,11 @@ test "end-to-end oracle: BJ" {
         differences.push(
           "BJ:m/e164 expected=+2290195123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BJ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BJ" {
@@ -7181,6 +8356,11 @@ test "end-to-end oracle: BJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BJ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+22985751234", "") {
@@ -7202,6 +8382,11 @@ test "end-to-end oracle: BJ" {
         differences.push(
           "BJ:v/e164 expected=+22985751234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BJ:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BJ" {
@@ -7240,6 +8425,11 @@ test "end-to-end oracle: BJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BJ:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+22981123456", "") {
@@ -7261,6 +8451,11 @@ test "end-to-end oracle: BJ" {
         differences.push(
           "BJ:u/e164 expected=+22981123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BJ:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BJ" {
@@ -7299,6 +8494,11 @@ test "end-to-end oracle: BJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BJ:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -7329,6 +8529,11 @@ test "end-to-end oracle: BL" {
         differences.push(
           "BL:f/e164 expected=+590590271234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BL:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BL" {
@@ -7367,6 +8572,11 @@ test "end-to-end oracle: BL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BL:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+590690001234", "") {
@@ -7388,6 +8598,11 @@ test "end-to-end oracle: BL" {
         differences.push(
           "BL:m/e164 expected=+590690001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BL:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GP" {
@@ -7426,6 +8641,11 @@ test "end-to-end oracle: BL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BL:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+590800012345", "") {
@@ -7447,6 +8667,11 @@ test "end-to-end oracle: BL" {
         differences.push(
           "BL:t/e164 expected=+590800012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BL:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GP" {
@@ -7485,6 +8710,11 @@ test "end-to-end oracle: BL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BL:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+590810123456", "") {
@@ -7506,6 +8736,11 @@ test "end-to-end oracle: BL" {
         differences.push(
           "BL:p/e164 expected=+590810123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BL:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GP" {
@@ -7544,6 +8779,11 @@ test "end-to-end oracle: BL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BL:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+590976012345", "") {
@@ -7565,6 +8805,11 @@ test "end-to-end oracle: BL" {
         differences.push(
           "BL:v/e164 expected=+590976012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BL:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GP" {
@@ -7603,6 +8848,11 @@ test "end-to-end oracle: BL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BL:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -7633,6 +8883,11 @@ test "end-to-end oracle: BM" {
         differences.push(
           "BM:f/e164 expected=+14414123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BM:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BM" {
@@ -7671,6 +8926,11 @@ test "end-to-end oracle: BM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BM:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+14413701234", "") {
@@ -7692,6 +8952,11 @@ test "end-to-end oracle: BM" {
         differences.push(
           "BM:m/e164 expected=+14413701234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BM:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BM" {
@@ -7730,6 +8995,11 @@ test "end-to-end oracle: BM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BM:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002123456", "") {
@@ -7751,6 +9021,11 @@ test "end-to-end oracle: BM" {
         differences.push(
           "BM:t/e164 expected=+18002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BM:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -7789,6 +9064,11 @@ test "end-to-end oracle: BM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BM:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002123456", "") {
@@ -7810,6 +9090,11 @@ test "end-to-end oracle: BM" {
         differences.push(
           "BM:p/e164 expected=+19002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BM:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -7848,6 +9133,11 @@ test "end-to-end oracle: BM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BM:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -7869,6 +9159,11 @@ test "end-to-end oracle: BM" {
         differences.push(
           "BM:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BM:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -7907,6 +9202,11 @@ test "end-to-end oracle: BM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BM:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -7937,6 +9237,11 @@ test "end-to-end oracle: BN" {
         differences.push(
           "BN:f/e164 expected=+6732345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BN:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BN" {
@@ -7975,6 +9280,11 @@ test "end-to-end oracle: BN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BN:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6737123456", "") {
@@ -7996,6 +9306,11 @@ test "end-to-end oracle: BN" {
         differences.push(
           "BN:m/e164 expected=+6737123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BN:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BN" {
@@ -8034,6 +9349,11 @@ test "end-to-end oracle: BN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BN:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6735345678", "") {
@@ -8055,6 +9375,11 @@ test "end-to-end oracle: BN" {
         differences.push(
           "BN:v/e164 expected=+6735345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BN:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BN" {
@@ -8093,6 +9418,11 @@ test "end-to-end oracle: BN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BN:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -8123,6 +9453,11 @@ test "end-to-end oracle: BO" {
         differences.push(
           "BO:f/e164 expected=+59122123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BO:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BO" {
@@ -8161,6 +9496,11 @@ test "end-to-end oracle: BO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BO:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+59171234567", "") {
@@ -8182,6 +9522,11 @@ test "end-to-end oracle: BO" {
         differences.push(
           "BO:m/e164 expected=+59171234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BO:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BO" {
@@ -8220,6 +9565,11 @@ test "end-to-end oracle: BO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BO:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+591800171234", "") {
@@ -8241,6 +9591,11 @@ test "end-to-end oracle: BO" {
         differences.push(
           "BO:t/e164 expected=+591800171234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BO:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BO" {
@@ -8279,6 +9634,11 @@ test "end-to-end oracle: BO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BO:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+59150123456", "") {
@@ -8300,6 +9660,11 @@ test "end-to-end oracle: BO" {
         differences.push(
           "BO:v/e164 expected=+59150123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BO:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BO" {
@@ -8338,6 +9703,11 @@ test "end-to-end oracle: BO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BO:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -8368,6 +9738,11 @@ test "end-to-end oracle: BQ" {
         differences.push(
           "BQ:f/e164 expected=+5997151234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BQ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BQ" {
@@ -8406,6 +9781,11 @@ test "end-to-end oracle: BQ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BQ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5993181234", "") {
@@ -8427,6 +9807,11 @@ test "end-to-end oracle: BQ" {
         differences.push(
           "BQ:m/e164 expected=+5993181234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BQ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BQ" {
@@ -8465,6 +9850,11 @@ test "end-to-end oracle: BQ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BQ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -8495,6 +9885,11 @@ test "end-to-end oracle: BR" {
         differences.push(
           "BR:f/e164 expected=+551123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BR:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BR" {
@@ -8533,6 +9928,11 @@ test "end-to-end oracle: BR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BR:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5511961234567", "") {
@@ -8554,6 +9954,11 @@ test "end-to-end oracle: BR" {
         differences.push(
           "BR:m/e164 expected=+5511961234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BR:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BR" {
@@ -8592,6 +9997,11 @@ test "end-to-end oracle: BR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BR:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+55800123456", "") {
@@ -8613,6 +10023,11 @@ test "end-to-end oracle: BR" {
         differences.push(
           "BR:t/e164 expected=+55800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BR:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BR" {
@@ -8651,6 +10066,11 @@ test "end-to-end oracle: BR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BR:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+55500123456", "") {
@@ -8672,6 +10092,11 @@ test "end-to-end oracle: BR" {
         differences.push(
           "BR:p/e164 expected=+55500123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BR:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BR" {
@@ -8710,6 +10135,11 @@ test "end-to-end oracle: BR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BR:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5540041234", "") {
@@ -8731,6 +10161,11 @@ test "end-to-end oracle: BR" {
         differences.push(
           "BR:s/e164 expected=+5540041234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BR:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BR" {
@@ -8769,6 +10204,11 @@ test "end-to-end oracle: BR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BR:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -8799,6 +10239,11 @@ test "end-to-end oracle: BS" {
         differences.push(
           "BS:f/e164 expected=+12423456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BS:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BS" {
@@ -8837,6 +10282,11 @@ test "end-to-end oracle: BS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BS:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+12423591234", "") {
@@ -8858,6 +10308,11 @@ test "end-to-end oracle: BS" {
         differences.push(
           "BS:m/e164 expected=+12423591234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BS:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BS" {
@@ -8896,6 +10351,11 @@ test "end-to-end oracle: BS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BS:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002123456", "") {
@@ -8917,6 +10377,11 @@ test "end-to-end oracle: BS" {
         differences.push(
           "BS:t/e164 expected=+18002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BS:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -8955,6 +10420,11 @@ test "end-to-end oracle: BS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BS:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002123456", "") {
@@ -8976,6 +10446,11 @@ test "end-to-end oracle: BS" {
         differences.push(
           "BS:p/e164 expected=+19002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BS:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -9014,6 +10489,11 @@ test "end-to-end oracle: BS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BS:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -9035,6 +10515,11 @@ test "end-to-end oracle: BS" {
         differences.push(
           "BS:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BS:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -9073,6 +10558,11 @@ test "end-to-end oracle: BS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BS:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+12422250123", "") {
@@ -9094,6 +10584,11 @@ test "end-to-end oracle: BS" {
         differences.push(
           "BS:u/e164 expected=+12422250123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BS:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BS" {
@@ -9132,6 +10627,11 @@ test "end-to-end oracle: BS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BS:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -9162,6 +10662,11 @@ test "end-to-end oracle: BT" {
         differences.push(
           "BT:f/e164 expected=+9752345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BT:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BT" {
@@ -9200,6 +10705,11 @@ test "end-to-end oracle: BT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BT:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+97517123456", "") {
@@ -9221,6 +10731,11 @@ test "end-to-end oracle: BT" {
         differences.push(
           "BT:m/e164 expected=+97517123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BT:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BT" {
@@ -9259,6 +10774,11 @@ test "end-to-end oracle: BT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BT:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -9289,6 +10809,11 @@ test "end-to-end oracle: BW" {
         differences.push(
           "BW:f/e164 expected=+2672401234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BW:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BW" {
@@ -9327,6 +10852,11 @@ test "end-to-end oracle: BW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BW:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+26771123456", "") {
@@ -9348,6 +10878,11 @@ test "end-to-end oracle: BW" {
         differences.push(
           "BW:m/e164 expected=+26771123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BW:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BW" {
@@ -9386,6 +10921,11 @@ test "end-to-end oracle: BW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BW:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2670800012345", "") {
@@ -9407,6 +10947,11 @@ test "end-to-end oracle: BW" {
         differences.push(
           "BW:t/e164 expected=+2670800012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BW:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BW" {
@@ -9445,6 +10990,11 @@ test "end-to-end oracle: BW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BW:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2679012345", "") {
@@ -9466,6 +11016,11 @@ test "end-to-end oracle: BW" {
         differences.push(
           "BW:p/e164 expected=+2679012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BW:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BW" {
@@ -9504,6 +11059,11 @@ test "end-to-end oracle: BW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BW:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+26779101234", "") {
@@ -9525,6 +11085,11 @@ test "end-to-end oracle: BW" {
         differences.push(
           "BW:v/e164 expected=+26779101234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BW:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BW" {
@@ -9563,6 +11128,11 @@ test "end-to-end oracle: BW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BW:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -9593,6 +11163,11 @@ test "end-to-end oracle: BY" {
         differences.push(
           "BY:f/e164 expected=+375152450911 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BY:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BY" {
@@ -9631,6 +11206,11 @@ test "end-to-end oracle: BY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BY:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+375294911911", "") {
@@ -9652,6 +11232,11 @@ test "end-to-end oracle: BY" {
         differences.push(
           "BY:m/e164 expected=+375294911911 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BY:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BY" {
@@ -9690,6 +11275,11 @@ test "end-to-end oracle: BY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BY:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3758011234567", "") {
@@ -9711,6 +11301,11 @@ test "end-to-end oracle: BY" {
         differences.push(
           "BY:t/e164 expected=+3758011234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BY:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BY" {
@@ -9749,6 +11344,11 @@ test "end-to-end oracle: BY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BY:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3759021234567", "") {
@@ -9770,6 +11370,11 @@ test "end-to-end oracle: BY" {
         differences.push(
           "BY:p/e164 expected=+3759021234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BY:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BY" {
@@ -9808,6 +11413,11 @@ test "end-to-end oracle: BY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BY:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+375249123456", "") {
@@ -9829,6 +11439,11 @@ test "end-to-end oracle: BY" {
         differences.push(
           "BY:v/e164 expected=+375249123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BY:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BY" {
@@ -9867,6 +11482,11 @@ test "end-to-end oracle: BY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BY:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -9897,6 +11517,11 @@ test "end-to-end oracle: BZ" {
         differences.push(
           "BZ:f/e164 expected=+5012221234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BZ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BZ" {
@@ -9935,6 +11560,11 @@ test "end-to-end oracle: BZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BZ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5016221234", "") {
@@ -9956,6 +11586,11 @@ test "end-to-end oracle: BZ" {
         differences.push(
           "BZ:m/e164 expected=+5016221234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BZ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BZ" {
@@ -9994,6 +11629,11 @@ test "end-to-end oracle: BZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BZ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+50108001234123", "") {
@@ -10015,6 +11655,11 @@ test "end-to-end oracle: BZ" {
         differences.push(
           "BZ:t/e164 expected=+50108001234123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "BZ:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BZ" {
@@ -10053,6 +11698,11 @@ test "end-to-end oracle: BZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "BZ:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -10083,6 +11733,11 @@ test "end-to-end oracle: CA" {
         differences.push(
           "CA:f/e164 expected=+15062345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CA:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CA" {
@@ -10121,6 +11776,11 @@ test "end-to-end oracle: CA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CA:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15062345678", "") {
@@ -10142,6 +11802,11 @@ test "end-to-end oracle: CA" {
         differences.push(
           "CA:m/e164 expected=+15062345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CA:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CA" {
@@ -10180,6 +11845,11 @@ test "end-to-end oracle: CA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CA:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002123456", "") {
@@ -10201,6 +11871,11 @@ test "end-to-end oracle: CA" {
         differences.push(
           "CA:t/e164 expected=+18002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CA:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -10239,6 +11914,11 @@ test "end-to-end oracle: CA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CA:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002123456", "") {
@@ -10260,6 +11940,11 @@ test "end-to-end oracle: CA" {
         differences.push(
           "CA:p/e164 expected=+19002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CA:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -10298,6 +11983,11 @@ test "end-to-end oracle: CA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CA:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+16002012345", "") {
@@ -10319,6 +12009,11 @@ test "end-to-end oracle: CA" {
         differences.push(
           "CA:v/e164 expected=+16002012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CA:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CA" {
@@ -10357,6 +12052,11 @@ test "end-to-end oracle: CA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CA:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15219023456", "") {
@@ -10378,6 +12078,11 @@ test "end-to-end oracle: CA" {
         differences.push(
           "CA:r/e164 expected=+15219023456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CA:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -10416,20 +12121,25 @@ test "end-to-end oracle: CA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CA:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+13101234", "") {
     None => differences.push("CA:u/parse: unexpectedly rejected")
     Some(p) => {
-      if @dialnumber.is_valid(p) != false {
+      if @dialnumber.is_valid(p) != true {
         differences.push(
-          "CA:u/valid expected=false actual=" +
+          "CA:u/valid expected=true actual=" +
           @dialnumber.is_valid(p).to_string(),
         )
       }
-      if @dialnumber.is_possible(p) != false {
+      if @dialnumber.is_possible(p) != true {
         differences.push(
-          "CA:u/possible expected=false actual=" +
+          "CA:u/possible expected=true actual=" +
           @dialnumber.is_possible(p).to_string(),
         )
       }
@@ -10439,9 +12149,14 @@ test "end-to-end oracle: CA" {
           @dialnumber.format_e164(p).to_string(),
         )
       }
-      if @dialnumber.region_of_number(p).unwrap_or("") != "" {
+      if p.extension != "" {
         differences.push(
-          "CA:u/region expected= actual=" +
+          "CA:u/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
+      if @dialnumber.region_of_number(p).unwrap_or("") != "CA" {
+        differences.push(
+          "CA:u/region expected=CA actual=" +
           @dialnumber.region_of_number(p).unwrap_or("").to_string(),
         )
       }
@@ -10449,9 +12164,9 @@ test "end-to-end oracle: CA" {
           Some(t) => t.to_string()
           None => ""
         }) !=
-        "" {
+        "uan" {
         differences.push(
-          "CA:u/type expected= actual=" +
+          "CA:u/type expected=uan actual=" +
           (match @dialnumber.number_type(p) {
             Some(t) => t.to_string()
             None => ""
@@ -10473,6 +12188,11 @@ test "end-to-end oracle: CA" {
         differences.push(
           "CA:u:overlong/possible expected=false actual=" +
           @dialnumber.is_possible(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CA:u:overlong/extension expected= actual=" + p.extension.to_string(),
         )
       }
     }
@@ -10505,6 +12225,11 @@ test "end-to-end oracle: CC" {
         differences.push(
           "CC:f/e164 expected=+61891621234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CC:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CC" {
@@ -10543,6 +12268,11 @@ test "end-to-end oracle: CC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CC:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+61412345678", "") {
@@ -10564,6 +12294,11 @@ test "end-to-end oracle: CC" {
         differences.push(
           "CC:m/e164 expected=+61412345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CC:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AU" {
@@ -10602,6 +12337,11 @@ test "end-to-end oracle: CC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CC:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+611800123456", "") {
@@ -10623,6 +12363,11 @@ test "end-to-end oracle: CC" {
         differences.push(
           "CC:t/e164 expected=+611800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CC:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AU" {
@@ -10661,6 +12406,11 @@ test "end-to-end oracle: CC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CC:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+611900123456", "") {
@@ -10682,6 +12432,11 @@ test "end-to-end oracle: CC" {
         differences.push(
           "CC:p/e164 expected=+611900123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CC:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AU" {
@@ -10720,6 +12475,11 @@ test "end-to-end oracle: CC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CC:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+611300123456", "") {
@@ -10741,6 +12501,11 @@ test "end-to-end oracle: CC" {
         differences.push(
           "CC:s/e164 expected=+611300123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CC:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AU" {
@@ -10779,6 +12544,11 @@ test "end-to-end oracle: CC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CC:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+61147101234", "") {
@@ -10800,6 +12570,11 @@ test "end-to-end oracle: CC" {
         differences.push(
           "CC:v/e164 expected=+61147101234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CC:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AU" {
@@ -10838,6 +12613,11 @@ test "end-to-end oracle: CC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CC:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -10868,6 +12648,11 @@ test "end-to-end oracle: CD" {
         differences.push(
           "CD:f/e164 expected=+2431234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CD:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CD" {
@@ -10906,6 +12691,11 @@ test "end-to-end oracle: CD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CD:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+243991234567", "") {
@@ -10927,6 +12717,11 @@ test "end-to-end oracle: CD" {
         differences.push(
           "CD:m/e164 expected=+243991234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CD:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CD" {
@@ -10965,6 +12760,11 @@ test "end-to-end oracle: CD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CD:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -10995,6 +12795,11 @@ test "end-to-end oracle: CF" {
         differences.push(
           "CF:f/e164 expected=+23621612345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CF:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CF" {
@@ -11033,6 +12838,11 @@ test "end-to-end oracle: CF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CF:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+23670012345", "") {
@@ -11054,6 +12864,11 @@ test "end-to-end oracle: CF" {
         differences.push(
           "CF:m/e164 expected=+23670012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CF:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CF" {
@@ -11092,6 +12907,11 @@ test "end-to-end oracle: CF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CF:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+23687761234", "") {
@@ -11113,6 +12933,11 @@ test "end-to-end oracle: CF" {
         differences.push(
           "CF:p/e164 expected=+23687761234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CF:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CF" {
@@ -11151,6 +12976,11 @@ test "end-to-end oracle: CF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CF:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -11181,6 +13011,11 @@ test "end-to-end oracle: CG" {
         differences.push(
           "CG:f/e164 expected=+242222123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CG:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CG" {
@@ -11219,6 +13054,11 @@ test "end-to-end oracle: CG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CG:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+242061234567", "") {
@@ -11240,6 +13080,11 @@ test "end-to-end oracle: CG" {
         differences.push(
           "CG:m/e164 expected=+242061234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CG:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CG" {
@@ -11278,6 +13123,11 @@ test "end-to-end oracle: CG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CG:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+242800123456", "") {
@@ -11299,6 +13149,11 @@ test "end-to-end oracle: CG" {
         differences.push(
           "CG:p/e164 expected=+242800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CG:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CG" {
@@ -11337,6 +13192,11 @@ test "end-to-end oracle: CG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CG:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -11367,6 +13227,11 @@ test "end-to-end oracle: CH" {
         differences.push(
           "CH:f/e164 expected=+41212345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CH:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CH" {
@@ -11405,6 +13270,11 @@ test "end-to-end oracle: CH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CH:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+41781234567", "") {
@@ -11426,6 +13296,11 @@ test "end-to-end oracle: CH" {
         differences.push(
           "CH:m/e164 expected=+41781234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CH:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CH" {
@@ -11464,6 +13339,11 @@ test "end-to-end oracle: CH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CH:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+41800123456", "") {
@@ -11485,6 +13365,11 @@ test "end-to-end oracle: CH" {
         differences.push(
           "CH:t/e164 expected=+41800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CH:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CH" {
@@ -11523,6 +13408,11 @@ test "end-to-end oracle: CH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CH:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+41900123456", "") {
@@ -11544,6 +13434,11 @@ test "end-to-end oracle: CH" {
         differences.push(
           "CH:p/e164 expected=+41900123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CH:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CH" {
@@ -11582,6 +13477,11 @@ test "end-to-end oracle: CH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CH:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+41840123456", "") {
@@ -11603,6 +13503,11 @@ test "end-to-end oracle: CH" {
         differences.push(
           "CH:s/e164 expected=+41840123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CH:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CH" {
@@ -11641,6 +13546,11 @@ test "end-to-end oracle: CH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CH:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+41878123456", "") {
@@ -11662,6 +13572,11 @@ test "end-to-end oracle: CH" {
         differences.push(
           "CH:r/e164 expected=+41878123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CH:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CH" {
@@ -11700,6 +13615,11 @@ test "end-to-end oracle: CH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CH:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+41581234567", "") {
@@ -11721,6 +13641,11 @@ test "end-to-end oracle: CH" {
         differences.push(
           "CH:u/e164 expected=+41581234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CH:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CH" {
@@ -11759,6 +13684,11 @@ test "end-to-end oracle: CH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CH:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+41740123456", "") {
@@ -11780,6 +13710,11 @@ test "end-to-end oracle: CH" {
         differences.push(
           "CH:g/e164 expected=+41740123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CH:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CH" {
@@ -11818,6 +13753,11 @@ test "end-to-end oracle: CH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CH:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+41860123456789", "") {
@@ -11839,6 +13779,11 @@ test "end-to-end oracle: CH" {
         differences.push(
           "CH:o/e164 expected=+41860123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CH:o/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CH" {
@@ -11877,6 +13822,11 @@ test "end-to-end oracle: CH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CH:o:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -11907,6 +13857,11 @@ test "end-to-end oracle: CI" {
         differences.push(
           "CI:f/e164 expected=+2252123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CI:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CI" {
@@ -11945,6 +13900,11 @@ test "end-to-end oracle: CI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CI:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2250123456789", "") {
@@ -11966,6 +13926,11 @@ test "end-to-end oracle: CI" {
         differences.push(
           "CI:m/e164 expected=+2250123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CI:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CI" {
@@ -12004,6 +13969,11 @@ test "end-to-end oracle: CI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CI:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -12034,6 +14004,11 @@ test "end-to-end oracle: CK" {
         differences.push(
           "CK:f/e164 expected=+68221234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CK:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CK" {
@@ -12072,6 +14047,11 @@ test "end-to-end oracle: CK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CK:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+68271234", "") {
@@ -12093,6 +14073,11 @@ test "end-to-end oracle: CK" {
         differences.push(
           "CK:m/e164 expected=+68271234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CK:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CK" {
@@ -12131,6 +14116,11 @@ test "end-to-end oracle: CK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CK:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -12161,6 +14151,11 @@ test "end-to-end oracle: CL" {
         differences.push(
           "CL:f/e164 expected=+56600123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CL:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CL" {
@@ -12199,6 +14194,11 @@ test "end-to-end oracle: CL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CL:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+56221234567", "") {
@@ -12220,6 +14220,11 @@ test "end-to-end oracle: CL" {
         differences.push(
           "CL:m/e164 expected=+56221234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CL:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CL" {
@@ -12258,6 +14263,11 @@ test "end-to-end oracle: CL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CL:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+56800123456", "") {
@@ -12279,6 +14289,11 @@ test "end-to-end oracle: CL" {
         differences.push(
           "CL:t/e164 expected=+56800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CL:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CL" {
@@ -12317,6 +14332,11 @@ test "end-to-end oracle: CL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CL:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+566001234567", "") {
@@ -12338,6 +14358,11 @@ test "end-to-end oracle: CL" {
         differences.push(
           "CL:s/e164 expected=+566001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CL:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CL" {
@@ -12376,6 +14401,11 @@ test "end-to-end oracle: CL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CL:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+56441234567", "") {
@@ -12397,6 +14427,11 @@ test "end-to-end oracle: CL" {
         differences.push(
           "CL:v/e164 expected=+56441234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CL:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CL" {
@@ -12435,6 +14470,11 @@ test "end-to-end oracle: CL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CL:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -12465,6 +14505,11 @@ test "end-to-end oracle: CM" {
         differences.push(
           "CM:f/e164 expected=+237222123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CM:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CM" {
@@ -12503,6 +14548,11 @@ test "end-to-end oracle: CM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CM:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+237671234567", "") {
@@ -12524,6 +14574,11 @@ test "end-to-end oracle: CM" {
         differences.push(
           "CM:m/e164 expected=+237671234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CM:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CM" {
@@ -12562,6 +14617,11 @@ test "end-to-end oracle: CM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CM:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+23788012345", "") {
@@ -12583,6 +14643,11 @@ test "end-to-end oracle: CM" {
         differences.push(
           "CM:t/e164 expected=+23788012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CM:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CM" {
@@ -12621,6 +14686,11 @@ test "end-to-end oracle: CM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CM:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -12651,6 +14721,11 @@ test "end-to-end oracle: CN" {
         differences.push(
           "CN:f/e164 expected=+861012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CN:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CN" {
@@ -12689,6 +14764,11 @@ test "end-to-end oracle: CN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CN:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+8613123456789", "") {
@@ -12710,6 +14790,11 @@ test "end-to-end oracle: CN" {
         differences.push(
           "CN:m/e164 expected=+8613123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CN:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CN" {
@@ -12748,6 +14833,11 @@ test "end-to-end oracle: CN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CN:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+868001234567", "") {
@@ -12769,6 +14859,11 @@ test "end-to-end oracle: CN" {
         differences.push(
           "CN:t/e164 expected=+868001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CN:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CN" {
@@ -12807,6 +14902,11 @@ test "end-to-end oracle: CN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CN:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+8616812345", "") {
@@ -12828,6 +14928,11 @@ test "end-to-end oracle: CN" {
         differences.push(
           "CN:p/e164 expected=+8616812345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CN:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CN" {
@@ -12866,6 +14971,11 @@ test "end-to-end oracle: CN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CN:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+864001234567", "") {
@@ -12887,6 +14997,11 @@ test "end-to-end oracle: CN" {
         differences.push(
           "CN:s/e164 expected=+864001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CN:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CN" {
@@ -12925,6 +15040,11 @@ test "end-to-end oracle: CN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CN:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -12955,6 +15075,11 @@ test "end-to-end oracle: CO" {
         differences.push(
           "CO:f/e164 expected=+576012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CO:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CO" {
@@ -12993,6 +15118,11 @@ test "end-to-end oracle: CO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CO:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+573211234567", "") {
@@ -13014,6 +15144,11 @@ test "end-to-end oracle: CO" {
         differences.push(
           "CO:m/e164 expected=+573211234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CO:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CO" {
@@ -13052,6 +15187,11 @@ test "end-to-end oracle: CO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CO:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5718001234567", "") {
@@ -13073,6 +15213,11 @@ test "end-to-end oracle: CO" {
         differences.push(
           "CO:t/e164 expected=+5718001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CO:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CO" {
@@ -13111,6 +15256,11 @@ test "end-to-end oracle: CO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CO:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5719001234567", "") {
@@ -13132,6 +15282,11 @@ test "end-to-end oracle: CO" {
         differences.push(
           "CO:p/e164 expected=+5719001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CO:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CO" {
@@ -13170,6 +15325,11 @@ test "end-to-end oracle: CO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CO:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -13200,6 +15360,11 @@ test "end-to-end oracle: CR" {
         differences.push(
           "CR:f/e164 expected=+50622123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CR:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CR" {
@@ -13238,6 +15403,11 @@ test "end-to-end oracle: CR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CR:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+50683123456", "") {
@@ -13259,6 +15429,11 @@ test "end-to-end oracle: CR" {
         differences.push(
           "CR:m/e164 expected=+50683123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CR:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CR" {
@@ -13297,6 +15472,11 @@ test "end-to-end oracle: CR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CR:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5068001234567", "") {
@@ -13318,6 +15498,11 @@ test "end-to-end oracle: CR" {
         differences.push(
           "CR:t/e164 expected=+5068001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CR:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CR" {
@@ -13356,6 +15541,11 @@ test "end-to-end oracle: CR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CR:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5069001234567", "") {
@@ -13377,6 +15567,11 @@ test "end-to-end oracle: CR" {
         differences.push(
           "CR:p/e164 expected=+5069001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CR:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CR" {
@@ -13415,6 +15610,11 @@ test "end-to-end oracle: CR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CR:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+50640001234", "") {
@@ -13436,6 +15636,11 @@ test "end-to-end oracle: CR" {
         differences.push(
           "CR:v/e164 expected=+50640001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CR:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CR" {
@@ -13474,6 +15679,11 @@ test "end-to-end oracle: CR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CR:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -13504,6 +15714,11 @@ test "end-to-end oracle: CU" {
         differences.push(
           "CU:f/e164 expected=+5371234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CU:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CU" {
@@ -13542,6 +15757,11 @@ test "end-to-end oracle: CU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CU:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5351234567", "") {
@@ -13563,6 +15783,11 @@ test "end-to-end oracle: CU" {
         differences.push(
           "CU:m/e164 expected=+5351234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CU:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CU" {
@@ -13601,6 +15826,11 @@ test "end-to-end oracle: CU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CU:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+538001234567", "") {
@@ -13622,6 +15852,11 @@ test "end-to-end oracle: CU" {
         differences.push(
           "CU:t/e164 expected=+538001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CU:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CU" {
@@ -13660,6 +15895,11 @@ test "end-to-end oracle: CU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CU:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+538071234567", "") {
@@ -13681,6 +15921,11 @@ test "end-to-end oracle: CU" {
         differences.push(
           "CU:s/e164 expected=+538071234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CU:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CU" {
@@ -13719,6 +15964,11 @@ test "end-to-end oracle: CU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CU:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -13749,6 +15999,11 @@ test "end-to-end oracle: CV" {
         differences.push(
           "CV:f/e164 expected=+2382211234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CV:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CV" {
@@ -13787,6 +16042,11 @@ test "end-to-end oracle: CV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CV:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2389911234", "") {
@@ -13808,6 +16068,11 @@ test "end-to-end oracle: CV" {
         differences.push(
           "CV:m/e164 expected=+2389911234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CV:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CV" {
@@ -13846,6 +16111,11 @@ test "end-to-end oracle: CV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CV:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2388001234", "") {
@@ -13867,6 +16137,11 @@ test "end-to-end oracle: CV" {
         differences.push(
           "CV:t/e164 expected=+2388001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CV:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CV" {
@@ -13905,6 +16180,11 @@ test "end-to-end oracle: CV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CV:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2383401234", "") {
@@ -13926,6 +16206,11 @@ test "end-to-end oracle: CV" {
         differences.push(
           "CV:v/e164 expected=+2383401234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CV:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CV" {
@@ -13964,6 +16249,11 @@ test "end-to-end oracle: CV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CV:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -13994,6 +16284,11 @@ test "end-to-end oracle: CW" {
         differences.push(
           "CW:f/e164 expected=+59994351234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CW:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CW" {
@@ -14032,6 +16327,11 @@ test "end-to-end oracle: CW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CW:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+59995181234", "") {
@@ -14053,6 +16353,11 @@ test "end-to-end oracle: CW" {
         differences.push(
           "CW:m/e164 expected=+59995181234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CW:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CW" {
@@ -14091,6 +16396,11 @@ test "end-to-end oracle: CW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CW:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5996001234", "") {
@@ -14112,6 +16422,11 @@ test "end-to-end oracle: CW" {
         differences.push(
           "CW:s/e164 expected=+5996001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CW:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CW" {
@@ -14150,6 +16465,11 @@ test "end-to-end oracle: CW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CW:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+59995581234", "") {
@@ -14171,6 +16491,11 @@ test "end-to-end oracle: CW" {
         differences.push(
           "CW:g/e164 expected=+59995581234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CW:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CW" {
@@ -14209,6 +16534,11 @@ test "end-to-end oracle: CW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CW:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -14239,6 +16569,11 @@ test "end-to-end oracle: CX" {
         differences.push(
           "CX:f/e164 expected=+61891641234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CX:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CX" {
@@ -14277,6 +16612,11 @@ test "end-to-end oracle: CX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CX:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+61412345678", "") {
@@ -14298,6 +16638,11 @@ test "end-to-end oracle: CX" {
         differences.push(
           "CX:m/e164 expected=+61412345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CX:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AU" {
@@ -14336,6 +16681,11 @@ test "end-to-end oracle: CX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CX:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+611800123456", "") {
@@ -14357,6 +16707,11 @@ test "end-to-end oracle: CX" {
         differences.push(
           "CX:t/e164 expected=+611800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CX:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AU" {
@@ -14395,6 +16750,11 @@ test "end-to-end oracle: CX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CX:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+611900123456", "") {
@@ -14416,6 +16776,11 @@ test "end-to-end oracle: CX" {
         differences.push(
           "CX:p/e164 expected=+611900123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CX:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AU" {
@@ -14454,6 +16819,11 @@ test "end-to-end oracle: CX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CX:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+611300123456", "") {
@@ -14475,6 +16845,11 @@ test "end-to-end oracle: CX" {
         differences.push(
           "CX:s/e164 expected=+611300123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CX:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AU" {
@@ -14513,6 +16888,11 @@ test "end-to-end oracle: CX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CX:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+61147101234", "") {
@@ -14534,6 +16914,11 @@ test "end-to-end oracle: CX" {
         differences.push(
           "CX:v/e164 expected=+61147101234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CX:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AU" {
@@ -14572,6 +16957,11 @@ test "end-to-end oracle: CX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CX:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -14602,6 +16992,11 @@ test "end-to-end oracle: CY" {
         differences.push(
           "CY:f/e164 expected=+35722345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CY:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CY" {
@@ -14640,6 +17035,11 @@ test "end-to-end oracle: CY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CY:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35796123456", "") {
@@ -14661,6 +17061,11 @@ test "end-to-end oracle: CY" {
         differences.push(
           "CY:m/e164 expected=+35796123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CY:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CY" {
@@ -14699,6 +17104,11 @@ test "end-to-end oracle: CY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CY:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35780001234", "") {
@@ -14720,6 +17130,11 @@ test "end-to-end oracle: CY" {
         differences.push(
           "CY:t/e164 expected=+35780001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CY:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CY" {
@@ -14758,6 +17173,11 @@ test "end-to-end oracle: CY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CY:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35790012345", "") {
@@ -14779,6 +17199,11 @@ test "end-to-end oracle: CY" {
         differences.push(
           "CY:p/e164 expected=+35790012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CY:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CY" {
@@ -14817,6 +17242,11 @@ test "end-to-end oracle: CY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CY:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35780112345", "") {
@@ -14838,6 +17268,11 @@ test "end-to-end oracle: CY" {
         differences.push(
           "CY:s/e164 expected=+35780112345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CY:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CY" {
@@ -14876,6 +17311,11 @@ test "end-to-end oracle: CY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CY:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35770012345", "") {
@@ -14897,6 +17337,11 @@ test "end-to-end oracle: CY" {
         differences.push(
           "CY:r/e164 expected=+35770012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CY:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CY" {
@@ -14935,6 +17380,11 @@ test "end-to-end oracle: CY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CY:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35777123456", "") {
@@ -14956,6 +17406,11 @@ test "end-to-end oracle: CY" {
         differences.push(
           "CY:u/e164 expected=+35777123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CY:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CY" {
@@ -14994,6 +17449,11 @@ test "end-to-end oracle: CY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CY:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -15024,6 +17484,11 @@ test "end-to-end oracle: CZ" {
         differences.push(
           "CZ:f/e164 expected=+420212345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CZ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CZ" {
@@ -15062,6 +17527,11 @@ test "end-to-end oracle: CZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CZ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+420601123456", "") {
@@ -15083,6 +17553,11 @@ test "end-to-end oracle: CZ" {
         differences.push(
           "CZ:m/e164 expected=+420601123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CZ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CZ" {
@@ -15121,6 +17596,11 @@ test "end-to-end oracle: CZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CZ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+420800123456", "") {
@@ -15142,6 +17622,11 @@ test "end-to-end oracle: CZ" {
         differences.push(
           "CZ:t/e164 expected=+420800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CZ:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CZ" {
@@ -15180,6 +17665,11 @@ test "end-to-end oracle: CZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CZ:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+420900123456", "") {
@@ -15201,6 +17691,11 @@ test "end-to-end oracle: CZ" {
         differences.push(
           "CZ:p/e164 expected=+420900123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CZ:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CZ" {
@@ -15239,6 +17734,11 @@ test "end-to-end oracle: CZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CZ:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+420811234567", "") {
@@ -15260,6 +17760,11 @@ test "end-to-end oracle: CZ" {
         differences.push(
           "CZ:s/e164 expected=+420811234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CZ:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CZ" {
@@ -15298,6 +17803,11 @@ test "end-to-end oracle: CZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CZ:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+420910123456", "") {
@@ -15319,6 +17829,11 @@ test "end-to-end oracle: CZ" {
         differences.push(
           "CZ:v/e164 expected=+420910123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CZ:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CZ" {
@@ -15357,6 +17872,11 @@ test "end-to-end oracle: CZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CZ:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+420700123456", "") {
@@ -15378,6 +17898,11 @@ test "end-to-end oracle: CZ" {
         differences.push(
           "CZ:r/e164 expected=+420700123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CZ:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CZ" {
@@ -15416,6 +17941,11 @@ test "end-to-end oracle: CZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CZ:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+420972123456", "") {
@@ -15437,6 +17967,11 @@ test "end-to-end oracle: CZ" {
         differences.push(
           "CZ:u/e164 expected=+420972123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CZ:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CZ" {
@@ -15475,6 +18010,11 @@ test "end-to-end oracle: CZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CZ:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+42093123456789", "") {
@@ -15496,6 +18036,11 @@ test "end-to-end oracle: CZ" {
         differences.push(
           "CZ:o/e164 expected=+42093123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "CZ:o/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CZ" {
@@ -15534,6 +18079,11 @@ test "end-to-end oracle: CZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "CZ:o:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -15564,6 +18114,11 @@ test "end-to-end oracle: DE" {
         differences.push(
           "DE:f/e164 expected=+4930123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DE:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DE" {
@@ -15602,6 +18157,11 @@ test "end-to-end oracle: DE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DE:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4915123456789", "") {
@@ -15623,6 +18183,11 @@ test "end-to-end oracle: DE" {
         differences.push(
           "DE:m/e164 expected=+4915123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DE:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DE" {
@@ -15661,6 +18226,11 @@ test "end-to-end oracle: DE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DE:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+498001234567890", "") {
@@ -15682,6 +18252,11 @@ test "end-to-end oracle: DE" {
         differences.push(
           "DE:t/e164 expected=+498001234567890 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DE:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DE" {
@@ -15720,6 +18295,11 @@ test "end-to-end oracle: DE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DE:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+499001234567", "") {
@@ -15741,6 +18321,11 @@ test "end-to-end oracle: DE" {
         differences.push(
           "DE:p/e164 expected=+499001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DE:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DE" {
@@ -15779,6 +18364,11 @@ test "end-to-end oracle: DE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DE:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4918012345", "") {
@@ -15800,6 +18390,11 @@ test "end-to-end oracle: DE" {
         differences.push(
           "DE:s/e164 expected=+4918012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DE:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DE" {
@@ -15838,6 +18433,11 @@ test "end-to-end oracle: DE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DE:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4970012345678", "") {
@@ -15859,6 +18459,11 @@ test "end-to-end oracle: DE" {
         differences.push(
           "DE:r/e164 expected=+4970012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DE:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DE" {
@@ -15897,6 +18502,11 @@ test "end-to-end oracle: DE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DE:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4918500123456", "") {
@@ -15918,6 +18528,11 @@ test "end-to-end oracle: DE" {
         differences.push(
           "DE:u/e164 expected=+4918500123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DE:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DE" {
@@ -15956,6 +18571,11 @@ test "end-to-end oracle: DE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DE:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4916412345", "") {
@@ -15977,6 +18597,11 @@ test "end-to-end oracle: DE" {
         differences.push(
           "DE:g/e164 expected=+4916412345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DE:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DE" {
@@ -16015,6 +18640,11 @@ test "end-to-end oracle: DE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DE:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+49177991234567", "") {
@@ -16036,6 +18666,11 @@ test "end-to-end oracle: DE" {
         differences.push(
           "DE:o/e164 expected=+49177991234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DE:o/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DE" {
@@ -16074,6 +18709,11 @@ test "end-to-end oracle: DE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DE:o:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -16104,6 +18744,11 @@ test "end-to-end oracle: DJ" {
         differences.push(
           "DJ:f/e164 expected=+25321360003 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DJ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DJ" {
@@ -16142,6 +18787,11 @@ test "end-to-end oracle: DJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DJ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+25377831001", "") {
@@ -16163,6 +18813,11 @@ test "end-to-end oracle: DJ" {
         differences.push(
           "DJ:m/e164 expected=+25377831001 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DJ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DJ" {
@@ -16201,6 +18856,11 @@ test "end-to-end oracle: DJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DJ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -16231,6 +18891,11 @@ test "end-to-end oracle: DK" {
         differences.push(
           "DK:f/e164 expected=+4532123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DK:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DK" {
@@ -16269,6 +18934,11 @@ test "end-to-end oracle: DK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DK:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4534412345", "") {
@@ -16290,6 +18960,11 @@ test "end-to-end oracle: DK" {
         differences.push(
           "DK:m/e164 expected=+4534412345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DK:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DK" {
@@ -16328,6 +19003,11 @@ test "end-to-end oracle: DK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DK:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4580123456", "") {
@@ -16349,6 +19029,11 @@ test "end-to-end oracle: DK" {
         differences.push(
           "DK:t/e164 expected=+4580123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DK:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DK" {
@@ -16387,6 +19072,11 @@ test "end-to-end oracle: DK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DK:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4590123456", "") {
@@ -16408,6 +19098,11 @@ test "end-to-end oracle: DK" {
         differences.push(
           "DK:p/e164 expected=+4590123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DK:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DK" {
@@ -16446,6 +19141,11 @@ test "end-to-end oracle: DK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DK:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -16476,6 +19176,11 @@ test "end-to-end oracle: DM" {
         differences.push(
           "DM:f/e164 expected=+17674201234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DM:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DM" {
@@ -16514,6 +19219,11 @@ test "end-to-end oracle: DM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DM:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+17672251234", "") {
@@ -16535,6 +19245,11 @@ test "end-to-end oracle: DM" {
         differences.push(
           "DM:m/e164 expected=+17672251234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DM:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DM" {
@@ -16573,6 +19288,11 @@ test "end-to-end oracle: DM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DM:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002123456", "") {
@@ -16594,6 +19314,11 @@ test "end-to-end oracle: DM" {
         differences.push(
           "DM:t/e164 expected=+18002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DM:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -16632,6 +19357,11 @@ test "end-to-end oracle: DM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DM:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002123456", "") {
@@ -16653,6 +19383,11 @@ test "end-to-end oracle: DM" {
         differences.push(
           "DM:p/e164 expected=+19002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DM:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -16691,6 +19426,11 @@ test "end-to-end oracle: DM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DM:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -16712,6 +19452,11 @@ test "end-to-end oracle: DM" {
         differences.push(
           "DM:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DM:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -16750,6 +19495,11 @@ test "end-to-end oracle: DM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DM:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -16780,6 +19530,11 @@ test "end-to-end oracle: DO" {
         differences.push(
           "DO:f/e164 expected=+18092345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DO:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DO" {
@@ -16818,6 +19573,11 @@ test "end-to-end oracle: DO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DO:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18092345678", "") {
@@ -16839,6 +19599,11 @@ test "end-to-end oracle: DO" {
         differences.push(
           "DO:m/e164 expected=+18092345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DO:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DO" {
@@ -16877,6 +19642,11 @@ test "end-to-end oracle: DO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DO:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002123456", "") {
@@ -16898,6 +19668,11 @@ test "end-to-end oracle: DO" {
         differences.push(
           "DO:t/e164 expected=+18002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DO:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -16936,6 +19711,11 @@ test "end-to-end oracle: DO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DO:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002123456", "") {
@@ -16957,6 +19737,11 @@ test "end-to-end oracle: DO" {
         differences.push(
           "DO:p/e164 expected=+19002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DO:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -16995,6 +19780,11 @@ test "end-to-end oracle: DO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DO:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -17016,6 +19806,11 @@ test "end-to-end oracle: DO" {
         differences.push(
           "DO:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DO:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -17054,6 +19849,11 @@ test "end-to-end oracle: DO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DO:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -17084,6 +19884,11 @@ test "end-to-end oracle: DZ" {
         differences.push(
           "DZ:f/e164 expected=+21312345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DZ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DZ" {
@@ -17122,6 +19927,11 @@ test "end-to-end oracle: DZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DZ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+213551234567", "") {
@@ -17143,6 +19953,11 @@ test "end-to-end oracle: DZ" {
         differences.push(
           "DZ:m/e164 expected=+213551234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DZ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DZ" {
@@ -17181,6 +19996,11 @@ test "end-to-end oracle: DZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DZ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+213800123456", "") {
@@ -17202,6 +20022,11 @@ test "end-to-end oracle: DZ" {
         differences.push(
           "DZ:t/e164 expected=+213800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DZ:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DZ" {
@@ -17240,6 +20065,11 @@ test "end-to-end oracle: DZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DZ:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+213808123456", "") {
@@ -17261,6 +20091,11 @@ test "end-to-end oracle: DZ" {
         differences.push(
           "DZ:p/e164 expected=+213808123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DZ:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DZ" {
@@ -17299,6 +20134,11 @@ test "end-to-end oracle: DZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DZ:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+213801123456", "") {
@@ -17320,6 +20160,11 @@ test "end-to-end oracle: DZ" {
         differences.push(
           "DZ:s/e164 expected=+213801123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DZ:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DZ" {
@@ -17358,6 +20203,11 @@ test "end-to-end oracle: DZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DZ:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+213983123456", "") {
@@ -17379,6 +20229,11 @@ test "end-to-end oracle: DZ" {
         differences.push(
           "DZ:v/e164 expected=+213983123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "DZ:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DZ" {
@@ -17417,6 +20272,11 @@ test "end-to-end oracle: DZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "DZ:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -17447,6 +20307,11 @@ test "end-to-end oracle: EC" {
         differences.push(
           "EC:f/e164 expected=+59322123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "EC:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "EC" {
@@ -17485,6 +20350,11 @@ test "end-to-end oracle: EC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "EC:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+593991234567", "") {
@@ -17506,6 +20376,11 @@ test "end-to-end oracle: EC" {
         differences.push(
           "EC:m/e164 expected=+593991234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "EC:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "EC" {
@@ -17544,6 +20419,11 @@ test "end-to-end oracle: EC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "EC:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+59318001234567", "") {
@@ -17565,6 +20445,11 @@ test "end-to-end oracle: EC" {
         differences.push(
           "EC:t/e164 expected=+59318001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "EC:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "EC" {
@@ -17603,6 +20488,11 @@ test "end-to-end oracle: EC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "EC:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+59328901234", "") {
@@ -17624,6 +20514,11 @@ test "end-to-end oracle: EC" {
         differences.push(
           "EC:v/e164 expected=+59328901234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "EC:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "EC" {
@@ -17662,6 +20557,11 @@ test "end-to-end oracle: EC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "EC:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -17692,6 +20592,11 @@ test "end-to-end oracle: EE" {
         differences.push(
           "EE:f/e164 expected=+3723212345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "EE:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "EE" {
@@ -17730,6 +20635,11 @@ test "end-to-end oracle: EE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "EE:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37251234567", "") {
@@ -17751,6 +20661,11 @@ test "end-to-end oracle: EE" {
         differences.push(
           "EE:m/e164 expected=+37251234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "EE:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "EE" {
@@ -17789,6 +20704,11 @@ test "end-to-end oracle: EE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "EE:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37280012345", "") {
@@ -17810,6 +20730,11 @@ test "end-to-end oracle: EE" {
         differences.push(
           "EE:t/e164 expected=+37280012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "EE:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "EE" {
@@ -17848,6 +20773,11 @@ test "end-to-end oracle: EE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "EE:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3729001234", "") {
@@ -17869,6 +20799,11 @@ test "end-to-end oracle: EE" {
         differences.push(
           "EE:p/e164 expected=+3729001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "EE:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "EE" {
@@ -17907,6 +20842,11 @@ test "end-to-end oracle: EE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "EE:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37270012345", "") {
@@ -17928,6 +20868,11 @@ test "end-to-end oracle: EE" {
         differences.push(
           "EE:r/e164 expected=+37270012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "EE:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "EE" {
@@ -17966,6 +20911,11 @@ test "end-to-end oracle: EE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "EE:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -17996,6 +20946,11 @@ test "end-to-end oracle: EG" {
         differences.push(
           "EG:f/e164 expected=+20234567890 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "EG:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "EG" {
@@ -18034,6 +20989,11 @@ test "end-to-end oracle: EG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "EG:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+201001234567", "") {
@@ -18055,6 +21015,11 @@ test "end-to-end oracle: EG" {
         differences.push(
           "EG:m/e164 expected=+201001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "EG:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "EG" {
@@ -18093,6 +21058,11 @@ test "end-to-end oracle: EG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "EG:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+208001234567", "") {
@@ -18114,6 +21084,11 @@ test "end-to-end oracle: EG" {
         differences.push(
           "EG:t/e164 expected=+208001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "EG:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "EG" {
@@ -18152,6 +21127,11 @@ test "end-to-end oracle: EG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "EG:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+209001234567", "") {
@@ -18173,6 +21153,11 @@ test "end-to-end oracle: EG" {
         differences.push(
           "EG:p/e164 expected=+209001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "EG:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "EG" {
@@ -18211,6 +21196,11 @@ test "end-to-end oracle: EG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "EG:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -18241,6 +21231,11 @@ test "end-to-end oracle: EH" {
         differences.push(
           "EH:f/e164 expected=+212528812345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "EH:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MA" {
@@ -18279,6 +21274,11 @@ test "end-to-end oracle: EH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "EH:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+212650123456", "") {
@@ -18300,6 +21300,11 @@ test "end-to-end oracle: EH" {
         differences.push(
           "EH:m/e164 expected=+212650123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "EH:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MA" {
@@ -18338,6 +21343,11 @@ test "end-to-end oracle: EH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "EH:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+212801234567", "") {
@@ -18359,6 +21369,11 @@ test "end-to-end oracle: EH" {
         differences.push(
           "EH:t/e164 expected=+212801234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "EH:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MA" {
@@ -18397,6 +21412,11 @@ test "end-to-end oracle: EH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "EH:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+212891234567", "") {
@@ -18418,6 +21438,11 @@ test "end-to-end oracle: EH" {
         differences.push(
           "EH:p/e164 expected=+212891234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "EH:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MA" {
@@ -18456,6 +21481,11 @@ test "end-to-end oracle: EH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "EH:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+212592401234", "") {
@@ -18477,6 +21507,11 @@ test "end-to-end oracle: EH" {
         differences.push(
           "EH:v/e164 expected=+212592401234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "EH:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MA" {
@@ -18515,6 +21550,11 @@ test "end-to-end oracle: EH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "EH:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -18545,6 +21585,11 @@ test "end-to-end oracle: ER" {
         differences.push(
           "ER:f/e164 expected=+2918370362 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ER:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ER" {
@@ -18583,6 +21628,11 @@ test "end-to-end oracle: ER" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ER:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2917123456", "") {
@@ -18604,6 +21654,11 @@ test "end-to-end oracle: ER" {
         differences.push(
           "ER:m/e164 expected=+2917123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ER:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ER" {
@@ -18642,6 +21697,11 @@ test "end-to-end oracle: ER" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ER:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -18672,6 +21732,11 @@ test "end-to-end oracle: ES" {
         differences.push(
           "ES:f/e164 expected=+34810123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ES:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ES" {
@@ -18710,6 +21775,11 @@ test "end-to-end oracle: ES" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ES:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+34612345678", "") {
@@ -18731,6 +21801,11 @@ test "end-to-end oracle: ES" {
         differences.push(
           "ES:m/e164 expected=+34612345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ES:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ES" {
@@ -18769,6 +21844,11 @@ test "end-to-end oracle: ES" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ES:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+34800123456", "") {
@@ -18790,6 +21870,11 @@ test "end-to-end oracle: ES" {
         differences.push(
           "ES:t/e164 expected=+34800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ES:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ES" {
@@ -18828,6 +21913,11 @@ test "end-to-end oracle: ES" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ES:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+34803123456", "") {
@@ -18849,6 +21939,11 @@ test "end-to-end oracle: ES" {
         differences.push(
           "ES:p/e164 expected=+34803123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ES:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ES" {
@@ -18887,6 +21982,11 @@ test "end-to-end oracle: ES" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ES:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+34901123456", "") {
@@ -18908,6 +22008,11 @@ test "end-to-end oracle: ES" {
         differences.push(
           "ES:s/e164 expected=+34901123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ES:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ES" {
@@ -18946,6 +22051,11 @@ test "end-to-end oracle: ES" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ES:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+34701234567", "") {
@@ -18967,6 +22077,11 @@ test "end-to-end oracle: ES" {
         differences.push(
           "ES:r/e164 expected=+34701234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ES:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ES" {
@@ -19005,6 +22120,11 @@ test "end-to-end oracle: ES" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ES:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+34511234567", "") {
@@ -19026,6 +22146,11 @@ test "end-to-end oracle: ES" {
         differences.push(
           "ES:u/e164 expected=+34511234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ES:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ES" {
@@ -19064,6 +22189,11 @@ test "end-to-end oracle: ES" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ES:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -19094,6 +22224,11 @@ test "end-to-end oracle: ET" {
         differences.push(
           "ET:f/e164 expected=+251111112345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ET:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ET" {
@@ -19132,6 +22267,11 @@ test "end-to-end oracle: ET" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ET:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+251911234567", "") {
@@ -19153,6 +22293,11 @@ test "end-to-end oracle: ET" {
         differences.push(
           "ET:m/e164 expected=+251911234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ET:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ET" {
@@ -19191,6 +22336,11 @@ test "end-to-end oracle: ET" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ET:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -19221,6 +22371,11 @@ test "end-to-end oracle: FI" {
         differences.push(
           "FI:f/e164 expected=+358131234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FI:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FI" {
@@ -19259,6 +22414,11 @@ test "end-to-end oracle: FI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FI:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+358412345678", "") {
@@ -19280,6 +22440,11 @@ test "end-to-end oracle: FI" {
         differences.push(
           "FI:m/e164 expected=+358412345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FI:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FI" {
@@ -19318,6 +22483,11 @@ test "end-to-end oracle: FI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FI:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+358800123456", "") {
@@ -19339,6 +22509,11 @@ test "end-to-end oracle: FI" {
         differences.push(
           "FI:t/e164 expected=+358800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FI:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FI" {
@@ -19377,6 +22552,11 @@ test "end-to-end oracle: FI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FI:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+358600123456", "") {
@@ -19398,6 +22578,11 @@ test "end-to-end oracle: FI" {
         differences.push(
           "FI:p/e164 expected=+358600123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FI:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FI" {
@@ -19436,6 +22621,11 @@ test "end-to-end oracle: FI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FI:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35810112345", "") {
@@ -19457,6 +22647,11 @@ test "end-to-end oracle: FI" {
         differences.push(
           "FI:u/e164 expected=+35810112345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FI:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FI" {
@@ -19495,6 +22690,11 @@ test "end-to-end oracle: FI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FI:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -19525,6 +22725,11 @@ test "end-to-end oracle: FJ" {
         differences.push(
           "FJ:f/e164 expected=+6793212345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FJ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FJ" {
@@ -19563,6 +22768,11 @@ test "end-to-end oracle: FJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FJ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6797012345", "") {
@@ -19584,6 +22794,11 @@ test "end-to-end oracle: FJ" {
         differences.push(
           "FJ:m/e164 expected=+6797012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FJ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FJ" {
@@ -19622,6 +22837,11 @@ test "end-to-end oracle: FJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FJ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+67908001234567", "") {
@@ -19643,6 +22863,11 @@ test "end-to-end oracle: FJ" {
         differences.push(
           "FJ:t/e164 expected=+67908001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FJ:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FJ" {
@@ -19681,6 +22906,11 @@ test "end-to-end oracle: FJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FJ:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -19711,6 +22941,11 @@ test "end-to-end oracle: FK" {
         differences.push(
           "FK:f/e164 expected=+50031234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FK:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FK" {
@@ -19749,6 +22984,11 @@ test "end-to-end oracle: FK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FK:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+50051234", "") {
@@ -19770,6 +23010,11 @@ test "end-to-end oracle: FK" {
         differences.push(
           "FK:m/e164 expected=+50051234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FK:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FK" {
@@ -19808,6 +23053,11 @@ test "end-to-end oracle: FK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FK:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -19838,6 +23088,11 @@ test "end-to-end oracle: FM" {
         differences.push(
           "FM:f/e164 expected=+6913201234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FM:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FM" {
@@ -19876,6 +23131,11 @@ test "end-to-end oracle: FM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FM:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6913501234", "") {
@@ -19897,6 +23157,11 @@ test "end-to-end oracle: FM" {
         differences.push(
           "FM:m/e164 expected=+6913501234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FM:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FM" {
@@ -19935,6 +23200,11 @@ test "end-to-end oracle: FM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FM:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -19965,6 +23235,11 @@ test "end-to-end oracle: FO" {
         differences.push(
           "FO:f/e164 expected=+298201234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FO:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FO" {
@@ -20003,6 +23278,11 @@ test "end-to-end oracle: FO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FO:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+298211234", "") {
@@ -20024,6 +23304,11 @@ test "end-to-end oracle: FO" {
         differences.push(
           "FO:m/e164 expected=+298211234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FO:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FO" {
@@ -20062,6 +23347,11 @@ test "end-to-end oracle: FO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FO:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+298802123", "") {
@@ -20083,6 +23373,11 @@ test "end-to-end oracle: FO" {
         differences.push(
           "FO:t/e164 expected=+298802123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FO:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FO" {
@@ -20121,6 +23416,11 @@ test "end-to-end oracle: FO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FO:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+298901123", "") {
@@ -20142,6 +23442,11 @@ test "end-to-end oracle: FO" {
         differences.push(
           "FO:p/e164 expected=+298901123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FO:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FO" {
@@ -20180,6 +23485,11 @@ test "end-to-end oracle: FO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FO:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+298601234", "") {
@@ -20201,6 +23511,11 @@ test "end-to-end oracle: FO" {
         differences.push(
           "FO:v/e164 expected=+298601234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FO:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FO" {
@@ -20239,6 +23554,11 @@ test "end-to-end oracle: FO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FO:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -20269,6 +23589,11 @@ test "end-to-end oracle: FR" {
         differences.push(
           "FR:f/e164 expected=+33123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FR:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FR" {
@@ -20307,6 +23632,11 @@ test "end-to-end oracle: FR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FR:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+33612345678", "") {
@@ -20328,6 +23658,11 @@ test "end-to-end oracle: FR" {
         differences.push(
           "FR:m/e164 expected=+33612345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FR:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FR" {
@@ -20366,6 +23701,11 @@ test "end-to-end oracle: FR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FR:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+33801234567", "") {
@@ -20387,6 +23727,11 @@ test "end-to-end oracle: FR" {
         differences.push(
           "FR:t/e164 expected=+33801234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FR:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FR" {
@@ -20425,6 +23770,11 @@ test "end-to-end oracle: FR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FR:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+33891123456", "") {
@@ -20446,6 +23796,11 @@ test "end-to-end oracle: FR" {
         differences.push(
           "FR:p/e164 expected=+33891123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FR:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FR" {
@@ -20484,6 +23839,11 @@ test "end-to-end oracle: FR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FR:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+33884012345", "") {
@@ -20505,6 +23865,11 @@ test "end-to-end oracle: FR" {
         differences.push(
           "FR:s/e164 expected=+33884012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FR:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FR" {
@@ -20543,6 +23908,11 @@ test "end-to-end oracle: FR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FR:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+33912345678", "") {
@@ -20564,6 +23934,11 @@ test "end-to-end oracle: FR" {
         differences.push(
           "FR:v/e164 expected=+33912345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FR:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FR" {
@@ -20602,6 +23977,11 @@ test "end-to-end oracle: FR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FR:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+33806123456", "") {
@@ -20623,6 +24003,11 @@ test "end-to-end oracle: FR" {
         differences.push(
           "FR:u/e164 expected=+33806123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "FR:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FR" {
@@ -20661,6 +24046,11 @@ test "end-to-end oracle: FR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "FR:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -20691,6 +24081,11 @@ test "end-to-end oracle: GA" {
         differences.push(
           "GA:f/e164 expected=+24101441234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GA:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GA" {
@@ -20729,6 +24124,11 @@ test "end-to-end oracle: GA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GA:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+24106031234", "") {
@@ -20750,6 +24150,11 @@ test "end-to-end oracle: GA" {
         differences.push(
           "GA:m/e164 expected=+24106031234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GA:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GA" {
@@ -20788,6 +24193,11 @@ test "end-to-end oracle: GA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GA:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -20818,6 +24228,11 @@ test "end-to-end oracle: GB" {
         differences.push(
           "GB:f/e164 expected=+441212345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GB:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -20856,6 +24271,11 @@ test "end-to-end oracle: GB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GB:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+447400123456", "") {
@@ -20877,6 +24297,11 @@ test "end-to-end oracle: GB" {
         differences.push(
           "GB:m/e164 expected=+447400123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GB:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -20915,6 +24340,11 @@ test "end-to-end oracle: GB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GB:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+448001234567", "") {
@@ -20936,6 +24366,11 @@ test "end-to-end oracle: GB" {
         differences.push(
           "GB:t/e164 expected=+448001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GB:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -20974,6 +24409,11 @@ test "end-to-end oracle: GB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GB:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+449012345678", "") {
@@ -20995,6 +24435,11 @@ test "end-to-end oracle: GB" {
         differences.push(
           "GB:p/e164 expected=+449012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GB:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -21033,6 +24478,11 @@ test "end-to-end oracle: GB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GB:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+445612345678", "") {
@@ -21054,6 +24504,11 @@ test "end-to-end oracle: GB" {
         differences.push(
           "GB:v/e164 expected=+445612345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GB:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -21092,6 +24547,11 @@ test "end-to-end oracle: GB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GB:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+447012345678", "") {
@@ -21113,6 +24573,11 @@ test "end-to-end oracle: GB" {
         differences.push(
           "GB:r/e164 expected=+447012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GB:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -21151,6 +24616,11 @@ test "end-to-end oracle: GB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GB:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+445512345678", "") {
@@ -21172,6 +24642,11 @@ test "end-to-end oracle: GB" {
         differences.push(
           "GB:u/e164 expected=+445512345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GB:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -21210,6 +24685,11 @@ test "end-to-end oracle: GB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GB:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+447640123456", "") {
@@ -21231,6 +24711,11 @@ test "end-to-end oracle: GB" {
         differences.push(
           "GB:g/e164 expected=+447640123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GB:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -21269,6 +24754,11 @@ test "end-to-end oracle: GB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GB:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -21299,6 +24789,11 @@ test "end-to-end oracle: GD" {
         differences.push(
           "GD:f/e164 expected=+14732691234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GD:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GD" {
@@ -21337,6 +24832,11 @@ test "end-to-end oracle: GD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GD:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+14734031234", "") {
@@ -21358,6 +24858,11 @@ test "end-to-end oracle: GD" {
         differences.push(
           "GD:m/e164 expected=+14734031234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GD:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GD" {
@@ -21396,6 +24901,11 @@ test "end-to-end oracle: GD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GD:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002123456", "") {
@@ -21417,6 +24927,11 @@ test "end-to-end oracle: GD" {
         differences.push(
           "GD:t/e164 expected=+18002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GD:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -21455,6 +24970,11 @@ test "end-to-end oracle: GD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GD:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002123456", "") {
@@ -21476,6 +24996,11 @@ test "end-to-end oracle: GD" {
         differences.push(
           "GD:p/e164 expected=+19002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GD:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -21514,6 +25039,11 @@ test "end-to-end oracle: GD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GD:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -21535,6 +25065,11 @@ test "end-to-end oracle: GD" {
         differences.push(
           "GD:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GD:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -21573,6 +25108,11 @@ test "end-to-end oracle: GD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GD:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -21603,6 +25143,11 @@ test "end-to-end oracle: GE" {
         differences.push(
           "GE:f/e164 expected=+995322123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GE:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GE" {
@@ -21641,6 +25186,11 @@ test "end-to-end oracle: GE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GE:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+995555123456", "") {
@@ -21662,6 +25212,11 @@ test "end-to-end oracle: GE" {
         differences.push(
           "GE:m/e164 expected=+995555123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GE:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GE" {
@@ -21700,6 +25255,11 @@ test "end-to-end oracle: GE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GE:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+995800123456", "") {
@@ -21721,6 +25281,11 @@ test "end-to-end oracle: GE" {
         differences.push(
           "GE:t/e164 expected=+995800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GE:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GE" {
@@ -21759,6 +25324,11 @@ test "end-to-end oracle: GE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GE:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+995706123456", "") {
@@ -21780,6 +25350,11 @@ test "end-to-end oracle: GE" {
         differences.push(
           "GE:v/e164 expected=+995706123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GE:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GE" {
@@ -21818,6 +25393,11 @@ test "end-to-end oracle: GE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GE:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -21848,6 +25428,11 @@ test "end-to-end oracle: GF" {
         differences.push(
           "GF:f/e164 expected=+594594101234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GF:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GF" {
@@ -21886,6 +25471,11 @@ test "end-to-end oracle: GF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GF:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+594694201234", "") {
@@ -21907,6 +25497,11 @@ test "end-to-end oracle: GF" {
         differences.push(
           "GF:m/e164 expected=+594694201234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GF:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GF" {
@@ -21945,6 +25540,11 @@ test "end-to-end oracle: GF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GF:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+594800012345", "") {
@@ -21966,6 +25566,11 @@ test "end-to-end oracle: GF" {
         differences.push(
           "GF:t/e164 expected=+594800012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GF:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GF" {
@@ -22004,6 +25609,11 @@ test "end-to-end oracle: GF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GF:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+594890123456", "") {
@@ -22025,6 +25635,11 @@ test "end-to-end oracle: GF" {
         differences.push(
           "GF:p/e164 expected=+594890123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GF:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GF" {
@@ -22063,6 +25678,11 @@ test "end-to-end oracle: GF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GF:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+594976012345", "") {
@@ -22084,6 +25704,11 @@ test "end-to-end oracle: GF" {
         differences.push(
           "GF:v/e164 expected=+594976012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GF:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GF" {
@@ -22122,6 +25747,11 @@ test "end-to-end oracle: GF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GF:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -22152,6 +25782,11 @@ test "end-to-end oracle: GG" {
         differences.push(
           "GG:f/e164 expected=+441481256789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GG:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GG" {
@@ -22190,6 +25825,11 @@ test "end-to-end oracle: GG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GG:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+447781123456", "") {
@@ -22211,6 +25851,11 @@ test "end-to-end oracle: GG" {
         differences.push(
           "GG:m/e164 expected=+447781123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GG:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GG" {
@@ -22249,6 +25894,11 @@ test "end-to-end oracle: GG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GG:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+448001234567", "") {
@@ -22270,6 +25920,11 @@ test "end-to-end oracle: GG" {
         differences.push(
           "GG:t/e164 expected=+448001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GG:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -22308,6 +25963,11 @@ test "end-to-end oracle: GG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GG:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+449012345678", "") {
@@ -22329,6 +25989,11 @@ test "end-to-end oracle: GG" {
         differences.push(
           "GG:p/e164 expected=+449012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GG:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -22367,6 +26032,11 @@ test "end-to-end oracle: GG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GG:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+445612345678", "") {
@@ -22388,6 +26058,11 @@ test "end-to-end oracle: GG" {
         differences.push(
           "GG:v/e164 expected=+445612345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GG:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -22426,6 +26101,11 @@ test "end-to-end oracle: GG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GG:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+447012345678", "") {
@@ -22447,6 +26127,11 @@ test "end-to-end oracle: GG" {
         differences.push(
           "GG:r/e164 expected=+447012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GG:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -22485,6 +26170,11 @@ test "end-to-end oracle: GG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GG:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+445512345678", "") {
@@ -22506,6 +26196,11 @@ test "end-to-end oracle: GG" {
         differences.push(
           "GG:u/e164 expected=+445512345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GG:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -22544,6 +26239,11 @@ test "end-to-end oracle: GG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GG:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+447640123456", "") {
@@ -22565,6 +26265,11 @@ test "end-to-end oracle: GG" {
         differences.push(
           "GG:g/e164 expected=+447640123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GG:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -22603,6 +26308,11 @@ test "end-to-end oracle: GG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GG:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -22633,6 +26343,11 @@ test "end-to-end oracle: GH" {
         differences.push(
           "GH:f/e164 expected=+233302345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GH:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GH" {
@@ -22671,6 +26386,11 @@ test "end-to-end oracle: GH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GH:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+233231234567", "") {
@@ -22692,6 +26412,11 @@ test "end-to-end oracle: GH" {
         differences.push(
           "GH:m/e164 expected=+233231234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GH:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GH" {
@@ -22730,6 +26455,11 @@ test "end-to-end oracle: GH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GH:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+23380012345", "") {
@@ -22751,6 +26481,11 @@ test "end-to-end oracle: GH" {
         differences.push(
           "GH:t/e164 expected=+23380012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GH:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GH" {
@@ -22789,6 +26524,11 @@ test "end-to-end oracle: GH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GH:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -22819,6 +26559,11 @@ test "end-to-end oracle: GI" {
         differences.push(
           "GI:f/e164 expected=+35020012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GI:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GI" {
@@ -22857,6 +26602,11 @@ test "end-to-end oracle: GI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GI:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35057123456", "") {
@@ -22878,6 +26628,11 @@ test "end-to-end oracle: GI" {
         differences.push(
           "GI:m/e164 expected=+35057123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GI:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GI" {
@@ -22916,6 +26671,11 @@ test "end-to-end oracle: GI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GI:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -22946,6 +26706,11 @@ test "end-to-end oracle: GL" {
         differences.push(
           "GL:f/e164 expected=+299321000 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GL:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GL" {
@@ -22984,6 +26749,11 @@ test "end-to-end oracle: GL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GL:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+299221234", "") {
@@ -23005,6 +26775,11 @@ test "end-to-end oracle: GL" {
         differences.push(
           "GL:m/e164 expected=+299221234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GL:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GL" {
@@ -23043,6 +26818,11 @@ test "end-to-end oracle: GL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GL:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+299801234", "") {
@@ -23064,6 +26844,11 @@ test "end-to-end oracle: GL" {
         differences.push(
           "GL:t/e164 expected=+299801234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GL:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GL" {
@@ -23102,6 +26887,11 @@ test "end-to-end oracle: GL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GL:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+299381234", "") {
@@ -23123,6 +26913,11 @@ test "end-to-end oracle: GL" {
         differences.push(
           "GL:v/e164 expected=+299381234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GL:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GL" {
@@ -23161,6 +26956,11 @@ test "end-to-end oracle: GL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GL:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -23191,6 +26991,11 @@ test "end-to-end oracle: GM" {
         differences.push(
           "GM:f/e164 expected=+2205661234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GM:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GM" {
@@ -23229,6 +27034,11 @@ test "end-to-end oracle: GM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GM:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2203012345", "") {
@@ -23250,6 +27060,11 @@ test "end-to-end oracle: GM" {
         differences.push(
           "GM:m/e164 expected=+2203012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GM:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GM" {
@@ -23288,6 +27103,11 @@ test "end-to-end oracle: GM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GM:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -23318,6 +27138,11 @@ test "end-to-end oracle: GN" {
         differences.push(
           "GN:f/e164 expected=+22430241234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GN:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GN" {
@@ -23356,6 +27181,11 @@ test "end-to-end oracle: GN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GN:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+224601123456", "") {
@@ -23377,6 +27207,11 @@ test "end-to-end oracle: GN" {
         differences.push(
           "GN:m/e164 expected=+224601123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GN:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GN" {
@@ -23415,6 +27250,11 @@ test "end-to-end oracle: GN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GN:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+224722123456", "") {
@@ -23436,6 +27276,11 @@ test "end-to-end oracle: GN" {
         differences.push(
           "GN:v/e164 expected=+224722123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GN:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GN" {
@@ -23474,6 +27319,11 @@ test "end-to-end oracle: GN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GN:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -23504,6 +27354,11 @@ test "end-to-end oracle: GP" {
         differences.push(
           "GP:f/e164 expected=+590590201234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GP:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GP" {
@@ -23542,6 +27397,11 @@ test "end-to-end oracle: GP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GP:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+590690001234", "") {
@@ -23563,6 +27423,11 @@ test "end-to-end oracle: GP" {
         differences.push(
           "GP:m/e164 expected=+590690001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GP:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GP" {
@@ -23601,6 +27466,11 @@ test "end-to-end oracle: GP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GP:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+590800012345", "") {
@@ -23622,6 +27492,11 @@ test "end-to-end oracle: GP" {
         differences.push(
           "GP:t/e164 expected=+590800012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GP:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GP" {
@@ -23660,6 +27535,11 @@ test "end-to-end oracle: GP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GP:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+590810123456", "") {
@@ -23681,6 +27561,11 @@ test "end-to-end oracle: GP" {
         differences.push(
           "GP:p/e164 expected=+590810123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GP:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GP" {
@@ -23719,6 +27604,11 @@ test "end-to-end oracle: GP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GP:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+590976012345", "") {
@@ -23740,6 +27630,11 @@ test "end-to-end oracle: GP" {
         differences.push(
           "GP:v/e164 expected=+590976012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GP:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GP" {
@@ -23778,6 +27673,11 @@ test "end-to-end oracle: GP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GP:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -23808,6 +27708,11 @@ test "end-to-end oracle: GQ" {
         differences.push(
           "GQ:f/e164 expected=+240333091234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GQ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GQ" {
@@ -23846,6 +27751,11 @@ test "end-to-end oracle: GQ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GQ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+240222123456", "") {
@@ -23867,6 +27777,11 @@ test "end-to-end oracle: GQ" {
         differences.push(
           "GQ:m/e164 expected=+240222123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GQ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GQ" {
@@ -23905,6 +27820,11 @@ test "end-to-end oracle: GQ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GQ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+240800123456", "") {
@@ -23926,6 +27846,11 @@ test "end-to-end oracle: GQ" {
         differences.push(
           "GQ:t/e164 expected=+240800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GQ:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GQ" {
@@ -23964,6 +27889,11 @@ test "end-to-end oracle: GQ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GQ:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+240900123456", "") {
@@ -23985,6 +27915,11 @@ test "end-to-end oracle: GQ" {
         differences.push(
           "GQ:p/e164 expected=+240900123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GQ:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GQ" {
@@ -24023,6 +27958,11 @@ test "end-to-end oracle: GQ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GQ:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -24053,6 +27993,11 @@ test "end-to-end oracle: GR" {
         differences.push(
           "GR:f/e164 expected=+302123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GR:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GR" {
@@ -24091,6 +28036,11 @@ test "end-to-end oracle: GR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GR:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+306912345678", "") {
@@ -24112,6 +28062,11 @@ test "end-to-end oracle: GR" {
         differences.push(
           "GR:m/e164 expected=+306912345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GR:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GR" {
@@ -24150,6 +28105,11 @@ test "end-to-end oracle: GR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GR:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+308001234567", "") {
@@ -24171,6 +28131,11 @@ test "end-to-end oracle: GR" {
         differences.push(
           "GR:t/e164 expected=+308001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GR:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GR" {
@@ -24209,6 +28174,11 @@ test "end-to-end oracle: GR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GR:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+309091234567", "") {
@@ -24230,6 +28200,11 @@ test "end-to-end oracle: GR" {
         differences.push(
           "GR:p/e164 expected=+309091234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GR:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GR" {
@@ -24268,6 +28243,11 @@ test "end-to-end oracle: GR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GR:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+308011234567", "") {
@@ -24289,6 +28269,11 @@ test "end-to-end oracle: GR" {
         differences.push(
           "GR:s/e164 expected=+308011234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GR:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GR" {
@@ -24327,6 +28312,11 @@ test "end-to-end oracle: GR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GR:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+307012345678", "") {
@@ -24348,6 +28338,11 @@ test "end-to-end oracle: GR" {
         differences.push(
           "GR:r/e164 expected=+307012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GR:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GR" {
@@ -24386,6 +28381,11 @@ test "end-to-end oracle: GR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GR:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+305005000123", "") {
@@ -24407,6 +28407,11 @@ test "end-to-end oracle: GR" {
         differences.push(
           "GR:u/e164 expected=+305005000123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GR:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GR" {
@@ -24445,6 +28450,11 @@ test "end-to-end oracle: GR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GR:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -24475,6 +28485,11 @@ test "end-to-end oracle: GT" {
         differences.push(
           "GT:f/e164 expected=+50222456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GT:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GT" {
@@ -24513,6 +28528,11 @@ test "end-to-end oracle: GT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GT:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+50251234567", "") {
@@ -24534,6 +28554,11 @@ test "end-to-end oracle: GT" {
         differences.push(
           "GT:m/e164 expected=+50251234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GT:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GT" {
@@ -24572,6 +28597,11 @@ test "end-to-end oracle: GT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GT:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+50218001112222", "") {
@@ -24593,6 +28623,11 @@ test "end-to-end oracle: GT" {
         differences.push(
           "GT:t/e164 expected=+50218001112222 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GT:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GT" {
@@ -24631,6 +28666,11 @@ test "end-to-end oracle: GT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GT:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+50219001112222", "") {
@@ -24652,6 +28692,11 @@ test "end-to-end oracle: GT" {
         differences.push(
           "GT:p/e164 expected=+50219001112222 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GT:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GT" {
@@ -24690,6 +28735,11 @@ test "end-to-end oracle: GT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GT:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -24720,6 +28770,11 @@ test "end-to-end oracle: GU" {
         differences.push(
           "GU:f/e164 expected=+16713001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GU:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GU" {
@@ -24758,6 +28813,11 @@ test "end-to-end oracle: GU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GU:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+16713001234", "") {
@@ -24779,6 +28839,11 @@ test "end-to-end oracle: GU" {
         differences.push(
           "GU:m/e164 expected=+16713001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GU:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GU" {
@@ -24817,6 +28882,11 @@ test "end-to-end oracle: GU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GU:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002123456", "") {
@@ -24838,6 +28908,11 @@ test "end-to-end oracle: GU" {
         differences.push(
           "GU:t/e164 expected=+18002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GU:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -24876,6 +28951,11 @@ test "end-to-end oracle: GU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GU:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002123456", "") {
@@ -24897,6 +28977,11 @@ test "end-to-end oracle: GU" {
         differences.push(
           "GU:p/e164 expected=+19002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GU:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -24935,6 +29020,11 @@ test "end-to-end oracle: GU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GU:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -24956,6 +29046,11 @@ test "end-to-end oracle: GU" {
         differences.push(
           "GU:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GU:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -24994,6 +29089,11 @@ test "end-to-end oracle: GU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GU:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -25024,6 +29124,11 @@ test "end-to-end oracle: GW" {
         differences.push(
           "GW:f/e164 expected=+245443201234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GW:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GW" {
@@ -25062,6 +29167,11 @@ test "end-to-end oracle: GW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GW:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+245955012345", "") {
@@ -25083,6 +29193,11 @@ test "end-to-end oracle: GW" {
         differences.push(
           "GW:m/e164 expected=+245955012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GW:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GW" {
@@ -25121,6 +29236,11 @@ test "end-to-end oracle: GW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GW:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2454012345", "") {
@@ -25142,6 +29262,11 @@ test "end-to-end oracle: GW" {
         differences.push(
           "GW:v/e164 expected=+2454012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GW:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GW" {
@@ -25180,6 +29305,11 @@ test "end-to-end oracle: GW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GW:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -25210,6 +29340,11 @@ test "end-to-end oracle: GY" {
         differences.push(
           "GY:f/e164 expected=+5922201234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GY:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GY" {
@@ -25248,6 +29383,11 @@ test "end-to-end oracle: GY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GY:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5926091234", "") {
@@ -25269,6 +29409,11 @@ test "end-to-end oracle: GY" {
         differences.push(
           "GY:m/e164 expected=+5926091234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GY:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GY" {
@@ -25307,6 +29452,11 @@ test "end-to-end oracle: GY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GY:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5922891234", "") {
@@ -25328,6 +29478,11 @@ test "end-to-end oracle: GY" {
         differences.push(
           "GY:t/e164 expected=+5922891234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GY:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GY" {
@@ -25366,6 +29521,11 @@ test "end-to-end oracle: GY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GY:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5929008123", "") {
@@ -25387,6 +29547,11 @@ test "end-to-end oracle: GY" {
         differences.push(
           "GY:p/e164 expected=+5929008123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GY:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GY" {
@@ -25425,6 +29590,11 @@ test "end-to-end oracle: GY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GY:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5925151234", "") {
@@ -25446,6 +29616,11 @@ test "end-to-end oracle: GY" {
         differences.push(
           "GY:v/e164 expected=+5925151234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "GY:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GY" {
@@ -25484,6 +29659,11 @@ test "end-to-end oracle: GY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "GY:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -25514,6 +29694,11 @@ test "end-to-end oracle: HK" {
         differences.push(
           "HK:f/e164 expected=+85221234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HK:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HK" {
@@ -25552,6 +29737,11 @@ test "end-to-end oracle: HK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HK:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+85251234567", "") {
@@ -25573,6 +29763,11 @@ test "end-to-end oracle: HK" {
         differences.push(
           "HK:m/e164 expected=+85251234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HK:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HK" {
@@ -25611,6 +29806,11 @@ test "end-to-end oracle: HK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HK:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+852800123456", "") {
@@ -25632,6 +29832,11 @@ test "end-to-end oracle: HK" {
         differences.push(
           "HK:t/e164 expected=+852800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HK:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HK" {
@@ -25670,6 +29875,11 @@ test "end-to-end oracle: HK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HK:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+85290012345678", "") {
@@ -25691,6 +29901,11 @@ test "end-to-end oracle: HK" {
         differences.push(
           "HK:p/e164 expected=+85290012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HK:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HK" {
@@ -25729,6 +29944,11 @@ test "end-to-end oracle: HK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HK:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+85281123456", "") {
@@ -25750,6 +29970,11 @@ test "end-to-end oracle: HK" {
         differences.push(
           "HK:r/e164 expected=+85281123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HK:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HK" {
@@ -25788,6 +30013,11 @@ test "end-to-end oracle: HK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HK:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+85230161234", "") {
@@ -25809,6 +30039,11 @@ test "end-to-end oracle: HK" {
         differences.push(
           "HK:u/e164 expected=+85230161234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HK:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HK" {
@@ -25847,6 +30082,11 @@ test "end-to-end oracle: HK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HK:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+85271123456", "") {
@@ -25868,6 +30108,11 @@ test "end-to-end oracle: HK" {
         differences.push(
           "HK:g/e164 expected=+85271123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HK:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HK" {
@@ -25906,6 +30151,11 @@ test "end-to-end oracle: HK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HK:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -25936,6 +30186,11 @@ test "end-to-end oracle: HN" {
         differences.push(
           "HN:f/e164 expected=+50422123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HN:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HN" {
@@ -25974,6 +30229,11 @@ test "end-to-end oracle: HN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HN:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+50491234567", "") {
@@ -25995,6 +30255,11 @@ test "end-to-end oracle: HN" {
         differences.push(
           "HN:m/e164 expected=+50491234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HN:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HN" {
@@ -26033,6 +30298,11 @@ test "end-to-end oracle: HN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HN:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+50480021234567", "") {
@@ -26054,6 +30324,11 @@ test "end-to-end oracle: HN" {
         differences.push(
           "HN:t/e164 expected=+50480021234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HN:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HN" {
@@ -26092,6 +30367,11 @@ test "end-to-end oracle: HN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HN:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -26122,6 +30402,11 @@ test "end-to-end oracle: HR" {
         differences.push(
           "HR:f/e164 expected=+38512345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HR:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HR" {
@@ -26160,6 +30445,11 @@ test "end-to-end oracle: HR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HR:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+385921234567", "") {
@@ -26181,6 +30471,11 @@ test "end-to-end oracle: HR" {
         differences.push(
           "HR:m/e164 expected=+385921234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HR:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HR" {
@@ -26219,6 +30514,11 @@ test "end-to-end oracle: HR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HR:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+385800123456", "") {
@@ -26240,6 +30540,11 @@ test "end-to-end oracle: HR" {
         differences.push(
           "HR:t/e164 expected=+385800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HR:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HR" {
@@ -26278,6 +30583,11 @@ test "end-to-end oracle: HR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HR:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3856001234", "") {
@@ -26299,6 +30609,11 @@ test "end-to-end oracle: HR" {
         differences.push(
           "HR:p/e164 expected=+3856001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HR:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HR" {
@@ -26337,6 +30652,11 @@ test "end-to-end oracle: HR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HR:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38574123456", "") {
@@ -26358,6 +30678,11 @@ test "end-to-end oracle: HR" {
         differences.push(
           "HR:r/e164 expected=+38574123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HR:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HR" {
@@ -26396,6 +30721,11 @@ test "end-to-end oracle: HR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HR:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38562123456", "") {
@@ -26417,6 +30747,11 @@ test "end-to-end oracle: HR" {
         differences.push(
           "HR:u/e164 expected=+38562123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HR:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HR" {
@@ -26455,6 +30790,11 @@ test "end-to-end oracle: HR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HR:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -26485,6 +30825,11 @@ test "end-to-end oracle: HT" {
         differences.push(
           "HT:f/e164 expected=+50922453300 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HT:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HT" {
@@ -26523,6 +30868,11 @@ test "end-to-end oracle: HT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HT:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+50934101234", "") {
@@ -26544,6 +30894,11 @@ test "end-to-end oracle: HT" {
         differences.push(
           "HT:m/e164 expected=+50934101234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HT:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HT" {
@@ -26582,6 +30937,11 @@ test "end-to-end oracle: HT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HT:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+50980012345", "") {
@@ -26603,6 +30963,11 @@ test "end-to-end oracle: HT" {
         differences.push(
           "HT:t/e164 expected=+50980012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HT:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HT" {
@@ -26641,6 +31006,11 @@ test "end-to-end oracle: HT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HT:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+50998901234", "") {
@@ -26662,6 +31032,11 @@ test "end-to-end oracle: HT" {
         differences.push(
           "HT:v/e164 expected=+50998901234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HT:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HT" {
@@ -26700,6 +31075,11 @@ test "end-to-end oracle: HT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HT:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -26730,6 +31110,11 @@ test "end-to-end oracle: HU" {
         differences.push(
           "HU:f/e164 expected=+3612345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HU:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HU" {
@@ -26768,6 +31153,11 @@ test "end-to-end oracle: HU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HU:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+36201234567", "") {
@@ -26789,6 +31179,11 @@ test "end-to-end oracle: HU" {
         differences.push(
           "HU:m/e164 expected=+36201234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HU:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HU" {
@@ -26827,6 +31222,11 @@ test "end-to-end oracle: HU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HU:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3680123456", "") {
@@ -26848,6 +31248,11 @@ test "end-to-end oracle: HU" {
         differences.push(
           "HU:t/e164 expected=+3680123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HU:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HU" {
@@ -26886,6 +31291,11 @@ test "end-to-end oracle: HU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HU:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3690123456", "") {
@@ -26907,6 +31317,11 @@ test "end-to-end oracle: HU" {
         differences.push(
           "HU:p/e164 expected=+3690123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HU:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HU" {
@@ -26945,6 +31360,11 @@ test "end-to-end oracle: HU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HU:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+36211234567", "") {
@@ -26966,6 +31386,11 @@ test "end-to-end oracle: HU" {
         differences.push(
           "HU:v/e164 expected=+36211234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HU:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HU" {
@@ -27004,6 +31429,11 @@ test "end-to-end oracle: HU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HU:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+36381234567", "") {
@@ -27025,6 +31455,11 @@ test "end-to-end oracle: HU" {
         differences.push(
           "HU:u/e164 expected=+36381234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "HU:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "HU" {
@@ -27063,6 +31498,11 @@ test "end-to-end oracle: HU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "HU:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -27093,6 +31533,11 @@ test "end-to-end oracle: ID" {
         differences.push(
           "ID:f/e164 expected=+62218350123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ID:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ID" {
@@ -27131,6 +31576,11 @@ test "end-to-end oracle: ID" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ID:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+62812345678", "") {
@@ -27152,6 +31602,11 @@ test "end-to-end oracle: ID" {
         differences.push(
           "ID:m/e164 expected=+62812345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ID:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ID" {
@@ -27190,6 +31645,11 @@ test "end-to-end oracle: ID" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ID:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+628001234567", "") {
@@ -27211,6 +31671,11 @@ test "end-to-end oracle: ID" {
         differences.push(
           "ID:t/e164 expected=+628001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ID:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ID" {
@@ -27249,6 +31714,11 @@ test "end-to-end oracle: ID" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ID:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+628091234567", "") {
@@ -27270,6 +31740,11 @@ test "end-to-end oracle: ID" {
         differences.push(
           "ID:p/e164 expected=+628091234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ID:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ID" {
@@ -27308,6 +31783,11 @@ test "end-to-end oracle: ID" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ID:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+628041234567", "") {
@@ -27329,6 +31809,11 @@ test "end-to-end oracle: ID" {
         differences.push(
           "ID:s/e164 expected=+628041234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ID:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ID" {
@@ -27367,6 +31852,11 @@ test "end-to-end oracle: ID" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ID:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+628071123456", "") {
@@ -27388,6 +31878,11 @@ test "end-to-end oracle: ID" {
         differences.push(
           "ID:u/e164 expected=+628071123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ID:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ID" {
@@ -27426,6 +31921,11 @@ test "end-to-end oracle: ID" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ID:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -27456,6 +31956,11 @@ test "end-to-end oracle: IE" {
         differences.push(
           "IE:f/e164 expected=+3532212345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IE:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IE" {
@@ -27494,6 +31999,11 @@ test "end-to-end oracle: IE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IE:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+353850123456", "") {
@@ -27515,6 +32025,11 @@ test "end-to-end oracle: IE" {
         differences.push(
           "IE:m/e164 expected=+353850123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IE:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IE" {
@@ -27553,6 +32068,11 @@ test "end-to-end oracle: IE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IE:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3531800123456", "") {
@@ -27574,6 +32094,11 @@ test "end-to-end oracle: IE" {
         differences.push(
           "IE:t/e164 expected=+3531800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IE:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IE" {
@@ -27612,6 +32137,11 @@ test "end-to-end oracle: IE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IE:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3531520123456", "") {
@@ -27633,6 +32163,11 @@ test "end-to-end oracle: IE" {
         differences.push(
           "IE:p/e164 expected=+3531520123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IE:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IE" {
@@ -27671,6 +32206,11 @@ test "end-to-end oracle: IE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IE:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3531850123456", "") {
@@ -27692,6 +32232,11 @@ test "end-to-end oracle: IE" {
         differences.push(
           "IE:s/e164 expected=+3531850123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IE:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IE" {
@@ -27730,6 +32275,11 @@ test "end-to-end oracle: IE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IE:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+353761234567", "") {
@@ -27751,6 +32301,11 @@ test "end-to-end oracle: IE" {
         differences.push(
           "IE:v/e164 expected=+353761234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IE:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IE" {
@@ -27789,6 +32344,11 @@ test "end-to-end oracle: IE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IE:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+353700123456", "") {
@@ -27810,6 +32370,11 @@ test "end-to-end oracle: IE" {
         differences.push(
           "IE:r/e164 expected=+353700123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IE:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IE" {
@@ -27848,6 +32413,11 @@ test "end-to-end oracle: IE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IE:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+353818123456", "") {
@@ -27869,6 +32439,11 @@ test "end-to-end oracle: IE" {
         differences.push(
           "IE:u/e164 expected=+353818123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IE:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IE" {
@@ -27907,6 +32482,11 @@ test "end-to-end oracle: IE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IE:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3538551234567", "") {
@@ -27928,6 +32508,11 @@ test "end-to-end oracle: IE" {
         differences.push(
           "IE:o/e164 expected=+3538551234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IE:o/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IE" {
@@ -27966,6 +32551,11 @@ test "end-to-end oracle: IE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IE:o:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -27996,6 +32586,11 @@ test "end-to-end oracle: IL" {
         differences.push(
           "IL:f/e164 expected=+97221234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IL:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IL" {
@@ -28034,6 +32629,11 @@ test "end-to-end oracle: IL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IL:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+972502345678", "") {
@@ -28055,6 +32655,11 @@ test "end-to-end oracle: IL" {
         differences.push(
           "IL:m/e164 expected=+972502345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IL:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IL" {
@@ -28093,6 +32698,11 @@ test "end-to-end oracle: IL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IL:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9721800123456", "") {
@@ -28114,6 +32724,11 @@ test "end-to-end oracle: IL" {
         differences.push(
           "IL:t/e164 expected=+9721800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IL:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IL" {
@@ -28152,6 +32767,11 @@ test "end-to-end oracle: IL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IL:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9721919123456", "") {
@@ -28173,6 +32793,11 @@ test "end-to-end oracle: IL" {
         differences.push(
           "IL:p/e164 expected=+9721919123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IL:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IL" {
@@ -28211,6 +32836,11 @@ test "end-to-end oracle: IL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IL:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9721700123456", "") {
@@ -28232,6 +32862,11 @@ test "end-to-end oracle: IL" {
         differences.push(
           "IL:s/e164 expected=+9721700123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IL:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IL" {
@@ -28270,6 +32905,11 @@ test "end-to-end oracle: IL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IL:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+972771234567", "") {
@@ -28291,6 +32931,11 @@ test "end-to-end oracle: IL" {
         differences.push(
           "IL:v/e164 expected=+972771234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IL:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IL" {
@@ -28329,6 +32974,11 @@ test "end-to-end oracle: IL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IL:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9721599123456", "") {
@@ -28350,6 +33000,11 @@ test "end-to-end oracle: IL" {
         differences.push(
           "IL:u/e164 expected=+9721599123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IL:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IL" {
@@ -28388,6 +33043,11 @@ test "end-to-end oracle: IL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IL:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+97215112340000", "") {
@@ -28409,6 +33069,11 @@ test "end-to-end oracle: IL" {
         differences.push(
           "IL:o/e164 expected=+97215112340000 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IL:o/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IL" {
@@ -28447,6 +33112,11 @@ test "end-to-end oracle: IL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IL:o:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -28477,6 +33147,11 @@ test "end-to-end oracle: IM" {
         differences.push(
           "IM:f/e164 expected=+441624756789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IM:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IM" {
@@ -28515,6 +33190,11 @@ test "end-to-end oracle: IM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IM:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+447924123456", "") {
@@ -28536,6 +33216,11 @@ test "end-to-end oracle: IM" {
         differences.push(
           "IM:m/e164 expected=+447924123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IM:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -28574,6 +33259,11 @@ test "end-to-end oracle: IM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IM:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+448081624567", "") {
@@ -28595,6 +33285,11 @@ test "end-to-end oracle: IM" {
         differences.push(
           "IM:t/e164 expected=+448081624567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IM:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -28633,6 +33328,11 @@ test "end-to-end oracle: IM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IM:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+449016247890", "") {
@@ -28654,6 +33354,11 @@ test "end-to-end oracle: IM" {
         differences.push(
           "IM:p/e164 expected=+449016247890 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IM:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -28692,6 +33397,11 @@ test "end-to-end oracle: IM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IM:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+445612345678", "") {
@@ -28713,6 +33423,11 @@ test "end-to-end oracle: IM" {
         differences.push(
           "IM:v/e164 expected=+445612345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IM:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -28751,6 +33466,11 @@ test "end-to-end oracle: IM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IM:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+447012345678", "") {
@@ -28772,6 +33492,11 @@ test "end-to-end oracle: IM" {
         differences.push(
           "IM:r/e164 expected=+447012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IM:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -28810,6 +33535,11 @@ test "end-to-end oracle: IM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IM:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+445512345678", "") {
@@ -28831,6 +33561,11 @@ test "end-to-end oracle: IM" {
         differences.push(
           "IM:u/e164 expected=+445512345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IM:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -28869,6 +33604,11 @@ test "end-to-end oracle: IM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IM:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -28899,6 +33639,11 @@ test "end-to-end oracle: IN" {
         differences.push(
           "IN:f/e164 expected=+917410410123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IN:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IN" {
@@ -28937,6 +33682,11 @@ test "end-to-end oracle: IN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IN:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+918123456789", "") {
@@ -28958,6 +33708,11 @@ test "end-to-end oracle: IN" {
         differences.push(
           "IN:m/e164 expected=+918123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IN:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IN" {
@@ -28996,6 +33751,11 @@ test "end-to-end oracle: IN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IN:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+911800123456", "") {
@@ -29017,6 +33777,11 @@ test "end-to-end oracle: IN" {
         differences.push(
           "IN:t/e164 expected=+911800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IN:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IN" {
@@ -29055,6 +33820,11 @@ test "end-to-end oracle: IN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IN:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+911861123456789", "") {
@@ -29076,6 +33846,11 @@ test "end-to-end oracle: IN" {
         differences.push(
           "IN:p/e164 expected=+911861123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IN:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IN" {
@@ -29114,6 +33889,11 @@ test "end-to-end oracle: IN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IN:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9118603451234", "") {
@@ -29135,6 +33915,11 @@ test "end-to-end oracle: IN" {
         differences.push(
           "IN:s/e164 expected=+9118603451234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IN:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IN" {
@@ -29173,6 +33958,11 @@ test "end-to-end oracle: IN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IN:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+911409305260", "") {
@@ -29194,6 +33984,11 @@ test "end-to-end oracle: IN" {
         differences.push(
           "IN:u/e164 expected=+911409305260 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IN:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IN" {
@@ -29232,6 +34027,11 @@ test "end-to-end oracle: IN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IN:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -29262,6 +34062,11 @@ test "end-to-end oracle: IO" {
         differences.push(
           "IO:f/e164 expected=+2463709100 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IO:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IO" {
@@ -29300,6 +34105,11 @@ test "end-to-end oracle: IO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IO:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2463801234", "") {
@@ -29321,6 +34131,11 @@ test "end-to-end oracle: IO" {
         differences.push(
           "IO:m/e164 expected=+2463801234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IO:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IO" {
@@ -29359,6 +34174,11 @@ test "end-to-end oracle: IO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IO:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -29389,6 +34209,11 @@ test "end-to-end oracle: IQ" {
         differences.push(
           "IQ:f/e164 expected=+96412345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IQ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IQ" {
@@ -29427,6 +34252,11 @@ test "end-to-end oracle: IQ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IQ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9647912345678", "") {
@@ -29448,6 +34278,11 @@ test "end-to-end oracle: IQ" {
         differences.push(
           "IQ:m/e164 expected=+9647912345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IQ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IQ" {
@@ -29486,6 +34321,11 @@ test "end-to-end oracle: IQ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IQ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -29516,6 +34356,11 @@ test "end-to-end oracle: IR" {
         differences.push(
           "IR:f/e164 expected=+982123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IR:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IR" {
@@ -29554,6 +34399,11 @@ test "end-to-end oracle: IR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IR:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+989123456789", "") {
@@ -29575,6 +34425,11 @@ test "end-to-end oracle: IR" {
         differences.push(
           "IR:m/e164 expected=+989123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IR:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IR" {
@@ -29613,6 +34468,11 @@ test "end-to-end oracle: IR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IR:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+989601", "") {
@@ -29634,6 +34494,11 @@ test "end-to-end oracle: IR" {
         differences.push(
           "IR:u/e164 expected=+989601 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IR:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IR" {
@@ -29672,6 +34537,11 @@ test "end-to-end oracle: IR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IR:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -29702,6 +34572,11 @@ test "end-to-end oracle: IS" {
         differences.push(
           "IS:f/e164 expected=+3544101234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IS:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IS" {
@@ -29740,6 +34615,11 @@ test "end-to-end oracle: IS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IS:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3546111234", "") {
@@ -29761,6 +34641,11 @@ test "end-to-end oracle: IS" {
         differences.push(
           "IS:m/e164 expected=+3546111234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IS:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IS" {
@@ -29799,6 +34684,11 @@ test "end-to-end oracle: IS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IS:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3548001234", "") {
@@ -29820,6 +34710,11 @@ test "end-to-end oracle: IS" {
         differences.push(
           "IS:t/e164 expected=+3548001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IS:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IS" {
@@ -29858,6 +34753,11 @@ test "end-to-end oracle: IS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IS:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3549001234", "") {
@@ -29879,6 +34779,11 @@ test "end-to-end oracle: IS" {
         differences.push(
           "IS:p/e164 expected=+3549001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IS:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IS" {
@@ -29917,6 +34822,11 @@ test "end-to-end oracle: IS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IS:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3544921234", "") {
@@ -29938,6 +34848,11 @@ test "end-to-end oracle: IS" {
         differences.push(
           "IS:v/e164 expected=+3544921234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IS:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IS" {
@@ -29976,6 +34891,11 @@ test "end-to-end oracle: IS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IS:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3548091234", "") {
@@ -29997,6 +34917,11 @@ test "end-to-end oracle: IS" {
         differences.push(
           "IS:u/e164 expected=+3548091234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IS:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IS" {
@@ -30035,6 +34960,11 @@ test "end-to-end oracle: IS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IS:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3546891234", "") {
@@ -30056,6 +34986,11 @@ test "end-to-end oracle: IS" {
         differences.push(
           "IS:o/e164 expected=+3546891234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IS:o/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IS" {
@@ -30094,6 +35029,11 @@ test "end-to-end oracle: IS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IS:o:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -30124,6 +35064,11 @@ test "end-to-end oracle: IT" {
         differences.push(
           "IT:f/e164 expected=+390212345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IT:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IT" {
@@ -30162,6 +35107,11 @@ test "end-to-end oracle: IT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IT:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+393123456789", "") {
@@ -30183,6 +35133,11 @@ test "end-to-end oracle: IT" {
         differences.push(
           "IT:m/e164 expected=+393123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IT:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IT" {
@@ -30221,6 +35176,11 @@ test "end-to-end oracle: IT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IT:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+39800123456", "") {
@@ -30242,6 +35202,11 @@ test "end-to-end oracle: IT" {
         differences.push(
           "IT:t/e164 expected=+39800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IT:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IT" {
@@ -30280,6 +35245,11 @@ test "end-to-end oracle: IT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IT:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+39899123456", "") {
@@ -30301,6 +35271,11 @@ test "end-to-end oracle: IT" {
         differences.push(
           "IT:p/e164 expected=+39899123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IT:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IT" {
@@ -30339,6 +35314,11 @@ test "end-to-end oracle: IT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IT:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+39848123456", "") {
@@ -30360,6 +35340,11 @@ test "end-to-end oracle: IT" {
         differences.push(
           "IT:s/e164 expected=+39848123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IT:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IT" {
@@ -30398,6 +35383,11 @@ test "end-to-end oracle: IT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IT:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+395512345678", "") {
@@ -30419,6 +35409,11 @@ test "end-to-end oracle: IT" {
         differences.push(
           "IT:v/e164 expected=+395512345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IT:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IT" {
@@ -30457,6 +35452,11 @@ test "end-to-end oracle: IT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IT:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+391781234567", "") {
@@ -30478,6 +35478,11 @@ test "end-to-end oracle: IT" {
         differences.push(
           "IT:r/e164 expected=+391781234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IT:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IT" {
@@ -30516,6 +35521,11 @@ test "end-to-end oracle: IT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IT:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3933101234501", "") {
@@ -30537,6 +35547,11 @@ test "end-to-end oracle: IT" {
         differences.push(
           "IT:o/e164 expected=+3933101234501 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "IT:o/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IT" {
@@ -30575,6 +35590,11 @@ test "end-to-end oracle: IT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "IT:o:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -30605,6 +35625,11 @@ test "end-to-end oracle: JE" {
         differences.push(
           "JE:f/e164 expected=+441534456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JE:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JE" {
@@ -30643,6 +35668,11 @@ test "end-to-end oracle: JE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JE:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+447797712345", "") {
@@ -30664,6 +35694,11 @@ test "end-to-end oracle: JE" {
         differences.push(
           "JE:m/e164 expected=+447797712345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JE:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JE" {
@@ -30702,6 +35737,11 @@ test "end-to-end oracle: JE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JE:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+448007354567", "") {
@@ -30723,6 +35763,11 @@ test "end-to-end oracle: JE" {
         differences.push(
           "JE:t/e164 expected=+448007354567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JE:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -30761,6 +35806,11 @@ test "end-to-end oracle: JE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JE:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+449018105678", "") {
@@ -30782,6 +35832,11 @@ test "end-to-end oracle: JE" {
         differences.push(
           "JE:p/e164 expected=+449018105678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JE:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -30820,6 +35875,11 @@ test "end-to-end oracle: JE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JE:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+445612345678", "") {
@@ -30841,6 +35901,11 @@ test "end-to-end oracle: JE" {
         differences.push(
           "JE:v/e164 expected=+445612345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JE:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -30879,6 +35944,11 @@ test "end-to-end oracle: JE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JE:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+447015115678", "") {
@@ -30900,6 +35970,11 @@ test "end-to-end oracle: JE" {
         differences.push(
           "JE:r/e164 expected=+447015115678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JE:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -30938,6 +36013,11 @@ test "end-to-end oracle: JE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JE:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+445512345678", "") {
@@ -30959,6 +36039,11 @@ test "end-to-end oracle: JE" {
         differences.push(
           "JE:u/e164 expected=+445512345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JE:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -30997,6 +36082,11 @@ test "end-to-end oracle: JE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JE:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+447640123456", "") {
@@ -31018,6 +36108,11 @@ test "end-to-end oracle: JE" {
         differences.push(
           "JE:g/e164 expected=+447640123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JE:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -31056,6 +36151,11 @@ test "end-to-end oracle: JE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JE:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -31086,6 +36186,11 @@ test "end-to-end oracle: JM" {
         differences.push(
           "JM:f/e164 expected=+18765230123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JM:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JM" {
@@ -31124,6 +36229,11 @@ test "end-to-end oracle: JM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JM:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18762101234", "") {
@@ -31145,6 +36255,11 @@ test "end-to-end oracle: JM" {
         differences.push(
           "JM:m/e164 expected=+18762101234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JM:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JM" {
@@ -31183,6 +36298,11 @@ test "end-to-end oracle: JM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JM:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002123456", "") {
@@ -31204,6 +36324,11 @@ test "end-to-end oracle: JM" {
         differences.push(
           "JM:t/e164 expected=+18002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JM:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -31242,6 +36367,11 @@ test "end-to-end oracle: JM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JM:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002123456", "") {
@@ -31263,6 +36393,11 @@ test "end-to-end oracle: JM" {
         differences.push(
           "JM:p/e164 expected=+19002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JM:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -31301,6 +36436,11 @@ test "end-to-end oracle: JM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JM:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -31322,6 +36462,11 @@ test "end-to-end oracle: JM" {
         differences.push(
           "JM:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JM:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -31360,6 +36505,11 @@ test "end-to-end oracle: JM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JM:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -31390,6 +36540,11 @@ test "end-to-end oracle: JO" {
         differences.push(
           "JO:f/e164 expected=+96262001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JO:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JO" {
@@ -31428,6 +36583,11 @@ test "end-to-end oracle: JO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JO:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+962790123456", "") {
@@ -31449,6 +36609,11 @@ test "end-to-end oracle: JO" {
         differences.push(
           "JO:m/e164 expected=+962790123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JO:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JO" {
@@ -31487,6 +36652,11 @@ test "end-to-end oracle: JO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JO:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+96280012345", "") {
@@ -31508,6 +36678,11 @@ test "end-to-end oracle: JO" {
         differences.push(
           "JO:t/e164 expected=+96280012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JO:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JO" {
@@ -31546,6 +36721,11 @@ test "end-to-end oracle: JO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JO:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+96290012345", "") {
@@ -31567,6 +36747,11 @@ test "end-to-end oracle: JO" {
         differences.push(
           "JO:p/e164 expected=+96290012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JO:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JO" {
@@ -31605,6 +36790,11 @@ test "end-to-end oracle: JO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JO:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+96285012345", "") {
@@ -31626,6 +36816,11 @@ test "end-to-end oracle: JO" {
         differences.push(
           "JO:s/e164 expected=+96285012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JO:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JO" {
@@ -31664,6 +36859,11 @@ test "end-to-end oracle: JO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JO:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+962700123456", "") {
@@ -31685,6 +36885,11 @@ test "end-to-end oracle: JO" {
         differences.push(
           "JO:r/e164 expected=+962700123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JO:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JO" {
@@ -31723,6 +36928,11 @@ test "end-to-end oracle: JO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JO:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+96288101234", "") {
@@ -31744,6 +36954,11 @@ test "end-to-end oracle: JO" {
         differences.push(
           "JO:u/e164 expected=+96288101234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JO:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JO" {
@@ -31782,6 +36997,11 @@ test "end-to-end oracle: JO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JO:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+962746612345", "") {
@@ -31803,6 +37023,11 @@ test "end-to-end oracle: JO" {
         differences.push(
           "JO:g/e164 expected=+962746612345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JO:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JO" {
@@ -31841,6 +37066,11 @@ test "end-to-end oracle: JO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JO:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -31871,6 +37101,11 @@ test "end-to-end oracle: JP" {
         differences.push(
           "JP:f/e164 expected=+81312345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JP:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JP" {
@@ -31909,6 +37144,11 @@ test "end-to-end oracle: JP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JP:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+819012345678", "") {
@@ -31930,6 +37170,11 @@ test "end-to-end oracle: JP" {
         differences.push(
           "JP:m/e164 expected=+819012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JP:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JP" {
@@ -31968,6 +37213,11 @@ test "end-to-end oracle: JP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JP:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+81120123456", "") {
@@ -31989,6 +37239,11 @@ test "end-to-end oracle: JP" {
         differences.push(
           "JP:t/e164 expected=+81120123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JP:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JP" {
@@ -32027,6 +37282,11 @@ test "end-to-end oracle: JP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JP:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+81990123456", "") {
@@ -32048,6 +37308,11 @@ test "end-to-end oracle: JP" {
         differences.push(
           "JP:p/e164 expected=+81990123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JP:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JP" {
@@ -32086,6 +37351,11 @@ test "end-to-end oracle: JP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JP:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+815012345678", "") {
@@ -32107,6 +37377,11 @@ test "end-to-end oracle: JP" {
         differences.push(
           "JP:v/e164 expected=+815012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JP:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JP" {
@@ -32145,6 +37420,11 @@ test "end-to-end oracle: JP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JP:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+81601234567", "") {
@@ -32166,6 +37446,11 @@ test "end-to-end oracle: JP" {
         differences.push(
           "JP:r/e164 expected=+81601234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JP:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JP" {
@@ -32204,6 +37489,11 @@ test "end-to-end oracle: JP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JP:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+81570123456", "") {
@@ -32225,6 +37515,11 @@ test "end-to-end oracle: JP" {
         differences.push(
           "JP:u/e164 expected=+81570123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JP:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JP" {
@@ -32263,6 +37558,11 @@ test "end-to-end oracle: JP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JP:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+812012345678", "") {
@@ -32284,6 +37584,11 @@ test "end-to-end oracle: JP" {
         differences.push(
           "JP:g/e164 expected=+812012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "JP:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JP" {
@@ -32322,6 +37627,11 @@ test "end-to-end oracle: JP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "JP:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -32352,6 +37662,11 @@ test "end-to-end oracle: KE" {
         differences.push(
           "KE:f/e164 expected=+254202012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KE:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KE" {
@@ -32390,6 +37705,11 @@ test "end-to-end oracle: KE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KE:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+254712123456", "") {
@@ -32411,6 +37731,11 @@ test "end-to-end oracle: KE" {
         differences.push(
           "KE:m/e164 expected=+254712123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KE:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KE" {
@@ -32449,6 +37774,11 @@ test "end-to-end oracle: KE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KE:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+254800223456", "") {
@@ -32470,6 +37800,11 @@ test "end-to-end oracle: KE" {
         differences.push(
           "KE:t/e164 expected=+254800223456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KE:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KE" {
@@ -32508,6 +37843,11 @@ test "end-to-end oracle: KE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KE:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+254900223456", "") {
@@ -32529,6 +37869,11 @@ test "end-to-end oracle: KE" {
         differences.push(
           "KE:p/e164 expected=+254900223456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KE:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KE" {
@@ -32567,6 +37912,11 @@ test "end-to-end oracle: KE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KE:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -32597,6 +37947,11 @@ test "end-to-end oracle: KG" {
         differences.push(
           "KG:f/e164 expected=+996312123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KG:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KG" {
@@ -32635,6 +37990,11 @@ test "end-to-end oracle: KG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KG:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+996700123456", "") {
@@ -32656,6 +38016,11 @@ test "end-to-end oracle: KG" {
         differences.push(
           "KG:m/e164 expected=+996700123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KG:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KG" {
@@ -32694,6 +38059,11 @@ test "end-to-end oracle: KG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KG:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+996800123456", "") {
@@ -32715,6 +38085,11 @@ test "end-to-end oracle: KG" {
         differences.push(
           "KG:t/e164 expected=+996800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KG:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KG" {
@@ -32753,6 +38128,11 @@ test "end-to-end oracle: KG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KG:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -32783,6 +38163,11 @@ test "end-to-end oracle: KH" {
         differences.push(
           "KH:f/e164 expected=+85523756789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KH:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KH" {
@@ -32821,6 +38206,11 @@ test "end-to-end oracle: KH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KH:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+85591234567", "") {
@@ -32842,6 +38232,11 @@ test "end-to-end oracle: KH" {
         differences.push(
           "KH:m/e164 expected=+85591234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KH:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KH" {
@@ -32880,6 +38275,11 @@ test "end-to-end oracle: KH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KH:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+8551800123456", "") {
@@ -32901,6 +38301,11 @@ test "end-to-end oracle: KH" {
         differences.push(
           "KH:t/e164 expected=+8551800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KH:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KH" {
@@ -32939,6 +38344,11 @@ test "end-to-end oracle: KH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KH:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+8551900123456", "") {
@@ -32960,6 +38370,11 @@ test "end-to-end oracle: KH" {
         differences.push(
           "KH:p/e164 expected=+8551900123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KH:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KH" {
@@ -32998,6 +38413,11 @@ test "end-to-end oracle: KH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KH:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -33028,6 +38448,11 @@ test "end-to-end oracle: KI" {
         differences.push(
           "KI:f/e164 expected=+68631234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KI:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KI" {
@@ -33066,6 +38491,11 @@ test "end-to-end oracle: KI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KI:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+68672001234", "") {
@@ -33087,6 +38517,11 @@ test "end-to-end oracle: KI" {
         differences.push(
           "KI:m/e164 expected=+68672001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KI:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KI" {
@@ -33125,6 +38560,11 @@ test "end-to-end oracle: KI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KI:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+68630010000", "") {
@@ -33146,6 +38586,11 @@ test "end-to-end oracle: KI" {
         differences.push(
           "KI:v/e164 expected=+68630010000 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KI:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KI" {
@@ -33184,6 +38629,11 @@ test "end-to-end oracle: KI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KI:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -33214,6 +38664,11 @@ test "end-to-end oracle: KM" {
         differences.push(
           "KM:f/e164 expected=+2697712345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KM:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KM" {
@@ -33252,6 +38707,11 @@ test "end-to-end oracle: KM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KM:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2693212345", "") {
@@ -33273,6 +38733,11 @@ test "end-to-end oracle: KM" {
         differences.push(
           "KM:m/e164 expected=+2693212345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KM:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KM" {
@@ -33311,6 +38776,11 @@ test "end-to-end oracle: KM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KM:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2698001234", "") {
@@ -33332,6 +38802,11 @@ test "end-to-end oracle: KM" {
         differences.push(
           "KM:p/e164 expected=+2698001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KM:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KM" {
@@ -33370,6 +38845,11 @@ test "end-to-end oracle: KM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KM:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -33400,6 +38880,11 @@ test "end-to-end oracle: KN" {
         differences.push(
           "KN:f/e164 expected=+18692361234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KN:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KN" {
@@ -33438,6 +38923,11 @@ test "end-to-end oracle: KN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KN:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18697652917", "") {
@@ -33459,6 +38949,11 @@ test "end-to-end oracle: KN" {
         differences.push(
           "KN:m/e164 expected=+18697652917 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KN:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KN" {
@@ -33497,6 +38992,11 @@ test "end-to-end oracle: KN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KN:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002123456", "") {
@@ -33518,6 +39018,11 @@ test "end-to-end oracle: KN" {
         differences.push(
           "KN:t/e164 expected=+18002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KN:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -33556,6 +39061,11 @@ test "end-to-end oracle: KN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KN:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002123456", "") {
@@ -33577,6 +39087,11 @@ test "end-to-end oracle: KN" {
         differences.push(
           "KN:p/e164 expected=+19002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KN:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -33615,6 +39130,11 @@ test "end-to-end oracle: KN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KN:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -33636,6 +39156,11 @@ test "end-to-end oracle: KN" {
         differences.push(
           "KN:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KN:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -33674,6 +39199,11 @@ test "end-to-end oracle: KN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KN:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -33704,6 +39234,11 @@ test "end-to-end oracle: KP" {
         differences.push(
           "KP:f/e164 expected=+85021234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KP:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KP" {
@@ -33742,6 +39277,11 @@ test "end-to-end oracle: KP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KP:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+8501921234567", "") {
@@ -33763,6 +39303,11 @@ test "end-to-end oracle: KP" {
         differences.push(
           "KP:m/e164 expected=+8501921234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KP:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KP" {
@@ -33801,6 +39346,11 @@ test "end-to-end oracle: KP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KP:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -33831,6 +39381,11 @@ test "end-to-end oracle: KR" {
         differences.push(
           "KR:f/e164 expected=+8222123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KR:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KR" {
@@ -33869,6 +39424,11 @@ test "end-to-end oracle: KR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KR:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+821020000000", "") {
@@ -33890,6 +39450,11 @@ test "end-to-end oracle: KR" {
         differences.push(
           "KR:m/e164 expected=+821020000000 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KR:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KR" {
@@ -33928,6 +39493,11 @@ test "end-to-end oracle: KR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KR:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+82801234567", "") {
@@ -33949,6 +39519,11 @@ test "end-to-end oracle: KR" {
         differences.push(
           "KR:t/e164 expected=+82801234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KR:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KR" {
@@ -33987,6 +39562,11 @@ test "end-to-end oracle: KR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KR:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+82602345678", "") {
@@ -34008,6 +39588,11 @@ test "end-to-end oracle: KR" {
         differences.push(
           "KR:p/e164 expected=+82602345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KR:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KR" {
@@ -34046,6 +39631,11 @@ test "end-to-end oracle: KR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KR:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+827012345678", "") {
@@ -34067,6 +39657,11 @@ test "end-to-end oracle: KR" {
         differences.push(
           "KR:v/e164 expected=+827012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KR:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KR" {
@@ -34105,6 +39700,11 @@ test "end-to-end oracle: KR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KR:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+825012345678", "") {
@@ -34126,6 +39726,11 @@ test "end-to-end oracle: KR" {
         differences.push(
           "KR:r/e164 expected=+825012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KR:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KR" {
@@ -34164,6 +39769,11 @@ test "end-to-end oracle: KR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KR:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+8215441234", "") {
@@ -34185,6 +39795,11 @@ test "end-to-end oracle: KR" {
         differences.push(
           "KR:u/e164 expected=+8215441234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KR:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KR" {
@@ -34223,6 +39838,11 @@ test "end-to-end oracle: KR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KR:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+821523456789", "") {
@@ -34244,6 +39864,11 @@ test "end-to-end oracle: KR" {
         differences.push(
           "KR:g/e164 expected=+821523456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KR:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KR" {
@@ -34282,6 +39907,11 @@ test "end-to-end oracle: KR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KR:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -34312,6 +39942,11 @@ test "end-to-end oracle: KW" {
         differences.push(
           "KW:f/e164 expected=+96522345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KW:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KW" {
@@ -34350,6 +39985,11 @@ test "end-to-end oracle: KW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KW:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+96550012345", "") {
@@ -34371,6 +40011,11 @@ test "end-to-end oracle: KW" {
         differences.push(
           "KW:m/e164 expected=+96550012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KW:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KW" {
@@ -34409,6 +40054,11 @@ test "end-to-end oracle: KW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KW:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9651801234", "") {
@@ -34430,6 +40080,11 @@ test "end-to-end oracle: KW" {
         differences.push(
           "KW:t/e164 expected=+9651801234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KW:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KW" {
@@ -34468,6 +40123,11 @@ test "end-to-end oracle: KW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KW:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -34498,6 +40158,11 @@ test "end-to-end oracle: KY" {
         differences.push(
           "KY:f/e164 expected=+13452221234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KY:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KY" {
@@ -34536,6 +40201,11 @@ test "end-to-end oracle: KY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KY:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+13453231234", "") {
@@ -34557,6 +40227,11 @@ test "end-to-end oracle: KY" {
         differences.push(
           "KY:m/e164 expected=+13453231234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KY:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KY" {
@@ -34595,6 +40270,11 @@ test "end-to-end oracle: KY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KY:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002345678", "") {
@@ -34616,6 +40296,11 @@ test "end-to-end oracle: KY" {
         differences.push(
           "KY:t/e164 expected=+18002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KY:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -34654,6 +40339,11 @@ test "end-to-end oracle: KY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KY:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002345678", "") {
@@ -34675,6 +40365,11 @@ test "end-to-end oracle: KY" {
         differences.push(
           "KY:p/e164 expected=+19002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KY:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -34713,6 +40408,11 @@ test "end-to-end oracle: KY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KY:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -34734,6 +40434,11 @@ test "end-to-end oracle: KY" {
         differences.push(
           "KY:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KY:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -34772,6 +40477,11 @@ test "end-to-end oracle: KY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KY:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -34802,6 +40512,11 @@ test "end-to-end oracle: KZ" {
         differences.push(
           "KZ:f/e164 expected=+77123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KZ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KZ" {
@@ -34840,6 +40555,11 @@ test "end-to-end oracle: KZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KZ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+77710009998", "") {
@@ -34861,6 +40581,11 @@ test "end-to-end oracle: KZ" {
         differences.push(
           "KZ:m/e164 expected=+77710009998 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KZ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KZ" {
@@ -34899,6 +40624,11 @@ test "end-to-end oracle: KZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KZ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+78001234567", "") {
@@ -34920,6 +40650,11 @@ test "end-to-end oracle: KZ" {
         differences.push(
           "KZ:t/e164 expected=+78001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KZ:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RU" {
@@ -34958,6 +40693,11 @@ test "end-to-end oracle: KZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KZ:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+78091234567", "") {
@@ -34979,6 +40719,11 @@ test "end-to-end oracle: KZ" {
         differences.push(
           "KZ:p/e164 expected=+78091234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KZ:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RU" {
@@ -35017,6 +40762,11 @@ test "end-to-end oracle: KZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KZ:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+77511234567", "") {
@@ -35038,6 +40788,11 @@ test "end-to-end oracle: KZ" {
         differences.push(
           "KZ:v/e164 expected=+77511234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KZ:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "KZ" {
@@ -35076,6 +40831,11 @@ test "end-to-end oracle: KZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KZ:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+78081234567", "") {
@@ -35097,6 +40857,11 @@ test "end-to-end oracle: KZ" {
         differences.push(
           "KZ:r/e164 expected=+78081234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "KZ:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RU" {
@@ -35135,6 +40900,11 @@ test "end-to-end oracle: KZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "KZ:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -35165,6 +40935,11 @@ test "end-to-end oracle: LA" {
         differences.push(
           "LA:f/e164 expected=+85621212862 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LA:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LA" {
@@ -35203,6 +40978,11 @@ test "end-to-end oracle: LA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LA:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+8562023123456", "") {
@@ -35224,6 +41004,11 @@ test "end-to-end oracle: LA" {
         differences.push(
           "LA:m/e164 expected=+8562023123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LA:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LA" {
@@ -35262,6 +41047,11 @@ test "end-to-end oracle: LA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LA:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -35292,6 +41082,11 @@ test "end-to-end oracle: LB" {
         differences.push(
           "LB:f/e164 expected=+9611123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LB:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LB" {
@@ -35330,6 +41125,11 @@ test "end-to-end oracle: LB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LB:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+96171123456", "") {
@@ -35351,6 +41151,11 @@ test "end-to-end oracle: LB" {
         differences.push(
           "LB:m/e164 expected=+96171123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LB:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LB" {
@@ -35389,6 +41194,11 @@ test "end-to-end oracle: LB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LB:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+96190123456", "") {
@@ -35410,6 +41220,11 @@ test "end-to-end oracle: LB" {
         differences.push(
           "LB:p/e164 expected=+96190123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LB:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LB" {
@@ -35448,6 +41263,11 @@ test "end-to-end oracle: LB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LB:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+96180123456", "") {
@@ -35469,6 +41289,11 @@ test "end-to-end oracle: LB" {
         differences.push(
           "LB:s/e164 expected=+96180123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LB:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LB" {
@@ -35507,6 +41332,11 @@ test "end-to-end oracle: LB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LB:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -35537,6 +41367,11 @@ test "end-to-end oracle: LC" {
         differences.push(
           "LC:f/e164 expected=+17584305678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LC:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LC" {
@@ -35575,6 +41410,11 @@ test "end-to-end oracle: LC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LC:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+17582845678", "") {
@@ -35596,6 +41436,11 @@ test "end-to-end oracle: LC" {
         differences.push(
           "LC:m/e164 expected=+17582845678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LC:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LC" {
@@ -35634,6 +41479,11 @@ test "end-to-end oracle: LC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LC:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002123456", "") {
@@ -35655,6 +41505,11 @@ test "end-to-end oracle: LC" {
         differences.push(
           "LC:t/e164 expected=+18002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LC:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -35693,6 +41548,11 @@ test "end-to-end oracle: LC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LC:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002123456", "") {
@@ -35714,6 +41574,11 @@ test "end-to-end oracle: LC" {
         differences.push(
           "LC:p/e164 expected=+19002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LC:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -35752,6 +41617,11 @@ test "end-to-end oracle: LC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LC:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -35773,6 +41643,11 @@ test "end-to-end oracle: LC" {
         differences.push(
           "LC:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LC:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -35811,6 +41686,11 @@ test "end-to-end oracle: LC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LC:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -35841,6 +41721,11 @@ test "end-to-end oracle: LI" {
         differences.push(
           "LI:f/e164 expected=+4232345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LI:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LI" {
@@ -35879,6 +41764,11 @@ test "end-to-end oracle: LI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LI:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+423660234567", "") {
@@ -35900,6 +41790,11 @@ test "end-to-end oracle: LI" {
         differences.push(
           "LI:m/e164 expected=+423660234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LI:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LI" {
@@ -35938,6 +41833,11 @@ test "end-to-end oracle: LI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LI:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4238002222", "") {
@@ -35959,6 +41859,11 @@ test "end-to-end oracle: LI" {
         differences.push(
           "LI:t/e164 expected=+4238002222 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LI:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LI" {
@@ -35997,6 +41902,11 @@ test "end-to-end oracle: LI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LI:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4239002222", "") {
@@ -36018,6 +41928,11 @@ test "end-to-end oracle: LI" {
         differences.push(
           "LI:p/e164 expected=+4239002222 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LI:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LI" {
@@ -36056,6 +41971,11 @@ test "end-to-end oracle: LI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LI:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4238702812", "") {
@@ -36077,6 +41997,11 @@ test "end-to-end oracle: LI" {
         differences.push(
           "LI:u/e164 expected=+4238702812 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LI:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LI" {
@@ -36115,6 +42040,11 @@ test "end-to-end oracle: LI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LI:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+423697861234", "") {
@@ -36136,6 +42066,11 @@ test "end-to-end oracle: LI" {
         differences.push(
           "LI:o/e164 expected=+423697861234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LI:o/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LI" {
@@ -36174,6 +42109,11 @@ test "end-to-end oracle: LI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LI:o:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -36204,6 +42144,11 @@ test "end-to-end oracle: LK" {
         differences.push(
           "LK:f/e164 expected=+94112345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LK:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LK" {
@@ -36242,6 +42187,11 @@ test "end-to-end oracle: LK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LK:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+94712345678", "") {
@@ -36263,6 +42213,11 @@ test "end-to-end oracle: LK" {
         differences.push(
           "LK:m/e164 expected=+94712345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LK:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LK" {
@@ -36301,6 +42256,11 @@ test "end-to-end oracle: LK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LK:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+94197312345", "") {
@@ -36322,6 +42282,11 @@ test "end-to-end oracle: LK" {
         differences.push(
           "LK:u/e164 expected=+94197312345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LK:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LK" {
@@ -36360,6 +42325,11 @@ test "end-to-end oracle: LK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LK:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -36390,6 +42360,11 @@ test "end-to-end oracle: LR" {
         differences.push(
           "LR:f/e164 expected=+23121234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LR:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LR" {
@@ -36428,6 +42403,11 @@ test "end-to-end oracle: LR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LR:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+231770123456", "") {
@@ -36449,6 +42429,11 @@ test "end-to-end oracle: LR" {
         differences.push(
           "LR:m/e164 expected=+231770123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LR:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LR" {
@@ -36487,6 +42472,11 @@ test "end-to-end oracle: LR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LR:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+231332021234", "") {
@@ -36508,6 +42498,11 @@ test "end-to-end oracle: LR" {
         differences.push(
           "LR:p/e164 expected=+231332021234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LR:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LR" {
@@ -36546,6 +42541,11 @@ test "end-to-end oracle: LR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LR:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -36576,6 +42576,11 @@ test "end-to-end oracle: LS" {
         differences.push(
           "LS:f/e164 expected=+26622123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LS:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LS" {
@@ -36614,6 +42619,11 @@ test "end-to-end oracle: LS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LS:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+26650123456", "") {
@@ -36635,6 +42645,11 @@ test "end-to-end oracle: LS" {
         differences.push(
           "LS:m/e164 expected=+26650123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LS:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LS" {
@@ -36673,6 +42688,11 @@ test "end-to-end oracle: LS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LS:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+26680021234", "") {
@@ -36694,6 +42714,11 @@ test "end-to-end oracle: LS" {
         differences.push(
           "LS:t/e164 expected=+26680021234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LS:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LS" {
@@ -36732,6 +42757,11 @@ test "end-to-end oracle: LS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LS:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -36762,6 +42792,11 @@ test "end-to-end oracle: LT" {
         differences.push(
           "LT:f/e164 expected=+37031234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LT:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LT" {
@@ -36800,6 +42835,11 @@ test "end-to-end oracle: LT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LT:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37061234567", "") {
@@ -36821,6 +42861,11 @@ test "end-to-end oracle: LT" {
         differences.push(
           "LT:m/e164 expected=+37061234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LT:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LT" {
@@ -36859,6 +42904,11 @@ test "end-to-end oracle: LT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LT:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37080012345", "") {
@@ -36880,6 +42930,11 @@ test "end-to-end oracle: LT" {
         differences.push(
           "LT:t/e164 expected=+37080012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LT:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LT" {
@@ -36918,6 +42973,11 @@ test "end-to-end oracle: LT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LT:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37090012345", "") {
@@ -36939,6 +42999,11 @@ test "end-to-end oracle: LT" {
         differences.push(
           "LT:p/e164 expected=+37090012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LT:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LT" {
@@ -36977,6 +43042,11 @@ test "end-to-end oracle: LT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LT:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37080812345", "") {
@@ -36998,6 +43068,11 @@ test "end-to-end oracle: LT" {
         differences.push(
           "LT:s/e164 expected=+37080812345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LT:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LT" {
@@ -37036,6 +43111,11 @@ test "end-to-end oracle: LT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LT:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37080123456", "") {
@@ -37057,6 +43137,11 @@ test "end-to-end oracle: LT" {
         differences.push(
           "LT:v/e164 expected=+37080123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LT:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LT" {
@@ -37095,6 +43180,11 @@ test "end-to-end oracle: LT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LT:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37070012345", "") {
@@ -37116,6 +43206,11 @@ test "end-to-end oracle: LT" {
         differences.push(
           "LT:r/e164 expected=+37070012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LT:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LT" {
@@ -37154,6 +43249,11 @@ test "end-to-end oracle: LT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LT:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37070712345", "") {
@@ -37175,6 +43275,11 @@ test "end-to-end oracle: LT" {
         differences.push(
           "LT:u/e164 expected=+37070712345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LT:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LT" {
@@ -37213,6 +43318,11 @@ test "end-to-end oracle: LT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LT:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -37243,6 +43353,11 @@ test "end-to-end oracle: LU" {
         differences.push(
           "LU:f/e164 expected=+35227123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LU:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LU" {
@@ -37281,6 +43396,11 @@ test "end-to-end oracle: LU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LU:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+352628123456", "") {
@@ -37302,6 +43422,11 @@ test "end-to-end oracle: LU" {
         differences.push(
           "LU:m/e164 expected=+352628123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LU:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LU" {
@@ -37340,6 +43465,11 @@ test "end-to-end oracle: LU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LU:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35280012345", "") {
@@ -37361,6 +43491,11 @@ test "end-to-end oracle: LU" {
         differences.push(
           "LU:t/e164 expected=+35280012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LU:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LU" {
@@ -37399,6 +43534,11 @@ test "end-to-end oracle: LU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LU:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35290012345", "") {
@@ -37420,6 +43560,11 @@ test "end-to-end oracle: LU" {
         differences.push(
           "LU:p/e164 expected=+35290012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LU:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LU" {
@@ -37458,6 +43603,11 @@ test "end-to-end oracle: LU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LU:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35280112345", "") {
@@ -37479,6 +43629,11 @@ test "end-to-end oracle: LU" {
         differences.push(
           "LU:s/e164 expected=+35280112345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LU:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LU" {
@@ -37517,6 +43672,11 @@ test "end-to-end oracle: LU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LU:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35220201234", "") {
@@ -37538,6 +43698,11 @@ test "end-to-end oracle: LU" {
         differences.push(
           "LU:v/e164 expected=+35220201234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LU:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LU" {
@@ -37576,6 +43741,11 @@ test "end-to-end oracle: LU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LU:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -37606,6 +43776,11 @@ test "end-to-end oracle: LV" {
         differences.push(
           "LV:f/e164 expected=+37163123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LV:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LV" {
@@ -37644,6 +43819,11 @@ test "end-to-end oracle: LV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LV:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37121234567", "") {
@@ -37665,6 +43845,11 @@ test "end-to-end oracle: LV" {
         differences.push(
           "LV:m/e164 expected=+37121234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LV:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LV" {
@@ -37703,6 +43888,11 @@ test "end-to-end oracle: LV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LV:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37180123456", "") {
@@ -37724,6 +43914,11 @@ test "end-to-end oracle: LV" {
         differences.push(
           "LV:t/e164 expected=+37180123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LV:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LV" {
@@ -37762,6 +43957,11 @@ test "end-to-end oracle: LV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LV:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37190123456", "") {
@@ -37783,6 +43983,11 @@ test "end-to-end oracle: LV" {
         differences.push(
           "LV:p/e164 expected=+37190123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LV:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LV" {
@@ -37821,6 +44026,11 @@ test "end-to-end oracle: LV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LV:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37181123456", "") {
@@ -37842,6 +44052,11 @@ test "end-to-end oracle: LV" {
         differences.push(
           "LV:s/e164 expected=+37181123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LV:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LV" {
@@ -37880,6 +44095,11 @@ test "end-to-end oracle: LV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LV:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -37910,6 +44130,11 @@ test "end-to-end oracle: LY" {
         differences.push(
           "LY:f/e164 expected=+218212345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LY:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LY" {
@@ -37948,6 +44173,11 @@ test "end-to-end oracle: LY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LY:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+218912345678", "") {
@@ -37969,6 +44199,11 @@ test "end-to-end oracle: LY" {
         differences.push(
           "LY:m/e164 expected=+218912345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "LY:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "LY" {
@@ -38007,6 +44242,11 @@ test "end-to-end oracle: LY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "LY:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -38037,6 +44277,11 @@ test "end-to-end oracle: MA" {
         differences.push(
           "MA:f/e164 expected=+212520123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MA:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MA" {
@@ -38075,6 +44320,11 @@ test "end-to-end oracle: MA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MA:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+212650123456", "") {
@@ -38096,6 +44346,11 @@ test "end-to-end oracle: MA" {
         differences.push(
           "MA:m/e164 expected=+212650123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MA:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MA" {
@@ -38134,6 +44389,11 @@ test "end-to-end oracle: MA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MA:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+212801234567", "") {
@@ -38155,6 +44415,11 @@ test "end-to-end oracle: MA" {
         differences.push(
           "MA:t/e164 expected=+212801234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MA:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MA" {
@@ -38193,6 +44458,11 @@ test "end-to-end oracle: MA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MA:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+212891234567", "") {
@@ -38214,6 +44484,11 @@ test "end-to-end oracle: MA" {
         differences.push(
           "MA:p/e164 expected=+212891234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MA:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MA" {
@@ -38252,6 +44527,11 @@ test "end-to-end oracle: MA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MA:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+212592401234", "") {
@@ -38273,6 +44553,11 @@ test "end-to-end oracle: MA" {
         differences.push(
           "MA:v/e164 expected=+212592401234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MA:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MA" {
@@ -38311,6 +44596,11 @@ test "end-to-end oracle: MA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MA:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -38341,6 +44631,11 @@ test "end-to-end oracle: MC" {
         differences.push(
           "MC:f/e164 expected=+37799123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MC:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MC" {
@@ -38379,6 +44674,11 @@ test "end-to-end oracle: MC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MC:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+377612345678", "") {
@@ -38400,6 +44700,11 @@ test "end-to-end oracle: MC" {
         differences.push(
           "MC:m/e164 expected=+377612345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MC:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MC" {
@@ -38438,6 +44743,11 @@ test "end-to-end oracle: MC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MC:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37790123456", "") {
@@ -38459,6 +44769,11 @@ test "end-to-end oracle: MC" {
         differences.push(
           "MC:t/e164 expected=+37790123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MC:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MC" {
@@ -38497,6 +44812,11 @@ test "end-to-end oracle: MC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MC:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -38527,6 +44847,11 @@ test "end-to-end oracle: MD" {
         differences.push(
           "MD:f/e164 expected=+37322212345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MD:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MD" {
@@ -38565,6 +44890,11 @@ test "end-to-end oracle: MD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MD:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37362112345", "") {
@@ -38586,6 +44916,11 @@ test "end-to-end oracle: MD" {
         differences.push(
           "MD:m/e164 expected=+37362112345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MD:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MD" {
@@ -38624,6 +44959,11 @@ test "end-to-end oracle: MD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MD:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37380012345", "") {
@@ -38645,6 +44985,11 @@ test "end-to-end oracle: MD" {
         differences.push(
           "MD:t/e164 expected=+37380012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MD:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MD" {
@@ -38683,6 +45028,11 @@ test "end-to-end oracle: MD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MD:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37390012345", "") {
@@ -38704,6 +45054,11 @@ test "end-to-end oracle: MD" {
         differences.push(
           "MD:p/e164 expected=+37390012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MD:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MD" {
@@ -38742,6 +45097,11 @@ test "end-to-end oracle: MD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MD:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37380812345", "") {
@@ -38763,6 +45123,11 @@ test "end-to-end oracle: MD" {
         differences.push(
           "MD:s/e164 expected=+37380812345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MD:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MD" {
@@ -38801,6 +45166,11 @@ test "end-to-end oracle: MD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MD:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37330123456", "") {
@@ -38822,6 +45192,11 @@ test "end-to-end oracle: MD" {
         differences.push(
           "MD:v/e164 expected=+37330123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MD:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MD" {
@@ -38860,6 +45235,11 @@ test "end-to-end oracle: MD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MD:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37380312345", "") {
@@ -38881,6 +45261,11 @@ test "end-to-end oracle: MD" {
         differences.push(
           "MD:u/e164 expected=+37380312345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MD:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MD" {
@@ -38919,6 +45304,11 @@ test "end-to-end oracle: MD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MD:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -38949,6 +45339,11 @@ test "end-to-end oracle: ME" {
         differences.push(
           "ME:f/e164 expected=+38230234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ME:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ME" {
@@ -38987,6 +45382,11 @@ test "end-to-end oracle: ME" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ME:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38260123456", "") {
@@ -39008,6 +45408,11 @@ test "end-to-end oracle: ME" {
         differences.push(
           "ME:m/e164 expected=+38260123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ME:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ME" {
@@ -39046,6 +45451,11 @@ test "end-to-end oracle: ME" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ME:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38280080002", "") {
@@ -39067,6 +45477,11 @@ test "end-to-end oracle: ME" {
         differences.push(
           "ME:t/e164 expected=+38280080002 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ME:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ME" {
@@ -39105,6 +45520,11 @@ test "end-to-end oracle: ME" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ME:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38294515151", "") {
@@ -39126,6 +45546,11 @@ test "end-to-end oracle: ME" {
         differences.push(
           "ME:p/e164 expected=+38294515151 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ME:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ME" {
@@ -39164,6 +45589,11 @@ test "end-to-end oracle: ME" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ME:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38278108780", "") {
@@ -39185,6 +45615,11 @@ test "end-to-end oracle: ME" {
         differences.push(
           "ME:v/e164 expected=+38278108780 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ME:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ME" {
@@ -39223,6 +45658,11 @@ test "end-to-end oracle: ME" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ME:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38277273012", "") {
@@ -39244,6 +45684,11 @@ test "end-to-end oracle: ME" {
         differences.push(
           "ME:u/e164 expected=+38277273012 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ME:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ME" {
@@ -39282,6 +45727,11 @@ test "end-to-end oracle: ME" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ME:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -39312,6 +45762,11 @@ test "end-to-end oracle: MF" {
         differences.push(
           "MF:f/e164 expected=+590590271234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MF:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BL" {
@@ -39350,6 +45805,11 @@ test "end-to-end oracle: MF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MF:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+590690001234", "") {
@@ -39371,6 +45831,11 @@ test "end-to-end oracle: MF" {
         differences.push(
           "MF:m/e164 expected=+590690001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MF:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GP" {
@@ -39409,6 +45874,11 @@ test "end-to-end oracle: MF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MF:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+590800012345", "") {
@@ -39430,6 +45900,11 @@ test "end-to-end oracle: MF" {
         differences.push(
           "MF:t/e164 expected=+590800012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MF:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GP" {
@@ -39468,6 +45943,11 @@ test "end-to-end oracle: MF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MF:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+590810123456", "") {
@@ -39489,6 +45969,11 @@ test "end-to-end oracle: MF" {
         differences.push(
           "MF:p/e164 expected=+590810123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MF:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GP" {
@@ -39527,6 +46012,11 @@ test "end-to-end oracle: MF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MF:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+590976012345", "") {
@@ -39548,6 +46038,11 @@ test "end-to-end oracle: MF" {
         differences.push(
           "MF:v/e164 expected=+590976012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MF:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GP" {
@@ -39586,6 +46081,11 @@ test "end-to-end oracle: MF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MF:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -39616,6 +46116,11 @@ test "end-to-end oracle: MG" {
         differences.push(
           "MG:f/e164 expected=+261202123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MG:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MG" {
@@ -39654,6 +46159,11 @@ test "end-to-end oracle: MG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MG:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+261321234567", "") {
@@ -39675,6 +46185,11 @@ test "end-to-end oracle: MG" {
         differences.push(
           "MG:m/e164 expected=+261321234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MG:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MG" {
@@ -39713,6 +46228,11 @@ test "end-to-end oracle: MG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MG:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+261221234567", "") {
@@ -39734,6 +46254,11 @@ test "end-to-end oracle: MG" {
         differences.push(
           "MG:v/e164 expected=+261221234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MG:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MG" {
@@ -39772,6 +46297,11 @@ test "end-to-end oracle: MG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MG:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -39802,6 +46332,11 @@ test "end-to-end oracle: MH" {
         differences.push(
           "MH:f/e164 expected=+6922471234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MH:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MH" {
@@ -39840,6 +46375,11 @@ test "end-to-end oracle: MH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MH:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6922351234", "") {
@@ -39861,6 +46401,11 @@ test "end-to-end oracle: MH" {
         differences.push(
           "MH:m/e164 expected=+6922351234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MH:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MH" {
@@ -39899,6 +46444,11 @@ test "end-to-end oracle: MH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MH:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6926351234", "") {
@@ -39920,6 +46470,11 @@ test "end-to-end oracle: MH" {
         differences.push(
           "MH:v/e164 expected=+6926351234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MH:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MH" {
@@ -39958,6 +46513,11 @@ test "end-to-end oracle: MH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MH:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -39988,6 +46548,11 @@ test "end-to-end oracle: MK" {
         differences.push(
           "MK:f/e164 expected=+38922012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MK:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MK" {
@@ -40026,6 +46591,11 @@ test "end-to-end oracle: MK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MK:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38972345678", "") {
@@ -40047,6 +46617,11 @@ test "end-to-end oracle: MK" {
         differences.push(
           "MK:m/e164 expected=+38972345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MK:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MK" {
@@ -40085,6 +46660,11 @@ test "end-to-end oracle: MK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MK:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38980012345", "") {
@@ -40106,6 +46686,11 @@ test "end-to-end oracle: MK" {
         differences.push(
           "MK:t/e164 expected=+38980012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MK:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MK" {
@@ -40144,6 +46729,11 @@ test "end-to-end oracle: MK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MK:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38950012345", "") {
@@ -40165,6 +46755,11 @@ test "end-to-end oracle: MK" {
         differences.push(
           "MK:p/e164 expected=+38950012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MK:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MK" {
@@ -40203,6 +46798,11 @@ test "end-to-end oracle: MK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MK:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38980123456", "") {
@@ -40224,6 +46824,11 @@ test "end-to-end oracle: MK" {
         differences.push(
           "MK:s/e164 expected=+38980123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MK:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MK" {
@@ -40262,6 +46867,11 @@ test "end-to-end oracle: MK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MK:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -40292,6 +46902,11 @@ test "end-to-end oracle: ML" {
         differences.push(
           "ML:f/e164 expected=+22320212345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ML:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ML" {
@@ -40330,6 +46945,11 @@ test "end-to-end oracle: ML" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ML:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+22365012345", "") {
@@ -40351,6 +46971,11 @@ test "end-to-end oracle: ML" {
         differences.push(
           "ML:m/e164 expected=+22365012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ML:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ML" {
@@ -40389,6 +47014,11 @@ test "end-to-end oracle: ML" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ML:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+22380012345", "") {
@@ -40410,6 +47040,11 @@ test "end-to-end oracle: ML" {
         differences.push(
           "ML:t/e164 expected=+22380012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ML:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ML" {
@@ -40448,6 +47083,11 @@ test "end-to-end oracle: ML" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ML:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -40478,6 +47118,11 @@ test "end-to-end oracle: MM" {
         differences.push(
           "MM:f/e164 expected=+951234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MM:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MM" {
@@ -40516,6 +47161,11 @@ test "end-to-end oracle: MM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MM:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9592123456", "") {
@@ -40537,6 +47187,11 @@ test "end-to-end oracle: MM" {
         differences.push(
           "MM:m/e164 expected=+9592123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MM:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MM" {
@@ -40575,6 +47230,11 @@ test "end-to-end oracle: MM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MM:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+958008001234", "") {
@@ -40596,6 +47256,11 @@ test "end-to-end oracle: MM" {
         differences.push(
           "MM:t/e164 expected=+958008001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MM:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MM" {
@@ -40634,6 +47299,11 @@ test "end-to-end oracle: MM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MM:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9513331234", "") {
@@ -40655,6 +47325,11 @@ test "end-to-end oracle: MM" {
         differences.push(
           "MM:v/e164 expected=+9513331234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MM:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MM" {
@@ -40693,6 +47368,11 @@ test "end-to-end oracle: MM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MM:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -40723,6 +47403,11 @@ test "end-to-end oracle: MN" {
         differences.push(
           "MN:f/e164 expected=+97653123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MN:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MN" {
@@ -40761,6 +47446,11 @@ test "end-to-end oracle: MN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MN:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+97688123456", "") {
@@ -40782,6 +47472,11 @@ test "end-to-end oracle: MN" {
         differences.push(
           "MN:m/e164 expected=+97688123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MN:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MN" {
@@ -40820,6 +47515,11 @@ test "end-to-end oracle: MN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MN:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+97675123456", "") {
@@ -40841,6 +47541,11 @@ test "end-to-end oracle: MN" {
         differences.push(
           "MN:v/e164 expected=+97675123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MN:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MN" {
@@ -40879,6 +47584,11 @@ test "end-to-end oracle: MN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MN:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -40909,6 +47619,11 @@ test "end-to-end oracle: MO" {
         differences.push(
           "MO:f/e164 expected=+85328212345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MO:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MO" {
@@ -40947,6 +47662,11 @@ test "end-to-end oracle: MO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MO:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+85366123456", "") {
@@ -40968,6 +47688,11 @@ test "end-to-end oracle: MO" {
         differences.push(
           "MO:m/e164 expected=+85366123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MO:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MO" {
@@ -41006,6 +47731,11 @@ test "end-to-end oracle: MO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MO:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+8530800501", "") {
@@ -41027,6 +47757,11 @@ test "end-to-end oracle: MO" {
         differences.push(
           "MO:t/e164 expected=+8530800501 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MO:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MO" {
@@ -41065,6 +47800,11 @@ test "end-to-end oracle: MO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MO:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -41095,6 +47835,11 @@ test "end-to-end oracle: MP" {
         differences.push(
           "MP:f/e164 expected=+16702345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MP:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MP" {
@@ -41133,6 +47878,11 @@ test "end-to-end oracle: MP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MP:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+16702345678", "") {
@@ -41154,6 +47904,11 @@ test "end-to-end oracle: MP" {
         differences.push(
           "MP:m/e164 expected=+16702345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MP:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MP" {
@@ -41192,6 +47947,11 @@ test "end-to-end oracle: MP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MP:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002123456", "") {
@@ -41213,6 +47973,11 @@ test "end-to-end oracle: MP" {
         differences.push(
           "MP:t/e164 expected=+18002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MP:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -41251,6 +48016,11 @@ test "end-to-end oracle: MP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MP:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002123456", "") {
@@ -41272,6 +48042,11 @@ test "end-to-end oracle: MP" {
         differences.push(
           "MP:p/e164 expected=+19002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MP:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -41310,6 +48085,11 @@ test "end-to-end oracle: MP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MP:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -41331,6 +48111,11 @@ test "end-to-end oracle: MP" {
         differences.push(
           "MP:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MP:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -41369,6 +48154,11 @@ test "end-to-end oracle: MP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MP:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -41399,6 +48189,11 @@ test "end-to-end oracle: MQ" {
         differences.push(
           "MQ:f/e164 expected=+596596301234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MQ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MQ" {
@@ -41437,6 +48232,11 @@ test "end-to-end oracle: MQ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MQ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+596696201234", "") {
@@ -41458,6 +48258,11 @@ test "end-to-end oracle: MQ" {
         differences.push(
           "MQ:m/e164 expected=+596696201234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MQ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MQ" {
@@ -41496,6 +48301,11 @@ test "end-to-end oracle: MQ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MQ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+596800012345", "") {
@@ -41517,6 +48327,11 @@ test "end-to-end oracle: MQ" {
         differences.push(
           "MQ:t/e164 expected=+596800012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MQ:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MQ" {
@@ -41555,6 +48370,11 @@ test "end-to-end oracle: MQ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MQ:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+596810123456", "") {
@@ -41576,6 +48396,11 @@ test "end-to-end oracle: MQ" {
         differences.push(
           "MQ:p/e164 expected=+596810123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MQ:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MQ" {
@@ -41614,6 +48439,11 @@ test "end-to-end oracle: MQ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MQ:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+596976612345", "") {
@@ -41635,6 +48465,11 @@ test "end-to-end oracle: MQ" {
         differences.push(
           "MQ:v/e164 expected=+596976612345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MQ:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MQ" {
@@ -41673,6 +48508,11 @@ test "end-to-end oracle: MQ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MQ:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -41703,6 +48543,11 @@ test "end-to-end oracle: MR" {
         differences.push(
           "MR:f/e164 expected=+22235123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MR:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MR" {
@@ -41741,6 +48586,11 @@ test "end-to-end oracle: MR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MR:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+22222123456", "") {
@@ -41762,6 +48612,11 @@ test "end-to-end oracle: MR" {
         differences.push(
           "MR:m/e164 expected=+22222123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MR:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MR" {
@@ -41800,6 +48655,11 @@ test "end-to-end oracle: MR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MR:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+22280012345", "") {
@@ -41821,6 +48681,11 @@ test "end-to-end oracle: MR" {
         differences.push(
           "MR:t/e164 expected=+22280012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MR:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MR" {
@@ -41859,6 +48724,11 @@ test "end-to-end oracle: MR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MR:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -41889,6 +48759,11 @@ test "end-to-end oracle: MS" {
         differences.push(
           "MS:f/e164 expected=+16644912345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MS:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MS" {
@@ -41927,6 +48802,11 @@ test "end-to-end oracle: MS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MS:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+16644923456", "") {
@@ -41948,6 +48828,11 @@ test "end-to-end oracle: MS" {
         differences.push(
           "MS:m/e164 expected=+16644923456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MS:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MS" {
@@ -41986,6 +48871,11 @@ test "end-to-end oracle: MS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MS:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002123456", "") {
@@ -42007,6 +48897,11 @@ test "end-to-end oracle: MS" {
         differences.push(
           "MS:t/e164 expected=+18002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MS:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -42045,6 +48940,11 @@ test "end-to-end oracle: MS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MS:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002123456", "") {
@@ -42066,6 +48966,11 @@ test "end-to-end oracle: MS" {
         differences.push(
           "MS:p/e164 expected=+19002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MS:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -42104,6 +49009,11 @@ test "end-to-end oracle: MS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MS:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -42125,6 +49035,11 @@ test "end-to-end oracle: MS" {
         differences.push(
           "MS:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MS:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -42163,6 +49078,11 @@ test "end-to-end oracle: MS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MS:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -42193,6 +49113,11 @@ test "end-to-end oracle: MT" {
         differences.push(
           "MT:f/e164 expected=+35621001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MT:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MT" {
@@ -42231,6 +49156,11 @@ test "end-to-end oracle: MT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MT:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35696961234", "") {
@@ -42252,6 +49182,11 @@ test "end-to-end oracle: MT" {
         differences.push(
           "MT:m/e164 expected=+35696961234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MT:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MT" {
@@ -42290,6 +49225,11 @@ test "end-to-end oracle: MT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MT:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35680071234", "") {
@@ -42311,6 +49251,11 @@ test "end-to-end oracle: MT" {
         differences.push(
           "MT:t/e164 expected=+35680071234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MT:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MT" {
@@ -42349,6 +49294,11 @@ test "end-to-end oracle: MT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MT:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35650037123", "") {
@@ -42370,6 +49320,11 @@ test "end-to-end oracle: MT" {
         differences.push(
           "MT:p/e164 expected=+35650037123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MT:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MT" {
@@ -42408,6 +49363,11 @@ test "end-to-end oracle: MT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MT:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35635501234", "") {
@@ -42429,6 +49389,11 @@ test "end-to-end oracle: MT" {
         differences.push(
           "MT:v/e164 expected=+35635501234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MT:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MT" {
@@ -42467,6 +49432,11 @@ test "end-to-end oracle: MT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MT:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35650112345", "") {
@@ -42488,6 +49458,11 @@ test "end-to-end oracle: MT" {
         differences.push(
           "MT:u/e164 expected=+35650112345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MT:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MT" {
@@ -42526,6 +49501,11 @@ test "end-to-end oracle: MT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MT:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+35671171234", "") {
@@ -42547,6 +49527,11 @@ test "end-to-end oracle: MT" {
         differences.push(
           "MT:g/e164 expected=+35671171234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MT:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MT" {
@@ -42585,6 +49570,11 @@ test "end-to-end oracle: MT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MT:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -42615,6 +49605,11 @@ test "end-to-end oracle: MU" {
         differences.push(
           "MU:f/e164 expected=+23054480123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MU:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MU" {
@@ -42653,6 +49648,11 @@ test "end-to-end oracle: MU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MU:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+23052512345", "") {
@@ -42674,6 +49674,11 @@ test "end-to-end oracle: MU" {
         differences.push(
           "MU:m/e164 expected=+23052512345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MU:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MU" {
@@ -42712,6 +49717,11 @@ test "end-to-end oracle: MU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MU:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2308001234", "") {
@@ -42733,6 +49743,11 @@ test "end-to-end oracle: MU" {
         differences.push(
           "MU:t/e164 expected=+2308001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MU:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MU" {
@@ -42771,6 +49786,11 @@ test "end-to-end oracle: MU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MU:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2303012345", "") {
@@ -42792,6 +49812,11 @@ test "end-to-end oracle: MU" {
         differences.push(
           "MU:p/e164 expected=+2303012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MU:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MU" {
@@ -42830,6 +49855,11 @@ test "end-to-end oracle: MU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MU:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2303201234", "") {
@@ -42851,6 +49881,11 @@ test "end-to-end oracle: MU" {
         differences.push(
           "MU:v/e164 expected=+2303201234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MU:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MU" {
@@ -42889,6 +49924,11 @@ test "end-to-end oracle: MU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MU:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2302190123", "") {
@@ -42910,6 +49950,11 @@ test "end-to-end oracle: MU" {
         differences.push(
           "MU:g/e164 expected=+2302190123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MU:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MU" {
@@ -42948,6 +49993,11 @@ test "end-to-end oracle: MU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MU:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -42978,6 +50028,11 @@ test "end-to-end oracle: MV" {
         differences.push(
           "MV:f/e164 expected=+9606701234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MV:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MV" {
@@ -43016,6 +50071,11 @@ test "end-to-end oracle: MV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MV:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9607712345", "") {
@@ -43037,6 +50097,11 @@ test "end-to-end oracle: MV" {
         differences.push(
           "MV:m/e164 expected=+9607712345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MV:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MV" {
@@ -43075,6 +50140,11 @@ test "end-to-end oracle: MV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MV:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9608001234567", "") {
@@ -43096,6 +50166,11 @@ test "end-to-end oracle: MV" {
         differences.push(
           "MV:t/e164 expected=+9608001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MV:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MV" {
@@ -43134,6 +50209,11 @@ test "end-to-end oracle: MV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MV:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9609001234567", "") {
@@ -43155,6 +50235,11 @@ test "end-to-end oracle: MV" {
         differences.push(
           "MV:p/e164 expected=+9609001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MV:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MV" {
@@ -43193,6 +50278,11 @@ test "end-to-end oracle: MV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MV:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9604001234", "") {
@@ -43214,6 +50304,11 @@ test "end-to-end oracle: MV" {
         differences.push(
           "MV:u/e164 expected=+9604001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MV:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MV" {
@@ -43252,6 +50347,11 @@ test "end-to-end oracle: MV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MV:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -43282,6 +50382,11 @@ test "end-to-end oracle: MW" {
         differences.push(
           "MW:f/e164 expected=+2651234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MW:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MW" {
@@ -43320,6 +50425,11 @@ test "end-to-end oracle: MW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MW:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+265991234567", "") {
@@ -43341,6 +50451,11 @@ test "end-to-end oracle: MW" {
         differences.push(
           "MW:m/e164 expected=+265991234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MW:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MW" {
@@ -43379,6 +50494,11 @@ test "end-to-end oracle: MW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MW:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -43409,6 +50529,11 @@ test "end-to-end oracle: MX" {
         differences.push(
           "MX:f/e164 expected=+522001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MX:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MX" {
@@ -43447,6 +50572,11 @@ test "end-to-end oracle: MX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MX:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+522221234567", "") {
@@ -43468,6 +50598,11 @@ test "end-to-end oracle: MX" {
         differences.push(
           "MX:m/e164 expected=+522221234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MX:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MX" {
@@ -43506,6 +50641,11 @@ test "end-to-end oracle: MX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MX:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+528001234567", "") {
@@ -43527,6 +50667,11 @@ test "end-to-end oracle: MX" {
         differences.push(
           "MX:t/e164 expected=+528001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MX:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MX" {
@@ -43565,6 +50710,11 @@ test "end-to-end oracle: MX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MX:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+529001234567", "") {
@@ -43586,6 +50736,11 @@ test "end-to-end oracle: MX" {
         differences.push(
           "MX:p/e164 expected=+529001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MX:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MX" {
@@ -43624,6 +50779,11 @@ test "end-to-end oracle: MX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MX:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+523001234567", "") {
@@ -43645,6 +50805,11 @@ test "end-to-end oracle: MX" {
         differences.push(
           "MX:s/e164 expected=+523001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MX:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MX" {
@@ -43683,6 +50848,11 @@ test "end-to-end oracle: MX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MX:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+525001234567", "") {
@@ -43704,6 +50874,11 @@ test "end-to-end oracle: MX" {
         differences.push(
           "MX:r/e164 expected=+525001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MX:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MX" {
@@ -43742,6 +50917,11 @@ test "end-to-end oracle: MX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MX:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -43772,6 +50952,11 @@ test "end-to-end oracle: MY" {
         differences.push(
           "MY:f/e164 expected=+60323856789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MY:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MY" {
@@ -43810,6 +50995,11 @@ test "end-to-end oracle: MY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MY:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+60123456789", "") {
@@ -43831,6 +51021,11 @@ test "end-to-end oracle: MY" {
         differences.push(
           "MY:m/e164 expected=+60123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MY:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MY" {
@@ -43869,6 +51064,11 @@ test "end-to-end oracle: MY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MY:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+601300123456", "") {
@@ -43890,6 +51090,11 @@ test "end-to-end oracle: MY" {
         differences.push(
           "MY:t/e164 expected=+601300123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MY:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MY" {
@@ -43928,6 +51133,11 @@ test "end-to-end oracle: MY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MY:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+601600123456", "") {
@@ -43949,6 +51159,11 @@ test "end-to-end oracle: MY" {
         differences.push(
           "MY:p/e164 expected=+601600123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MY:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MY" {
@@ -43987,6 +51202,11 @@ test "end-to-end oracle: MY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MY:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+601546012345", "") {
@@ -44008,6 +51228,11 @@ test "end-to-end oracle: MY" {
         differences.push(
           "MY:v/e164 expected=+601546012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MY:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MY" {
@@ -44046,6 +51271,11 @@ test "end-to-end oracle: MY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MY:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -44076,6 +51306,11 @@ test "end-to-end oracle: MZ" {
         differences.push(
           "MZ:f/e164 expected=+25821123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MZ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MZ" {
@@ -44114,6 +51349,11 @@ test "end-to-end oracle: MZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MZ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+258821234567", "") {
@@ -44135,6 +51375,11 @@ test "end-to-end oracle: MZ" {
         differences.push(
           "MZ:m/e164 expected=+258821234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MZ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MZ" {
@@ -44173,6 +51418,11 @@ test "end-to-end oracle: MZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MZ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+258800123456", "") {
@@ -44194,6 +51444,11 @@ test "end-to-end oracle: MZ" {
         differences.push(
           "MZ:t/e164 expected=+258800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "MZ:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "MZ" {
@@ -44232,6 +51487,11 @@ test "end-to-end oracle: MZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "MZ:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -44262,6 +51522,11 @@ test "end-to-end oracle: NA" {
         differences.push(
           "NA:f/e164 expected=+26461221234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NA:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NA" {
@@ -44300,6 +51565,11 @@ test "end-to-end oracle: NA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NA:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+264811234567", "") {
@@ -44321,6 +51591,11 @@ test "end-to-end oracle: NA" {
         differences.push(
           "NA:m/e164 expected=+264811234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NA:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NA" {
@@ -44359,6 +51634,11 @@ test "end-to-end oracle: NA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NA:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+264800123456", "") {
@@ -44380,6 +51660,11 @@ test "end-to-end oracle: NA" {
         differences.push(
           "NA:t/e164 expected=+264800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NA:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NA" {
@@ -44418,6 +51703,11 @@ test "end-to-end oracle: NA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NA:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+264870123456", "") {
@@ -44439,6 +51729,11 @@ test "end-to-end oracle: NA" {
         differences.push(
           "NA:p/e164 expected=+264870123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NA:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NA" {
@@ -44477,6 +51772,11 @@ test "end-to-end oracle: NA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NA:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+26488612345", "") {
@@ -44498,6 +51798,11 @@ test "end-to-end oracle: NA" {
         differences.push(
           "NA:v/e164 expected=+26488612345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NA:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NA" {
@@ -44536,6 +51841,11 @@ test "end-to-end oracle: NA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NA:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -44566,6 +51876,11 @@ test "end-to-end oracle: NC" {
         differences.push(
           "NC:f/e164 expected=+687201234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NC:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NC" {
@@ -44604,6 +51919,11 @@ test "end-to-end oracle: NC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NC:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+687751234", "") {
@@ -44625,6 +51945,11 @@ test "end-to-end oracle: NC" {
         differences.push(
           "NC:m/e164 expected=+687751234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NC:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NC" {
@@ -44663,6 +51988,11 @@ test "end-to-end oracle: NC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NC:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+687050012", "") {
@@ -44684,6 +52014,11 @@ test "end-to-end oracle: NC" {
         differences.push(
           "NC:t/e164 expected=+687050012 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NC:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NC" {
@@ -44722,6 +52057,11 @@ test "end-to-end oracle: NC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NC:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+687366711", "") {
@@ -44743,6 +52083,11 @@ test "end-to-end oracle: NC" {
         differences.push(
           "NC:p/e164 expected=+687366711 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NC:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NC" {
@@ -44781,6 +52126,11 @@ test "end-to-end oracle: NC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NC:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -44811,6 +52161,11 @@ test "end-to-end oracle: NE" {
         differences.push(
           "NE:f/e164 expected=+22720201234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NE:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NE" {
@@ -44849,6 +52204,11 @@ test "end-to-end oracle: NE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NE:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+22793123456", "") {
@@ -44870,6 +52230,11 @@ test "end-to-end oracle: NE" {
         differences.push(
           "NE:m/e164 expected=+22793123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NE:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NE" {
@@ -44908,6 +52273,11 @@ test "end-to-end oracle: NE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NE:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+22708123456", "") {
@@ -44929,6 +52299,11 @@ test "end-to-end oracle: NE" {
         differences.push(
           "NE:t/e164 expected=+22708123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NE:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NE" {
@@ -44967,6 +52342,11 @@ test "end-to-end oracle: NE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NE:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+22709123456", "") {
@@ -44988,6 +52368,11 @@ test "end-to-end oracle: NE" {
         differences.push(
           "NE:p/e164 expected=+22709123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NE:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NE" {
@@ -45026,6 +52411,11 @@ test "end-to-end oracle: NE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NE:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -45056,6 +52446,11 @@ test "end-to-end oracle: NF" {
         differences.push(
           "NF:f/e164 expected=+672106609 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NF:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NF" {
@@ -45094,6 +52489,11 @@ test "end-to-end oracle: NF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NF:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+672381234", "") {
@@ -45115,6 +52515,11 @@ test "end-to-end oracle: NF" {
         differences.push(
           "NF:m/e164 expected=+672381234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NF:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NF" {
@@ -45153,6 +52558,11 @@ test "end-to-end oracle: NF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NF:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -45183,6 +52593,11 @@ test "end-to-end oracle: NG" {
         differences.push(
           "NG:f/e164 expected=+2342033123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NG:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NG" {
@@ -45221,6 +52636,11 @@ test "end-to-end oracle: NG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NG:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2348021234567", "") {
@@ -45242,6 +52662,11 @@ test "end-to-end oracle: NG" {
         differences.push(
           "NG:m/e164 expected=+2348021234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NG:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NG" {
@@ -45280,6 +52705,11 @@ test "end-to-end oracle: NG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NG:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+23480017591759", "") {
@@ -45301,6 +52731,11 @@ test "end-to-end oracle: NG" {
         differences.push(
           "NG:t/e164 expected=+23480017591759 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NG:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NG" {
@@ -45339,6 +52774,11 @@ test "end-to-end oracle: NG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NG:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2347001234567", "") {
@@ -45360,6 +52800,11 @@ test "end-to-end oracle: NG" {
         differences.push(
           "NG:u/e164 expected=+2347001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NG:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NG" {
@@ -45398,6 +52843,11 @@ test "end-to-end oracle: NG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NG:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -45428,6 +52878,11 @@ test "end-to-end oracle: NI" {
         differences.push(
           "NI:f/e164 expected=+50521234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NI:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NI" {
@@ -45466,6 +52921,11 @@ test "end-to-end oracle: NI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NI:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+50581234567", "") {
@@ -45487,6 +52947,11 @@ test "end-to-end oracle: NI" {
         differences.push(
           "NI:m/e164 expected=+50581234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NI:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NI" {
@@ -45525,6 +52990,11 @@ test "end-to-end oracle: NI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NI:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+50518001234", "") {
@@ -45546,6 +53016,11 @@ test "end-to-end oracle: NI" {
         differences.push(
           "NI:t/e164 expected=+50518001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NI:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NI" {
@@ -45584,6 +53059,11 @@ test "end-to-end oracle: NI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NI:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -45614,6 +53094,11 @@ test "end-to-end oracle: NL" {
         differences.push(
           "NL:f/e164 expected=+31101234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NL:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NL" {
@@ -45652,6 +53137,11 @@ test "end-to-end oracle: NL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NL:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+31612345678", "") {
@@ -45673,6 +53163,11 @@ test "end-to-end oracle: NL" {
         differences.push(
           "NL:m/e164 expected=+31612345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NL:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NL" {
@@ -45711,6 +53206,11 @@ test "end-to-end oracle: NL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NL:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+318001234", "") {
@@ -45732,6 +53232,11 @@ test "end-to-end oracle: NL" {
         differences.push(
           "NL:t/e164 expected=+318001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NL:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NL" {
@@ -45770,6 +53275,11 @@ test "end-to-end oracle: NL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NL:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+319061234", "") {
@@ -45791,6 +53301,11 @@ test "end-to-end oracle: NL" {
         differences.push(
           "NL:p/e164 expected=+319061234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NL:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NL" {
@@ -45829,6 +53344,11 @@ test "end-to-end oracle: NL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NL:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+31851234567", "") {
@@ -45850,6 +53370,11 @@ test "end-to-end oracle: NL" {
         differences.push(
           "NL:v/e164 expected=+31851234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NL:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NL" {
@@ -45888,6 +53413,11 @@ test "end-to-end oracle: NL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NL:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3114020", "") {
@@ -45909,6 +53439,11 @@ test "end-to-end oracle: NL" {
         differences.push(
           "NL:u/e164 expected=+3114020 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NL:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NL" {
@@ -45947,6 +53482,11 @@ test "end-to-end oracle: NL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NL:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+31662345678", "") {
@@ -45968,6 +53508,11 @@ test "end-to-end oracle: NL" {
         differences.push(
           "NL:g/e164 expected=+31662345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NL:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NL" {
@@ -46006,6 +53551,11 @@ test "end-to-end oracle: NL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NL:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -46036,6 +53586,11 @@ test "end-to-end oracle: NO" {
         differences.push(
           "NO:f/e164 expected=+4721234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NO:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NO" {
@@ -46074,6 +53629,11 @@ test "end-to-end oracle: NO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NO:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4740612345", "") {
@@ -46095,6 +53655,11 @@ test "end-to-end oracle: NO" {
         differences.push(
           "NO:m/e164 expected=+4740612345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NO:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NO" {
@@ -46133,6 +53698,11 @@ test "end-to-end oracle: NO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NO:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4780012345", "") {
@@ -46154,6 +53724,11 @@ test "end-to-end oracle: NO" {
         differences.push(
           "NO:t/e164 expected=+4780012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NO:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NO" {
@@ -46192,6 +53767,11 @@ test "end-to-end oracle: NO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NO:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4782012345", "") {
@@ -46213,6 +53793,11 @@ test "end-to-end oracle: NO" {
         differences.push(
           "NO:p/e164 expected=+4782012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NO:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NO" {
@@ -46251,6 +53836,11 @@ test "end-to-end oracle: NO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NO:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4781021234", "") {
@@ -46272,6 +53862,11 @@ test "end-to-end oracle: NO" {
         differences.push(
           "NO:s/e164 expected=+4781021234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NO:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NO" {
@@ -46310,6 +53905,11 @@ test "end-to-end oracle: NO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NO:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4785012345", "") {
@@ -46331,6 +53931,11 @@ test "end-to-end oracle: NO" {
         differences.push(
           "NO:v/e164 expected=+4785012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NO:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NO" {
@@ -46369,6 +53974,11 @@ test "end-to-end oracle: NO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NO:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4788012345", "") {
@@ -46390,6 +54000,11 @@ test "end-to-end oracle: NO" {
         differences.push(
           "NO:r/e164 expected=+4788012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NO:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NO" {
@@ -46428,6 +54043,11 @@ test "end-to-end oracle: NO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NO:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4702000", "") {
@@ -46449,6 +54069,11 @@ test "end-to-end oracle: NO" {
         differences.push(
           "NO:u/e164 expected=+4702000 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NO:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NO" {
@@ -46487,6 +54112,11 @@ test "end-to-end oracle: NO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NO:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4781212345", "") {
@@ -46508,6 +54138,11 @@ test "end-to-end oracle: NO" {
         differences.push(
           "NO:o/e164 expected=+4781212345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NO:o/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NO" {
@@ -46546,6 +54181,11 @@ test "end-to-end oracle: NO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NO:o:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -46576,6 +54216,11 @@ test "end-to-end oracle: NP" {
         differences.push(
           "NP:f/e164 expected=+97714567890 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NP:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NP" {
@@ -46614,6 +54259,11 @@ test "end-to-end oracle: NP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NP:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9779841234567", "") {
@@ -46635,6 +54285,11 @@ test "end-to-end oracle: NP" {
         differences.push(
           "NP:m/e164 expected=+9779841234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NP:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NP" {
@@ -46673,6 +54328,11 @@ test "end-to-end oracle: NP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NP:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+97716600101234", "") {
@@ -46694,6 +54354,11 @@ test "end-to-end oracle: NP" {
         differences.push(
           "NP:t/e164 expected=+97716600101234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NP:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NP" {
@@ -46732,6 +54397,11 @@ test "end-to-end oracle: NP" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NP:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -46762,6 +54432,11 @@ test "end-to-end oracle: NR" {
         differences.push(
           "NR:f/e164 expected=+6744441234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NR:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NR" {
@@ -46800,6 +54475,11 @@ test "end-to-end oracle: NR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NR:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6745551234", "") {
@@ -46821,6 +54501,11 @@ test "end-to-end oracle: NR" {
         differences.push(
           "NR:m/e164 expected=+6745551234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NR:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NR" {
@@ -46859,6 +54544,11 @@ test "end-to-end oracle: NR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NR:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -46889,6 +54579,11 @@ test "end-to-end oracle: NU" {
         differences.push(
           "NU:f/e164 expected=+6837012 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NU:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NU" {
@@ -46927,6 +54622,11 @@ test "end-to-end oracle: NU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NU:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6838884012", "") {
@@ -46948,6 +54648,11 @@ test "end-to-end oracle: NU" {
         differences.push(
           "NU:m/e164 expected=+6838884012 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NU:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NU" {
@@ -46986,6 +54691,11 @@ test "end-to-end oracle: NU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NU:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -47016,6 +54726,11 @@ test "end-to-end oracle: NZ" {
         differences.push(
           "NZ:f/e164 expected=+6432345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NZ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NZ" {
@@ -47054,6 +54769,11 @@ test "end-to-end oracle: NZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NZ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+64211234567", "") {
@@ -47075,6 +54795,11 @@ test "end-to-end oracle: NZ" {
         differences.push(
           "NZ:m/e164 expected=+64211234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NZ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NZ" {
@@ -47113,6 +54838,11 @@ test "end-to-end oracle: NZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NZ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+64800123456", "") {
@@ -47134,6 +54864,11 @@ test "end-to-end oracle: NZ" {
         differences.push(
           "NZ:t/e164 expected=+64800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NZ:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NZ" {
@@ -47172,6 +54907,11 @@ test "end-to-end oracle: NZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NZ:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+64900123456", "") {
@@ -47193,6 +54933,11 @@ test "end-to-end oracle: NZ" {
         differences.push(
           "NZ:p/e164 expected=+64900123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NZ:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NZ" {
@@ -47231,6 +54976,11 @@ test "end-to-end oracle: NZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NZ:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+64701234567", "") {
@@ -47252,6 +55002,11 @@ test "end-to-end oracle: NZ" {
         differences.push(
           "NZ:r/e164 expected=+64701234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NZ:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NZ" {
@@ -47290,6 +55045,11 @@ test "end-to-end oracle: NZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NZ:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6483012378", "") {
@@ -47311,6 +55071,11 @@ test "end-to-end oracle: NZ" {
         differences.push(
           "NZ:u/e164 expected=+6483012378 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "NZ:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NZ" {
@@ -47349,6 +55114,11 @@ test "end-to-end oracle: NZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "NZ:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -47379,6 +55149,11 @@ test "end-to-end oracle: OM" {
         differences.push(
           "OM:f/e164 expected=+96823123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "OM:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "OM" {
@@ -47417,6 +55192,11 @@ test "end-to-end oracle: OM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "OM:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+96892123456", "") {
@@ -47438,6 +55218,11 @@ test "end-to-end oracle: OM" {
         differences.push(
           "OM:m/e164 expected=+96892123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "OM:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "OM" {
@@ -47476,6 +55261,11 @@ test "end-to-end oracle: OM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "OM:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+96880071234", "") {
@@ -47497,6 +55287,11 @@ test "end-to-end oracle: OM" {
         differences.push(
           "OM:t/e164 expected=+96880071234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "OM:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "OM" {
@@ -47535,6 +55330,11 @@ test "end-to-end oracle: OM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "OM:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+96890012345", "") {
@@ -47556,6 +55356,11 @@ test "end-to-end oracle: OM" {
         differences.push(
           "OM:p/e164 expected=+96890012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "OM:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "OM" {
@@ -47594,6 +55399,11 @@ test "end-to-end oracle: OM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "OM:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -47624,6 +55434,11 @@ test "end-to-end oracle: PA" {
         differences.push(
           "PA:f/e164 expected=+5072001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PA:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PA" {
@@ -47662,6 +55477,11 @@ test "end-to-end oracle: PA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PA:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+50761234567", "") {
@@ -47683,6 +55503,11 @@ test "end-to-end oracle: PA" {
         differences.push(
           "PA:m/e164 expected=+50761234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PA:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PA" {
@@ -47721,6 +55546,11 @@ test "end-to-end oracle: PA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PA:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5078001234", "") {
@@ -47742,6 +55572,11 @@ test "end-to-end oracle: PA" {
         differences.push(
           "PA:t/e164 expected=+5078001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PA:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PA" {
@@ -47780,6 +55615,11 @@ test "end-to-end oracle: PA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PA:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5078601234", "") {
@@ -47801,6 +55641,11 @@ test "end-to-end oracle: PA" {
         differences.push(
           "PA:p/e164 expected=+5078601234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PA:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PA" {
@@ -47839,6 +55684,11 @@ test "end-to-end oracle: PA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PA:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -47869,6 +55719,11 @@ test "end-to-end oracle: PE" {
         differences.push(
           "PE:f/e164 expected=+5111234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PE:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PE" {
@@ -47907,6 +55762,11 @@ test "end-to-end oracle: PE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PE:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+51912345678", "") {
@@ -47928,6 +55788,11 @@ test "end-to-end oracle: PE" {
         differences.push(
           "PE:m/e164 expected=+51912345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PE:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PE" {
@@ -47966,6 +55831,11 @@ test "end-to-end oracle: PE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PE:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5180012345", "") {
@@ -47987,6 +55857,11 @@ test "end-to-end oracle: PE" {
         differences.push(
           "PE:t/e164 expected=+5180012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PE:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PE" {
@@ -48025,6 +55900,11 @@ test "end-to-end oracle: PE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PE:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5180512345", "") {
@@ -48046,6 +55926,11 @@ test "end-to-end oracle: PE" {
         differences.push(
           "PE:p/e164 expected=+5180512345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PE:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PE" {
@@ -48084,6 +55969,11 @@ test "end-to-end oracle: PE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PE:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5180112345", "") {
@@ -48105,6 +55995,11 @@ test "end-to-end oracle: PE" {
         differences.push(
           "PE:s/e164 expected=+5180112345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PE:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PE" {
@@ -48143,6 +56038,11 @@ test "end-to-end oracle: PE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PE:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5180212345", "") {
@@ -48164,6 +56064,11 @@ test "end-to-end oracle: PE" {
         differences.push(
           "PE:r/e164 expected=+5180212345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PE:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PE" {
@@ -48202,6 +56107,11 @@ test "end-to-end oracle: PE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PE:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -48232,6 +56142,11 @@ test "end-to-end oracle: PF" {
         differences.push(
           "PF:f/e164 expected=+68940412345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PF:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PF" {
@@ -48270,6 +56185,11 @@ test "end-to-end oracle: PF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PF:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+68987123456", "") {
@@ -48291,6 +56211,11 @@ test "end-to-end oracle: PF" {
         differences.push(
           "PF:m/e164 expected=+68987123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PF:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PF" {
@@ -48329,6 +56254,11 @@ test "end-to-end oracle: PF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PF:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+689800012345", "") {
@@ -48350,6 +56280,11 @@ test "end-to-end oracle: PF" {
         differences.push(
           "PF:t/e164 expected=+689800012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PF:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PF" {
@@ -48388,6 +56323,11 @@ test "end-to-end oracle: PF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PF:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+68949901234", "") {
@@ -48409,6 +56349,11 @@ test "end-to-end oracle: PF" {
         differences.push(
           "PF:v/e164 expected=+68949901234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PF:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PF" {
@@ -48447,6 +56392,11 @@ test "end-to-end oracle: PF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PF:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+689440123", "") {
@@ -48468,6 +56418,11 @@ test "end-to-end oracle: PF" {
         differences.push(
           "PF:u/e164 expected=+689440123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PF:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PF" {
@@ -48506,6 +56461,11 @@ test "end-to-end oracle: PF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PF:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -48536,6 +56496,11 @@ test "end-to-end oracle: PG" {
         differences.push(
           "PG:f/e164 expected=+6753123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PG:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PG" {
@@ -48574,6 +56539,11 @@ test "end-to-end oracle: PG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PG:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+67570123456", "") {
@@ -48595,6 +56565,11 @@ test "end-to-end oracle: PG" {
         differences.push(
           "PG:m/e164 expected=+67570123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PG:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PG" {
@@ -48633,6 +56608,11 @@ test "end-to-end oracle: PG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PG:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6751801234", "") {
@@ -48654,6 +56634,11 @@ test "end-to-end oracle: PG" {
         differences.push(
           "PG:t/e164 expected=+6751801234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PG:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PG" {
@@ -48692,6 +56677,11 @@ test "end-to-end oracle: PG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PG:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6752751234", "") {
@@ -48713,6 +56703,11 @@ test "end-to-end oracle: PG" {
         differences.push(
           "PG:v/e164 expected=+6752751234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PG:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PG" {
@@ -48751,6 +56746,11 @@ test "end-to-end oracle: PG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PG:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6752700123", "") {
@@ -48772,6 +56772,11 @@ test "end-to-end oracle: PG" {
         differences.push(
           "PG:g/e164 expected=+6752700123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PG:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PG" {
@@ -48810,6 +56815,11 @@ test "end-to-end oracle: PG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PG:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -48840,6 +56850,11 @@ test "end-to-end oracle: PH" {
         differences.push(
           "PH:f/e164 expected=+63232345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PH:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PH" {
@@ -48878,6 +56893,11 @@ test "end-to-end oracle: PH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PH:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+639051234567", "") {
@@ -48899,6 +56919,11 @@ test "end-to-end oracle: PH" {
         differences.push(
           "PH:m/e164 expected=+639051234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PH:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PH" {
@@ -48937,6 +56962,11 @@ test "end-to-end oracle: PH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PH:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+63180012345678", "") {
@@ -48958,6 +56988,11 @@ test "end-to-end oracle: PH" {
         differences.push(
           "PH:t/e164 expected=+63180012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PH:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PH" {
@@ -48996,6 +57031,11 @@ test "end-to-end oracle: PH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PH:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -49026,6 +57066,11 @@ test "end-to-end oracle: PK" {
         differences.push(
           "PK:f/e164 expected=+922123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PK:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PK" {
@@ -49064,6 +57109,11 @@ test "end-to-end oracle: PK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PK:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+923012345678", "") {
@@ -49085,6 +57135,11 @@ test "end-to-end oracle: PK" {
         differences.push(
           "PK:m/e164 expected=+923012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PK:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PK" {
@@ -49123,6 +57178,11 @@ test "end-to-end oracle: PK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PK:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9280012345", "") {
@@ -49144,6 +57204,11 @@ test "end-to-end oracle: PK" {
         differences.push(
           "PK:t/e164 expected=+9280012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PK:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PK" {
@@ -49182,6 +57247,11 @@ test "end-to-end oracle: PK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PK:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9290012345", "") {
@@ -49203,6 +57273,11 @@ test "end-to-end oracle: PK" {
         differences.push(
           "PK:p/e164 expected=+9290012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PK:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PK" {
@@ -49241,6 +57316,11 @@ test "end-to-end oracle: PK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PK:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+92122044444", "") {
@@ -49262,6 +57342,11 @@ test "end-to-end oracle: PK" {
         differences.push(
           "PK:r/e164 expected=+92122044444 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PK:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PK" {
@@ -49300,6 +57385,11 @@ test "end-to-end oracle: PK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PK:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9221111825888", "") {
@@ -49321,6 +57411,11 @@ test "end-to-end oracle: PK" {
         differences.push(
           "PK:u/e164 expected=+9221111825888 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PK:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PK" {
@@ -49359,6 +57454,11 @@ test "end-to-end oracle: PK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PK:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -49389,6 +57489,11 @@ test "end-to-end oracle: PL" {
         differences.push(
           "PL:f/e164 expected=+48123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PL:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PL" {
@@ -49427,6 +57532,11 @@ test "end-to-end oracle: PL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PL:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+48512345678", "") {
@@ -49448,6 +57558,11 @@ test "end-to-end oracle: PL" {
         differences.push(
           "PL:m/e164 expected=+48512345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PL:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PL" {
@@ -49486,6 +57601,11 @@ test "end-to-end oracle: PL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PL:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+48800123456", "") {
@@ -49507,6 +57627,11 @@ test "end-to-end oracle: PL" {
         differences.push(
           "PL:t/e164 expected=+48800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PL:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PL" {
@@ -49545,6 +57670,11 @@ test "end-to-end oracle: PL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PL:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+48701234567", "") {
@@ -49566,6 +57696,11 @@ test "end-to-end oracle: PL" {
         differences.push(
           "PL:p/e164 expected=+48701234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PL:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PL" {
@@ -49604,6 +57739,11 @@ test "end-to-end oracle: PL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PL:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+48801234567", "") {
@@ -49625,6 +57765,11 @@ test "end-to-end oracle: PL" {
         differences.push(
           "PL:s/e164 expected=+48801234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PL:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PL" {
@@ -49663,6 +57808,11 @@ test "end-to-end oracle: PL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PL:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+48391234567", "") {
@@ -49684,6 +57834,11 @@ test "end-to-end oracle: PL" {
         differences.push(
           "PL:v/e164 expected=+48391234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PL:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PL" {
@@ -49722,6 +57877,11 @@ test "end-to-end oracle: PL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PL:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+48804123456", "") {
@@ -49743,6 +57903,11 @@ test "end-to-end oracle: PL" {
         differences.push(
           "PL:u/e164 expected=+48804123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PL:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PL" {
@@ -49781,6 +57946,11 @@ test "end-to-end oracle: PL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PL:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+48641234567", "") {
@@ -49802,6 +57972,11 @@ test "end-to-end oracle: PL" {
         differences.push(
           "PL:g/e164 expected=+48641234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PL:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PL" {
@@ -49840,6 +58015,11 @@ test "end-to-end oracle: PL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PL:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -49870,6 +58050,11 @@ test "end-to-end oracle: PM" {
         differences.push(
           "PM:f/e164 expected=+508430123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PM:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PM" {
@@ -49908,6 +58093,11 @@ test "end-to-end oracle: PM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PM:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+508551234", "") {
@@ -49929,6 +58119,11 @@ test "end-to-end oracle: PM" {
         differences.push(
           "PM:m/e164 expected=+508551234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PM:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PM" {
@@ -49967,6 +58162,11 @@ test "end-to-end oracle: PM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PM:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+508800012345", "") {
@@ -49988,6 +58188,11 @@ test "end-to-end oracle: PM" {
         differences.push(
           "PM:t/e164 expected=+508800012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PM:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PM" {
@@ -50026,6 +58231,11 @@ test "end-to-end oracle: PM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PM:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+508810123456", "") {
@@ -50047,6 +58257,11 @@ test "end-to-end oracle: PM" {
         differences.push(
           "PM:p/e164 expected=+508810123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PM:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PM" {
@@ -50085,6 +58300,11 @@ test "end-to-end oracle: PM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PM:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -50115,6 +58335,11 @@ test "end-to-end oracle: PR" {
         differences.push(
           "PR:f/e164 expected=+17872345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PR:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PR" {
@@ -50153,6 +58378,11 @@ test "end-to-end oracle: PR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PR:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+17872345678", "") {
@@ -50174,6 +58404,11 @@ test "end-to-end oracle: PR" {
         differences.push(
           "PR:m/e164 expected=+17872345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PR:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PR" {
@@ -50212,6 +58447,11 @@ test "end-to-end oracle: PR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PR:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002345678", "") {
@@ -50233,6 +58473,11 @@ test "end-to-end oracle: PR" {
         differences.push(
           "PR:t/e164 expected=+18002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PR:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -50271,6 +58516,11 @@ test "end-to-end oracle: PR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PR:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002345678", "") {
@@ -50292,6 +58542,11 @@ test "end-to-end oracle: PR" {
         differences.push(
           "PR:p/e164 expected=+19002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PR:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -50330,6 +58585,11 @@ test "end-to-end oracle: PR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PR:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -50351,6 +58611,11 @@ test "end-to-end oracle: PR" {
         differences.push(
           "PR:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PR:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -50389,6 +58654,11 @@ test "end-to-end oracle: PR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PR:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -50419,6 +58689,11 @@ test "end-to-end oracle: PS" {
         differences.push(
           "PS:f/e164 expected=+97022234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PS:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PS" {
@@ -50457,6 +58732,11 @@ test "end-to-end oracle: PS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PS:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+970599123456", "") {
@@ -50478,6 +58758,11 @@ test "end-to-end oracle: PS" {
         differences.push(
           "PS:m/e164 expected=+970599123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PS:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PS" {
@@ -50516,6 +58801,11 @@ test "end-to-end oracle: PS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PS:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9701800123456", "") {
@@ -50537,6 +58827,11 @@ test "end-to-end oracle: PS" {
         differences.push(
           "PS:t/e164 expected=+9701800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PS:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PS" {
@@ -50575,6 +58870,11 @@ test "end-to-end oracle: PS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PS:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9701700123456", "") {
@@ -50596,6 +58896,11 @@ test "end-to-end oracle: PS" {
         differences.push(
           "PS:s/e164 expected=+9701700123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PS:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PS" {
@@ -50634,6 +58939,11 @@ test "end-to-end oracle: PS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PS:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -50664,6 +58974,11 @@ test "end-to-end oracle: PT" {
         differences.push(
           "PT:f/e164 expected=+351212345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PT:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PT" {
@@ -50702,6 +59017,11 @@ test "end-to-end oracle: PT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PT:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+351912345678", "") {
@@ -50723,6 +59043,11 @@ test "end-to-end oracle: PT" {
         differences.push(
           "PT:m/e164 expected=+351912345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PT:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PT" {
@@ -50761,6 +59086,11 @@ test "end-to-end oracle: PT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PT:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+351800123456", "") {
@@ -50782,6 +59112,11 @@ test "end-to-end oracle: PT" {
         differences.push(
           "PT:t/e164 expected=+351800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PT:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PT" {
@@ -50820,6 +59155,11 @@ test "end-to-end oracle: PT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PT:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+351760123456", "") {
@@ -50841,6 +59181,11 @@ test "end-to-end oracle: PT" {
         differences.push(
           "PT:p/e164 expected=+351760123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PT:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PT" {
@@ -50879,6 +59224,11 @@ test "end-to-end oracle: PT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PT:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+351808123456", "") {
@@ -50900,6 +59250,11 @@ test "end-to-end oracle: PT" {
         differences.push(
           "PT:s/e164 expected=+351808123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PT:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PT" {
@@ -50938,6 +59293,11 @@ test "end-to-end oracle: PT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PT:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+351301234567", "") {
@@ -50959,6 +59319,11 @@ test "end-to-end oracle: PT" {
         differences.push(
           "PT:v/e164 expected=+351301234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PT:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PT" {
@@ -50997,6 +59362,11 @@ test "end-to-end oracle: PT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PT:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+351884123456", "") {
@@ -51018,6 +59388,11 @@ test "end-to-end oracle: PT" {
         differences.push(
           "PT:r/e164 expected=+351884123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PT:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PT" {
@@ -51056,6 +59431,11 @@ test "end-to-end oracle: PT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PT:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+351707123456", "") {
@@ -51077,6 +59457,11 @@ test "end-to-end oracle: PT" {
         differences.push(
           "PT:u/e164 expected=+351707123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PT:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PT" {
@@ -51115,6 +59500,11 @@ test "end-to-end oracle: PT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PT:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+351622212345", "") {
@@ -51136,6 +59526,11 @@ test "end-to-end oracle: PT" {
         differences.push(
           "PT:g/e164 expected=+351622212345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PT:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PT" {
@@ -51174,6 +59569,11 @@ test "end-to-end oracle: PT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PT:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+351600110000", "") {
@@ -51195,6 +59595,11 @@ test "end-to-end oracle: PT" {
         differences.push(
           "PT:o/e164 expected=+351600110000 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PT:o/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PT" {
@@ -51233,6 +59638,11 @@ test "end-to-end oracle: PT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PT:o:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -51263,6 +59673,11 @@ test "end-to-end oracle: PW" {
         differences.push(
           "PW:f/e164 expected=+6802771234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PW:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PW" {
@@ -51301,6 +59716,11 @@ test "end-to-end oracle: PW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PW:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6806201234", "") {
@@ -51322,6 +59742,11 @@ test "end-to-end oracle: PW" {
         differences.push(
           "PW:m/e164 expected=+6806201234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PW:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PW" {
@@ -51360,6 +59785,11 @@ test "end-to-end oracle: PW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PW:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -51390,6 +59820,11 @@ test "end-to-end oracle: PY" {
         differences.push(
           "PY:f/e164 expected=+595212345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PY:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PY" {
@@ -51428,6 +59863,11 @@ test "end-to-end oracle: PY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PY:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+595961456789", "") {
@@ -51449,6 +59889,11 @@ test "end-to-end oracle: PY" {
         differences.push(
           "PY:m/e164 expected=+595961456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PY:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PY" {
@@ -51487,6 +59932,11 @@ test "end-to-end oracle: PY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PY:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+59598000123456", "") {
@@ -51508,6 +59958,11 @@ test "end-to-end oracle: PY" {
         differences.push(
           "PY:t/e164 expected=+59598000123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PY:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PY" {
@@ -51546,6 +60001,11 @@ test "end-to-end oracle: PY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PY:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+595870012345", "") {
@@ -51567,6 +60027,11 @@ test "end-to-end oracle: PY" {
         differences.push(
           "PY:v/e164 expected=+595870012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PY:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PY" {
@@ -51605,6 +60070,11 @@ test "end-to-end oracle: PY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PY:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+595201234567", "") {
@@ -51626,6 +60096,11 @@ test "end-to-end oracle: PY" {
         differences.push(
           "PY:u/e164 expected=+595201234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "PY:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "PY" {
@@ -51664,6 +60139,11 @@ test "end-to-end oracle: PY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "PY:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -51694,6 +60174,11 @@ test "end-to-end oracle: QA" {
         differences.push(
           "QA:f/e164 expected=+97444123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "QA:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "QA" {
@@ -51732,6 +60217,11 @@ test "end-to-end oracle: QA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "QA:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+97433123456", "") {
@@ -51753,6 +60243,11 @@ test "end-to-end oracle: QA" {
         differences.push(
           "QA:m/e164 expected=+97433123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "QA:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "QA" {
@@ -51791,6 +60286,11 @@ test "end-to-end oracle: QA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "QA:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9748001234", "") {
@@ -51812,6 +60312,11 @@ test "end-to-end oracle: QA" {
         differences.push(
           "QA:t/e164 expected=+9748001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "QA:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "QA" {
@@ -51850,6 +60355,11 @@ test "end-to-end oracle: QA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "QA:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9742123456", "") {
@@ -51871,6 +60381,11 @@ test "end-to-end oracle: QA" {
         differences.push(
           "QA:g/e164 expected=+9742123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "QA:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "QA" {
@@ -51909,6 +60424,11 @@ test "end-to-end oracle: QA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "QA:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -51939,6 +60459,11 @@ test "end-to-end oracle: RE" {
         differences.push(
           "RE:f/e164 expected=+262262161234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RE:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RE" {
@@ -51977,6 +60502,11 @@ test "end-to-end oracle: RE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RE:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+262692123456", "") {
@@ -51998,6 +60528,11 @@ test "end-to-end oracle: RE" {
         differences.push(
           "RE:m/e164 expected=+262692123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RE:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RE" {
@@ -52036,6 +60571,11 @@ test "end-to-end oracle: RE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RE:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+262801234567", "") {
@@ -52057,6 +60597,11 @@ test "end-to-end oracle: RE" {
         differences.push(
           "RE:t/e164 expected=+262801234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RE:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RE" {
@@ -52095,6 +60640,11 @@ test "end-to-end oracle: RE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RE:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+262891123456", "") {
@@ -52116,6 +60666,11 @@ test "end-to-end oracle: RE" {
         differences.push(
           "RE:p/e164 expected=+262891123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RE:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RE" {
@@ -52154,6 +60709,11 @@ test "end-to-end oracle: RE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RE:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+262810123456", "") {
@@ -52175,6 +60735,11 @@ test "end-to-end oracle: RE" {
         differences.push(
           "RE:s/e164 expected=+262810123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RE:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RE" {
@@ -52213,6 +60778,11 @@ test "end-to-end oracle: RE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RE:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+262939901234", "") {
@@ -52234,6 +60804,11 @@ test "end-to-end oracle: RE" {
         differences.push(
           "RE:v/e164 expected=+262939901234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RE:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RE" {
@@ -52272,6 +60847,11 @@ test "end-to-end oracle: RE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RE:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -52302,6 +60882,11 @@ test "end-to-end oracle: RO" {
         differences.push(
           "RO:f/e164 expected=+40211234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RO:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RO" {
@@ -52340,6 +60925,11 @@ test "end-to-end oracle: RO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RO:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+40712034567", "") {
@@ -52361,6 +60951,11 @@ test "end-to-end oracle: RO" {
         differences.push(
           "RO:m/e164 expected=+40712034567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RO:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RO" {
@@ -52399,6 +60994,11 @@ test "end-to-end oracle: RO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RO:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+40800123456", "") {
@@ -52420,6 +61020,11 @@ test "end-to-end oracle: RO" {
         differences.push(
           "RO:t/e164 expected=+40800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RO:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RO" {
@@ -52458,6 +61063,11 @@ test "end-to-end oracle: RO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RO:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+40900123456", "") {
@@ -52479,6 +61089,11 @@ test "end-to-end oracle: RO" {
         differences.push(
           "RO:p/e164 expected=+40900123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RO:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RO" {
@@ -52517,6 +61132,11 @@ test "end-to-end oracle: RO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RO:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+40801123456", "") {
@@ -52538,6 +61158,11 @@ test "end-to-end oracle: RO" {
         differences.push(
           "RO:s/e164 expected=+40801123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RO:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RO" {
@@ -52576,6 +61201,11 @@ test "end-to-end oracle: RO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RO:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+40372123456", "") {
@@ -52597,6 +61227,11 @@ test "end-to-end oracle: RO" {
         differences.push(
           "RO:u/e164 expected=+40372123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RO:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RO" {
@@ -52635,6 +61270,11 @@ test "end-to-end oracle: RO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RO:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -52665,6 +61305,11 @@ test "end-to-end oracle: RS" {
         differences.push(
           "RS:f/e164 expected=+38110234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RS:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RS" {
@@ -52703,6 +61348,11 @@ test "end-to-end oracle: RS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RS:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+381601234567", "") {
@@ -52724,6 +61374,11 @@ test "end-to-end oracle: RS" {
         differences.push(
           "RS:m/e164 expected=+381601234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RS:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RS" {
@@ -52762,6 +61417,11 @@ test "end-to-end oracle: RS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RS:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38180012345", "") {
@@ -52783,6 +61443,11 @@ test "end-to-end oracle: RS" {
         differences.push(
           "RS:t/e164 expected=+38180012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RS:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RS" {
@@ -52821,6 +61486,11 @@ test "end-to-end oracle: RS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RS:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38190012345", "") {
@@ -52842,6 +61512,11 @@ test "end-to-end oracle: RS" {
         differences.push(
           "RS:p/e164 expected=+38190012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RS:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RS" {
@@ -52880,6 +61555,11 @@ test "end-to-end oracle: RS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RS:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+381700123456", "") {
@@ -52901,6 +61581,11 @@ test "end-to-end oracle: RS" {
         differences.push(
           "RS:u/e164 expected=+381700123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RS:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RS" {
@@ -52939,6 +61624,11 @@ test "end-to-end oracle: RS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RS:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -52969,6 +61659,11 @@ test "end-to-end oracle: RU" {
         differences.push(
           "RU:f/e164 expected=+73011234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RU:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RU" {
@@ -53007,6 +61702,11 @@ test "end-to-end oracle: RU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RU:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+79123456789", "") {
@@ -53028,6 +61728,11 @@ test "end-to-end oracle: RU" {
         differences.push(
           "RU:m/e164 expected=+79123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RU:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RU" {
@@ -53066,6 +61771,11 @@ test "end-to-end oracle: RU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RU:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+78001234567", "") {
@@ -53087,6 +61797,11 @@ test "end-to-end oracle: RU" {
         differences.push(
           "RU:t/e164 expected=+78001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RU:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RU" {
@@ -53125,6 +61840,11 @@ test "end-to-end oracle: RU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RU:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+78091234567", "") {
@@ -53146,6 +61866,11 @@ test "end-to-end oracle: RU" {
         differences.push(
           "RU:p/e164 expected=+78091234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RU:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RU" {
@@ -53184,6 +61909,11 @@ test "end-to-end oracle: RU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RU:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+78081234567", "") {
@@ -53205,6 +61935,11 @@ test "end-to-end oracle: RU" {
         differences.push(
           "RU:r/e164 expected=+78081234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RU:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RU" {
@@ -53243,6 +61978,11 @@ test "end-to-end oracle: RU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RU:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -53273,6 +62013,11 @@ test "end-to-end oracle: RW" {
         differences.push(
           "RW:f/e164 expected=+250250123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RW:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RW" {
@@ -53311,6 +62056,11 @@ test "end-to-end oracle: RW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RW:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+250720123456", "") {
@@ -53332,6 +62082,11 @@ test "end-to-end oracle: RW" {
         differences.push(
           "RW:m/e164 expected=+250720123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RW:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RW" {
@@ -53370,6 +62125,11 @@ test "end-to-end oracle: RW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RW:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+250800123456", "") {
@@ -53391,6 +62151,11 @@ test "end-to-end oracle: RW" {
         differences.push(
           "RW:t/e164 expected=+250800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RW:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RW" {
@@ -53429,6 +62194,11 @@ test "end-to-end oracle: RW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RW:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+250900123456", "") {
@@ -53450,6 +62220,11 @@ test "end-to-end oracle: RW" {
         differences.push(
           "RW:p/e164 expected=+250900123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "RW:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RW" {
@@ -53488,6 +62263,11 @@ test "end-to-end oracle: RW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "RW:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -53518,6 +62298,11 @@ test "end-to-end oracle: SA" {
         differences.push(
           "SA:f/e164 expected=+966112345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SA:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SA" {
@@ -53556,6 +62341,11 @@ test "end-to-end oracle: SA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SA:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+966512345678", "") {
@@ -53577,6 +62367,11 @@ test "end-to-end oracle: SA" {
         differences.push(
           "SA:m/e164 expected=+966512345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SA:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SA" {
@@ -53615,6 +62410,11 @@ test "end-to-end oracle: SA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SA:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9668001234567", "") {
@@ -53636,6 +62436,11 @@ test "end-to-end oracle: SA" {
         differences.push(
           "SA:t/e164 expected=+9668001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SA:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SA" {
@@ -53674,6 +62479,11 @@ test "end-to-end oracle: SA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SA:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+966925012345", "") {
@@ -53695,6 +62505,11 @@ test "end-to-end oracle: SA" {
         differences.push(
           "SA:p/e164 expected=+966925012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SA:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SA" {
@@ -53733,6 +62548,11 @@ test "end-to-end oracle: SA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SA:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+966920012345", "") {
@@ -53754,6 +62574,11 @@ test "end-to-end oracle: SA" {
         differences.push(
           "SA:s/e164 expected=+966920012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SA:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SA" {
@@ -53792,6 +62617,11 @@ test "end-to-end oracle: SA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SA:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -53822,6 +62652,11 @@ test "end-to-end oracle: SB" {
         differences.push(
           "SB:f/e164 expected=+67740123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SB:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SB" {
@@ -53860,6 +62695,11 @@ test "end-to-end oracle: SB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SB:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6777421234", "") {
@@ -53881,6 +62721,11 @@ test "end-to-end oracle: SB" {
         differences.push(
           "SB:m/e164 expected=+6777421234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SB:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SB" {
@@ -53919,6 +62764,11 @@ test "end-to-end oracle: SB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SB:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+67718123", "") {
@@ -53940,6 +62790,11 @@ test "end-to-end oracle: SB" {
         differences.push(
           "SB:t/e164 expected=+67718123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SB:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SB" {
@@ -53978,6 +62833,11 @@ test "end-to-end oracle: SB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SB:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+67751123", "") {
@@ -53999,6 +62859,11 @@ test "end-to-end oracle: SB" {
         differences.push(
           "SB:v/e164 expected=+67751123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SB:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SB" {
@@ -54037,6 +62902,11 @@ test "end-to-end oracle: SB" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SB:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -54067,6 +62937,11 @@ test "end-to-end oracle: SC" {
         differences.push(
           "SC:f/e164 expected=+2484217123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SC:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SC" {
@@ -54105,6 +62980,11 @@ test "end-to-end oracle: SC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SC:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2482510123", "") {
@@ -54126,6 +63006,11 @@ test "end-to-end oracle: SC" {
         differences.push(
           "SC:m/e164 expected=+2482510123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SC:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SC" {
@@ -54164,6 +63049,11 @@ test "end-to-end oracle: SC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SC:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2488000000", "") {
@@ -54185,6 +63075,11 @@ test "end-to-end oracle: SC" {
         differences.push(
           "SC:t/e164 expected=+2488000000 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SC:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SC" {
@@ -54223,6 +63118,11 @@ test "end-to-end oracle: SC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SC:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2488512345", "") {
@@ -54244,6 +63144,11 @@ test "end-to-end oracle: SC" {
         differences.push(
           "SC:p/e164 expected=+2488512345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SC:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SC" {
@@ -54282,6 +63187,11 @@ test "end-to-end oracle: SC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SC:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2486412345", "") {
@@ -54303,6 +63213,11 @@ test "end-to-end oracle: SC" {
         differences.push(
           "SC:v/e164 expected=+2486412345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SC:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SC" {
@@ -54341,6 +63256,11 @@ test "end-to-end oracle: SC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SC:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -54371,6 +63291,11 @@ test "end-to-end oracle: SD" {
         differences.push(
           "SD:f/e164 expected=+249153123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SD:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SD" {
@@ -54409,6 +63334,11 @@ test "end-to-end oracle: SD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SD:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+249911231234", "") {
@@ -54430,6 +63360,11 @@ test "end-to-end oracle: SD" {
         differences.push(
           "SD:m/e164 expected=+249911231234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SD:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SD" {
@@ -54468,6 +63403,11 @@ test "end-to-end oracle: SD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SD:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -54498,6 +63438,11 @@ test "end-to-end oracle: SE" {
         differences.push(
           "SE:f/e164 expected=+468123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SE:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SE" {
@@ -54536,6 +63481,11 @@ test "end-to-end oracle: SE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SE:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+46701234567", "") {
@@ -54557,6 +63507,11 @@ test "end-to-end oracle: SE" {
         differences.push(
           "SE:m/e164 expected=+46701234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SE:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SE" {
@@ -54595,6 +63550,11 @@ test "end-to-end oracle: SE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SE:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4620123456", "") {
@@ -54616,6 +63576,11 @@ test "end-to-end oracle: SE" {
         differences.push(
           "SE:t/e164 expected=+4620123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SE:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SE" {
@@ -54654,6 +63619,11 @@ test "end-to-end oracle: SE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SE:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+469001234567", "") {
@@ -54675,6 +63645,11 @@ test "end-to-end oracle: SE" {
         differences.push(
           "SE:p/e164 expected=+469001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SE:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SE" {
@@ -54713,6 +63688,11 @@ test "end-to-end oracle: SE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SE:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+46771234567", "") {
@@ -54734,6 +63714,11 @@ test "end-to-end oracle: SE" {
         differences.push(
           "SE:s/e164 expected=+46771234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SE:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SE" {
@@ -54772,6 +63757,11 @@ test "end-to-end oracle: SE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SE:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+46751234567", "") {
@@ -54793,6 +63783,11 @@ test "end-to-end oracle: SE" {
         differences.push(
           "SE:r/e164 expected=+46751234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SE:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SE" {
@@ -54831,6 +63826,11 @@ test "end-to-end oracle: SE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SE:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+46102345678", "") {
@@ -54852,6 +63852,11 @@ test "end-to-end oracle: SE" {
         differences.push(
           "SE:u/e164 expected=+46102345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SE:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SE" {
@@ -54890,6 +63895,11 @@ test "end-to-end oracle: SE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SE:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+46740123456", "") {
@@ -54911,6 +63921,11 @@ test "end-to-end oracle: SE" {
         differences.push(
           "SE:g/e164 expected=+46740123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SE:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SE" {
@@ -54949,6 +63964,11 @@ test "end-to-end oracle: SE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SE:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+46254123456789", "") {
@@ -54970,6 +63990,11 @@ test "end-to-end oracle: SE" {
         differences.push(
           "SE:o/e164 expected=+46254123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SE:o/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SE" {
@@ -55008,6 +64033,11 @@ test "end-to-end oracle: SE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SE:o:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -55038,6 +64068,11 @@ test "end-to-end oracle: SG" {
         differences.push(
           "SG:f/e164 expected=+6561234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SG:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SG" {
@@ -55076,6 +64111,11 @@ test "end-to-end oracle: SG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SG:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6581234567", "") {
@@ -55097,6 +64137,11 @@ test "end-to-end oracle: SG" {
         differences.push(
           "SG:m/e164 expected=+6581234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SG:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SG" {
@@ -55135,6 +64180,11 @@ test "end-to-end oracle: SG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SG:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6518001234567", "") {
@@ -55156,6 +64206,11 @@ test "end-to-end oracle: SG" {
         differences.push(
           "SG:t/e164 expected=+6518001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SG:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SG" {
@@ -55194,6 +64249,11 @@ test "end-to-end oracle: SG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SG:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6519001234567", "") {
@@ -55215,6 +64275,11 @@ test "end-to-end oracle: SG" {
         differences.push(
           "SG:p/e164 expected=+6519001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SG:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SG" {
@@ -55253,6 +64318,11 @@ test "end-to-end oracle: SG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SG:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6531234567", "") {
@@ -55274,6 +64344,11 @@ test "end-to-end oracle: SG" {
         differences.push(
           "SG:v/e164 expected=+6531234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SG:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SG" {
@@ -55312,6 +64387,11 @@ test "end-to-end oracle: SG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SG:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6570001234567", "") {
@@ -55333,6 +64413,11 @@ test "end-to-end oracle: SG" {
         differences.push(
           "SG:u/e164 expected=+6570001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SG:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SG" {
@@ -55371,6 +64456,11 @@ test "end-to-end oracle: SG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SG:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -55401,6 +64491,11 @@ test "end-to-end oracle: SH" {
         differences.push(
           "SH:f/e164 expected=+29022158 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SH:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SH" {
@@ -55439,6 +64534,11 @@ test "end-to-end oracle: SH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SH:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+29051234", "") {
@@ -55460,6 +64560,11 @@ test "end-to-end oracle: SH" {
         differences.push(
           "SH:m/e164 expected=+29051234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SH:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SH" {
@@ -55498,6 +64603,11 @@ test "end-to-end oracle: SH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SH:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+29026212", "") {
@@ -55519,6 +64629,11 @@ test "end-to-end oracle: SH" {
         differences.push(
           "SH:v/e164 expected=+29026212 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SH:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SH" {
@@ -55557,6 +64672,11 @@ test "end-to-end oracle: SH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SH:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -55587,6 +64707,11 @@ test "end-to-end oracle: SI" {
         differences.push(
           "SI:f/e164 expected=+38612345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SI:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SI" {
@@ -55625,6 +64750,11 @@ test "end-to-end oracle: SI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SI:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38631234567", "") {
@@ -55646,6 +64776,11 @@ test "end-to-end oracle: SI" {
         differences.push(
           "SI:m/e164 expected=+38631234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SI:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SI" {
@@ -55684,6 +64819,11 @@ test "end-to-end oracle: SI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SI:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38680123456", "") {
@@ -55705,6 +64845,11 @@ test "end-to-end oracle: SI" {
         differences.push(
           "SI:t/e164 expected=+38680123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SI:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SI" {
@@ -55743,6 +64888,11 @@ test "end-to-end oracle: SI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SI:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38690123456", "") {
@@ -55764,6 +64914,11 @@ test "end-to-end oracle: SI" {
         differences.push(
           "SI:p/e164 expected=+38690123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SI:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SI" {
@@ -55802,6 +64957,11 @@ test "end-to-end oracle: SI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SI:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38659012345", "") {
@@ -55823,6 +64983,11 @@ test "end-to-end oracle: SI" {
         differences.push(
           "SI:v/e164 expected=+38659012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SI:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SI" {
@@ -55861,6 +65026,11 @@ test "end-to-end oracle: SI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SI:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -55891,6 +65061,11 @@ test "end-to-end oracle: SJ" {
         differences.push(
           "SJ:f/e164 expected=+4779123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SJ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SJ" {
@@ -55929,6 +65104,11 @@ test "end-to-end oracle: SJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SJ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4741234567", "") {
@@ -55950,6 +65130,11 @@ test "end-to-end oracle: SJ" {
         differences.push(
           "SJ:m/e164 expected=+4741234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SJ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NO" {
@@ -55988,6 +65173,11 @@ test "end-to-end oracle: SJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SJ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4780012345", "") {
@@ -56009,6 +65199,11 @@ test "end-to-end oracle: SJ" {
         differences.push(
           "SJ:t/e164 expected=+4780012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SJ:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NO" {
@@ -56047,6 +65242,11 @@ test "end-to-end oracle: SJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SJ:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4782012345", "") {
@@ -56068,6 +65268,11 @@ test "end-to-end oracle: SJ" {
         differences.push(
           "SJ:p/e164 expected=+4782012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SJ:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NO" {
@@ -56106,6 +65311,11 @@ test "end-to-end oracle: SJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SJ:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4781021234", "") {
@@ -56127,6 +65337,11 @@ test "end-to-end oracle: SJ" {
         differences.push(
           "SJ:s/e164 expected=+4781021234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SJ:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NO" {
@@ -56165,6 +65380,11 @@ test "end-to-end oracle: SJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SJ:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4785012345", "") {
@@ -56186,6 +65406,11 @@ test "end-to-end oracle: SJ" {
         differences.push(
           "SJ:v/e164 expected=+4785012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SJ:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NO" {
@@ -56224,6 +65449,11 @@ test "end-to-end oracle: SJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SJ:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4788012345", "") {
@@ -56245,6 +65475,11 @@ test "end-to-end oracle: SJ" {
         differences.push(
           "SJ:r/e164 expected=+4788012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SJ:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NO" {
@@ -56283,6 +65518,11 @@ test "end-to-end oracle: SJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SJ:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4702000", "") {
@@ -56304,6 +65544,11 @@ test "end-to-end oracle: SJ" {
         differences.push(
           "SJ:u/e164 expected=+4702000 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SJ:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NO" {
@@ -56342,6 +65587,11 @@ test "end-to-end oracle: SJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SJ:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4781212345", "") {
@@ -56363,6 +65613,11 @@ test "end-to-end oracle: SJ" {
         differences.push(
           "SJ:o/e164 expected=+4781212345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SJ:o/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "NO" {
@@ -56401,6 +65656,11 @@ test "end-to-end oracle: SJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SJ:o:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -56431,6 +65691,11 @@ test "end-to-end oracle: SK" {
         differences.push(
           "SK:f/e164 expected=+421221234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SK:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SK" {
@@ -56469,6 +65734,11 @@ test "end-to-end oracle: SK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SK:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+421912123456", "") {
@@ -56490,6 +65760,11 @@ test "end-to-end oracle: SK" {
         differences.push(
           "SK:m/e164 expected=+421912123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SK:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SK" {
@@ -56528,6 +65803,11 @@ test "end-to-end oracle: SK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SK:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+421800123456", "") {
@@ -56549,6 +65829,11 @@ test "end-to-end oracle: SK" {
         differences.push(
           "SK:t/e164 expected=+421800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SK:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SK" {
@@ -56587,6 +65872,11 @@ test "end-to-end oracle: SK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SK:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+421900123456", "") {
@@ -56608,6 +65898,11 @@ test "end-to-end oracle: SK" {
         differences.push(
           "SK:p/e164 expected=+421900123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SK:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SK" {
@@ -56646,6 +65941,11 @@ test "end-to-end oracle: SK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SK:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+421850123456", "") {
@@ -56667,6 +65967,11 @@ test "end-to-end oracle: SK" {
         differences.push(
           "SK:s/e164 expected=+421850123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SK:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SK" {
@@ -56705,6 +66010,11 @@ test "end-to-end oracle: SK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SK:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+421690123456", "") {
@@ -56726,6 +66036,11 @@ test "end-to-end oracle: SK" {
         differences.push(
           "SK:v/e164 expected=+421690123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SK:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SK" {
@@ -56764,6 +66079,11 @@ test "end-to-end oracle: SK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SK:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+421961234567", "") {
@@ -56785,6 +66105,11 @@ test "end-to-end oracle: SK" {
         differences.push(
           "SK:u/e164 expected=+421961234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SK:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SK" {
@@ -56823,6 +66148,11 @@ test "end-to-end oracle: SK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SK:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+4219090123", "") {
@@ -56844,6 +66174,11 @@ test "end-to-end oracle: SK" {
         differences.push(
           "SK:g/e164 expected=+4219090123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SK:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SK" {
@@ -56882,6 +66217,11 @@ test "end-to-end oracle: SK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SK:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -56912,6 +66252,11 @@ test "end-to-end oracle: SL" {
         differences.push(
           "SL:f/e164 expected=+23222221234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SL:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SL" {
@@ -56950,6 +66295,11 @@ test "end-to-end oracle: SL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SL:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+23225123456", "") {
@@ -56971,6 +66321,11 @@ test "end-to-end oracle: SL" {
         differences.push(
           "SL:m/e164 expected=+23225123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SL:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SL" {
@@ -57009,6 +66364,11 @@ test "end-to-end oracle: SL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SL:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -57039,6 +66399,11 @@ test "end-to-end oracle: SM" {
         differences.push(
           "SM:f/e164 expected=+3780549886377 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SM:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SM" {
@@ -57077,6 +66442,11 @@ test "end-to-end oracle: SM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SM:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37866661212", "") {
@@ -57098,6 +66468,11 @@ test "end-to-end oracle: SM" {
         differences.push(
           "SM:m/e164 expected=+37866661212 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SM:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SM" {
@@ -57136,6 +66511,11 @@ test "end-to-end oracle: SM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SM:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37871123456", "") {
@@ -57157,6 +66537,11 @@ test "end-to-end oracle: SM" {
         differences.push(
           "SM:p/e164 expected=+37871123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SM:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SM" {
@@ -57195,6 +66580,11 @@ test "end-to-end oracle: SM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SM:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+37858001110", "") {
@@ -57216,6 +66606,11 @@ test "end-to-end oracle: SM" {
         differences.push(
           "SM:v/e164 expected=+37858001110 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SM:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SM" {
@@ -57254,6 +66649,11 @@ test "end-to-end oracle: SM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SM:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -57284,6 +66684,11 @@ test "end-to-end oracle: SN" {
         differences.push(
           "SN:f/e164 expected=+221301012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SN:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SN" {
@@ -57322,6 +66727,11 @@ test "end-to-end oracle: SN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SN:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+221701234567", "") {
@@ -57343,6 +66753,11 @@ test "end-to-end oracle: SN" {
         differences.push(
           "SN:m/e164 expected=+221701234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SN:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SN" {
@@ -57381,6 +66796,11 @@ test "end-to-end oracle: SN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SN:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+221800123456", "") {
@@ -57402,6 +66822,11 @@ test "end-to-end oracle: SN" {
         differences.push(
           "SN:t/e164 expected=+221800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SN:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SN" {
@@ -57440,6 +66865,11 @@ test "end-to-end oracle: SN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SN:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+221884123456", "") {
@@ -57461,6 +66891,11 @@ test "end-to-end oracle: SN" {
         differences.push(
           "SN:p/e164 expected=+221884123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SN:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SN" {
@@ -57499,6 +66934,11 @@ test "end-to-end oracle: SN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SN:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+221810123456", "") {
@@ -57520,6 +66960,11 @@ test "end-to-end oracle: SN" {
         differences.push(
           "SN:s/e164 expected=+221810123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SN:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SN" {
@@ -57558,6 +67003,11 @@ test "end-to-end oracle: SN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SN:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+221933301234", "") {
@@ -57579,6 +67029,11 @@ test "end-to-end oracle: SN" {
         differences.push(
           "SN:v/e164 expected=+221933301234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SN:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SN" {
@@ -57617,6 +67072,11 @@ test "end-to-end oracle: SN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SN:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -57647,6 +67107,11 @@ test "end-to-end oracle: SO" {
         differences.push(
           "SO:f/e164 expected=+2524012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SO:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SO" {
@@ -57685,6 +67150,11 @@ test "end-to-end oracle: SO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SO:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+25271123456", "") {
@@ -57706,6 +67176,11 @@ test "end-to-end oracle: SO" {
         differences.push(
           "SO:m/e164 expected=+25271123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SO:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SO" {
@@ -57744,6 +67219,11 @@ test "end-to-end oracle: SO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SO:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -57774,6 +67254,11 @@ test "end-to-end oracle: SR" {
         differences.push(
           "SR:f/e164 expected=+597211234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SR:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SR" {
@@ -57812,6 +67297,11 @@ test "end-to-end oracle: SR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SR:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5977412345", "") {
@@ -57833,6 +67323,11 @@ test "end-to-end oracle: SR" {
         differences.push(
           "SR:m/e164 expected=+5977412345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SR:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SR" {
@@ -57871,6 +67366,11 @@ test "end-to-end oracle: SR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SR:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5978012345", "") {
@@ -57892,6 +67392,11 @@ test "end-to-end oracle: SR" {
         differences.push(
           "SR:t/e164 expected=+5978012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SR:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SR" {
@@ -57930,6 +67435,11 @@ test "end-to-end oracle: SR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SR:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5979012345", "") {
@@ -57951,6 +67461,11 @@ test "end-to-end oracle: SR" {
         differences.push(
           "SR:p/e164 expected=+5979012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SR:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SR" {
@@ -57989,6 +67504,11 @@ test "end-to-end oracle: SR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SR:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+597561234", "") {
@@ -58010,6 +67530,11 @@ test "end-to-end oracle: SR" {
         differences.push(
           "SR:v/e164 expected=+597561234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SR:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SR" {
@@ -58048,6 +67573,11 @@ test "end-to-end oracle: SR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SR:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -58078,6 +67608,11 @@ test "end-to-end oracle: SS" {
         differences.push(
           "SS:f/e164 expected=+211181234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SS:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SS" {
@@ -58116,6 +67651,11 @@ test "end-to-end oracle: SS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SS:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+211977123456", "") {
@@ -58137,6 +67677,11 @@ test "end-to-end oracle: SS" {
         differences.push(
           "SS:m/e164 expected=+211977123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SS:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SS" {
@@ -58175,6 +67720,11 @@ test "end-to-end oracle: SS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SS:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -58205,6 +67755,11 @@ test "end-to-end oracle: ST" {
         differences.push(
           "ST:f/e164 expected=+2392221234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ST:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ST" {
@@ -58243,6 +67798,11 @@ test "end-to-end oracle: ST" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ST:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2399812345", "") {
@@ -58264,6 +67824,11 @@ test "end-to-end oracle: ST" {
         differences.push(
           "ST:m/e164 expected=+2399812345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ST:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ST" {
@@ -58302,6 +67867,11 @@ test "end-to-end oracle: ST" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ST:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -58332,6 +67902,11 @@ test "end-to-end oracle: SV" {
         differences.push(
           "SV:f/e164 expected=+50321234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SV:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SV" {
@@ -58370,6 +67945,11 @@ test "end-to-end oracle: SV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SV:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+50370123456", "") {
@@ -58391,6 +67971,11 @@ test "end-to-end oracle: SV" {
         differences.push(
           "SV:m/e164 expected=+50370123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SV:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SV" {
@@ -58429,6 +68014,11 @@ test "end-to-end oracle: SV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SV:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5038001234", "") {
@@ -58450,6 +68040,11 @@ test "end-to-end oracle: SV" {
         differences.push(
           "SV:t/e164 expected=+5038001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SV:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SV" {
@@ -58488,6 +68083,11 @@ test "end-to-end oracle: SV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SV:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5039001234", "") {
@@ -58509,6 +68109,11 @@ test "end-to-end oracle: SV" {
         differences.push(
           "SV:p/e164 expected=+5039001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SV:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SV" {
@@ -58547,6 +68152,11 @@ test "end-to-end oracle: SV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SV:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -58577,6 +68187,11 @@ test "end-to-end oracle: SX" {
         differences.push(
           "SX:f/e164 expected=+17215425678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SX:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SX" {
@@ -58615,6 +68230,11 @@ test "end-to-end oracle: SX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SX:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+17215205678", "") {
@@ -58636,6 +68256,11 @@ test "end-to-end oracle: SX" {
         differences.push(
           "SX:m/e164 expected=+17215205678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SX:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SX" {
@@ -58674,6 +68299,11 @@ test "end-to-end oracle: SX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SX:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002123456", "") {
@@ -58695,6 +68325,11 @@ test "end-to-end oracle: SX" {
         differences.push(
           "SX:t/e164 expected=+18002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SX:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -58733,6 +68368,11 @@ test "end-to-end oracle: SX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SX:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002123456", "") {
@@ -58754,6 +68394,11 @@ test "end-to-end oracle: SX" {
         differences.push(
           "SX:p/e164 expected=+19002123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SX:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -58792,6 +68437,11 @@ test "end-to-end oracle: SX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SX:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -58813,6 +68463,11 @@ test "end-to-end oracle: SX" {
         differences.push(
           "SX:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SX:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -58851,6 +68506,11 @@ test "end-to-end oracle: SX" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SX:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -58881,6 +68541,11 @@ test "end-to-end oracle: SY" {
         differences.push(
           "SY:f/e164 expected=+963112345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SY:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SY" {
@@ -58919,6 +68584,11 @@ test "end-to-end oracle: SY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SY:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+963944567890", "") {
@@ -58940,6 +68610,11 @@ test "end-to-end oracle: SY" {
         differences.push(
           "SY:m/e164 expected=+963944567890 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SY:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SY" {
@@ -58978,6 +68653,11 @@ test "end-to-end oracle: SY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SY:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -59008,6 +68688,11 @@ test "end-to-end oracle: SZ" {
         differences.push(
           "SZ:f/e164 expected=+26822171234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SZ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SZ" {
@@ -59046,6 +68731,11 @@ test "end-to-end oracle: SZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SZ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+26876123456", "") {
@@ -59067,6 +68757,11 @@ test "end-to-end oracle: SZ" {
         differences.push(
           "SZ:m/e164 expected=+26876123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SZ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SZ" {
@@ -59105,6 +68800,11 @@ test "end-to-end oracle: SZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SZ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+26808001234", "") {
@@ -59126,6 +68826,11 @@ test "end-to-end oracle: SZ" {
         differences.push(
           "SZ:t/e164 expected=+26808001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SZ:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SZ" {
@@ -59164,6 +68869,11 @@ test "end-to-end oracle: SZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SZ:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+268900012345", "") {
@@ -59185,6 +68895,11 @@ test "end-to-end oracle: SZ" {
         differences.push(
           "SZ:p/e164 expected=+268900012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SZ:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SZ" {
@@ -59223,6 +68938,11 @@ test "end-to-end oracle: SZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SZ:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+26870012345", "") {
@@ -59244,6 +68964,11 @@ test "end-to-end oracle: SZ" {
         differences.push(
           "SZ:v/e164 expected=+26870012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "SZ:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "SZ" {
@@ -59282,6 +69007,11 @@ test "end-to-end oracle: SZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "SZ:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -59312,6 +69042,11 @@ test "end-to-end oracle: TA" {
         differences.push(
           "TA:f/e164 expected=+2908999 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TA:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TA" {
@@ -59350,6 +69085,11 @@ test "end-to-end oracle: TA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TA:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -59380,6 +69120,11 @@ test "end-to-end oracle: TC" {
         differences.push(
           "TC:f/e164 expected=+16497121234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TC:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TC" {
@@ -59418,6 +69163,11 @@ test "end-to-end oracle: TC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TC:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+16492311234", "") {
@@ -59439,6 +69189,11 @@ test "end-to-end oracle: TC" {
         differences.push(
           "TC:m/e164 expected=+16492311234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TC:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TC" {
@@ -59477,6 +69232,11 @@ test "end-to-end oracle: TC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TC:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002345678", "") {
@@ -59498,6 +69258,11 @@ test "end-to-end oracle: TC" {
         differences.push(
           "TC:t/e164 expected=+18002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TC:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -59536,6 +69301,11 @@ test "end-to-end oracle: TC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TC:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002345678", "") {
@@ -59557,6 +69327,11 @@ test "end-to-end oracle: TC" {
         differences.push(
           "TC:p/e164 expected=+19002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TC:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -59595,6 +69370,11 @@ test "end-to-end oracle: TC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TC:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+16497101234", "") {
@@ -59616,6 +69396,11 @@ test "end-to-end oracle: TC" {
         differences.push(
           "TC:v/e164 expected=+16497101234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TC:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TC" {
@@ -59654,6 +69439,11 @@ test "end-to-end oracle: TC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TC:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -59675,6 +69465,11 @@ test "end-to-end oracle: TC" {
         differences.push(
           "TC:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TC:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -59713,6 +69508,11 @@ test "end-to-end oracle: TC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TC:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -59743,6 +69543,11 @@ test "end-to-end oracle: TD" {
         differences.push(
           "TD:f/e164 expected=+23522501234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TD:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TD" {
@@ -59781,6 +69586,11 @@ test "end-to-end oracle: TD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TD:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+23563012345", "") {
@@ -59802,6 +69612,11 @@ test "end-to-end oracle: TD" {
         differences.push(
           "TD:m/e164 expected=+23563012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TD:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TD" {
@@ -59840,6 +69655,11 @@ test "end-to-end oracle: TD" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TD:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -59870,6 +69690,11 @@ test "end-to-end oracle: TG" {
         differences.push(
           "TG:f/e164 expected=+22822212345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TG:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TG" {
@@ -59908,6 +69733,11 @@ test "end-to-end oracle: TG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TG:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+22890112345", "") {
@@ -59929,6 +69759,11 @@ test "end-to-end oracle: TG" {
         differences.push(
           "TG:m/e164 expected=+22890112345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TG:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TG" {
@@ -59967,6 +69802,11 @@ test "end-to-end oracle: TG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TG:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -59997,6 +69837,11 @@ test "end-to-end oracle: TH" {
         differences.push(
           "TH:f/e164 expected=+6621234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TH:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TH" {
@@ -60035,6 +69880,11 @@ test "end-to-end oracle: TH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TH:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+66812345678", "") {
@@ -60056,6 +69906,11 @@ test "end-to-end oracle: TH" {
         differences.push(
           "TH:m/e164 expected=+66812345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TH:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TH" {
@@ -60094,6 +69949,11 @@ test "end-to-end oracle: TH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TH:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+661800123456", "") {
@@ -60115,6 +69975,11 @@ test "end-to-end oracle: TH" {
         differences.push(
           "TH:t/e164 expected=+661800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TH:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TH" {
@@ -60153,6 +70018,11 @@ test "end-to-end oracle: TH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TH:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+661900123456", "") {
@@ -60174,6 +70044,11 @@ test "end-to-end oracle: TH" {
         differences.push(
           "TH:p/e164 expected=+661900123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TH:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TH" {
@@ -60212,6 +70087,11 @@ test "end-to-end oracle: TH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TH:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+66601234567", "") {
@@ -60233,6 +70113,11 @@ test "end-to-end oracle: TH" {
         differences.push(
           "TH:v/e164 expected=+66601234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TH:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TH" {
@@ -60271,6 +70156,11 @@ test "end-to-end oracle: TH" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TH:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -60301,6 +70191,11 @@ test "end-to-end oracle: TJ" {
         differences.push(
           "TJ:f/e164 expected=+992372123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TJ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TJ" {
@@ -60339,6 +70234,11 @@ test "end-to-end oracle: TJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TJ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+992917123456", "") {
@@ -60360,6 +70260,11 @@ test "end-to-end oracle: TJ" {
         differences.push(
           "TJ:m/e164 expected=+992917123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TJ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TJ" {
@@ -60398,6 +70303,11 @@ test "end-to-end oracle: TJ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TJ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -60428,6 +70338,11 @@ test "end-to-end oracle: TK" {
         differences.push(
           "TK:f/e164 expected=+6903101 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TK:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TK" {
@@ -60466,6 +70381,11 @@ test "end-to-end oracle: TK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TK:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6907290", "") {
@@ -60487,6 +70407,11 @@ test "end-to-end oracle: TK" {
         differences.push(
           "TK:m/e164 expected=+6907290 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TK:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TK" {
@@ -60525,6 +70450,11 @@ test "end-to-end oracle: TK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TK:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -60555,6 +70485,11 @@ test "end-to-end oracle: TL" {
         differences.push(
           "TL:f/e164 expected=+6702112345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TL:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TL" {
@@ -60593,6 +70528,11 @@ test "end-to-end oracle: TL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TL:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+67077212345", "") {
@@ -60614,6 +70554,11 @@ test "end-to-end oracle: TL" {
         differences.push(
           "TL:m/e164 expected=+67077212345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TL:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TL" {
@@ -60652,6 +70597,11 @@ test "end-to-end oracle: TL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TL:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6708012345", "") {
@@ -60673,6 +70623,11 @@ test "end-to-end oracle: TL" {
         differences.push(
           "TL:t/e164 expected=+6708012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TL:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TL" {
@@ -60711,6 +70666,11 @@ test "end-to-end oracle: TL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TL:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6709012345", "") {
@@ -60732,6 +70692,11 @@ test "end-to-end oracle: TL" {
         differences.push(
           "TL:p/e164 expected=+6709012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TL:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TL" {
@@ -60770,6 +70735,11 @@ test "end-to-end oracle: TL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TL:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6707012345", "") {
@@ -60791,6 +70761,11 @@ test "end-to-end oracle: TL" {
         differences.push(
           "TL:r/e164 expected=+6707012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TL:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TL" {
@@ -60829,6 +70804,11 @@ test "end-to-end oracle: TL" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TL:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -60859,6 +70839,11 @@ test "end-to-end oracle: TM" {
         differences.push(
           "TM:f/e164 expected=+99312345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TM:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TM" {
@@ -60897,6 +70882,11 @@ test "end-to-end oracle: TM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TM:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+99366123456", "") {
@@ -60918,6 +70908,11 @@ test "end-to-end oracle: TM" {
         differences.push(
           "TM:m/e164 expected=+99366123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TM:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TM" {
@@ -60956,6 +70951,11 @@ test "end-to-end oracle: TM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TM:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -60986,6 +70986,11 @@ test "end-to-end oracle: TN" {
         differences.push(
           "TN:f/e164 expected=+21630010123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TN:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TN" {
@@ -61024,6 +71029,11 @@ test "end-to-end oracle: TN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TN:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+21620123456", "") {
@@ -61045,6 +71055,11 @@ test "end-to-end oracle: TN" {
         differences.push(
           "TN:m/e164 expected=+21620123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TN:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TN" {
@@ -61083,6 +71098,11 @@ test "end-to-end oracle: TN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TN:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+21680101234", "") {
@@ -61104,6 +71124,11 @@ test "end-to-end oracle: TN" {
         differences.push(
           "TN:t/e164 expected=+21680101234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TN:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TN" {
@@ -61142,6 +71167,11 @@ test "end-to-end oracle: TN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TN:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+21688123456", "") {
@@ -61163,6 +71193,11 @@ test "end-to-end oracle: TN" {
         differences.push(
           "TN:p/e164 expected=+21688123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TN:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TN" {
@@ -61201,6 +71236,11 @@ test "end-to-end oracle: TN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TN:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+21681101234", "") {
@@ -61222,6 +71262,11 @@ test "end-to-end oracle: TN" {
         differences.push(
           "TN:s/e164 expected=+21681101234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TN:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TN" {
@@ -61260,6 +71305,11 @@ test "end-to-end oracle: TN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TN:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -61290,6 +71340,11 @@ test "end-to-end oracle: TO" {
         differences.push(
           "TO:f/e164 expected=+67620123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TO:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TO" {
@@ -61328,6 +71383,11 @@ test "end-to-end oracle: TO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TO:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6767715123", "") {
@@ -61349,6 +71409,11 @@ test "end-to-end oracle: TO" {
         differences.push(
           "TO:m/e164 expected=+6767715123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TO:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TO" {
@@ -61387,6 +71452,11 @@ test "end-to-end oracle: TO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TO:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6760800222", "") {
@@ -61408,6 +71478,11 @@ test "end-to-end oracle: TO" {
         differences.push(
           "TO:t/e164 expected=+6760800222 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TO:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TO" {
@@ -61446,6 +71521,11 @@ test "end-to-end oracle: TO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TO:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6765510123", "") {
@@ -61467,6 +71547,11 @@ test "end-to-end oracle: TO" {
         differences.push(
           "TO:v/e164 expected=+6765510123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TO:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TO" {
@@ -61505,6 +71590,11 @@ test "end-to-end oracle: TO" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TO:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -61535,6 +71625,11 @@ test "end-to-end oracle: TR" {
         differences.push(
           "TR:f/e164 expected=+902123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TR:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TR" {
@@ -61573,6 +71668,11 @@ test "end-to-end oracle: TR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TR:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+905012345678", "") {
@@ -61594,6 +71694,11 @@ test "end-to-end oracle: TR" {
         differences.push(
           "TR:m/e164 expected=+905012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TR:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TR" {
@@ -61632,6 +71737,11 @@ test "end-to-end oracle: TR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TR:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+908001234567", "") {
@@ -61653,6 +71763,11 @@ test "end-to-end oracle: TR" {
         differences.push(
           "TR:t/e164 expected=+908001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TR:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TR" {
@@ -61691,6 +71806,11 @@ test "end-to-end oracle: TR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TR:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+909001234567", "") {
@@ -61712,6 +71832,11 @@ test "end-to-end oracle: TR" {
         differences.push(
           "TR:p/e164 expected=+909001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TR:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TR" {
@@ -61750,6 +71875,11 @@ test "end-to-end oracle: TR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TR:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+908500123456", "") {
@@ -61771,6 +71901,11 @@ test "end-to-end oracle: TR" {
         differences.push(
           "TR:v/e164 expected=+908500123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TR:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TR" {
@@ -61809,6 +71944,11 @@ test "end-to-end oracle: TR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TR:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+905922121234", "") {
@@ -61830,6 +71970,11 @@ test "end-to-end oracle: TR" {
         differences.push(
           "TR:r/e164 expected=+905922121234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TR:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TR" {
@@ -61868,6 +72013,11 @@ test "end-to-end oracle: TR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TR:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+904441444", "") {
@@ -61889,6 +72039,11 @@ test "end-to-end oracle: TR" {
         differences.push(
           "TR:u/e164 expected=+904441444 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TR:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TR" {
@@ -61927,6 +72082,11 @@ test "end-to-end oracle: TR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TR:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+905123456789", "") {
@@ -61948,6 +72108,11 @@ test "end-to-end oracle: TR" {
         differences.push(
           "TR:g/e164 expected=+905123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TR:g/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TR" {
@@ -61986,6 +72151,11 @@ test "end-to-end oracle: TR" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TR:g:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -62016,6 +72186,11 @@ test "end-to-end oracle: TT" {
         differences.push(
           "TT:f/e164 expected=+18682211234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TT:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TT" {
@@ -62054,6 +72229,11 @@ test "end-to-end oracle: TT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TT:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18682911234", "") {
@@ -62075,6 +72255,11 @@ test "end-to-end oracle: TT" {
         differences.push(
           "TT:m/e164 expected=+18682911234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TT:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TT" {
@@ -62113,6 +72298,11 @@ test "end-to-end oracle: TT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TT:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002345678", "") {
@@ -62134,6 +72324,11 @@ test "end-to-end oracle: TT" {
         differences.push(
           "TT:t/e164 expected=+18002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TT:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -62172,6 +72367,11 @@ test "end-to-end oracle: TT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TT:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002345678", "") {
@@ -62193,6 +72393,11 @@ test "end-to-end oracle: TT" {
         differences.push(
           "TT:p/e164 expected=+19002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TT:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -62231,6 +72436,11 @@ test "end-to-end oracle: TT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TT:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -62252,6 +72462,11 @@ test "end-to-end oracle: TT" {
         differences.push(
           "TT:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TT:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -62290,6 +72505,11 @@ test "end-to-end oracle: TT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TT:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18686191234", "") {
@@ -62311,6 +72531,11 @@ test "end-to-end oracle: TT" {
         differences.push(
           "TT:o/e164 expected=+18686191234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TT:o/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TT" {
@@ -62349,6 +72574,11 @@ test "end-to-end oracle: TT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TT:o:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -62379,6 +72609,11 @@ test "end-to-end oracle: TV" {
         differences.push(
           "TV:f/e164 expected=+68820123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TV:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TV" {
@@ -62417,6 +72652,11 @@ test "end-to-end oracle: TV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TV:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+688901234", "") {
@@ -62438,6 +72678,11 @@ test "end-to-end oracle: TV" {
         differences.push(
           "TV:m/e164 expected=+688901234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TV:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TV" {
@@ -62476,6 +72721,11 @@ test "end-to-end oracle: TV" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TV:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -62506,6 +72756,11 @@ test "end-to-end oracle: TW" {
         differences.push(
           "TW:f/e164 expected=+886221234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TW:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TW" {
@@ -62544,6 +72799,11 @@ test "end-to-end oracle: TW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TW:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+886912345678", "") {
@@ -62565,6 +72825,11 @@ test "end-to-end oracle: TW" {
         differences.push(
           "TW:m/e164 expected=+886912345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TW:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TW" {
@@ -62603,6 +72868,11 @@ test "end-to-end oracle: TW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TW:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+886800123456", "") {
@@ -62624,6 +72894,11 @@ test "end-to-end oracle: TW" {
         differences.push(
           "TW:t/e164 expected=+886800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TW:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TW" {
@@ -62662,6 +72937,11 @@ test "end-to-end oracle: TW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TW:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+886203123456", "") {
@@ -62683,6 +72963,11 @@ test "end-to-end oracle: TW" {
         differences.push(
           "TW:p/e164 expected=+886203123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TW:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TW" {
@@ -62721,6 +73006,11 @@ test "end-to-end oracle: TW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TW:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+8867012345678", "") {
@@ -62742,6 +73032,11 @@ test "end-to-end oracle: TW" {
         differences.push(
           "TW:v/e164 expected=+8867012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TW:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TW" {
@@ -62780,6 +73075,11 @@ test "end-to-end oracle: TW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TW:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+886990123456", "") {
@@ -62801,6 +73101,11 @@ test "end-to-end oracle: TW" {
         differences.push(
           "TW:r/e164 expected=+886990123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TW:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TW" {
@@ -62839,6 +73144,11 @@ test "end-to-end oracle: TW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TW:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+886500123456", "") {
@@ -62860,6 +73170,11 @@ test "end-to-end oracle: TW" {
         differences.push(
           "TW:u/e164 expected=+886500123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TW:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TW" {
@@ -62898,6 +73213,11 @@ test "end-to-end oracle: TW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TW:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -62928,6 +73248,11 @@ test "end-to-end oracle: TZ" {
         differences.push(
           "TZ:f/e164 expected=+255222345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TZ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TZ" {
@@ -62966,6 +73291,11 @@ test "end-to-end oracle: TZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TZ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+255621234567", "") {
@@ -62987,6 +73317,11 @@ test "end-to-end oracle: TZ" {
         differences.push(
           "TZ:m/e164 expected=+255621234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TZ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TZ" {
@@ -63025,6 +73360,11 @@ test "end-to-end oracle: TZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TZ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+255800123456", "") {
@@ -63046,6 +73386,11 @@ test "end-to-end oracle: TZ" {
         differences.push(
           "TZ:t/e164 expected=+255800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TZ:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TZ" {
@@ -63084,6 +73429,11 @@ test "end-to-end oracle: TZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TZ:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+255900123456", "") {
@@ -63105,6 +73455,11 @@ test "end-to-end oracle: TZ" {
         differences.push(
           "TZ:p/e164 expected=+255900123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TZ:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TZ" {
@@ -63143,6 +73498,11 @@ test "end-to-end oracle: TZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TZ:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+255840123456", "") {
@@ -63164,6 +73524,11 @@ test "end-to-end oracle: TZ" {
         differences.push(
           "TZ:s/e164 expected=+255840123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TZ:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TZ" {
@@ -63202,6 +73567,11 @@ test "end-to-end oracle: TZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TZ:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+255412345678", "") {
@@ -63223,6 +73593,11 @@ test "end-to-end oracle: TZ" {
         differences.push(
           "TZ:v/e164 expected=+255412345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "TZ:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "TZ" {
@@ -63261,6 +73636,11 @@ test "end-to-end oracle: TZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "TZ:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -63291,6 +73671,11 @@ test "end-to-end oracle: UA" {
         differences.push(
           "UA:f/e164 expected=+380311234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "UA:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "UA" {
@@ -63329,6 +73714,11 @@ test "end-to-end oracle: UA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "UA:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+380501234567", "") {
@@ -63350,6 +73740,11 @@ test "end-to-end oracle: UA" {
         differences.push(
           "UA:m/e164 expected=+380501234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "UA:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "UA" {
@@ -63388,6 +73783,11 @@ test "end-to-end oracle: UA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "UA:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+380800123456", "") {
@@ -63409,6 +73809,11 @@ test "end-to-end oracle: UA" {
         differences.push(
           "UA:t/e164 expected=+380800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "UA:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "UA" {
@@ -63447,6 +73852,11 @@ test "end-to-end oracle: UA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "UA:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+380900212345", "") {
@@ -63468,6 +73878,11 @@ test "end-to-end oracle: UA" {
         differences.push(
           "UA:p/e164 expected=+380900212345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "UA:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "UA" {
@@ -63506,6 +73921,11 @@ test "end-to-end oracle: UA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "UA:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+380891234567", "") {
@@ -63527,6 +73947,11 @@ test "end-to-end oracle: UA" {
         differences.push(
           "UA:v/e164 expected=+380891234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "UA:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "UA" {
@@ -63565,6 +73990,11 @@ test "end-to-end oracle: UA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "UA:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -63595,6 +74025,11 @@ test "end-to-end oracle: UG" {
         differences.push(
           "UG:f/e164 expected=+256312345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "UG:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "UG" {
@@ -63633,6 +74068,11 @@ test "end-to-end oracle: UG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "UG:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+256712345678", "") {
@@ -63654,6 +74094,11 @@ test "end-to-end oracle: UG" {
         differences.push(
           "UG:m/e164 expected=+256712345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "UG:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "UG" {
@@ -63692,6 +74137,11 @@ test "end-to-end oracle: UG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "UG:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+256800123456", "") {
@@ -63713,6 +74163,11 @@ test "end-to-end oracle: UG" {
         differences.push(
           "UG:t/e164 expected=+256800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "UG:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "UG" {
@@ -63751,6 +74206,11 @@ test "end-to-end oracle: UG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "UG:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+256901123456", "") {
@@ -63772,6 +74232,11 @@ test "end-to-end oracle: UG" {
         differences.push(
           "UG:p/e164 expected=+256901123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "UG:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "UG" {
@@ -63810,6 +74275,11 @@ test "end-to-end oracle: UG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "UG:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -63840,6 +74310,11 @@ test "end-to-end oracle: US" {
         differences.push(
           "US:f/e164 expected=+12015550123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "US:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -63878,6 +74353,11 @@ test "end-to-end oracle: US" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "US:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+12015550123", "") {
@@ -63899,6 +74379,11 @@ test "end-to-end oracle: US" {
         differences.push(
           "US:m/e164 expected=+12015550123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "US:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -63937,6 +74422,11 @@ test "end-to-end oracle: US" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "US:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002345678", "") {
@@ -63958,6 +74448,11 @@ test "end-to-end oracle: US" {
         differences.push(
           "US:t/e164 expected=+18002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "US:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -63996,6 +74491,11 @@ test "end-to-end oracle: US" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "US:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002345678", "") {
@@ -64017,6 +74517,11 @@ test "end-to-end oracle: US" {
         differences.push(
           "US:p/e164 expected=+19002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "US:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -64055,6 +74560,11 @@ test "end-to-end oracle: US" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "US:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -64076,6 +74586,11 @@ test "end-to-end oracle: US" {
         differences.push(
           "US:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "US:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -64114,6 +74629,11 @@ test "end-to-end oracle: US" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "US:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -64144,6 +74664,11 @@ test "end-to-end oracle: UY" {
         differences.push(
           "UY:f/e164 expected=+59821231234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "UY:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "UY" {
@@ -64182,6 +74707,11 @@ test "end-to-end oracle: UY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "UY:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+59894231234", "") {
@@ -64203,6 +74733,11 @@ test "end-to-end oracle: UY" {
         differences.push(
           "UY:m/e164 expected=+59894231234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "UY:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "UY" {
@@ -64241,6 +74776,11 @@ test "end-to-end oracle: UY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "UY:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5988001234", "") {
@@ -64262,6 +74802,11 @@ test "end-to-end oracle: UY" {
         differences.push(
           "UY:t/e164 expected=+5988001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "UY:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "UY" {
@@ -64300,6 +74845,11 @@ test "end-to-end oracle: UY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "UY:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+5989001234", "") {
@@ -64321,6 +74871,11 @@ test "end-to-end oracle: UY" {
         differences.push(
           "UY:p/e164 expected=+5989001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "UY:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "UY" {
@@ -64359,6 +74914,11 @@ test "end-to-end oracle: UY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "UY:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+59821123", "") {
@@ -64380,6 +74940,11 @@ test "end-to-end oracle: UY" {
         differences.push(
           "UY:u/e164 expected=+59821123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "UY:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "UY" {
@@ -64418,6 +74983,11 @@ test "end-to-end oracle: UY" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "UY:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -64448,6 +75018,11 @@ test "end-to-end oracle: UZ" {
         differences.push(
           "UZ:f/e164 expected=+998669050123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "UZ:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "UZ" {
@@ -64486,6 +75061,11 @@ test "end-to-end oracle: UZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "UZ:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+998912345678", "") {
@@ -64507,6 +75087,11 @@ test "end-to-end oracle: UZ" {
         differences.push(
           "UZ:m/e164 expected=+998912345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "UZ:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "UZ" {
@@ -64545,6 +75130,11 @@ test "end-to-end oracle: UZ" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "UZ:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -64575,6 +75165,11 @@ test "end-to-end oracle: VA" {
         differences.push(
           "VA:f/e164 expected=+390669812345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VA:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VA" {
@@ -64613,6 +75208,11 @@ test "end-to-end oracle: VA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VA:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+393123456789", "") {
@@ -64634,6 +75234,11 @@ test "end-to-end oracle: VA" {
         differences.push(
           "VA:m/e164 expected=+393123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VA:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IT" {
@@ -64672,6 +75277,11 @@ test "end-to-end oracle: VA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VA:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+39800123456", "") {
@@ -64693,6 +75303,11 @@ test "end-to-end oracle: VA" {
         differences.push(
           "VA:t/e164 expected=+39800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VA:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IT" {
@@ -64731,6 +75346,11 @@ test "end-to-end oracle: VA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VA:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+39899123456", "") {
@@ -64752,6 +75372,11 @@ test "end-to-end oracle: VA" {
         differences.push(
           "VA:p/e164 expected=+39899123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VA:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IT" {
@@ -64790,6 +75415,11 @@ test "end-to-end oracle: VA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VA:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+39848123456", "") {
@@ -64811,6 +75441,11 @@ test "end-to-end oracle: VA" {
         differences.push(
           "VA:s/e164 expected=+39848123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VA:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IT" {
@@ -64849,6 +75484,11 @@ test "end-to-end oracle: VA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VA:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+395512345678", "") {
@@ -64870,6 +75510,11 @@ test "end-to-end oracle: VA" {
         differences.push(
           "VA:v/e164 expected=+395512345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VA:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IT" {
@@ -64908,6 +75553,11 @@ test "end-to-end oracle: VA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VA:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+391781234567", "") {
@@ -64929,6 +75579,11 @@ test "end-to-end oracle: VA" {
         differences.push(
           "VA:r/e164 expected=+391781234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VA:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IT" {
@@ -64967,6 +75622,11 @@ test "end-to-end oracle: VA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VA:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+3933101234501", "") {
@@ -64988,6 +75648,11 @@ test "end-to-end oracle: VA" {
         differences.push(
           "VA:o/e164 expected=+3933101234501 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VA:o/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "IT" {
@@ -65026,6 +75691,11 @@ test "end-to-end oracle: VA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VA:o:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -65056,6 +75726,11 @@ test "end-to-end oracle: VC" {
         differences.push(
           "VC:f/e164 expected=+17842661234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VC:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VC" {
@@ -65094,6 +75769,11 @@ test "end-to-end oracle: VC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VC:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+17844301234", "") {
@@ -65115,6 +75795,11 @@ test "end-to-end oracle: VC" {
         differences.push(
           "VC:m/e164 expected=+17844301234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VC:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VC" {
@@ -65153,6 +75838,11 @@ test "end-to-end oracle: VC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VC:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002345678", "") {
@@ -65174,6 +75864,11 @@ test "end-to-end oracle: VC" {
         differences.push(
           "VC:t/e164 expected=+18002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VC:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -65212,6 +75907,11 @@ test "end-to-end oracle: VC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VC:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002345678", "") {
@@ -65233,6 +75933,11 @@ test "end-to-end oracle: VC" {
         differences.push(
           "VC:p/e164 expected=+19002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VC:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -65271,6 +75976,11 @@ test "end-to-end oracle: VC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VC:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+17845101234", "") {
@@ -65292,6 +76002,11 @@ test "end-to-end oracle: VC" {
         differences.push(
           "VC:v/e164 expected=+17845101234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VC:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VC" {
@@ -65330,6 +76045,11 @@ test "end-to-end oracle: VC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VC:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -65351,6 +76071,11 @@ test "end-to-end oracle: VC" {
         differences.push(
           "VC:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VC:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -65389,6 +76114,11 @@ test "end-to-end oracle: VC" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VC:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -65419,6 +76149,11 @@ test "end-to-end oracle: VE" {
         differences.push(
           "VE:f/e164 expected=+582121234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VE:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VE" {
@@ -65457,6 +76192,11 @@ test "end-to-end oracle: VE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VE:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+584121234567", "") {
@@ -65478,6 +76218,11 @@ test "end-to-end oracle: VE" {
         differences.push(
           "VE:m/e164 expected=+584121234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VE:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VE" {
@@ -65516,6 +76261,11 @@ test "end-to-end oracle: VE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VE:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+588001234567", "") {
@@ -65537,6 +76287,11 @@ test "end-to-end oracle: VE" {
         differences.push(
           "VE:t/e164 expected=+588001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VE:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VE" {
@@ -65575,6 +76330,11 @@ test "end-to-end oracle: VE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VE:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+589001234567", "") {
@@ -65596,6 +76356,11 @@ test "end-to-end oracle: VE" {
         differences.push(
           "VE:p/e164 expected=+589001234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VE:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VE" {
@@ -65634,6 +76399,11 @@ test "end-to-end oracle: VE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VE:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+585010123456", "") {
@@ -65655,6 +76425,11 @@ test "end-to-end oracle: VE" {
         differences.push(
           "VE:u/e164 expected=+585010123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VE:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VE" {
@@ -65693,6 +76468,11 @@ test "end-to-end oracle: VE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VE:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -65723,6 +76503,11 @@ test "end-to-end oracle: VG" {
         differences.push(
           "VG:f/e164 expected=+12842291234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VG:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VG" {
@@ -65761,6 +76546,11 @@ test "end-to-end oracle: VG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VG:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+12843001234", "") {
@@ -65782,6 +76572,11 @@ test "end-to-end oracle: VG" {
         differences.push(
           "VG:m/e164 expected=+12843001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VG:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VG" {
@@ -65820,6 +76615,11 @@ test "end-to-end oracle: VG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VG:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002345678", "") {
@@ -65841,6 +76641,11 @@ test "end-to-end oracle: VG" {
         differences.push(
           "VG:t/e164 expected=+18002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VG:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -65879,6 +76684,11 @@ test "end-to-end oracle: VG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VG:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002345678", "") {
@@ -65900,6 +76710,11 @@ test "end-to-end oracle: VG" {
         differences.push(
           "VG:p/e164 expected=+19002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VG:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -65938,6 +76753,11 @@ test "end-to-end oracle: VG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VG:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -65959,6 +76779,11 @@ test "end-to-end oracle: VG" {
         differences.push(
           "VG:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VG:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -65997,6 +76822,11 @@ test "end-to-end oracle: VG" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VG:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -66027,6 +76857,11 @@ test "end-to-end oracle: VI" {
         differences.push(
           "VI:f/e164 expected=+13406421234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VI:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VI" {
@@ -66065,6 +76900,11 @@ test "end-to-end oracle: VI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VI:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+13406421234", "") {
@@ -66086,6 +76926,11 @@ test "end-to-end oracle: VI" {
         differences.push(
           "VI:m/e164 expected=+13406421234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VI:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VI" {
@@ -66124,6 +76969,11 @@ test "end-to-end oracle: VI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VI:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+18002345678", "") {
@@ -66145,6 +76995,11 @@ test "end-to-end oracle: VI" {
         differences.push(
           "VI:t/e164 expected=+18002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VI:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -66183,6 +77038,11 @@ test "end-to-end oracle: VI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VI:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+19002345678", "") {
@@ -66204,6 +77064,11 @@ test "end-to-end oracle: VI" {
         differences.push(
           "VI:p/e164 expected=+19002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VI:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -66242,6 +77107,11 @@ test "end-to-end oracle: VI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VI:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+15002345678", "") {
@@ -66263,6 +77133,11 @@ test "end-to-end oracle: VI" {
         differences.push(
           "VI:r/e164 expected=+15002345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VI:r/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
@@ -66301,6 +77176,11 @@ test "end-to-end oracle: VI" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VI:r:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -66331,6 +77211,11 @@ test "end-to-end oracle: VN" {
         differences.push(
           "VN:f/e164 expected=+842101234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VN:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VN" {
@@ -66369,6 +77254,11 @@ test "end-to-end oracle: VN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VN:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+84912345678", "") {
@@ -66390,6 +77280,11 @@ test "end-to-end oracle: VN" {
         differences.push(
           "VN:m/e164 expected=+84912345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VN:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VN" {
@@ -66428,6 +77323,11 @@ test "end-to-end oracle: VN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VN:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+841800123456", "") {
@@ -66449,6 +77349,11 @@ test "end-to-end oracle: VN" {
         differences.push(
           "VN:t/e164 expected=+841800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VN:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VN" {
@@ -66487,6 +77392,11 @@ test "end-to-end oracle: VN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VN:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+841900123456", "") {
@@ -66508,6 +77418,11 @@ test "end-to-end oracle: VN" {
         differences.push(
           "VN:p/e164 expected=+841900123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VN:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VN" {
@@ -66546,6 +77461,11 @@ test "end-to-end oracle: VN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VN:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+84672012345", "") {
@@ -66567,6 +77487,11 @@ test "end-to-end oracle: VN" {
         differences.push(
           "VN:v/e164 expected=+84672012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VN:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VN" {
@@ -66605,6 +77530,11 @@ test "end-to-end oracle: VN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VN:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+841992000", "") {
@@ -66626,6 +77556,11 @@ test "end-to-end oracle: VN" {
         differences.push(
           "VN:u/e164 expected=+841992000 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VN:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VN" {
@@ -66664,6 +77599,11 @@ test "end-to-end oracle: VN" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VN:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -66694,6 +77634,11 @@ test "end-to-end oracle: VU" {
         differences.push(
           "VU:f/e164 expected=+67822123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VU:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VU" {
@@ -66732,6 +77677,11 @@ test "end-to-end oracle: VU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VU:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6785912345", "") {
@@ -66753,6 +77703,11 @@ test "end-to-end oracle: VU" {
         differences.push(
           "VU:m/e164 expected=+6785912345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VU:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VU" {
@@ -66791,6 +77746,11 @@ test "end-to-end oracle: VU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VU:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+67881123", "") {
@@ -66812,6 +77772,11 @@ test "end-to-end oracle: VU" {
         differences.push(
           "VU:t/e164 expected=+67881123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VU:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VU" {
@@ -66850,6 +77815,11 @@ test "end-to-end oracle: VU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VU:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6789010123", "") {
@@ -66871,6 +77841,11 @@ test "end-to-end oracle: VU" {
         differences.push(
           "VU:v/e164 expected=+6789010123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VU:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VU" {
@@ -66909,6 +77884,11 @@ test "end-to-end oracle: VU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VU:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+67830123", "") {
@@ -66930,6 +77910,11 @@ test "end-to-end oracle: VU" {
         differences.push(
           "VU:u/e164 expected=+67830123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "VU:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "VU" {
@@ -66968,6 +77953,11 @@ test "end-to-end oracle: VU" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "VU:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -66998,6 +77988,11 @@ test "end-to-end oracle: WF" {
         differences.push(
           "WF:f/e164 expected=+681721234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "WF:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "WF" {
@@ -67036,6 +78031,11 @@ test "end-to-end oracle: WF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "WF:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+681821234", "") {
@@ -67057,6 +78057,11 @@ test "end-to-end oracle: WF" {
         differences.push(
           "WF:m/e164 expected=+681821234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "WF:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "WF" {
@@ -67095,6 +78100,11 @@ test "end-to-end oracle: WF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "WF:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+681800012345", "") {
@@ -67116,6 +78126,11 @@ test "end-to-end oracle: WF" {
         differences.push(
           "WF:t/e164 expected=+681800012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "WF:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "WF" {
@@ -67154,6 +78169,11 @@ test "end-to-end oracle: WF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "WF:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+681921234", "") {
@@ -67175,6 +78195,11 @@ test "end-to-end oracle: WF" {
         differences.push(
           "WF:v/e164 expected=+681921234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "WF:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "WF" {
@@ -67213,6 +78238,11 @@ test "end-to-end oracle: WF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "WF:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+681401234", "") {
@@ -67234,6 +78264,11 @@ test "end-to-end oracle: WF" {
         differences.push(
           "WF:o/e164 expected=+681401234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "WF:o/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "WF" {
@@ -67272,6 +78307,11 @@ test "end-to-end oracle: WF" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "WF:o:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -67302,6 +78342,11 @@ test "end-to-end oracle: WS" {
         differences.push(
           "WS:f/e164 expected=+68522123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "WS:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "WS" {
@@ -67340,6 +78385,11 @@ test "end-to-end oracle: WS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "WS:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+6857212345", "") {
@@ -67361,6 +78411,11 @@ test "end-to-end oracle: WS" {
         differences.push(
           "WS:m/e164 expected=+6857212345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "WS:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "WS" {
@@ -67399,6 +78454,11 @@ test "end-to-end oracle: WS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "WS:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+685800123", "") {
@@ -67420,6 +78480,11 @@ test "end-to-end oracle: WS" {
         differences.push(
           "WS:t/e164 expected=+685800123 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "WS:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "WS" {
@@ -67458,6 +78523,11 @@ test "end-to-end oracle: WS" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "WS:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -67488,6 +78558,11 @@ test "end-to-end oracle: XK" {
         differences.push(
           "XK:f/e164 expected=+38328012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "XK:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "XK" {
@@ -67526,6 +78601,11 @@ test "end-to-end oracle: XK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "XK:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38343201234", "") {
@@ -67547,6 +78627,11 @@ test "end-to-end oracle: XK" {
         differences.push(
           "XK:m/e164 expected=+38343201234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "XK:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "XK" {
@@ -67585,6 +78670,11 @@ test "end-to-end oracle: XK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "XK:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38380001234", "") {
@@ -67606,6 +78696,11 @@ test "end-to-end oracle: XK" {
         differences.push(
           "XK:t/e164 expected=+38380001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "XK:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "XK" {
@@ -67644,6 +78739,11 @@ test "end-to-end oracle: XK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "XK:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+38390001234", "") {
@@ -67665,6 +78765,11 @@ test "end-to-end oracle: XK" {
         differences.push(
           "XK:p/e164 expected=+38390001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "XK:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "XK" {
@@ -67703,6 +78808,11 @@ test "end-to-end oracle: XK" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "XK:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -67733,6 +78843,11 @@ test "end-to-end oracle: YE" {
         differences.push(
           "YE:f/e164 expected=+9671234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "YE:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "YE" {
@@ -67771,6 +78886,11 @@ test "end-to-end oracle: YE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "YE:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+967712345678", "") {
@@ -67792,6 +78912,11 @@ test "end-to-end oracle: YE" {
         differences.push(
           "YE:m/e164 expected=+967712345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "YE:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "YE" {
@@ -67830,6 +78955,11 @@ test "end-to-end oracle: YE" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "YE:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -67860,6 +78990,11 @@ test "end-to-end oracle: YT" {
         differences.push(
           "YT:f/e164 expected=+262269601234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "YT:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "YT" {
@@ -67898,6 +79033,11 @@ test "end-to-end oracle: YT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "YT:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+262639012345", "") {
@@ -67919,6 +79059,11 @@ test "end-to-end oracle: YT" {
         differences.push(
           "YT:m/e164 expected=+262639012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "YT:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "YT" {
@@ -67957,6 +79102,11 @@ test "end-to-end oracle: YT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "YT:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+262801234567", "") {
@@ -67978,6 +79128,11 @@ test "end-to-end oracle: YT" {
         differences.push(
           "YT:t/e164 expected=+262801234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "YT:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "RE" {
@@ -68016,6 +79171,11 @@ test "end-to-end oracle: YT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "YT:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+262939801234", "") {
@@ -68037,6 +79197,11 @@ test "end-to-end oracle: YT" {
         differences.push(
           "YT:v/e164 expected=+262939801234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "YT:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "YT" {
@@ -68075,6 +79240,11 @@ test "end-to-end oracle: YT" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "YT:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -68105,6 +79275,11 @@ test "end-to-end oracle: ZA" {
         differences.push(
           "ZA:f/e164 expected=+27101234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ZA:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ZA" {
@@ -68143,6 +79318,11 @@ test "end-to-end oracle: ZA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ZA:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+27711234567", "") {
@@ -68164,6 +79344,11 @@ test "end-to-end oracle: ZA" {
         differences.push(
           "ZA:m/e164 expected=+27711234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ZA:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ZA" {
@@ -68202,6 +79387,11 @@ test "end-to-end oracle: ZA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ZA:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+27801234567", "") {
@@ -68223,6 +79413,11 @@ test "end-to-end oracle: ZA" {
         differences.push(
           "ZA:t/e164 expected=+27801234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ZA:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ZA" {
@@ -68261,6 +79456,11 @@ test "end-to-end oracle: ZA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ZA:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+27862345678", "") {
@@ -68282,6 +79482,11 @@ test "end-to-end oracle: ZA" {
         differences.push(
           "ZA:p/e164 expected=+27862345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ZA:p/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ZA" {
@@ -68320,6 +79525,11 @@ test "end-to-end oracle: ZA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ZA:p:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+27860123456", "") {
@@ -68341,6 +79551,11 @@ test "end-to-end oracle: ZA" {
         differences.push(
           "ZA:s/e164 expected=+27860123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ZA:s/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ZA" {
@@ -68379,6 +79594,11 @@ test "end-to-end oracle: ZA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ZA:s:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+27871234567", "") {
@@ -68400,6 +79620,11 @@ test "end-to-end oracle: ZA" {
         differences.push(
           "ZA:v/e164 expected=+27871234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ZA:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ZA" {
@@ -68438,6 +79663,11 @@ test "end-to-end oracle: ZA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ZA:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+27861123456", "") {
@@ -68459,6 +79689,11 @@ test "end-to-end oracle: ZA" {
         differences.push(
           "ZA:u/e164 expected=+27861123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ZA:u/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ZA" {
@@ -68497,6 +79732,11 @@ test "end-to-end oracle: ZA" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ZA:u:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -68527,6 +79767,11 @@ test "end-to-end oracle: ZM" {
         differences.push(
           "ZM:f/e164 expected=+260211234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ZM:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ZM" {
@@ -68565,6 +79810,11 @@ test "end-to-end oracle: ZM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ZM:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+260955123456", "") {
@@ -68586,6 +79836,11 @@ test "end-to-end oracle: ZM" {
         differences.push(
           "ZM:m/e164 expected=+260955123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ZM:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ZM" {
@@ -68624,6 +79879,11 @@ test "end-to-end oracle: ZM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ZM:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+260800123456", "") {
@@ -68645,6 +79905,11 @@ test "end-to-end oracle: ZM" {
         differences.push(
           "ZM:t/e164 expected=+260800123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ZM:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ZM" {
@@ -68683,6 +79948,11 @@ test "end-to-end oracle: ZM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ZM:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+260630123456", "") {
@@ -68704,6 +79974,11 @@ test "end-to-end oracle: ZM" {
         differences.push(
           "ZM:v/e164 expected=+260630123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ZM:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ZM" {
@@ -68742,6 +80017,11 @@ test "end-to-end oracle: ZM" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ZM:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -68772,6 +80052,11 @@ test "end-to-end oracle: ZW" {
         differences.push(
           "ZW:f/e164 expected=+2631312345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ZW:f/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ZW" {
@@ -68810,6 +80095,11 @@ test "end-to-end oracle: ZW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ZW:f:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+263712345678", "") {
@@ -68831,6 +80121,11 @@ test "end-to-end oracle: ZW" {
         differences.push(
           "ZW:m/e164 expected=+263712345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ZW:m/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ZW" {
@@ -68869,6 +80164,11 @@ test "end-to-end oracle: ZW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ZW:m:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2638001234", "") {
@@ -68890,6 +80190,11 @@ test "end-to-end oracle: ZW" {
         differences.push(
           "ZW:t/e164 expected=+2638001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ZW:t/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ZW" {
@@ -68928,6 +80233,11 @@ test "end-to-end oracle: ZW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ZW:t:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+2638686123456", "") {
@@ -68949,6 +80259,11 @@ test "end-to-end oracle: ZW" {
         differences.push(
           "ZW:v/e164 expected=+2638686123456 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "ZW:v/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "ZW" {
@@ -68987,6 +80302,11 @@ test "end-to-end oracle: ZW" {
           @dialnumber.is_possible(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "ZW:v:overlong/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
     }
   }
   for difference in differences {
@@ -69017,6 +80337,12 @@ test "end-to-end oracle: 001" {
         differences.push(
           "001:+80012345678/e164 expected=+80012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "001:+80012345678/extension expected= actual=" +
+          p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "001" {
@@ -69062,6 +80388,12 @@ test "end-to-end oracle: 001" {
           @dialnumber.format_e164(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "001:+80012345678:short/extension expected= actual=" +
+          p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+800123456780000000000000000", "") {
@@ -69077,6 +80409,12 @@ test "end-to-end oracle: 001" {
         differences.push(
           "001:+80012345678:overlong/possible expected=false actual=" +
           @dialnumber.is_possible(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "001:+80012345678:overlong/extension expected= actual=" +
+          p.extension.to_string(),
         )
       }
     }
@@ -69100,6 +80438,12 @@ test "end-to-end oracle: 001" {
         differences.push(
           "001:+80812345678/e164 expected=+80812345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "001:+80812345678/extension expected= actual=" +
+          p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "001" {
@@ -69145,6 +80489,12 @@ test "end-to-end oracle: 001" {
           @dialnumber.format_e164(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "001:+80812345678:short/extension expected= actual=" +
+          p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+808123456780000000000000000", "") {
@@ -69160,6 +80510,12 @@ test "end-to-end oracle: 001" {
         differences.push(
           "001:+80812345678:overlong/possible expected=false actual=" +
           @dialnumber.is_possible(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "001:+80812345678:overlong/extension expected= actual=" +
+          p.extension.to_string(),
         )
       }
     }
@@ -69183,6 +80539,12 @@ test "end-to-end oracle: 001" {
         differences.push(
           "001:+870301234567/e164 expected=+870301234567 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "001:+870301234567/extension expected= actual=" +
+          p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "001" {
@@ -69228,6 +80590,12 @@ test "end-to-end oracle: 001" {
           @dialnumber.format_e164(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "001:+870301234567:short/extension expected= actual=" +
+          p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+8703012345670000000000000000", "") {
@@ -69243,6 +80611,12 @@ test "end-to-end oracle: 001" {
         differences.push(
           "001:+870301234567:overlong/possible expected=false actual=" +
           @dialnumber.is_possible(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "001:+870301234567:overlong/extension expected= actual=" +
+          p.extension.to_string(),
         )
       }
     }
@@ -69267,6 +80641,12 @@ test "end-to-end oracle: 001" {
         differences.push(
           "001:+878101234567890/e164 expected=+878101234567890 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "001:+878101234567890/extension expected= actual=" +
+          p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "001" {
@@ -69314,6 +80694,12 @@ test "end-to-end oracle: 001" {
           @dialnumber.format_e164(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "001:+878101234567890:short/extension expected= actual=" +
+          p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+8781012345678900000000000000000", "") {
@@ -69329,6 +80715,12 @@ test "end-to-end oracle: 001" {
         differences.push(
           "001:+878101234567890:overlong/possible expected=false actual=" +
           @dialnumber.is_possible(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "001:+878101234567890:overlong/extension expected= actual=" +
+          p.extension.to_string(),
         )
       }
     }
@@ -69352,6 +80744,12 @@ test "end-to-end oracle: 001" {
         differences.push(
           "001:+8816123456789/e164 expected=+8816123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "001:+8816123456789/extension expected= actual=" +
+          p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "001" {
@@ -69397,6 +80795,12 @@ test "end-to-end oracle: 001" {
           @dialnumber.format_e164(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "001:+8816123456789:short/extension expected= actual=" +
+          p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+88161234567890000000000000000", "") {
@@ -69412,6 +80816,12 @@ test "end-to-end oracle: 001" {
         differences.push(
           "001:+8816123456789:overlong/possible expected=false actual=" +
           @dialnumber.is_possible(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "001:+8816123456789:overlong/extension expected= actual=" +
+          p.extension.to_string(),
         )
       }
     }
@@ -69435,6 +80845,12 @@ test "end-to-end oracle: 001" {
         differences.push(
           "001:+88213001234/e164 expected=+88213001234 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "001:+88213001234/extension expected= actual=" +
+          p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "001" {
@@ -69480,6 +80896,12 @@ test "end-to-end oracle: 001" {
           @dialnumber.format_e164(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "001:+88213001234:short/extension expected= actual=" +
+          p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+882130012340000000000000000", "") {
@@ -69495,6 +80917,12 @@ test "end-to-end oracle: 001" {
         differences.push(
           "001:+88213001234:overlong/possible expected=false actual=" +
           @dialnumber.is_possible(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "001:+88213001234:overlong/extension expected= actual=" +
+          p.extension.to_string(),
         )
       }
     }
@@ -69518,6 +80946,12 @@ test "end-to-end oracle: 001" {
         differences.push(
           "001:+883510012345/e164 expected=+883510012345 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "001:+883510012345/extension expected= actual=" +
+          p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "001" {
@@ -69563,6 +80997,12 @@ test "end-to-end oracle: 001" {
           @dialnumber.format_e164(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "001:+883510012345:short/extension expected= actual=" +
+          p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+8835100123450000000000000000", "") {
@@ -69578,6 +81018,12 @@ test "end-to-end oracle: 001" {
         differences.push(
           "001:+883510012345:overlong/possible expected=false actual=" +
           @dialnumber.is_possible(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "001:+883510012345:overlong/extension expected= actual=" +
+          p.extension.to_string(),
         )
       }
     }
@@ -69601,6 +81047,12 @@ test "end-to-end oracle: 001" {
         differences.push(
           "001:+88812345678901/e164 expected=+88812345678901 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "001:+88812345678901/extension expected= actual=" +
+          p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "001" {
@@ -69646,6 +81098,12 @@ test "end-to-end oracle: 001" {
           @dialnumber.format_e164(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "001:+88812345678901:short/extension expected= actual=" +
+          p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+888123456789010000000000000000", "") {
@@ -69661,6 +81119,12 @@ test "end-to-end oracle: 001" {
         differences.push(
           "001:+88812345678901:overlong/possible expected=false actual=" +
           @dialnumber.is_possible(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "001:+88812345678901:overlong/extension expected= actual=" +
+          p.extension.to_string(),
         )
       }
     }
@@ -69684,6 +81148,12 @@ test "end-to-end oracle: 001" {
         differences.push(
           "001:+979123456789/e164 expected=+979123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "001:+979123456789/extension expected= actual=" +
+          p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "001" {
@@ -69729,6 +81199,12 @@ test "end-to-end oracle: 001" {
           @dialnumber.format_e164(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "001:+979123456789:short/extension expected= actual=" +
+          p.extension.to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+9791234567890000000000000000", "") {
@@ -69744,6 +81220,12 @@ test "end-to-end oracle: 001" {
         differences.push(
           "001:+979123456789:overlong/possible expected=false actual=" +
           @dialnumber.is_possible(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "001:+979123456789:overlong/extension expected= actual=" +
+          p.extension.to_string(),
         )
       }
     }
@@ -69776,6 +81258,11 @@ test "end-to-end oracle: format" {
         differences.push(
           "format:GB/e164 expected=+442079460958 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "format:GB/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "GB" {
@@ -69832,6 +81319,11 @@ test "end-to-end oracle: format" {
           @dialnumber.format_e164(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "format:US/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
       if @dialnumber.region_of_number(p).unwrap_or("") != "US" {
         differences.push(
           "format:US/region expected=US actual=" +
@@ -69884,6 +81376,11 @@ test "end-to-end oracle: format" {
         differences.push(
           "format:JP/e164 expected=+819012345678 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "format:JP/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "JP" {
@@ -69940,6 +81437,11 @@ test "end-to-end oracle: format" {
           @dialnumber.format_e164(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "format:DE/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
       if @dialnumber.region_of_number(p).unwrap_or("") != "DE" {
         differences.push(
           "format:DE/region expected=DE actual=" +
@@ -69992,6 +81494,11 @@ test "end-to-end oracle: format" {
         differences.push(
           "format:FR/e164 expected=+33123456789 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "format:FR/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "FR" {
@@ -70048,6 +81555,11 @@ test "end-to-end oracle: format" {
           @dialnumber.format_e164(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "format:CN/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
       if @dialnumber.region_of_number(p).unwrap_or("") != "CN" {
         differences.push(
           "format:CN/region expected=CN actual=" +
@@ -70102,6 +81614,11 @@ test "end-to-end oracle: format" {
           @dialnumber.format_e164(p).to_string(),
         )
       }
+      if p.extension != "" {
+        differences.push(
+          "format:AU/extension expected= actual=" + p.extension.to_string(),
+        )
+      }
       if @dialnumber.region_of_number(p).unwrap_or("") != "AU" {
         differences.push(
           "format:AU/region expected=AU actual=" +
@@ -70154,6 +81671,11 @@ test "end-to-end oracle: format" {
         differences.push(
           "format:BR/e164 expected=+5511987654321 actual=" +
           @dialnumber.format_e164(p).to_string(),
+        )
+      }
+      if p.extension != "" {
+        differences.push(
+          "format:BR/extension expected= actual=" + p.extension.to_string(),
         )
       }
       if @dialnumber.region_of_number(p).unwrap_or("") != "BR" {

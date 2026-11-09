@@ -25,4 +25,17 @@ fn main {
     "duplicate_parameter_rejected: " +
     (@dialnumber.parse_tel_uri_full("tel:+12015550123;Foo=a;foo=b") is None).to_string(),
   )
+  let gb = @dialnumber.parse("00 21 44 20 7946 0958", "BR")
+    .unwrap()
+    .with_extension("0042")
+  println("carrier_idd_e164: " + @dialnumber.format_e164(gb))
+  println("extension_display: " + @dialnumber.format_international(gb))
+  println(
+    "unassigned_length_possible: " +
+    @dialnumber.is_possible(@dialnumber.PhoneNumber::new(1, "1111234567")).to_string(),
+  )
+  println(
+    "canada_local_uan_valid: " +
+    @dialnumber.is_valid(@dialnumber.PhoneNumber::new(1, "3101234")).to_string(),
+  )
 }

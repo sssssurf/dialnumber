@@ -6,3 +6,7 @@ overflow_well_formed: false
 overflow_matches_empty: false
 uppercase_mandatory_rejected: true
 duplicate_parameter_rejected: true
+carrier_idd_e164: +442079460958
+extension_display: +44 20 7946 0958 x0042
+unassigned_length_possible: true
+canada_local_uan_valid: true

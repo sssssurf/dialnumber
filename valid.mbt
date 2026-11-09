@@ -35,6 +35,9 @@ fn regions_with_code(cc : Int32) -> Array[Region] {
 /// rule admits it — it is then possible without being valid. None when the
 /// calling code is unknown or no region can claim the number at all.
 pub fn region_of_number(pn : PhoneNumber) -> String? {
+  if !is_all_digits(pn.national_number) {
+    return None
+  }
   if pn.country_code == 1 {
     return nanp_region_of(pn.national_number)
   }
@@ -85,17 +88,22 @@ pub fn region_of_number(pn : PhoneNumber) -> String? {
 
 ///|
 /// True when the number could exist in some plan the table knows: a known
-/// calling code and a length the plan uses. For +1 this also applies the NANP's
-/// structural shape, which rejects an area code or exchange that cannot exist.
+/// calling code and a national or local-only length the plan uses. Assignment
+/// and NANP structural restrictions belong to validity, not possibility.
 /// Possible is not the same as assigned; use `is_valid` for that.
 pub fn is_possible(pn : PhoneNumber) -> Bool {
+  if !is_all_digits(pn.national_number) {
+    return false
+  }
   if find_non_geo(pn.country_code) is Some(_) {
     return non_geo_possible(pn)
   }
-  if pn.country_code == 1 {
-    return nanp_possible(pn.national_number)
+  for r in regions_with_code(pn.country_code) {
+    if is_possible_in_region(pn, r.code) {
+      return true
+    }
   }
-  region_of_number(pn) is Some(_)
+  false
 }
 
 ///|
@@ -157,23 +165,29 @@ pub fn number_type_in_region(pn : PhoneNumber, region : String) -> NumberType? {
 ///|
 /// The same check as `is_possible` against one named region.
 ///
-/// For +1 this is stronger than a length test: the number must have NANP
-/// structure and its area code must belong to `region`. For other calling codes
-/// it is the length test against that region's published lengths.
+/// This tests national or local-only lengths, independently of area code
+/// assignment. Use is_valid_in_region for actual regional allocation.
 pub fn is_possible_in_region(pn : PhoneNumber, region : String) -> Bool {
+  if !is_all_digits(pn.national_number) {
+    return false
+  }
   if region == "001" {
     return non_geo_possible(pn)
   }
   match find_region(region) {
     None => false
-    Some(r) =>
-      if pn.country_code == 1 {
-        nanp_region_of(pn.national_number) == Some(r.code) &&
-        r.calling_code == 1
-      } else {
-        r.calling_code == pn.country_code &&
-        lengths_of(r).contains(chars_of(pn.national_number).length())
+    Some(r) => {
+      if r.calling_code != pn.country_code {
+        return false
       }
+      let length = pn.national_number.length()
+      for t in r.types {
+        if t.national.contains(length) || t.local_only.contains(length) {
+          return true
+        }
+      }
+      false
+    }
   }
 }
 
@@ -183,50 +197,62 @@ pub fn is_possible_in_region(pn : PhoneNumber, region : String) -> Bool {
 /// Several types can share a length, so this is a candidate set, not a verdict;
 /// `number_type` is the pattern-based answer.
 pub fn possible_types(pn : PhoneNumber) -> Array[NumberType] {
-  match region_of_number(pn) {
-    Some(code) => possible_types_in_region(pn, code)
-    None => []
+  if !is_all_digits(pn.national_number) {
+    return []
   }
+  if find_non_geo(pn.country_code) is Some(_) {
+    return possible_types_in_region(pn, "001")
+  }
+  let out : Array[NumberType] = []
+  for r in regions_with_code(pn.country_code) {
+    for kind in possible_types_in_region(pn, r.code) {
+      if !out.contains(kind) {
+        out.push(kind)
+      }
+    }
+  }
+  out
 }
 
 ///|
 /// The number types in one named region whose length rule admits this number.
-/// For +1 the number must also have NANP structure and its area code must
-/// belong to the region.
+/// National and local-only lengths are included independently of assignment.
 pub fn possible_types_in_region(
   pn : PhoneNumber,
   region : String,
 ) -> Array[NumberType] {
+  if !is_all_digits(pn.national_number) {
+    return []
+  }
+  let out : Array[NumberType] = []
   if region == "001" {
-    let out : Array[NumberType] = []
     match find_non_geo(pn.country_code) {
       None => ()
-      Some(p) =>
-        if digits_of(pn.national_number) == pn.national_number {
-          for t in p.types {
-            if t.national.contains(pn.national_number.length()) {
-              out.push(t.kind)
-            }
+      Some(plan) =>
+        for t in plan.types {
+          if t.national.contains(pn.national_number.length()) {
+            out.push(t.kind)
           }
         }
     }
     return out
   }
   match find_region(region) {
-    None => []
+    None => ()
     Some(r) =>
-      if r.calling_code != pn.country_code {
-        []
-      } else if pn.country_code == 1 {
-        if nanp_region_of(pn.national_number) == Some(r.code) {
-          types_for_length(r, chars_of(pn.national_number).length())
-        } else {
-          []
+      if r.calling_code == pn.country_code {
+        for kind in types_for_length(r, pn.national_number.length()) {
+          out.push(kind)
         }
-      } else {
-        types_for_length(r, chars_of(pn.national_number).length())
+        for t in r.types {
+          if t.local_only.contains(pn.national_number.length()) &&
+            !out.contains(t.kind) {
+            out.push(t.kind)
+          }
+        }
       }
   }
+  out
 }
 
 ///|

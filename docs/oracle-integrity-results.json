@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-09T08:28:29.286Z",
+  "status": "passed",
+  "checks": [
+    {
+      "label": "unmodified gen-compat.mjs",
+      "status": "passed"
+    },
+    {
+      "label": "unmodified gen-google-compat.mjs",
+      "status": "passed"
+    },
+    {
+      "label": "JS missing response",
+      "status": "rejected for expected integrity failure"
+    },
+    {
+      "label": "JS duplicate response",
+      "status": "rejected for expected integrity failure"
+    },
+    {
+      "label": "JS missing typing trace",
+      "status": "rejected for expected integrity failure"
+    },
+    {
+      "label": "JS shortened typing trace",
+      "status": "rejected for expected integrity failure"
+    },
+    {
+      "label": "Java missing response",
+      "status": "rejected for expected integrity failure"
+    },
+    {
+      "label": "Java duplicate response",
+      "status": "rejected for expected integrity failure"
+    },
+    {
+      "label": "Java shortened typing trace",
+      "status": "rejected for expected integrity failure"
+    }
+  ]
+}

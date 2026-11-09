@@ -83,3 +83,10 @@ capture corpus is generated from JS RegExp.exec (1,872 cases, all 32 plans):
 
 The acceptance runner now checks seven generated artifacts. Original Java phone
 recordings include a national parse-back assertion for every geographic case.
+
+
+The November9 audit preserves complete idd_pattern and extension_prefix from
+the pinned XML supplement, retaining the existing newer Israel IDD expression.
+Both oracle recordings verify complete request/response membership and adapter
+hashes. The acceptance runner executes check-oracle-integrity.mjs with two
+controls and seven intentionally damaged scratch recordings.

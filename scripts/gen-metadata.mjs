@@ -52,7 +52,7 @@ function table(doc) {
   for (const r of doc.regions) {
     out.push("  plan_row(");
     out.push(
-      `    ${q(r.code)}, ${q(r.name)}, ${r.calling_code}, ${q(r.idd)}, ${q(r.national_prefix)}, ${q(r.prefix_parsing ?? "")}, ${q(r.prefix_transform ?? "")}, ${q(r.leading_digits ?? "")}, ${r.primary},`,
+      `    ${q(r.code)}, ${q(r.name)}, ${r.calling_code}, ${q(r.idd)}, ${q(r.idd_pattern ?? r.idd)}, ${q(r.extension_prefix ?? " ext. ")}, ${q(r.national_prefix)}, ${q(r.prefix_parsing ?? "")}, ${q(r.prefix_transform ?? "")}, ${q(r.leading_digits ?? "")}, ${r.primary},`,
     );
     out.push(`    ${q(r.general)},`);
     out.push("    [");
@@ -90,7 +90,6 @@ function nanpPossible(nn) {
 }
 
 function expectedRegion(doc, number, callingCode) {
-  if (callingCode === 1 && !nanpPossible(number)) return null;
   const candidates = doc.regions.filter((r) => r.calling_code === callingCode);
   const ordered = [...candidates].sort((a, b) => Number(b.primary) - Number(a.primary));
   for (const r of ordered) {
@@ -126,8 +125,7 @@ function examplesTest(doc) {
       const region = expectedRegion(doc, t.example, r.calling_code);
       out.push(`  assert_true(@dialnumber.is_valid_in_region(${pn}, "${r.code}"))`);
       if (region === null) {
-        // A local-only published example (the NANP's seven-digit UAN) is not a
-        // full national number, so it has no region and no type of its own.
+        // No published type or supported length claims this example.
         out.push(`  assert_eq(@dialnumber.region_of_number(${pn}), None)`);
         out.push(`  assert_eq(@dialnumber.number_type(${pn}), None)`);
         continue;

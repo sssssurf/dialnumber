@@ -15,6 +15,36 @@ const exceptionsPath = path.join(root, 'data/compatibility-differences.json');
 const metadata = fs.readFileSync(path.join(root, 'data/numbering-plans.json'));
 const sourceHash = crypto.createHash('sha256').update(metadata).digest('hex');
 const q = JSON.stringify;
+const data = JSON.parse(metadata);
+const requests = [];
+function request(id, input, hint = '', formatting = false) { requests.push({id,input,hint,formatting}); }
+for (const region of data.regions) {
+  for (const type of region.types) {
+    if (!type.example) continue;
+    const input = '+' + region.calling_code + type.example;
+    request(region.code + ':' + type.kind, input);
+    // A deliberately overlong near-miss, judged by the independent oracle.
+    request(region.code + ':' + type.kind + ':overlong', input + '0000000000000000');
+  }
+}
+for (const input of ['+80012345678', '+80812345678', '+870301234567',
+  '+878101234567890', '+8816123456789', '+88213001234', '+883510012345',
+  '+88812345678901', '+979123456789']) {
+  request('001:' + input, input);
+  request('001:' + input + ':short', input.slice(0, -4));
+  request('001:' + input + ':overlong', input + '0000000000000000');
+}
+for (const [region, input] of [['GB', '020 7946 0958'], ['US', '(201) 555-0123'],
+  ['JP', '090-1234-5678'], ['DE', '030 123456'], ['FR', '01 23 45 67 89'],
+  ['CN', '131 2345 6789'], ['AU', '02 1234 5678'], ['BR', '(11) 98765-4321']]) {
+  request('format:' + region, input, region, true);
+}
+
+const traceRequests = [['GB', '02079460958'], ['US', '2015550123'],
+    ['US', '12015550123'], ['US', '+442079460958'], ['JP', '09012345678'],
+    ['US', '201555012345678']].map(([region, input])=>({region,input}));
+
+const adapterHash = crypto.createHash('sha256').update(fs.readFileSync(fileURLToPath(import.meta.url))).digest('hex');
 const oracleIndex = process.argv.indexOf('--oracle');
 if (oracleIndex >= 0) {
   const oracleRoot = path.resolve(process.argv[oracleIndex + 1]);
@@ -24,50 +54,26 @@ if (oracleIndex >= 0) {
   }
   const require = createRequire(import.meta.url);
   const lib = require(path.join(oracleRoot, 'max/index.cjs'));
-  const data = JSON.parse(metadata);
   const rows = [];
   function record(id, input, hint = '', formatting = false) {
     const phone = lib.parsePhoneNumberFromString(input, hint || undefined);
     rows.push({ id, input, e164: phone?.number ?? '', valid: phone?.isValid() ?? false,
       possible: phone?.isPossible() ?? false,
       region: phone?.country ?? (phone?.isNonGeographic() ? '001' : ''),
-      type: phone?.getType()?.toLowerCase().replaceAll('_', '-') ?? '',
+      type: phone?.getType()?.toLowerCase().replaceAll('_', '-') ?? '', extension:phone?.ext ?? '',
       ...(hint ? { hint } : {}),
       ...(formatting ? { international: phone.formatInternational(),
         national: phone.formatNational() } : {}) });
   }
-  for (const region of data.regions) {
-    for (const type of region.types) {
-      if (!type.example) continue;
-      const input = '+' + region.calling_code + type.example;
-      record(region.code + ':' + type.kind, input);
-      // A deliberately overlong near-miss, judged by the independent oracle.
-      record(region.code + ':' + type.kind + ':overlong', input + '0000000000000000');
-    }
-  }
-  for (const input of ['+80012345678', '+80812345678', '+870301234567',
-    '+878101234567890', '+8816123456789', '+88213001234', '+883510012345',
-    '+88812345678901', '+979123456789']) {
-    record('001:' + input, input);
-    record('001:' + input + ':short', input.slice(0, -4));
-    record('001:' + input + ':overlong', input + '0000000000000000');
-  }
-  for (const [region, input] of [['GB', '020 7946 0958'], ['US', '(201) 555-0123'],
-    ['JP', '090-1234-5678'], ['DE', '030 123456'], ['FR', '01 23 45 67 89'],
-    ['CN', '131 2345 6789'], ['AU', '02 1234 5678'], ['BR', '(11) 98765-4321']]) {
-    record('format:' + region, input, region, true);
-  }
-  const traces = [];
-  for (const [region, input] of [['GB', '02079460958'], ['US', '2015550123'],
-    ['US', '12015550123'], ['US', '+442079460958'], ['JP', '09012345678'],
-    ['US', '201555012345678']]) {
+  for (const request of requests) record(request.id,request.input,request.hint,request.formatting);
+  const traces = traceRequests.map(({region,input})=>{
     const formatter = new lib.AsYouType(region);
-    traces.push({ region, input, output: [...input].map(c => formatter.input(c)) });
-  }
+    return {region,input,output:[...input].map(c=>formatter.input(c))};
+  });
   const corpus = { oracle: { package: pkg.name, version: pkg.version, metadata: 'max',
     license: pkg.license,
     sha256: crypto.createHash('sha256').update(fs.readFileSync(path.join(oracleRoot, 'metadata.max.json'))).digest('hex'),
-    numberingPlansSha256: sourceHash }, rows, traces };
+    numberingPlansSha256: sourceHash, adapterSha256:adapterHash }, rows, traces };
   fs.writeFileSync(corpusPath, JSON.stringify(corpus, null, 2) + '\n');
   console.log(`Recorded ${rows.length} cases and ${traces.length} typing traces`);
 }
@@ -75,6 +81,38 @@ if (oracleIndex >= 0) {
 const corpus = JSON.parse(fs.readFileSync(corpusPath));
 if (corpus.oracle.numberingPlansSha256 !== sourceHash) {
   throw new Error('Numbering-plan metadata changed: regenerate the oracle corpus');
+}
+// Coverage is part of the evidence: retaining a source hash alone does not
+// prevent an accidentally omitted or duplicated failing response.
+if (corpus.oracle.package !== 'libphonenumber-js' || corpus.oracle.version !== '1.11.20' ||
+    corpus.oracle.metadata !== 'max' || corpus.oracle.adapterSha256 !== adapterHash) {
+  throw new Error('Oracle adapter/provenance changed; recreate the reference recording');
+}
+if (!Array.isArray(corpus.rows) || corpus.rows.length !== requests.length) {
+  throw new Error('Missing or extra JavaScript oracle responses');
+}
+const requestById = new Map(requests.map(r=>[r.id,r]));
+const seenIds = new Set();
+for (const row of corpus.rows) {
+  const request = requestById.get(row.id);
+  if (!request || seenIds.has(row.id) || row.input !== request.input || (row.hint ?? '') !== request.hint) {
+    throw new Error('Unknown, duplicate or changed JavaScript oracle request: '+row.id);
+  }
+  seenIds.add(row.id);
+  if (typeof row.valid !== 'boolean' || typeof row.possible !== 'boolean' ||
+      ['e164','region','type','extension'].some(field=>typeof row[field] !== 'string') ||
+      (request.formatting && ['national','international'].some(field=>typeof row[field] !== 'string' || !row[field]))) {
+    throw new Error('Incomplete JavaScript oracle response: '+row.id);
+  }
+}
+if (!Array.isArray(corpus.traces) || corpus.traces.length !== traceRequests.length) {
+  throw new Error('Missing JavaScript typing traces');
+}
+for (let i=0;i<traceRequests.length;i++) {
+  const trace=corpus.traces[i], wanted=traceRequests[i];
+  if (trace.region!==wanted.region || trace.input!==wanted.input ||
+      !Array.isArray(trace.output) || trace.output.length!==[...wanted.input].length ||
+      trace.output.some(value=>typeof value!=='string')) throw new Error('Incomplete or changed typing trace: '+i);
 }
 const exceptions = JSON.parse(fs.readFileSync(exceptionsPath));
 const used = new Set();
@@ -104,7 +142,7 @@ for (const [region, rows] of regions) {
     else out.push('      ()');
     out.push('    }', '    Some(p) => {');
     const fields = [ ['valid', '@dialnumber.is_valid(p)'], ['possible', '@dialnumber.is_possible(p)'],
-      ['e164', '@dialnumber.format_e164(p)'] ];
+      ['e164', '@dialnumber.format_e164(p)'], ['extension','p.extension'] ];
     if (!row.id.endsWith(':overlong') && !row.id.endsWith(':short')) {
       fields.push(['region', '@dialnumber.region_of_number(p).unwrap_or("")']);
       fields.push(['type', 'match @dialnumber.number_type(p) { Some(t) => t.to_string(); None => "" }']);
@@ -179,8 +217,11 @@ const report = [
   'tar -xzf libphonenumber-js-1.11.20.tgz',
   'node scripts/gen-compat.mjs --oracle ./package',
   'git diff -- data/compatibility-corpus.json compatibility_test.mbt docs/compatibility.md',
-  '```', '', 'The oracle metadata SHA-256 and the numbering-plan source SHA-256 are',
+  '```', '', 'The oracle metadata SHA-256, adapter SHA-256 and numbering-plan source SHA-256 are',
   'recorded. An unused exception or a changed oracle value fails generation.',
+  'The full derived request manifest, one-to-one responses and complete typing',
+  'traces are checked before generating any assertions. Missing/duplicate cases',
+  'or omitted formatting/extension fields fail rather than reducing coverage.',
   'CI checks the generated tests offline and executes them on every tested target.', '',
   'The original reference project is [Google libphonenumber](https://github.com/google/libphonenumber).',
   'The executable oracle used here is [libphonenumber-js](https://github.com/catamphetamine/libphonenumber-js).', ''

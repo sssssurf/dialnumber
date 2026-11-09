@@ -224,6 +224,8 @@ async function main() {
       name: regionName(code),
       calling_code: Number(attrs.countryCode),
       idd: shortIid(strip(attrs.internationalPrefix ?? "")),
+      idd_pattern: strip(attrs.internationalPrefix ?? ""),
+      extension_prefix: attrs.preferredExtnPrefix ?? " ext. ",
       national_prefix: attrs.nationalPrefix ?? "",
       // How a national number's trunk prefix is recognised when parsing. It is
       // usually the plain prefix, but some plans publish a pattern ("0|80?")

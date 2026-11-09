@@ -19,7 +19,7 @@ provenance are committed in `data/compatibility-corpus.json`.
   trunk prefixes, NANP prefixes, international input and overflow.
 
 Without accounting for known differences, 2284/2299
-cases agree on every compared field. There are **15 cases / 30 field
+cases agree on every compared field. There are **15 cases / 28 field
 differences**. No differing input is dropped. Tests assert the recorded
 library result for each difference and fail if either it or the oracle
 expectation changes. This is a bounded comparison, not universal parity.
@@ -31,9 +31,6 @@ expectation changes. This is a bounded comparison, not universal parity.
 | `BL:p/valid` | `false` | `true` | Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted. |
 | `BL:p/region` | `(none)` | `GP` | Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted. |
 | `BL:p/type` | `(none)` | `premium-rate` | Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted. |
-| `CA:u/valid` | `true` | `false` | Scope: CA 3101234 is a seven-digit local-only UAN; this library requires a complete NANP national number. |
-| `CA:u/region` | `CA` | `(none)` | Scope: CA 3101234 is a seven-digit local-only UAN; this library requires a complete NANP national number. |
-| `CA:u/type` | `uan` | `(none)` | Scope: CA 3101234 is a seven-digit local-only UAN; this library requires a complete NANP national number. |
 | `CL:f/valid` | `false` | `true` | Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted. |
 | `CL:f/type` | `(none)` | `fixed-line` | Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted. |
 | `EH:f/region` | `EH` | `MA` | Metadata association: the committed Morocco plan has leading digits [5-8] and accepts 5288; it wins before EH. The older oracle assigns this example to EH. |
@@ -58,6 +55,7 @@ expectation changes. This is a bounded comparison, not universal parity.
 | `format:US/international` | `+1 201 555 0123` | `+1 201-555-0123` | Formatting convention: libphonenumber-js formatInternational normalizes separators to spaces; dialnumber preserves the published international grouping separator. E.164 digits agree. |
 | `format:JP/international` | `+81 90 1234 5678` | `+81 90-1234-5678` | Formatting convention: libphonenumber-js formatInternational normalizes separators to spaces; dialnumber preserves the published international grouping separator. E.164 digits agree. |
 | `format:BR/international` | `+55 11 98765 4321` | `+55 11 98765-4321` | Formatting convention: libphonenumber-js formatInternational normalizes separators to spaces; dialnumber preserves the published international grouping separator. E.164 digits agree. |
+| `CA:u/possible` | `false` | `true` | Reference API semantics: libphonenumber-js 1.11.20/max reports possible=false for the valid local-only CA UAN 3101234. Original Google Java libphonenumber 9.0.17 reports possible=true with IS_POSSIBLE_LOCAL_ONLY; dialnumber deliberately follows that original API. Validity, region and type agree directly, without exceptions. |
 
 ## Reproduce
 
@@ -78,8 +76,11 @@ node scripts/gen-compat.mjs --oracle ./package
 git diff -- data/compatibility-corpus.json compatibility_test.mbt docs/compatibility.md
 ```
 
-The oracle metadata SHA-256 and the numbering-plan source SHA-256 are
+The oracle metadata SHA-256, adapter SHA-256 and numbering-plan source SHA-256 are
 recorded. An unused exception or a changed oracle value fails generation.
+The full derived request manifest, one-to-one responses and complete typing
+traces are checked before generating any assertions. Missing/duplicate cases
+or omitted formatting/extension fields fail rather than reducing coverage.
 CI checks the generated tests offline and executes them on every tested target.
 
 The original reference project is [Google libphonenumber](https://github.com/google/libphonenumber).

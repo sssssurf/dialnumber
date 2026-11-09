@@ -14,21 +14,6 @@
     "actual": "premium-rate",
     "reason": "Metadata revision: the 2026-10-20 committed plan accepts this published example/type; the pinned 1.11.20 max metadata does not. No case is omitted."
   },
-  "CA:u/valid": {
-    "oracle": true,
-    "actual": false,
-    "reason": "Scope: CA 3101234 is a seven-digit local-only UAN; this library requires a complete NANP national number."
-  },
-  "CA:u/region": {
-    "oracle": "CA",
-    "actual": "",
-    "reason": "Scope: CA 3101234 is a seven-digit local-only UAN; this library requires a complete NANP national number."
-  },
-  "CA:u/type": {
-    "oracle": "uan",
-    "actual": "",
-    "reason": "Scope: CA 3101234 is a seven-digit local-only UAN; this library requires a complete NANP national number."
-  },
   "CL:f/valid": {
     "oracle": false,
     "actual": true,
@@ -148,5 +133,10 @@
     "oracle": "+55 11 98765 4321",
     "actual": "+55 11 98765-4321",
     "reason": "Formatting convention: libphonenumber-js formatInternational normalizes separators to spaces; dialnumber preserves the published international grouping separator. E.164 digits agree."
+  },
+  "CA:u/possible": {
+    "oracle": false,
+    "actual": true,
+    "reason": "Reference API semantics: libphonenumber-js 1.11.20/max reports possible=false for the valid local-only CA UAN 3101234. Original Google Java libphonenumber 9.0.17 reports possible=true with IS_POSSIBLE_LOCAL_ONLY; dialnumber deliberately follows that original API. Validity, region and type agree directly, without exceptions."
   }
 }

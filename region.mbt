@@ -81,6 +81,8 @@ priv struct Region {
   name : String
   calling_code : Int32
   idd : String
+  idd_pattern : String
+  extension_prefix : String
   national_prefix : String
   /// The published pattern that recognises a trunk prefix while parsing; empty
   /// when the plan only publishes the plain prefix.
@@ -168,6 +170,8 @@ fn plan_row(
   name : String,
   calling_code : Int32,
   idd : String,
+  idd_pattern : String,
+  extension_prefix : String,
   national_prefix : String,
   prefix_parsing : String,
   prefix_transform : String,
@@ -182,6 +186,8 @@ fn plan_row(
     name,
     calling_code,
     idd,
+    idd_pattern,
+    extension_prefix,
     national_prefix,
     prefix_parsing,
     prefix_transform,

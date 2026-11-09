@@ -961,8 +961,8 @@ test "plan examples: CA Canada" {
   assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "5219023456")), Some("US"))
   assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "5219023456")), Some(PersonalNumber))
   assert_true(@dialnumber.is_valid_in_region(@dialnumber.PhoneNumber::new(1, "3101234"), "CA"))
-  assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "3101234")), None)
-  assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "3101234")), None)
+  assert_eq(@dialnumber.region_of_number(@dialnumber.PhoneNumber::new(1, "3101234")), Some("CA"))
+  assert_eq(@dialnumber.number_type(@dialnumber.PhoneNumber::new(1, "3101234")), Some(Uan))
 }
 
 ///|

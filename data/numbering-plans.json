@@ -15,6 +15,20 @@
    "sha256": "71ccaff82d09321450143f55cceb6ea2a7965339e7a6a82e86263038bacc8ca7",
    "regions": 32,
    "note": "Only previously omitted transform attributes; all prefix patterns verified identical. Original plan metadata provenance is unchanged."
+  },
+  "diallingSource": {
+   "url": "https://raw.githubusercontent.com/google/libphonenumber/v9.0.17/resources/PhoneNumberMetadata.xml",
+   "license": "Apache-2.0",
+   "sha256": "71ccaff82d09321450143f55cceb6ea2a7965339e7a6a82e86263038bacc8ca7",
+   "fields": [
+    "idd_pattern",
+    "extension_prefix"
+   ],
+   "regions": 245,
+   "retainedExistingRawPatterns": [
+    "IL"
+   ],
+   "note": "Missing complete internationalPrefix and preferredExtnPrefix attributes; legacy reduced IDD strings verified identical before import."
   }
  },
  "regions": [
@@ -55,7 +69,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "AD",
@@ -125,7 +141,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "AE",
@@ -229,7 +247,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "AF",
@@ -283,7 +303,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "AG",
@@ -366,7 +388,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "268$1"
+   "prefix_transform": "268$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "AI",
@@ -438,7 +462,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "264$1"
+   "prefix_transform": "264$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "AL",
@@ -547,7 +573,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "AM",
@@ -647,7 +675,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "AO",
@@ -686,7 +716,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "AR",
@@ -863,7 +895,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": "9$1"
+   "prefix_transform": "9$1",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "AS",
@@ -924,7 +958,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "684$1"
+   "prefix_transform": "684$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "AT",
@@ -1100,7 +1136,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "AU",
@@ -1263,7 +1301,9 @@
      "intl": "NA"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "001[14-689]|14(?:1[14]|34|4[17]|[56]6|7[47]|88)0011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "AW",
@@ -1326,7 +1366,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "AX",
@@ -1398,7 +1440,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00|99(?:[01469]|5(?:[14]1|3[23]|5[59]|77|88|9[09]))",
+   "extension_prefix": " ext. "
   },
   {
    "code": "AZ",
@@ -1483,7 +1527,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BA",
@@ -1583,7 +1629,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BB",
@@ -1669,7 +1717,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "246$1"
+   "prefix_transform": "246$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BD",
@@ -1753,7 +1803,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BE",
@@ -1849,7 +1901,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BF",
@@ -1888,7 +1942,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BG",
@@ -2024,7 +2080,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BH",
@@ -2087,7 +2145,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BI",
@@ -2126,7 +2186,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BJ",
@@ -2188,7 +2250,9 @@
      "format": "$1 $2 $3 $4 $5"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BL",
@@ -2243,7 +2307,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BM",
@@ -2304,7 +2370,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "441$1"
+   "prefix_transform": "441$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BN",
@@ -2351,7 +2419,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BO",
@@ -2426,7 +2496,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00(?:1\\d)?",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BQ",
@@ -2457,7 +2529,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BR",
@@ -2581,7 +2655,9 @@
      "prefix_rule": "($FG)"
     }
    ],
-   "prefix_transform": "$2"
+   "prefix_transform": "$2",
+   "idd_pattern": "00(?:1[245]|2[1-35]|31|4[13]|[56]5|99)",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BS",
@@ -2653,7 +2729,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "242$1"
+   "prefix_transform": "242$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BT",
@@ -2710,7 +2788,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BW",
@@ -2801,7 +2881,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BY",
@@ -2916,7 +2998,9 @@
      "prefix_rule": "$NP $FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "810",
+   "extension_prefix": " ext. "
   },
   {
    "code": "BZ",
@@ -2970,7 +3054,9 @@
      "format": "$1-$2-$3-$4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CA",
@@ -3047,7 +3133,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CC",
@@ -3117,7 +3205,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "8$1"
+   "prefix_transform": "8$1",
+   "idd_pattern": "001[14-689]|14(?:1[14]|34|4[17]|[56]6|7[47]|88)0011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CD",
@@ -3201,7 +3291,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CF",
@@ -3248,7 +3340,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CG",
@@ -3302,7 +3396,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CH",
@@ -3414,7 +3510,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CI",
@@ -3460,7 +3558,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CK",
@@ -3499,7 +3599,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CL",
@@ -3632,7 +3734,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "(?:0|1(?:1[0-69]|2[02-5]|5[13-58]|69|7[0167]|8[018]))0",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CM",
@@ -3687,7 +3791,9 @@
      "format": "$1 $2 $3 $4 $5"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CN",
@@ -3920,7 +4026,9 @@
      "optional": true
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00|1(?:[12]\\d|79)\\d\\d00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CO",
@@ -4005,7 +4113,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00(?:4(?:[14]4|56)|[579])",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CR",
@@ -4075,7 +4185,9 @@
      "format": "$1-$2-$3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CU",
@@ -4162,7 +4274,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "119",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CV",
@@ -4217,7 +4331,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "0",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CW",
@@ -4281,7 +4397,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CX",
@@ -4351,7 +4469,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "8$1"
+   "prefix_transform": "8$1",
+   "idd_pattern": "001[14-689]|14(?:1[14]|34|4[17]|[56]6|7[47]|88)0011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CY",
@@ -4430,7 +4550,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "CZ",
@@ -4549,7 +4671,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "DE",
@@ -4841,7 +4965,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "DJ",
@@ -4880,7 +5006,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "DK",
@@ -4935,7 +5063,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "DM",
@@ -4996,7 +5126,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "767$1"
+   "prefix_transform": "767$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "DO",
@@ -5057,7 +5189,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "DZ",
@@ -5146,7 +5280,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "EC",
@@ -5230,7 +5366,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "EE",
@@ -5320,7 +5458,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "EG",
@@ -5405,7 +5545,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "EH",
@@ -5460,7 +5602,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "ER",
@@ -5503,7 +5647,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "ES",
@@ -5606,7 +5752,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "ET",
@@ -5649,7 +5797,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "FI",
@@ -5780,7 +5930,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00|99(?:[01469]|5(?:[14]1|3[23]|5[59]|77|88|9[09]))",
+   "extension_prefix": " ext. "
   },
   {
    "code": "FJ",
@@ -5834,7 +5986,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "0(?:0|52)",
+   "extension_prefix": " ext. "
   },
   {
    "code": "FK",
@@ -5865,7 +6019,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "FM",
@@ -5904,7 +6060,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "FO",
@@ -5967,7 +6125,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "FR",
@@ -6071,7 +6231,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "GA",
@@ -6127,7 +6289,9 @@
      "prefix_rule": "0$FG"
     }
    ],
-   "prefix_transform": "$1"
+   "prefix_transform": "$1",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "GB",
@@ -6292,7 +6456,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " x"
   },
   {
    "code": "GD",
@@ -6353,7 +6519,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "473$1"
+   "prefix_transform": "473$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "GE",
@@ -6436,7 +6604,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "GF",
@@ -6508,7 +6678,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "GG",
@@ -6593,7 +6765,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "1481$1"
+   "prefix_transform": "1481$1",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "GH",
@@ -6661,7 +6835,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "GI",
@@ -6700,7 +6876,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "GL",
@@ -6755,7 +6933,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "GM",
@@ -6803,7 +6983,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "GN",
@@ -6857,7 +7039,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "GP",
@@ -6929,7 +7113,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "GQ",
@@ -6991,7 +7177,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "GR",
@@ -7093,7 +7281,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "GT",
@@ -7155,7 +7345,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "GU",
@@ -7216,7 +7408,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "671$1"
+   "prefix_transform": "671$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "GW",
@@ -7270,7 +7464,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "GY",
@@ -7333,7 +7529,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "001",
+   "extension_prefix": " ext. "
   },
   {
    "code": "HK",
@@ -7438,7 +7636,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00(?:30|5[09]|[126-9]?)",
+   "extension_prefix": " ext. "
   },
   {
    "code": "HN",
@@ -7493,7 +7693,9 @@
      "intl": "NA"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "HR",
@@ -7623,7 +7825,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "HT",
@@ -7678,7 +7882,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "HU",
@@ -7771,7 +7977,9 @@
      "prefix_rule": "$NP $FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "ID",
@@ -7943,7 +8151,9 @@
      "intl": "NA"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00[89]",
+   "extension_prefix": " ext. "
   },
   {
    "code": "IE",
@@ -8117,7 +8327,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "IL",
@@ -8263,7 +8475,9 @@
      "format": "$1-$2 $3-$4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "0(?:0|1(?:05|[2-9]))",
+   "extension_prefix": " ext. "
   },
   {
    "code": "IM",
@@ -8337,7 +8551,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "1624$1"
+   "prefix_transform": "1624$1",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "IN",
@@ -8513,7 +8729,9 @@
      "optional": true
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "IO",
@@ -8552,7 +8770,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "IQ",
@@ -8613,7 +8833,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "IR",
@@ -8693,7 +8915,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "IS",
@@ -8780,7 +9004,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00|1(?:0(?:01|[12]0)|100)",
+   "extension_prefix": " ext. "
   },
   {
    "code": "IT",
@@ -8962,7 +9188,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "JE",
@@ -9044,7 +9272,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "1534$1"
+   "prefix_transform": "1534$1",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "JM",
@@ -9105,7 +9335,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "JO",
@@ -9217,7 +9449,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "JP",
@@ -9443,7 +9677,9 @@
      "intl": "NA"
     }
    ],
-   "prefix_transform": "$1"
+   "prefix_transform": "$1",
+   "idd_pattern": "010",
+   "extension_prefix": " ext. "
   },
   {
    "code": "KE",
@@ -9518,7 +9754,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "000",
+   "extension_prefix": " ext. "
   },
   {
    "code": "KG",
@@ -9587,7 +9825,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "KH",
@@ -9656,7 +9896,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00[14-9]",
+   "extension_prefix": " ext. "
   },
   {
    "code": "KI",
@@ -9696,7 +9938,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "KM",
@@ -9746,7 +9990,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "KN",
@@ -9807,7 +10053,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "869$1"
+   "prefix_transform": "869$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "KP",
@@ -9868,7 +10116,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00|99",
+   "extension_prefix": " ext. "
   },
   {
    "code": "KR",
@@ -10055,7 +10305,9 @@
      "intl": "NA"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00(?:[125689]|3(?:[46]5|91)|7(?:00|27|3|55|6[126]))",
+   "extension_prefix": " ext. "
   },
   {
    "code": "KW",
@@ -10109,7 +10361,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "KY",
@@ -10170,7 +10424,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "345$1"
+   "prefix_transform": "345$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "KZ",
@@ -10239,7 +10495,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "810",
+   "extension_prefix": " ext. "
   },
   {
    "code": "LA",
@@ -10299,7 +10557,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "LB",
@@ -10364,7 +10624,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "LC",
@@ -10425,7 +10687,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "758$1"
+   "prefix_transform": "758$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "LI",
@@ -10520,7 +10784,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "LK",
@@ -10579,7 +10845,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "LR",
@@ -10644,7 +10912,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "LS",
@@ -10691,7 +10961,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "LT",
@@ -10807,7 +11079,9 @@
      "optional": true
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "LU",
@@ -10947,7 +11221,9 @@
      "format": "$1 $2 $3 $4 $5"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "LV",
@@ -11010,7 +11286,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "LY",
@@ -11053,7 +11331,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MA",
@@ -11133,7 +11413,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MC",
@@ -11205,7 +11487,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MD",
@@ -11301,7 +11585,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "ME",
@@ -11377,7 +11663,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MF",
@@ -11432,7 +11720,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MG",
@@ -11483,7 +11773,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": "20$1"
+   "prefix_transform": "20$1",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MH",
@@ -11530,7 +11822,9 @@
      "format": "$1-$2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MK",
@@ -11614,7 +11908,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "ML",
@@ -11670,7 +11966,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MM",
@@ -11800,7 +12098,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MN",
@@ -11887,7 +12187,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "001",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MO",
@@ -11941,7 +12243,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MP",
@@ -12002,7 +12306,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "670$1"
+   "prefix_transform": "670$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MQ",
@@ -12074,7 +12380,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MR",
@@ -12121,7 +12429,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MS",
@@ -12182,7 +12492,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "664$1"
+   "prefix_transform": "664$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MT",
@@ -12261,7 +12573,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MU",
@@ -12348,7 +12662,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "0(?:0|[24-7]0|3[03])",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MV",
@@ -12418,7 +12734,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "0(?:0|19)",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MW",
@@ -12466,7 +12784,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MX",
@@ -12560,7 +12880,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "0[09]",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MY",
@@ -12670,7 +12992,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "MZ",
@@ -12724,7 +13048,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "NA",
@@ -12814,7 +13140,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "NC",
@@ -12877,7 +13205,9 @@
      "format": "$1.$2.$3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "NE",
@@ -12939,7 +13269,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "NF",
@@ -12991,7 +13323,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": "3$1"
+   "prefix_transform": "3$1",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "NG",
@@ -13091,7 +13425,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "009",
+   "extension_prefix": " ext. "
   },
   {
    "code": "NI",
@@ -13138,7 +13474,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "NL",
@@ -13291,7 +13629,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "NO",
@@ -13394,7 +13734,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "NP",
@@ -13469,7 +13811,9 @@
      "intl": "NA"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "NR",
@@ -13508,7 +13852,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "NU",
@@ -13548,7 +13894,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "NZ",
@@ -13676,7 +14024,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "0(?:0|161)",
+   "extension_prefix": " ext. "
   },
   {
    "code": "OM",
@@ -13747,7 +14097,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "PA",
@@ -13820,7 +14172,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "PE",
@@ -13919,7 +14273,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00|19(?:1[124]|77|90)00",
+   "extension_prefix": " Anexo "
   },
   {
    "code": "PF",
@@ -13996,7 +14352,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "PG",
@@ -14066,7 +14424,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00|140[1-3]",
+   "extension_prefix": " ext. "
   },
   {
    "code": "PH",
@@ -14180,7 +14540,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "PK",
@@ -14317,7 +14679,9 @@
      "prefix_rule": "($NP$FG)"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "PL",
@@ -14452,7 +14816,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "PM",
@@ -14525,7 +14891,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "PR",
@@ -14586,7 +14954,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "PS",
@@ -14660,7 +15030,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "PT",
@@ -14770,7 +15142,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "PW",
@@ -14809,7 +15183,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "01[12]",
+   "extension_prefix": " ext. "
   },
   {
    "code": "PY",
@@ -14946,7 +15322,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "QA",
@@ -15010,7 +15388,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "RE",
@@ -15082,7 +15462,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "RO",
@@ -15180,7 +15562,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " int "
   },
   {
    "code": "RS",
@@ -15280,7 +15664,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "RU",
@@ -15396,7 +15782,9 @@
      "prefix_rule": "$NP ($FG)"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "810",
+   "extension_prefix": " ext. "
   },
   {
    "code": "RW",
@@ -15467,7 +15855,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SA",
@@ -15556,7 +15946,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SB",
@@ -15612,7 +16004,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "0[01]",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SC",
@@ -15675,7 +16069,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "010|0[0-2]",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SD",
@@ -15715,7 +16111,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SE",
@@ -15919,7 +16317,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SG",
@@ -16021,7 +16421,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "0[0-3]\\d",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SH",
@@ -16061,7 +16463,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SI",
@@ -16157,7 +16561,9 @@
      "prefix_rule": "($NP$FG)"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00|10(?:22|66|88|99)",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SJ",
@@ -16245,7 +16651,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SK",
@@ -16378,7 +16786,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SL",
@@ -16421,7 +16831,9 @@
      "prefix_rule": "($NP$FG)"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SM",
@@ -16494,7 +16906,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": "0549$1"
+   "prefix_transform": "0549$1",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SN",
@@ -16572,7 +16986,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SO",
@@ -16649,7 +17065,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SR",
@@ -16727,7 +17145,9 @@
      "format": "$1-$2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SS",
@@ -16767,7 +17187,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "ST",
@@ -16806,7 +17228,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SV",
@@ -16877,7 +17301,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SX",
@@ -16938,7 +17364,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "721$1"
+   "prefix_transform": "721$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SY",
@@ -16993,7 +17421,9 @@
      "optional": true
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "SZ",
@@ -17063,7 +17493,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "TA",
@@ -17086,7 +17518,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "TC",
@@ -17158,7 +17592,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "649$1"
+   "prefix_transform": "649$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "TD",
@@ -17197,7 +17633,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00|16",
+   "extension_prefix": " ext. "
   },
   {
    "code": "TG",
@@ -17236,7 +17674,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "TH",
@@ -17316,7 +17756,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00[1-9]",
+   "extension_prefix": " ext. "
   },
   {
    "code": "TJ",
@@ -17383,7 +17825,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "810",
+   "extension_prefix": " ext. "
   },
   {
    "code": "TK",
@@ -17420,7 +17864,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "TL",
@@ -17490,7 +17936,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "TM",
@@ -17546,7 +17994,9 @@
      "prefix_rule": "$NP $FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "810",
+   "extension_prefix": " ext. "
   },
   {
    "code": "TN",
@@ -17609,7 +18059,9 @@
      "format": "$1 $2 $3"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "TO",
@@ -17678,7 +18130,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "TR",
@@ -17805,7 +18259,9 @@
      "optional": true
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "TT",
@@ -17877,7 +18333,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "868$1"
+   "prefix_transform": "868$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "TV",
@@ -17931,7 +18389,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "TW",
@@ -18072,7 +18532,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "0(?:0[25-79]|19)",
+   "extension_prefix": "#"
   },
   {
    "code": "TZ",
@@ -18167,7 +18629,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00[056]",
+   "extension_prefix": " ext. "
   },
   {
    "code": "UA",
@@ -18264,7 +18728,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "UG",
@@ -18344,7 +18810,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00[057]",
+   "extension_prefix": " ext. "
   },
   {
    "code": "US",
@@ -18431,7 +18899,9 @@
      "optional": true
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "UY",
@@ -18549,7 +19019,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "0(?:0|1[3-9]\\d)",
+   "extension_prefix": " int. "
   },
   {
    "code": "UZ",
@@ -18588,7 +19060,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "VA",
@@ -18680,7 +19154,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "VC",
@@ -18752,7 +19228,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "784$1"
+   "prefix_transform": "784$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "VE",
@@ -18822,7 +19300,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "VG",
@@ -18883,7 +19363,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "284$1"
+   "prefix_transform": "284$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "VI",
@@ -18944,7 +19426,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": "340$1"
+   "prefix_transform": "340$1",
+   "idd_pattern": "011",
+   "extension_prefix": " ext. "
   },
   {
    "code": "VN",
@@ -19077,7 +19561,9 @@
      "optional": true
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "VU",
@@ -19141,7 +19627,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "WF",
@@ -19211,7 +19699,9 @@
      "format": "$1 $2 $3 $4"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "WS",
@@ -19274,7 +19764,9 @@
      "format": "$1 $2"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "0",
+   "extension_prefix": " ext. "
   },
   {
    "code": "XK",
@@ -19358,7 +19850,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "YE",
@@ -19410,7 +19904,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "YT",
@@ -19457,7 +19953,9 @@
     }
    ],
    "formats": [],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "ZA",
@@ -19574,7 +20072,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "ZM",
@@ -19649,7 +20149,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   },
   {
    "code": "ZW",
@@ -19776,7 +20278,9 @@
      "prefix_rule": "$NP$FG"
     }
    ],
-   "prefix_transform": ""
+   "prefix_transform": "",
+   "idd_pattern": "00",
+   "extension_prefix": " ext. "
   }
  ]
 }

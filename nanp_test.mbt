@@ -2,13 +2,13 @@
 // and the area-code split between the United States and Canada.
 
 ///|
-test "is_possible_in_region splits +1 by area code" {
+test "possibility uses length while validity identifies the NANP territory" {
   match @dialnumber.parse("+12015550123", "") {
     Some(pn) => {
       assert_true(@dialnumber.is_possible_in_region(pn, "US"))
-      // 201 is a US area code, so the number is not possible in Canada even
-      // though both regions share +1 and the length.
-      assert_false(@dialnumber.is_possible_in_region(pn, "CA"))
+      // Length is possible in both; actual area allocation belongs to validity.
+      assert_true(@dialnumber.is_possible_in_region(pn, "CA"))
+      assert_false(@dialnumber.is_valid_in_region(pn, "CA"))
       assert_false(@dialnumber.is_possible_in_region(pn, "JP"))
     }
     None => assert_true(false)
@@ -16,7 +16,8 @@ test "is_possible_in_region splits +1 by area code" {
   match @dialnumber.parse("+12042545000", "") {
     Some(pn) => {
       assert_true(@dialnumber.is_possible_in_region(pn, "CA"))
-      assert_false(@dialnumber.is_possible_in_region(pn, "US"))
+      assert_true(@dialnumber.is_possible_in_region(pn, "US"))
+      assert_false(@dialnumber.is_valid_in_region(pn, "US"))
     }
     None => assert_true(false)
   }
@@ -41,24 +42,19 @@ test "region_of_number splits +1 by area code" {
 }
 
 ///|
-test "the NANP structural rule rejects impossible +1 numbers" {
-  for bad in [
-    "+11235550123", // NPA starts with 1
-    "+10115550123", // NPA starts with 0
-    "+12115550123", // 211 is an N11 service code
-    "+12011550123", // NXX starts with 1
-    "+1201555012",  // nine-digit national number
-    "+13101234",    // seven-digit number: Canada's local-only length is not E.164
-  ] {
-    match @dialnumber.parse(bad, "") {
-      Some(pn) => {
-        assert_false(@dialnumber.is_possible(pn))
-        assert_true(@dialnumber.region_of_number(pn) is None)
-        assert_eq(@dialnumber.possible_types(pn).length(), 0)
-      }
-      None => assert_true(false)
-    }
+test "NANP structure rejects assignments independently of possible lengths" {
+  for text in ["+11115550123", "+12011550123", "+10000000000"] {
+    let pn = @dialnumber.parse(text, "").unwrap()
+    assert_true(@dialnumber.is_possible(pn))
+    assert_false(@dialnumber.is_valid(pn))
+    assert_true(@dialnumber.region_of_number(pn) is None)
+    assert_true(@dialnumber.possible_types(pn).length() > 0)
   }
+  let uan = @dialnumber.parse("+13101234", "").unwrap()
+  assert_true(@dialnumber.is_possible(uan))
+  assert_true(@dialnumber.is_valid(uan))
+  assert_eq(@dialnumber.region_of_number(uan), Some("CA"))
+  assert_eq(@dialnumber.number_type(uan), Some(@dialnumber.Uan))
   assert_true(@dialnumber.nanp_possible("2015550123"))
   assert_true(@dialnumber.nanp_possible("2042545000"))
   // 555 is structurally valid; only 555-0100..0199 are reserved for fiction.
@@ -80,9 +76,11 @@ test "nanp_region_of classifies by area code" {
 test "the NANP territories are enumerated from the plans" {
   let nanp = @dialnumber.nanp_region_codes()
   assert_eq(nanp.length(), 25)
-  for code in ["US", "CA", "PR", "JM", "AG", "AI", "AS", "BB", "BM", "BS", "DM",
-    "DO", "GD", "GU", "KN", "KY", "LC", "MP", "MS", "SX", "TC", "TT", "VC",
-    "VG", "VI"] {
+  for
+    code in [
+      "US", "CA", "PR", "JM", "AG", "AI", "AS", "BB", "BM", "BS", "DM", "DO", "GD",
+      "GU", "KN", "KY", "LC", "MP", "MS", "SX", "TC", "TT", "VC", "VG", "VI",
+    ] {
     assert_true(nanp.contains(code))
   }
 }

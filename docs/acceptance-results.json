@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "date": "2026-11-07T03:16:15.285Z",
+  "date": "2026-11-09T08:28:16.098Z",
   "platform": "win32",
   "status": "passed",
   "targets": [
@@ -18,7 +18,7 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 78
+      "durationMs": 85
     },
     {
       "label": "Generated artifact: gen-metadata",
@@ -29,7 +29,7 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 95
+      "durationMs": 102
     },
     {
       "label": "Generated artifact: gen-corpus",
@@ -40,7 +40,7 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 89
+      "durationMs": 93
     },
     {
       "label": "Generated artifact: gen-non-geo",
@@ -51,7 +51,7 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 93
+      "durationMs": 83
     },
     {
       "label": "Generated artifact: gen-compat",
@@ -62,7 +62,7 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 751
+      "durationMs": 885
     },
     {
       "label": "Generated artifact: gen-google-compat",
@@ -73,7 +73,7 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 114
+      "durationMs": 134
     },
     {
       "label": "Generated artifact: gen-prefix-corpus",
@@ -84,7 +84,7 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 156
+      "durationMs": 169
     },
     {
       "label": "Generated artifact: sync-readme",
@@ -95,7 +95,7 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 46
+      "durationMs": 50
     },
     {
       "label": "Check js",
@@ -107,7 +107,7 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 837
+      "durationMs": 83
     },
     {
       "label": "Build js",
@@ -119,7 +119,7 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 405
+      "durationMs": 76
     },
     {
       "label": "Tests js",
@@ -131,10 +131,10 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 2214,
+      "durationMs": 692,
       "tests": {
-        "total": 748,
-        "passed": 748,
+        "total": 776,
+        "passed": 776,
         "failed": 0
       }
     },
@@ -148,7 +148,7 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 837
+      "durationMs": 90
     },
     {
       "label": "Build wasm",
@@ -160,7 +160,7 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 434
+      "durationMs": 79
     },
     {
       "label": "Tests wasm",
@@ -172,10 +172,10 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 3290,
+      "durationMs": 1851,
       "tests": {
-        "total": 748,
-        "passed": 748,
+        "total": 776,
+        "passed": 776,
         "failed": 0
       }
     },
@@ -189,7 +189,7 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 821
+      "durationMs": 107
     },
     {
       "label": "Build wasm-gc",
@@ -201,7 +201,7 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 407
+      "durationMs": 80
     },
     {
       "label": "Tests wasm-gc",
@@ -213,10 +213,10 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 2715,
+      "durationMs": 852,
       "tests": {
-        "total": 748,
-        "passed": 748,
+        "total": 776,
+        "passed": 776,
         "failed": 0
       }
     },
@@ -228,7 +228,17 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 5126
+      "durationMs": 6042
+    },
+    {
+      "label": "Oracle completeness rejects damaged recordings",
+      "command": [
+        "node",
+        "scripts/check-oracle-integrity.mjs"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 1630
     },
     {
       "label": "Public API example",
@@ -241,7 +251,7 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 165
+      "durationMs": 179
     },
     {
       "label": "Formal review regression example",
@@ -254,7 +264,7 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 162
+      "durationMs": 182
     },
     {
       "label": "Benchmarks",
@@ -265,7 +275,7 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 15403,
+      "durationMs": 16037,
       "tests": {
         "total": 12,
         "passed": 12,
@@ -281,32 +291,68 @@
       ],
       "status": "passed",
       "exitCode": 0,
-      "durationMs": 337
+      "durationMs": 242
     }
   ],
-  "compiledSourceSha256": "6ceebc28f601621f65ddf1e2cb9a1816b62a04a3a627e5b8df2c6ec332145813",
+  "compiledSourceSha256": "7135a5592de2dd979bc0e2ff61a4927151c9b201e6fbc743d640254e09a47e81",
   "supplementalNative": {
-    "platform": "WSL Ubuntu 24.04/GCC",
-    "toolchain": "moon 0.1.20261023; moonc 0.10.17+d971670cd",
+    "platform": "WSL Ubuntu24.04/GCC",
     "status": "passed",
     "check": "passed",
     "build": "passed",
     "tests": {
-      "total": 748,
-      "passed": 748,
+      "total": 776,
+      "passed": 776,
       "failed": 0
-    },
-    "commands": [
-      "moon check --target native",
-      "moon build --target native",
-      "moon test --target native"
+    }
+  },
+  "oracleIntegrity": {
+    "date": "2026-11-09T08:28:29.286Z",
+    "status": "passed",
+    "checks": [
+      {
+        "label": "unmodified gen-compat.mjs",
+        "status": "passed"
+      },
+      {
+        "label": "unmodified gen-google-compat.mjs",
+        "status": "passed"
+      },
+      {
+        "label": "JS missing response",
+        "status": "rejected for expected integrity failure"
+      },
+      {
+        "label": "JS duplicate response",
+        "status": "rejected for expected integrity failure"
+      },
+      {
+        "label": "JS missing typing trace",
+        "status": "rejected for expected integrity failure"
+      },
+      {
+        "label": "JS shortened typing trace",
+        "status": "rejected for expected integrity failure"
+      },
+      {
+        "label": "Java missing response",
+        "status": "rejected for expected integrity failure"
+      },
+      {
+        "label": "Java duplicate response",
+        "status": "rejected for expected integrity failure"
+      },
+      {
+        "label": "Java shortened typing trace",
+        "status": "rejected for expected integrity failure"
+      }
     ]
   },
+  "version": "0.10.0",
   "formalAcceptance": {
-    "submittedVersion": "0.8.1",
-    "organizerDecision": "rejected",
-    "repairVersion": "0.9.0",
-    "repairDate": "2026-11-07",
+    "latestOrganizerDecision": "not passed",
+    "auditDate": "2026-11-09",
+    "auditVersion": "0.10.0",
     "resubmission": "not submitted",
     "organizerApproval": false
   }
