@@ -4,7 +4,7 @@
     "version": "9.0.17",
     "license": "Apache-2.0",
     "jarSha256": "c280b2493de61a070edbc9a83e27023dfd0453cc1295601a48802af907926bcd",
-    "adapterSha256": "6daa0859d5e6f44eeea8cee8da69db2e43e12f73de46e61be2dcda4a4e070f01",
+    "adapterSha256": "4d1729e5ff6132931bfc3e519c66099bd4dac5e5d8fb1f5cd29607f8f9372ec1",
     "url": "https://repo.maven.apache.org/maven2/com/googlecode/libphonenumber/libphonenumber/9.0.17/libphonenumber-9.0.17.jar"
   },
   "requests": [

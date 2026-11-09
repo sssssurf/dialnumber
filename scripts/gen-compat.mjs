@@ -44,7 +44,7 @@ const traceRequests = [['GB', '02079460958'], ['US', '2015550123'],
     ['US', '12015550123'], ['US', '+442079460958'], ['JP', '09012345678'],
     ['US', '201555012345678']].map(([region, input])=>({region,input}));
 
-const adapterHash = crypto.createHash('sha256').update(fs.readFileSync(fileURLToPath(import.meta.url))).digest('hex');
+const adapterHash = crypto.createHash('sha256').update(fs.readFileSync(fileURLToPath(import.meta.url),'utf8').replaceAll('\r\n','\n')).digest('hex');
 const oracleIndex = process.argv.indexOf('--oracle');
 if (oracleIndex >= 0) {
   const oracleRoot = path.resolve(process.argv[oracleIndex + 1]);

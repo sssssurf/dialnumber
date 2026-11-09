@@ -45,7 +45,7 @@ const matches = [[1,'2015550123',1,'2015550123','',''],
 const requests = [...phones.map(([region,input],i)=>[`phone-${i}`,'phone',region,input]),
   ...traces.map(([region,input],i)=>[`typing-${i}`,'typing',region,input]),
   ...matches.map((row,i)=>[`match-${i}`,'match',...row])];
-const adapterHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'scripts/ReferenceOracle.java'))).digest('hex');
+const adapterHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'scripts/ReferenceOracle.java'),'utf8').replaceAll('\r\n','\n')).digest('hex');
 const index = process.argv.indexOf('--jar');
 if (index >= 0) {
   const jar = path.resolve(process.argv[index + 1]);

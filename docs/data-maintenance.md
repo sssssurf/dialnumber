@@ -90,3 +90,7 @@ the pinned XML supplement, retaining the existing newer Israel IDD expression.
 Both oracle recordings verify complete request/response membership and adapter
 hashes. The acceptance runner executes check-oracle-integrity.mjs with two
 controls and seven intentionally damaged scratch recordings.
+
+Adapter hashes canonicalize CRLF to LF before hashing, so Windows and Linux
+check the same source content. Official JAR/XML/npm metadata hashes remain exact
+byte hashes. New recordings were executed again after this portability repair.
