@@ -63,3 +63,48 @@ test "a supplied authority resolves a domain or PBX context explicitly" {
   assert_eq(@dialnumber.format_e164(resolved), "+12015550123")
   assert_eq(resolved.extension, "42")
 }
+
+///|
+test "a local tel subscriber cannot dial out of its numeric context" {
+  let digits = "00442079460958"
+  assert_eq(
+    @dialnumber.parse(digits, "DE"),
+    Some(@dialnumber.PhoneNumber::new(44, "2079460958")),
+  )
+  let uri = @dialnumber.parse_tel_uri_full("tel:" + digits + ";phone-context=+49").unwrap()
+  assert_eq(@dialnumber.resolve_tel_uri(uri), None)
+}
+
+///|
+test "global tel resolution preserves the explicit subscriber digits" {
+  let uk = @dialnumber.PhoneNumber::new(44, "2079460958")
+  assert_eq(@dialnumber.parse_e164("+44 (0)20 7946 0958"), Some(uk))
+  let uri = @dialnumber.parse_tel_uri_full("tel:+44-02079460958").unwrap()
+  assert_eq(uri.global_number, "+4402079460958")
+  assert_eq(@dialnumber.resolve_tel_uri(uri), None)
+  assert_eq(@dialnumber.parse_tel_uri("tel:+44-20-7946-0958"), Some(uk))
+  assert_eq(@dialnumber.parse_e164("+0442079460958"), None)
+  assert_eq(@dialnumber.parse_tel_uri("tel:+0442079460958"), None)
+  assert_eq(
+    @dialnumber.format_rfc3966(@dialnumber.PhoneNumber::new(440, "2079460958")),
+    "tel:invalid",
+  )
+  assert_eq(
+    @dialnumber.parse_tel_uri("tel:+39-02-12345678"),
+    Some(@dialnumber.PhoneNumber::new(39, "0212345678")),
+  )
+}
+
+///|
+test "a context authority extension survives unless explicitly incompatible" {
+  let expected = @dialnumber.PhoneNumber::new(1, "2015550123").with_extension("0042")
+  let authority = fn(context, number) {
+    if context == "example.com" && number == "7042" { Some(expected) } else { None }
+  }
+  for suffix in ["", ";ext=0042"] {
+    let uri = @dialnumber.parse_tel_uri_full("tel:7042;phone-context=example.com" + suffix).unwrap()
+    assert_eq(@dialnumber.resolve_tel_uri(uri, context_resolver=authority), Some(expected))
+  }
+  let conflict = @dialnumber.parse_tel_uri_full("tel:7042;ext=43;phone-context=example.com").unwrap()
+  assert_eq(@dialnumber.resolve_tel_uri(conflict, context_resolver=authority), None)
+}

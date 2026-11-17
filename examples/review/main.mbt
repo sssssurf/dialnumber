@@ -38,4 +38,14 @@ fn main {
     "canada_local_uan_valid: " +
     @dialnumber.is_valid(@dialnumber.PhoneNumber::new(1, "3101234")).to_string(),
   )
+  println(
+    "context_does_not_dial_out: " +
+    (@dialnumber.parse_tel_uri("tel:00442079460958;phone-context=+49") is None).to_string(),
+  )
+  println(
+    "global_uri_not_rewritten: " +
+    (@dialnumber.parse_tel_uri("tel:+44-02079460958") is None).to_string(),
+  )
+  let isdn = @dialnumber.parse_tel_uri_full("tel:+442079460958;isub=A[8];route=a+b").unwrap()
+  println("canonical_tel_parameters: " + @dialnumber.to_tel_uri_full(isdn).unwrap())
 }

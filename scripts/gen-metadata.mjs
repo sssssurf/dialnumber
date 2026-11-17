@@ -124,6 +124,7 @@ function examplesTest(doc) {
       const pn = `@dialnumber.PhoneNumber::new(${r.calling_code}, "${t.example}")`;
       const region = expectedRegion(doc, t.example, r.calling_code);
       out.push(`  assert_true(@dialnumber.is_valid_in_region(${pn}, "${r.code}"))`);
+      out.push(`  assert_plan_roundtrips(${pn}, "${r.code}")`);
       if (region === null) {
         // No published type or supported length claims this example.
         out.push(`  assert_eq(@dialnumber.region_of_number(${pn}), None)`);
@@ -133,18 +134,22 @@ function examplesTest(doc) {
       out.push(`  assert_eq(@dialnumber.region_of_number(${pn}), Some("${region}"))`);
       if (kind === "FixedLine" || kind === "Mobile") {
         out.push(`  assert_true(matches_kind(@dialnumber.number_type(${pn}), ${kind}))`);
-        // Every fixed/mobile example must survive the national round trip,
-        // including plans with capture-based national prefix transforms.
-        out.push(`  match @dialnumber.format_national(${pn}, "${r.code}") {`);
-        out.push(`    Some(written) => assert_eq(@dialnumber.parse(written, "${r.code}"), Some(${pn}))`);
-        out.push("    None => assert_true(false)");
-        out.push("  }");
       } else {
         out.push(`  assert_eq(@dialnumber.number_type(${pn}), Some(${kind}))`);
       }
     }
     out.push("}");
   }
+  out.push("");
+  out.push("///|");
+  out.push("/// Check every published number type and retain a leading-zero extension.");
+  out.push("fn assert_plan_roundtrips(number : @dialnumber.PhoneNumber, region : String) -> Unit raise Error {");
+  out.push('  let number = number.with_extension("0042")');
+  out.push("  let national = @dialnumber.format_national(number, region).unwrap()");
+  out.push("  assert_eq(@dialnumber.parse(national, region), Some(number))");
+  out.push('  assert_eq(@dialnumber.parse(@dialnumber.format_international(number), ""), Some(number))');
+  out.push("  assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(number)), Some(number))");
+  out.push("}");
   out.push("");
   out.push("///|");
   out.push(

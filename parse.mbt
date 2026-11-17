@@ -76,11 +76,12 @@ fn normalize_international_nsn(cc : Int32, nsn : String) -> String {
 }
 
 ///|
-/// The longest calling code (1..3 digits) that names a known region at the head
-/// of `digits`, or None. Calling codes are assigned so that none is a prefix of
-/// another, but the table holds only 51 of them, so the longest match against
-/// the table is what decides.
+/// Find an assigned calling code at the head of ASCII digits. A calling code
+/// has one to three digits and its first digit is non-zero.
 fn country_code_prefix(digits : String) -> Int32? {
+  if starts_with(digits, "0") {
+    return None
+  }
   let mut n = 3
   while n >= 1 {
     match take(digits, n) {
@@ -94,6 +95,19 @@ fn country_code_prefix(digits : String) -> Int32? {
     n = n - 1
   }
   None
+}
+
+///|
+/// Split already canonical global digits without normalizing the subscriber.
+fn split_global_digits(digits : String) -> (Int32, String)? {
+  let cc = match country_code_prefix(digits) {
+    None => return None
+    Some(v) => v
+  }
+  match drop(digits, cc.to_string().length()) {
+    Some(nsn) if nsn != "" => Some((cc, nsn))
+    _ => None
+  }
 }
 
 ///|
@@ -195,16 +209,8 @@ pub fn parse(input : String, default_region : String) -> PhoneNumber? {
     }
   }
   if international {
-    match country_code_prefix(body) {
-      Some(cc) => {
-        let cc_len = cc.to_string().length()
-        let nsn = match drop(body, cc_len) {
-          Some(x) => x
-          None => ""
-        }
-        if nsn == "" {
-          return None
-        }
+    match split_global_digits(body) {
+      Some((cc, nsn)) => {
         return Some({ country_code: cc, national_number: normalize_international_nsn(cc, nsn), extension: ext, })
       }
       None => return None

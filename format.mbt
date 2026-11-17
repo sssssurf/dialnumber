@@ -442,7 +442,7 @@ pub fn format_dialling(pn : PhoneNumber, from_region : String) -> String? {
 /// The RFC 3966 `tel:` URI. The extension, when present, becomes `;ext=`. The
 /// subscriber is the ungrouped E.164 number, as the grammar expects.
 pub fn format_rfc3966(pn : PhoneNumber) -> String {
-  if pn.country_code <= 0 || !is_all_digits(pn.national_number) {
+  if !region_exists_at_code(pn.country_code) || !is_all_digits(pn.national_number) {
     return "tel:invalid"
   }
   match

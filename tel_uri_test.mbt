@@ -14,8 +14,7 @@ test "the RFC 3966 examples parse" {
   ]
   for uri in good {
     let parsed = @dialnumber.parse_tel_uri_full(uri)
-    // `postd` is a RFC 2806 parameter the RFC 3966 grammar does not define, so
-    // that last example is expected to be refused rather than half-read.
+    // postd is preserved as a generic parameter.
     assert_true(parsed is Some(_))
   }
 }
@@ -45,9 +44,9 @@ test "percent escapes in an isub are validated" {
 }
 
 ///|
-test "an isub may carry the URI punctuation RFC 3966 allows" {
+test "an isub follows RFC 3966 erratum 203 paramchar grammar" {
   let good : Array[String] = [
-    "tel:+14155550123;isub=a!$&'()*+,=:@/",
+    "tel:+14155550123;isub=a!$&'()*[]:/%2C%3D%40",
     "tel:+14155550123;isub=ABC123",
   ]
   for uri in good {
@@ -61,11 +60,14 @@ test "an isub may carry the URI punctuation RFC 3966 allows" {
     }
     None => assert_true(false)
   }
-  // Nor can a space, a bracket or a quote.
+  // The corrected grammar allows brackets and requires escapes for these bytes.
   for bad in [
     "tel:+14155550123;isub=a b",
-    "tel:+14155550123;isub=a[1]",
     "tel:+14155550123;isub=a\"b",
+    "tel:+14155550123;isub=a,b",
+    "tel:+14155550123;isub=a=b",
+    "tel:+14155550123;isub=a@b",
+    "tel:+14155550123;isub=a?b",
   ] {
     assert_true(@dialnumber.parse_tel_uri_full(bad) is None)
   }
@@ -117,10 +119,7 @@ test "a domain context is a real domain name" {
     Some(t) => {
       assert_eq(t.phone_context, "+1914555")
       assert_eq(t.local_number, "8631234")
-      match @dialnumber.resolve_tel_uri(t) {
-        Some(pn) => assert_eq(@dialnumber.format_e164(pn), "+19145558631234")
-        None => assert_true(true)
-      }
+      assert_eq(@dialnumber.resolve_tel_uri(t), None)
     }
     None => assert_true(false)
   }

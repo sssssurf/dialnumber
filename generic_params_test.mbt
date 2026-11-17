@@ -36,3 +36,15 @@ test "a local number serialises ext before the context" {
     None => assert_true(false)
   }
 }
+
+///|
+test "isub and generic parameter values share canonical escaping" {
+  let uri = @dialnumber.parse_tel_uri_full(
+    "tel:+14155550123;isub=%41[8]%2f;route=a+b%3b",
+  ).unwrap()
+  let text = "tel:+14155550123;isub=A[8]%2F;route=a%2Bb%3B"
+  assert_eq(@dialnumber.to_tel_uri_full(uri), Some(text))
+  assert_eq(@dialnumber.parse_tel_uri_full(text), Some(uri))
+  let supplied = { ..uri, parameters: [("Route", "a+b%3b")] }
+  assert_eq(@dialnumber.to_tel_uri_full(supplied), Some(text))
+}

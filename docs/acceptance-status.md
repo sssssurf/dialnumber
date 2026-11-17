@@ -1,20 +1,19 @@
 # Acceptance status
 
-Updated: 2026-11-09. Current full audit release: 0.10.0.
+Updated: 2026-11-17. Current version: 0.11.0.
 
 - Application review: passed, as confirmed by the participant's organizer email.
 - Formal acceptance of the October 0.8.1 submission: **rejected**. The organizer
   reported missing national-prefix transforms, skipped national round trips,
   repeat-count overflow and RFC3966 compatibility defects.
-- The 0.9.0 repair was dated 2026-11-07. The current 0.10.0 full audit and further
-  repairs are dated 2026-11-09. Neither is retrospective October completion or
-  renewed organizer approval.
+- Versions 0.9.0, 0.10.0 and 0.11.0 record work after the October deadline.
+  Version 0.11.0 separates URI resolution from human-input normalization and
+  exercises three round trips for all 1,132 plan examples.
 - Current engineering evidence: acceptance-results.json. All four targets pass
-  776 tests each; the report also records generator, integrity, example,
+  780 tests each. The report also records generator, integrity, example,
   documentation, benchmark and package checks.
-- Mooncakes 0.10.0 is published. An isolated consumer resolved exactly 0.10.0
-  from the registry with no local override, and passed both the basic and
-  formal-review examples. Evidence: published-consumer-results.json.
+- Publication, registry dependency and example output are recorded in
+  published-consumer-results.json for the current version.
 - Supplement/re-review: not submitted by this tool. The organizer must decide
   whether the post-deadline repairs may be considered; no final approval is claimed.
 

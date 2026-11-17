@@ -105,12 +105,13 @@ pub fn AsYouTypeFormatter::current_output(Self) -> String
 pub fn AsYouTypeFormatter::input_digit(Self, Char) -> String
 pub fn AsYouTypeFormatter::new(String) -> Self
 
+#derive(Eq, @debug.Debug)
 pub(all) enum NumberMatch {
   ExactMatch
   NsnMatch
   ShortNsnMatch
   NoMatch
-} derive(Eq, @debug.Debug)
+}
 pub fn NumberMatch::equal(Self, Self) -> Bool
 pub fn NumberMatch::not_equal(Self, Self) -> Bool
 pub fn NumberMatch::output(Self, &Logger) -> Unit
@@ -118,6 +119,7 @@ pub fn NumberMatch::to_repr(Self) -> @debug.Repr
 pub fn NumberMatch::to_string(Self) -> String
 pub impl Show for NumberMatch
 
+#derive(Eq, @debug.Debug)
 pub(all) enum NumberType {
   FixedLine
   FixedLineOrMobile
@@ -130,7 +132,7 @@ pub(all) enum NumberType {
   PersonalNumber
   Pager
   Voicemail
-} derive(Eq, @debug.Debug)
+}
 pub fn NumberType::equal(Self, Self) -> Bool
 pub fn NumberType::not_equal(Self, Self) -> Bool
 pub fn NumberType::output(Self, &Logger) -> Unit
@@ -138,11 +140,12 @@ pub fn NumberType::to_repr(Self) -> @debug.Repr
 pub fn NumberType::to_string(Self) -> String
 pub impl Show for NumberType
 
+#derive(Eq, @debug.Debug)
 pub(all) struct PhoneNumber {
   country_code : Int32
   national_number : String
   extension : String
-} derive(Eq, @debug.Debug)
+}
 pub fn PhoneNumber::equal(Self, Self) -> Bool
 pub fn PhoneNumber::new(Int32, String) -> Self
 pub fn PhoneNumber::not_equal(Self, Self) -> Bool
@@ -152,6 +155,7 @@ pub fn PhoneNumber::to_string(Self) -> String
 pub fn PhoneNumber::with_extension(Self, String) -> Self
 pub impl Show for PhoneNumber
 
+#derive(Eq, @debug.Debug)
 pub(all) struct TelUri {
   global_number : String
   local_number : String
@@ -159,7 +163,7 @@ pub(all) struct TelUri {
   extension : String
   isub : String
   parameters : Array[(String, String)]
-} derive(Eq, @debug.Debug)
+}
 pub fn TelUri::equal(Self, Self) -> Bool
 pub fn TelUri::not_equal(Self, Self) -> Bool
 pub fn TelUri::output(Self, &Logger) -> Unit

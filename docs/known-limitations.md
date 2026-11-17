@@ -30,6 +30,10 @@ documented public-plan conventions: a context exactly equal to a calling code
 reads the local part as a national number, and +1 plus a three-digit area code
 can complete a seven-digit NANP local number. Both require final validity.
 These conventions are not a universal interpretation of every numeric context.
+The numeric context fixes the calling code. A local subscriber is never read
+as an international dial-out string. An explicit global subscriber keeps its
+digits; the library applies redundant-trunk normalization in the separate
+human-input parser. Use an authority when the local plan is private.
 
 Arbitrary longer numeric contexts and domains return None by default, even if
 ignoring the context could produce a valid number. Pass context_resolver to
@@ -37,6 +41,9 @@ resolve_tel_uri when an authority supplies the mapping. The callback is not
 called by parsing, so an unresolved URI still round-trips intact. Unknown m-
 mandatory parameters prevent resolution. ISDN subaddresses remain in TelUri;
 PhoneNumber has no isub field, so callers that need it must retain TelUri.
+The authority's extension remains when the URI omits `ext`. If both provide an
+extension, the extensions must agree. ISDN subaddresses and generic values use
+the grammar in [RFC 3966 verified erratum 203](https://www.rfc-editor.org/errata/eid203).
 
 ## Remaining boundaries
 

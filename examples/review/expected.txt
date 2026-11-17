@@ -10,3 +10,6 @@ carrier_idd_e164: +442079460958
 extension_display: +44 20 7946 0958 x0042
 unassigned_length_possible: true
 canada_local_uan_valid: true
+context_does_not_dial_out: true
+global_uri_not_rewritten: true
+canonical_tel_parameters: tel:+442079460958;isub=A[8];route=a%2Bb

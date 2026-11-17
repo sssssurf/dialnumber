@@ -1,6 +1,8 @@
 # dialnumber
 
-Current audit release: **0.10.0**, 2026-11-09. See [full audit findings](docs/完整复核.md) for newly reproduced defects, fixes and validation coverage. Formal acceptance has not been granted.
+Version **0.11.0** separates human input normalization from RFC 3966 URI
+resolution and verifies every published plan example through three rendering
+paths. See the [November 17 review](docs/完整复核.md).
 
 
 Version 0.9.0 repairs the formal acceptance findings received after the October
@@ -302,8 +304,8 @@ match pn {
 
 ## Command line
 
-The `cmd/main` package is a small front end. Every subcommand prints a plain
-report, and the text below is recorded from a real run.
+In a checkout of this repository, run the `cmd/main` package for the CLI.
+The output below is recorded from the commands shown.
 
 ```bash
 moon run cmd/main -- parse "+81 90-1234-5678"
@@ -459,15 +461,14 @@ regression shows up as a number, not as an opinion.
 
 ## Tests
 
-776 tests cover the public API, the pattern engine, the formatting rules, the
+780 tests cover the public API, the pattern engine, the formatting rules, the
 generated table, the `tel:` grammar, the invariants of random input, and
 robustness against malformed input. The bulk of them are generated from the same
 data the library ships, so a data refresh grows the suite with it:
 
-- one block per region, asserting that every published example number is
-  accepted by its plan, resolves to the region the data says, reports a
-  plausible type, and — for fixed-line and mobile examples — reads back as the
-  same number when its national rendering is parsed again;
+- one block per region. All 1,132 published examples check plan validity,
+  region and type, plus domestic, international and RFC 3966 round trips with
+  extension `0042`;
 - a differential corpus that runs every published rule against its example and
   a mutated near miss, with the expected answer computed by an independent
   regular-expression engine;
@@ -485,6 +486,9 @@ data the library ships, so a data refresh grows the suite with it:
 ```bash
 moon test
 ```
+
+Run `node scripts/acceptance.mjs` from a checkout to verify generation, all four
+backends and the public examples. The Native build requires a C compiler.
 
 ## License
 

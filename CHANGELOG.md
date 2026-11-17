@@ -4,6 +4,15 @@ All notable changes to this project are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.11.0] - 2026-11-17
+
+- Keep local `tel:` resolution in its declared numbering plan and validate
+  global subscriber digits as written. Reject zero-prefixed calling codes.
+- Apply RFC 3966 verified erratum 203 to ISDN parameters and canonicalize
+  generic escapes. Preserve context-authority extensions and reject conflicts.
+- Verify all 1,132 published examples through national, international and
+  RFC 3966 round trips with an extension. Keep the independent reference suites.
+
 ## [0.10.0] - 2026-11-09
 
 - Preserve complete IDD expressions and extension markers, normalize common

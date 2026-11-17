@@ -248,46 +248,6 @@ fn canonical_phone_context(value : String) -> String? {
 }
 
 ///|
-/// True for the characters an `isub` value may contain on its own. RFC 3966
-/// makes it a run of URI characters (`uric`: unreserved, reserved and escapes),
-/// not a number, so it is preserved rather than parsed.
-fn is_isub_char(c : Char) -> Bool {
-  // `uric` is the reserved set plus the unreserved one; the two members a
-  // parameter grammar would otherwise swallow are the semicolon and the
-  // question mark, which are legal inside an isdn-subaddress.
-  if c == ';' || c == '?' {
-    return true
-  }
-  if (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || is_digit(c) {
-    return true
-  }
-  // U+0027, the apostrophe: a sub-delimiter of RFC 3986, and one this grammar
-  // cannot spell as a character literal.
-  if c.to_int() == 39 {
-    return true
-  }
-  match c {
-    '-'
-    | '.'
-    | '_'
-    | '~'
-    | '!'
-    | '$'
-    | '&'
-    | '('
-    | ')'
-    | '*'
-    | '+'
-    | ','
-    | '='
-    | ':'
-    | '@'
-    | '/' => true
-    _ => false
-  }
-}
-
-///|
 /// True for a hexadecimal digit, in either case.
 fn is_hex_digit(c : Char) -> Bool {
   is_digit(c) || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f')
@@ -340,48 +300,28 @@ fn tel_hex_value(c : Char) -> Int32 {
 }
 
 ///|
-/// Canonicalise an `isub` value: non-empty, every character a URI character, and
-/// every `%` the start of a complete `%HH` escape. Hex digits inside an escape
-/// are uppercased so the value round-trips to one spelling.
-fn canonical_isub(s : String) -> String? {
-  let cs = chars_of(s)
-  if cs.length() == 0 {
-    return None
+/// RFC 3966 §3 and verified erratum 203 use `paramchar` for both isub and
+/// generic values. A public isub field may also supply decoded punctuation.
+/// Encode those bytes before they are allowed into the URI grammar.
+fn canonical_parameter(value : String, decoded_isub~ : Bool = false) -> String? {
+  let value = match tel_unescape_unreserved(value) {
+    None => return None
+    Some(v) => v
   }
   let buf = StringBuilder()
-  let mut i = 0
-  while i < cs.length() {
-    let c = cs[i]
-    if c == '%' {
-      if i + 2 >= cs.length() ||
-        !is_hex_digit(cs[i + 1]) ||
-        !is_hex_digit(cs[i + 2]) {
-        return None
-      }
-      buf.write_char('%')
-      buf.write_char(upper_ascii(cs[i + 1]))
-      buf.write_char(upper_ascii(cs[i + 2]))
-      i = i + 3
-    } else if c == ';' || c == '=' || c == '?' || c == '+' {
-      // Parameter delimiters in a public isub value must remain value bytes,
-      // not become new URI components when serialized (RFC 3966 section 3).
-      buf.write_string(
-        match c {
-          ';' => "%3B"
-          '=' => "%3D"
-          '?' => "%3F"
-          _ => "%2B"
-        },
-      )
-      i = i + 1
-    } else if is_isub_char(c) {
-      buf.write_char(c)
-      i = i + 1
-    } else {
-      return None
+  for c in value {
+    match c {
+      '+' => buf.write_string("%2B")
+      ';' if decoded_isub => buf.write_string("%3B")
+      '=' if decoded_isub => buf.write_string("%3D")
+      '?' if decoded_isub => buf.write_string("%3F")
+      '@' if decoded_isub => buf.write_string("%40")
+      ',' if decoded_isub => buf.write_string("%2C")
+      _ => buf.write_char(c)
     }
   }
-  Some(buf.to_string())
+  let canonical = buf.to_string()
+  if is_param_value(canonical) { Some(canonical) } else { None }
 }
 
 ///|
@@ -481,11 +421,9 @@ fn sort_parameters(input : Array[(String, String)]) -> Array[(String, String)] {
 ///|
 /// Parse a `tel:` URI into its parts, without resolving anything.
 ///
-/// The scheme and parameter names are case-insensitive. Unknown parameters,
-/// empty parameters, duplicate parameters, empty values and an `ext`/`isub`
-/// conflict are rejected rather than dropped: a URI this parser cannot fully
-/// represent is better refused than quietly changed. Spaces are not visual
-/// separators (RFC 3966 §5.1.1), so only the outside of the URI is trimmed.
+/// The scheme and parameter names are case-insensitive. Unknown parameters are
+/// preserved. Empty or duplicate parameters, empty values and an `ext`/`isub`
+/// conflict are rejected. Only the outside of the URI is trimmed.
 pub fn parse_tel_uri_full(uri : String) -> TelUri? {
   let s = trim(uri)
   if !starts_with_ci(s, "tel:") {
@@ -536,7 +474,7 @@ pub fn parse_tel_uri_full(uri : String) -> TelUri? {
       if isub is Some(_) || ext is Some(_) {
         return None
       }
-      isub = canonical_isub(value)
+      isub = canonical_parameter(value)
       if isub is None {
         return None
       }
@@ -555,11 +493,6 @@ pub fn parse_tel_uri_full(uri : String) -> TelUri? {
       if !is_pname(name) {
         return None
       }
-      if index_of_sub(part, "=") is Some(_) {
-        if value == "" || !is_param_value(value) {
-          return None
-        }
-      }
       let mut seen = false
       for q in params {
         if starts_with_ci(q.0, lower) && q.0.length() == lower.length() {
@@ -569,9 +502,13 @@ pub fn parse_tel_uri_full(uri : String) -> TelUri? {
       if seen {
         return None
       }
-      let value = match tel_unescape_unreserved(value) {
-        None => return None
-        Some(v) => v
+      let value = if index_of_sub(part, "=") is Some(_) {
+        match canonical_parameter(value) {
+          None => return None
+          Some(v) => v
+        }
+      } else {
+        ""
       }
       params.push((lower, value))
     }
@@ -649,11 +586,7 @@ pub fn to_tel_uri_full(t : TelUri) -> String? {
       Some(v) => v
     }
   }
-  let mut out = if is_global {
-    "tel:" + subscriber
-  } else {
-    "tel:" + subscriber
-  }
+  let mut out = "tel:" + subscriber
   if t.extension != "" {
     let ext = match canonical_extension(t.extension) {
       None => return None
@@ -662,7 +595,7 @@ pub fn to_tel_uri_full(t : TelUri) -> String? {
     out = out + ";ext=" + ext
   }
   if t.isub != "" {
-    let isub = match canonical_isub(t.isub) {
+    let isub = match canonical_parameter(t.isub, decoded_isub=true) {
       None => return None
       Some(v) => v
     }
@@ -688,8 +621,13 @@ pub fn to_tel_uri_full(t : TelUri) -> String? {
       lower == "phone-context" {
       return None
     }
-    if value != "" && !is_param_value(value) {
-      return None
+    let value = if value == "" {
+      ""
+    } else {
+      match canonical_parameter(value) {
+        None => return None
+        Some(v) => v
+      }
     }
     for existing in parameters {
       if existing.0 == lower {
@@ -731,40 +669,34 @@ fn resolve_local_context(
   // public-plan conventions; arbitrary PBX contexts need an authority.
   if context != "+" + code.to_string() {
     if code == 1 && context.length() == 5 && local_number.length() == 7 {
-      return match parse(context + local_number, "") {
-        Some(p) => if is_valid(p) { Some(p) } else { None }
-        None => None
-      }
+      let area = drop(context, 2).unwrap()
+      let pn = PhoneNumber::new(code, area + local_number)
+      return if is_valid(pn) { Some(pn) } else { None }
     }
     return None
   }
-  let by_plan = match country_code_prefix(digits_of(context)) {
-    None => None
-    Some(code) =>
-      match region_by_calling_code(code) {
-        None => None
-        Some(region) =>
-          match parse(local_number, region) {
-            Some(p) => if is_valid(p) { Some(p) } else { None }
-            None => None
-          }
-      }
+  let r = match region_by_calling_code(code) {
+    Some(region) => match find_region(region) {
+      Some(v) => v
+      None => return None
+    }
+    None => return None
   }
-  match by_plan {
-    Some(p) => Some(p)
-    None => None
-  }
+  // The context fixes the calling code. The human-input parser also tries
+  // international dial-out and omitted-plus forms, which do not apply here.
+  let pn = PhoneNumber::new(code, strip_national_prefix(r, local_number))
+  if is_valid(pn) { Some(pn) } else { None }
 }
 
 ///|
 /// Turn parsed parts into an E.164 number when that is possible without asking
 /// an external authority.
 ///
-/// A global number resolves directly. The default local resolver uses only
+/// A global number resolves with the subscriber digits in the URI. The default local resolver uses only
 /// the documented public national-plan and NANP area conventions. Supply an
 /// explicit `context_resolver` authority for a domain or private PBX context.
-/// `isub` is preserved in the TelUri but has no PhoneNumber field, so it does
-/// not survive resolution.
+/// `isub` stays in TelUri. The resolved number retains an authority-provided
+/// extension when the URI omits it. Conflicting extensions fail resolution.
 pub fn resolve_tel_uri(
   t : TelUri,
   context_resolver~ : (String, String) -> PhoneNumber? = resolve_local_context,
@@ -783,19 +715,29 @@ pub fn resolve_tel_uri(
     }
   }
   let pn = if canonical.global_number != "" {
-    parse(canonical.global_number, "")
+    match split_global_digits(drop(canonical.global_number, 1).unwrap()) {
+      Some((cc, nsn)) => Some(PhoneNumber::new(cc, nsn))
+      None => None
+    }
   } else if canonical.local_number != "" {
     context_resolver(canonical.phone_context, canonical.local_number)
   } else {
     None
   }
   match pn {
-    Some(v) =>
-      if is_valid(v) {
-        Some(v.with_extension(canonical.extension))
+    Some(v) => {
+      if !is_valid(v) || (v.extension != "" && !is_all_digits(v.extension)) {
+        return None
+      }
+      let ext = canonical.extension
+      if ext == "" {
+        Some(v)
+      } else if v.extension == "" || v.extension == ext {
+        Some(v.with_extension(ext))
       } else {
         None
       }
+    }
     None => None
   }
 }
