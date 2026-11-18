@@ -4,6 +4,14 @@ All notable changes to this project are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.12.0] - 2026-11-18
+
+- Add the nine non-geographic networks' original national and international
+  formats, incremental grouping and local-only possible lengths.
+- Accept spaces after short extension markers while retaining leading zeros.
+- Extend the original Java recording to 130 scenarios. Assert network displays
+  in both Java and JS reference suites and preserve full fixture integrity checks.
+
 ## [0.11.0] - 2026-11-17
 
 - Keep local `tel:` resolution in its declared numbering plan and validate

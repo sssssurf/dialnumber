@@ -230,7 +230,8 @@ pub fn possible_types_in_region(
       None => ()
       Some(plan) =>
         for t in plan.types {
-          if t.national.contains(pn.national_number.length()) {
+          if t.national.contains(pn.national_number.length()) ||
+            t.local_only.contains(pn.national_number.length()) {
             out.push(t.kind)
           }
         }

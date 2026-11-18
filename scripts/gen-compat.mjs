@@ -30,7 +30,7 @@ for (const region of data.regions) {
 for (const input of ['+80012345678', '+80812345678', '+870301234567',
   '+878101234567890', '+8816123456789', '+88213001234', '+883510012345',
   '+88812345678901', '+979123456789']) {
-  request('001:' + input, input);
+  request('001:' + input, input, '', true);
   request('001:' + input + ':short', input.slice(0, -4));
   request('001:' + input + ':overlong', input + '0000000000000000');
 }
@@ -195,6 +195,7 @@ const report = [
   '  overlong negatives, and eight national-input formatting scenarios.',
   '- Parse → E.164 → possible/valid → region/type; formatting scenarios also',
   '  compare the national and international renderings.',
+  '- All nine non-geographic positive scenarios also compare both display forms.',
   '- For deliberately invalid inputs, only rejection by possible/valid is',
   '  compared. The structural parser may accept text that the oracle rejects;',
   '  that does not make the input a valid telephone number.',

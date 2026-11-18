@@ -41,8 +41,17 @@ fn split_extension(input : String) -> (String, String) {
   if e == n || e == 0 {
     return (trim(s), "")
   }
-  if cs[e - 1] == 'x' || cs[e - 1] == 'X' || cs[e - 1] == '#' {
-    return (trim(slice(cs, 0, e - 1)), slice(cs, e, n - e))
+  let mut marker_end = e
+  while marker_end > 0 && cs[marker_end - 1] == ' ' {
+    marker_end = marker_end - 1
+  }
+  if marker_end > 0 &&
+    (
+      cs[marker_end - 1] == 'x' ||
+      cs[marker_end - 1] == 'X' ||
+      cs[marker_end - 1] == '#'
+    ) {
+    return (trim(slice(cs, 0, marker_end - 1)), slice(cs, e, n - e))
   }
   // Published extension display markers, optionally followed by punctuation.
   let mut m = e
@@ -50,7 +59,8 @@ fn split_extension(input : String) -> (String, String) {
     m = m - 1
   }
   for marker in ["ext", "anexo", "int"] {
-    if m >= marker.length() && starts_with_ci(slice(cs, m - marker.length(), marker.length()), marker) {
+    if m >= marker.length() &&
+      starts_with_ci(slice(cs, m - marker.length(), marker.length()), marker) {
       return (trim(slice(cs, 0, m - marker.length())), slice(cs, e, n - e))
     }
   }
@@ -62,15 +72,22 @@ fn split_extension(input : String) -> (String, String) {
 /// Normalize only when the original is invalid and the candidate is valid;
 /// significant zeros (Italy) and valid NSNs are never discarded.
 fn normalize_international_nsn(cc : Int32, nsn : String) -> String {
-  if is_valid(PhoneNumber::new(cc, nsn)) { return nsn }
+  if is_valid(PhoneNumber::new(cc, nsn)) {
+    return nsn
+  }
   match region_by_calling_code(cc) {
-    Some(code) => match find_region(code) {
-      Some(r) => {
-        let candidate = strip_national_prefix(r, nsn)
-        if is_valid(PhoneNumber::new(cc, candidate)) { candidate } else { nsn }
+    Some(code) =>
+      match find_region(code) {
+        Some(r) => {
+          let candidate = strip_national_prefix(r, nsn)
+          if is_valid(PhoneNumber::new(cc, candidate)) {
+            candidate
+          } else {
+            nsn
+          }
+        }
+        None => nsn
       }
-      None => nsn
-    }
     None => nsn
   }
 }
@@ -194,14 +211,15 @@ pub fn parse(input : String, default_region : String) -> PhoneNumber? {
       Some(r) =>
         if r.idd_pattern != "" {
           match match_national_prefix(r.idd_pattern, body) {
-            Some(prefix) if prefix.end > 0 => match drop(body, prefix.end) {
-            Some(after) =>
-              if after != "" && country_code_prefix(after) is Some(_) {
-                international = true
-                body = after
+            Some(prefix) if prefix.end > 0 =>
+              match drop(body, prefix.end) {
+                Some(after) =>
+                  if after != "" && country_code_prefix(after) is Some(_) {
+                    international = true
+                    body = after
+                  }
+                None => ()
               }
-            None => ()
-            }
             _ => ()
           }
         }
@@ -210,9 +228,12 @@ pub fn parse(input : String, default_region : String) -> PhoneNumber? {
   }
   if international {
     match split_global_digits(body) {
-      Some((cc, nsn)) => {
-        return Some({ country_code: cc, national_number: normalize_international_nsn(cc, nsn), extension: ext, })
-      }
+      Some((cc, nsn)) =>
+        return Some({
+          country_code: cc,
+          national_number: normalize_international_nsn(cc, nsn),
+          extension: ext,
+        })
       None => return None
     }
   }
@@ -221,11 +242,16 @@ pub fn parse(input : String, default_region : String) -> PhoneNumber? {
     Some(r) => {
       // Without '+', an explicitly written domestic country code is accepted
       // only when removing it improves an invalid original into a valid number.
-      if !is_valid(PhoneNumber::new(r.calling_code, body)) && starts_with(body, r.calling_code.to_string()) {
+      if !is_valid(PhoneNumber::new(r.calling_code, body)) &&
+        starts_with(body, r.calling_code.to_string()) {
         let rest = drop(body, r.calling_code.to_string().length()).unwrap()
         let candidate = strip_national_prefix(r, rest)
         if is_valid(PhoneNumber::new(r.calling_code, candidate)) {
-          return Some({ country_code: r.calling_code, national_number: candidate, extension: ext })
+          return Some({
+            country_code: r.calling_code,
+            national_number: candidate,
+            extension: ext,
+          })
         }
       }
       let nsn = strip_national_prefix(r, body)

@@ -6,14 +6,15 @@ This is separate from the broader libphonenumber-js corpus.
 
 Artifact SHA-256: c280b2493de61a070edbc9a83e27023dfd0453cc1295601a48802af907926bcd.
 
-- 109 complete phone scenarios, including all 32 transform plans,
+- 118 complete phone scenarios, including all 32 transform plans,
   real national-input transform cases, international dial-out/carrier prefixes,
   default-region country codes, extensions, local-only/invalid NANP cases,
   and all nine non-geographic networks.
   E.164, possibility, validity, region
   number type and preserved extension are asserted even for invalid cases.
-  Geographic formatting is asserted against the resolved national region.
-  Valid cases also parse back the reference national and RFC3966 forms and
+  Geographic and non-geographic international and national formatting are asserted.
+  A network display needs its explicit calling code to parse back, since 001
+  denotes nine networks. Valid cases also parse the reference RFC3966 forms and
   the library RFC3966 output, preserving the complete PhoneNumber.
   The recorded possible-reason column distinguishes local-only possibility.
 - Six number comparisons use PhoneNumberUtil.isNumberMatch directly and agree,
@@ -43,7 +44,7 @@ The library uses the national formatting template earlier in a few NANP
 prefixes; Java delays parentheses. Java adds a space after a complete calling
 code before the next digit. These are presentation differences, not discarded
 digits or a change of telephone destination. This suite does not claim full
-global Java parity or network grouping parity for non-geographic formatting.
+global Java parity. Network display grouping is checked for the recorded cases.
 
 ## Reproduce offline
 

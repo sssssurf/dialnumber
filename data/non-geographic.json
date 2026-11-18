@@ -4,7 +4,13 @@
     "license": "Apache-2.0",
     "upstream": "google/libphonenumber resources/PhoneNumberMetadata.xml",
     "note": "Rules extracted losslessly from the existing committed table. tableSha256 hashes JSON.stringify(networks); future upstream refreshes record the XML SHA-256 via update-metadata.mjs --xml.",
-    "tableSha256": "2ef4a41c200622745f2371d7e6ab7586172b56b19aab1f936873d9c24b725023"
+    "tableSha256": "5e92a12520bbe1da8a621634a271332af51e66595c4aacae4a19fd4a6c5ea835",
+    "formatSource": {
+      "url": "https://raw.githubusercontent.com/google/libphonenumber/v9.0.17/resources/PhoneNumberMetadata.xml",
+      "license": "Apache-2.0",
+      "sha256": "71ccaff82d09321450143f55cceb6ea2a7965339e7a6a82e86263038bacc8ca7",
+      "generator": "scripts/import-network-formats.mjs"
+    }
   },
   "networks": [
     {
@@ -16,7 +22,17 @@
           "pattern": "(?:00|[1-9]\\d)\\d{6}",
           "national": [
             8
-          ]
+          ],
+          "local_only": []
+        }
+      ],
+      "formats": [
+        {
+          "pattern": "(\\d{4})(\\d{4})",
+          "leading": [
+            "\\d"
+          ],
+          "format": "$1 $2"
         }
       ]
     },
@@ -29,7 +45,17 @@
           "pattern": "[1-9]\\d{7}",
           "national": [
             8
-          ]
+          ],
+          "local_only": []
+        }
+      ],
+      "formats": [
+        {
+          "pattern": "(\\d{4})(\\d{4})",
+          "leading": [
+            "[1-9]"
+          ],
+          "format": "$1 $2"
         }
       ]
     },
@@ -43,14 +69,25 @@
           "national": [
             9,
             12
-          ]
+          ],
+          "local_only": []
         },
         {
           "kind": "v",
           "pattern": "2\\d{8}",
           "national": [
             9
-          ]
+          ],
+          "local_only": []
+        }
+      ],
+      "formats": [
+        {
+          "pattern": "(\\d{3})(\\d{3})(\\d{3})",
+          "leading": [
+            "[235-7]"
+          ],
+          "format": "$1 $2 $3"
         }
       ]
     },
@@ -63,7 +100,17 @@
           "pattern": "10\\d{10}",
           "national": [
             12
-          ]
+          ],
+          "local_only": []
+        }
+      ],
+      "formats": [
+        {
+          "pattern": "(\\d{2})(\\d{5})(\\d{5})",
+          "leading": [
+            "1"
+          ],
+          "format": "$1 $2 $3"
         }
       ]
     },
@@ -77,7 +124,24 @@
           "national": [
             9,
             10
-          ]
+          ],
+          "local_only": []
+        }
+      ],
+      "formats": [
+        {
+          "pattern": "(\\d)(\\d{3})(\\d{5})",
+          "leading": [
+            "[0-37-9]"
+          ],
+          "format": "$1 $2 $3"
+        },
+        {
+          "pattern": "(\\d)(\\d{3})(\\d{5,6})",
+          "leading": [
+            "6"
+          ],
+          "format": "$1 $2 $3"
         }
       ]
     },
@@ -94,7 +158,8 @@
             9,
             10,
             12
-          ]
+          ],
+          "local_only": []
         },
         {
           "kind": "v",
@@ -106,14 +171,74 @@
             10,
             11,
             12
-          ]
+          ],
+          "local_only": []
         },
         {
           "kind": "o",
           "pattern": "348[57]\\d{7}",
           "national": [
             11
-          ]
+          ],
+          "local_only": []
+        }
+      ],
+      "formats": [
+        {
+          "pattern": "(\\d{2})(\\d{5})",
+          "leading": [
+            "16|342"
+          ],
+          "format": "$1 $2"
+        },
+        {
+          "pattern": "(\\d{2})(\\d{6})",
+          "leading": [
+            "49"
+          ],
+          "format": "$1 $2"
+        },
+        {
+          "pattern": "(\\d{2})(\\d{2})(\\d{4})",
+          "leading": [
+            "1[36]|9"
+          ],
+          "format": "$1 $2 $3"
+        },
+        {
+          "pattern": "(\\d{2})(\\d{4})(\\d{3})",
+          "leading": [
+            "3[23]"
+          ],
+          "format": "$1 $2 $3"
+        },
+        {
+          "pattern": "(\\d{2})(\\d{3,4})(\\d{4})",
+          "leading": [
+            "16"
+          ],
+          "format": "$1 $2 $3"
+        },
+        {
+          "pattern": "(\\d{2})(\\d{4})(\\d{4})",
+          "leading": [
+            "10|23|3(?:[15]|4[57])|4|51"
+          ],
+          "format": "$1 $2 $3"
+        },
+        {
+          "pattern": "(\\d{3})(\\d{4})(\\d{4})",
+          "leading": [
+            "34"
+          ],
+          "format": "$1 $2 $3"
+        },
+        {
+          "pattern": "(\\d{2})(\\d{4,5})(\\d{5})",
+          "leading": [
+            "[1-35]"
+          ],
+          "format": "$1 $2 $3"
         }
       ]
     },
@@ -130,7 +255,45 @@
             10,
             11,
             12
-          ]
+          ],
+          "local_only": []
+        }
+      ],
+      "formats": [
+        {
+          "pattern": "(\\d{3})(\\d{3})(\\d{2,8})",
+          "leading": [
+            "[14]|2[24-689]|3[02-689]|51[24-9]"
+          ],
+          "format": "$1 $2 $3"
+        },
+        {
+          "pattern": "(\\d{3})(\\d{3})(\\d{3})",
+          "leading": [
+            "510"
+          ],
+          "format": "$1 $2 $3"
+        },
+        {
+          "pattern": "(\\d{3})(\\d{3})(\\d{4})",
+          "leading": [
+            "21"
+          ],
+          "format": "$1 $2 $3"
+        },
+        {
+          "pattern": "(\\d{4})(\\d{4})(\\d{4})",
+          "leading": [
+            "51[13]"
+          ],
+          "format": "$1 $2 $3"
+        },
+        {
+          "pattern": "(\\d{3})(\\d{3})(\\d{3})(\\d{3})",
+          "leading": [
+            "[235]"
+          ],
+          "format": "$1 $2 $3 $4"
         }
       ]
     },
@@ -143,7 +306,15 @@
           "pattern": "\\d{11}",
           "national": [
             11
-          ]
+          ],
+          "local_only": []
+        }
+      ],
+      "formats": [
+        {
+          "pattern": "(\\d{3})(\\d{3})(\\d{5})",
+          "leading": [],
+          "format": "$1 $2 $3"
         }
       ]
     },
@@ -156,7 +327,19 @@
           "pattern": "[1359]\\d{8}",
           "national": [
             9
+          ],
+          "local_only": [
+            8
           ]
+        }
+      ],
+      "formats": [
+        {
+          "pattern": "(\\d)(\\d{4})(\\d{4})",
+          "leading": [
+            "[1359]"
+          ],
+          "format": "$1 $2 $3"
         }
       ]
     }

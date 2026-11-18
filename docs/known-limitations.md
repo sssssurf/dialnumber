@@ -57,7 +57,7 @@ the grammar in [RFC 3966 verified erratum 203](https://www.rfc-editor.org/errata
    oracle normalizes some separators to spaces; E.164 digits agree.
 4. Validation tests range rules, not existence, reachability or ownership of a line.
 5. The broad independent corpus uses libphonenumber-js 1.11.20/max. A separate
-   121-scenario recording executes the original Java 9.0.17 runtime directly;
+   130-scenario recording executes the original Java 9.0.17 runtime directly;
    All known metadata, reference semantic and formatting differences remain in the
    committed corpus, explicitly explained in compatibility.md.
 
@@ -69,3 +69,11 @@ See google-compatibility.md. Neither suite is a claim of universal parity.
 Version0.10.0 also preserves complete IDD expressions and extensions, supports
 Canadian seven-digit UAN/local lengths, and separates possibility from validity.
 See 完整复核.md; the former local-only scope waiver is removed.
+
+Version 0.12.0 adds grouping for all nine non-geographic calling codes. Network
+display uses `format_national(pn, "001")`; parsing that display requires the
+explicit calling code because 001 identifies nine networks. The original Java
+and independent JS corpora assert the recorded network grouping results.
+International network AsYouType preserves every entered digit and groups
+supported prefixes; the existing six full Java typing traces and their 13
+documented intermediate-layout differences remain.

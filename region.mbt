@@ -11,8 +11,8 @@
 /// lengths the plan publishes for that type.
 ///
 /// `national` is the set of possible lengths; `local_only` is the set of lengths
-/// that are only possible when dialled locally (kept for completeness and for
-/// the data-integrity tests, not used for `possible`).
+/// that are only possible when dialled locally. Both contribute to possibility;
+/// actual validity also requires the type's full national-number pattern.
 priv struct PlanType {
   kind : NumberType
   pattern : String

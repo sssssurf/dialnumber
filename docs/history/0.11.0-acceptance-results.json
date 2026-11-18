@@ -1,0 +1,373 @@
+{
+  "schema": 1,
+  "date": "2026-11-17T00:45:19.400Z",
+  "platform": "win32",
+  "status": "passed",
+  "targets": [
+    "js",
+    "wasm",
+    "wasm-gc"
+  ],
+  "checks": [
+    {
+      "label": "Toolchain",
+      "command": [
+        "moon",
+        "version",
+        "--all"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 149
+    },
+    {
+      "label": "Generated artifact: gen-metadata",
+      "command": [
+        "node",
+        "scripts/gen-metadata.mjs",
+        "--check"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 325
+    },
+    {
+      "label": "Generated artifact: gen-corpus",
+      "command": [
+        "node",
+        "scripts/gen-corpus.mjs",
+        "--check"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 438
+    },
+    {
+      "label": "Generated artifact: gen-non-geo",
+      "command": [
+        "node",
+        "scripts/gen-non-geo.mjs",
+        "--check"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 305
+    },
+    {
+      "label": "Generated artifact: gen-compat",
+      "command": [
+        "node",
+        "scripts/gen-compat.mjs",
+        "--check"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 1863
+    },
+    {
+      "label": "Generated artifact: gen-google-compat",
+      "command": [
+        "node",
+        "scripts/gen-google-compat.mjs",
+        "--check"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 379
+    },
+    {
+      "label": "Generated artifact: gen-prefix-corpus",
+      "command": [
+        "node",
+        "scripts/gen-prefix-corpus.mjs",
+        "--check"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 531
+    },
+    {
+      "label": "Generated artifact: sync-readme",
+      "command": [
+        "node",
+        "scripts/sync-readme.mjs",
+        "--check"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 144
+    },
+    {
+      "label": "Check js",
+      "command": [
+        "moon",
+        "check",
+        "--target",
+        "js"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 2229
+    },
+    {
+      "label": "Build js",
+      "command": [
+        "moon",
+        "build",
+        "--target",
+        "js"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 954
+    },
+    {
+      "label": "Tests js",
+      "command": [
+        "moon",
+        "test",
+        "--target",
+        "js"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 6237,
+      "tests": {
+        "total": 780,
+        "passed": 780,
+        "failed": 0
+      }
+    },
+    {
+      "label": "Check wasm",
+      "command": [
+        "moon",
+        "check",
+        "--target",
+        "wasm"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 1707
+    },
+    {
+      "label": "Build wasm",
+      "command": [
+        "moon",
+        "build",
+        "--target",
+        "wasm"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 1312
+    },
+    {
+      "label": "Tests wasm",
+      "command": [
+        "moon",
+        "test",
+        "--target",
+        "wasm"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 9748,
+      "tests": {
+        "total": 780,
+        "passed": 780,
+        "failed": 0
+      }
+    },
+    {
+      "label": "Check wasm-gc",
+      "command": [
+        "moon",
+        "check",
+        "--target",
+        "wasm-gc"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 2271
+    },
+    {
+      "label": "Build wasm-gc",
+      "command": [
+        "moon",
+        "build",
+        "--target",
+        "wasm-gc"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 1077
+    },
+    {
+      "label": "Tests wasm-gc",
+      "command": [
+        "moon",
+        "test",
+        "--target",
+        "wasm-gc"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 6934,
+      "tests": {
+        "total": 780,
+        "passed": 780,
+        "failed": 0
+      }
+    },
+    {
+      "label": "Documented CLI output",
+      "command": [
+        "node",
+        "scripts/check-docs.mjs"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 13201
+    },
+    {
+      "label": "Oracle completeness rejects damaged recordings",
+      "command": [
+        "node",
+        "scripts/check-oracle-integrity.mjs"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 3099
+    },
+    {
+      "label": "Public API example",
+      "command": [
+        "moon",
+        "run",
+        "--target",
+        "js",
+        "examples/basic"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 407
+    },
+    {
+      "label": "Formal review regression example",
+      "command": [
+        "moon",
+        "run",
+        "--target",
+        "js",
+        "examples/review"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 389
+    },
+    {
+      "label": "Benchmarks",
+      "command": [
+        "moon",
+        "bench",
+        "benchmarks"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 18825,
+      "tests": {
+        "total": 12,
+        "passed": 12,
+        "failed": 0
+      }
+    },
+    {
+      "label": "Publishable module",
+      "command": [
+        "moon",
+        "package",
+        "--list"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "durationMs": 766
+    }
+  ],
+  "compiledSourceSha256": "73fa39faa248e14e69f960b7434f95792a065a75dc75f2c80356a64cd82bdd42",
+  "supplementalNative": {
+    "target": "native",
+    "platform": "WSL Ubuntu 24.04 / GCC",
+    "check": "passed",
+    "build": "passed",
+    "tests": {
+      "total": 780,
+      "passed": 780,
+      "failed": 0
+    }
+  },
+  "roundTrips": {
+    "publishedPlanExamples": 1132,
+    "renderingsPerExample": 3,
+    "extension": "0042"
+  },
+  "oracleIntegrity": {
+    "date": "2026-11-17T00:46:12.386Z",
+    "status": "passed",
+    "checks": [
+      {
+        "label": "unmodified gen-compat.mjs",
+        "status": "passed"
+      },
+      {
+        "label": "unmodified gen-google-compat.mjs",
+        "status": "passed"
+      },
+      {
+        "label": "JS missing response",
+        "status": "rejected for expected integrity failure"
+      },
+      {
+        "label": "JS duplicate response",
+        "status": "rejected for expected integrity failure"
+      },
+      {
+        "label": "JS missing typing trace",
+        "status": "rejected for expected integrity failure"
+      },
+      {
+        "label": "JS shortened typing trace",
+        "status": "rejected for expected integrity failure"
+      },
+      {
+        "label": "Java missing response",
+        "status": "rejected for expected integrity failure"
+      },
+      {
+        "label": "Java duplicate response",
+        "status": "rejected for expected integrity failure"
+      },
+      {
+        "label": "Java shortened typing trace",
+        "status": "rejected for expected integrity failure"
+      }
+    ]
+  },
+  "module": "sssssurf/dialnumber",
+  "version": "0.11.0",
+  "toolchain": {
+    "moon": "0.1.20261104",
+    "moonc": "v0.10.20+65efd5b93",
+    "moonrun": "0.1.20261104"
+  },
+  "nativePublicExample": {
+    "name": "review",
+    "status": "passed"
+  },
+  "formalAcceptance": {
+    "latestOrganizerDecision": "not passed",
+    "auditDate": "2026-11-17",
+    "auditVersion": "0.11.0",
+    "resubmission": "not submitted"
+  }
+}

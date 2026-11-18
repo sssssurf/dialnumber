@@ -101,7 +101,12 @@ fn run_format(input : String, region : String) -> Unit {
     Some(pn) => {
       println("e164: \{@dialnumber.format_e164(pn)}")
       println("international: \{@dialnumber.format_international(pn)}")
-      let nat = match @dialnumber.format_national(pn, region) {
+      let destination = if region == "" {
+        @dialnumber.region_of_number(pn).unwrap_or("")
+      } else {
+        region
+      }
+      let nat = match @dialnumber.format_national(pn, destination) {
         Some(v) => v
         None => "(need a region)"
       }

@@ -120,7 +120,7 @@ function expandLengths(raw) {
 // Formatting rules. Each rule is a pattern made only of capture groups over
 // digit runs, a format string referring to them as $1..$9, and optionally the
 // national-prefix rule ($NP) and an international variant.
-function formatsOf(body) {
+export function formatsOf(body) {
   const af = body.match(/<availableFormats>([\s\S]*?)<\/availableFormats>/);
   if (!af) return [];
   const out = [];
@@ -213,7 +213,7 @@ async function main() {
     }
 
     if (code === '001') {
-      networks.push({ calling_code:Number(attrs.countryCode), general, types });
+      networks.push({ calling_code:Number(attrs.countryCode), general, types, formats:formatsOf(body) });
       patternCount = beforePatterns;
       continue;
     }
@@ -264,10 +264,12 @@ async function main() {
 
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
   fs.writeFileSync(OUT, JSON.stringify(doc, null, 1) + "\n");
+  networks.sort((a,b)=>a.calling_code-b.calling_code);
   fs.writeFileSync(path.join(ROOT, 'data/non-geographic.json'), JSON.stringify({
     meta:{ source:doc.meta.source, license:doc.meta.license, sha256:sha,
-      retrieved:doc.meta.retrieved, generator:'scripts/update-metadata.mjs' },
-    networks:networks.sort((a,b)=>a.calling_code-b.calling_code),
+      retrieved:doc.meta.retrieved, generator:'scripts/update-metadata.mjs',
+      tableSha256:crypto.createHash('sha256').update(JSON.stringify(networks)).digest('hex') },
+    networks,
   },null,2)+'\n');
 
   const bytes = fs.statSync(OUT).size;
@@ -280,4 +282,6 @@ async function main() {
   if (noPatterns.length) console.log("regions without type patterns:", noPatterns.join(","));
 }
 
-await main();
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  await main();
+}

@@ -69,6 +69,12 @@ jobs:
       - name: Test (${{ matrix.target }})
         run: moon test --target ${{ matrix.target }}
 
+      - name: Public API example (native)
+        if: matrix.target == 'native'
+        run: |
+          moon run --target native examples/review > _build/native-review.txt
+          diff -u examples/review/expected.txt _build/native-review.txt
+
   # The benchmarks are committed, so they have to keep compiling and running.
   # The numbers are not asserted on (a shared runner is too noisy for that), but
   # a broken or removed benchmark fails here instead of being noticed by nobody.

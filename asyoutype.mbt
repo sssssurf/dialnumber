@@ -43,6 +43,12 @@ pub fn AsYouTypeFormatter::current_output(self : AsYouTypeFormatter) -> String {
     if nsn == "" {
       return text
     }
+    if find_non_geo(cc) is Some(network) {
+      return "+" +
+        cc.to_string() +
+        " " +
+        render_partial(network.formats, "", nsn, false, true)
+    }
     let region = match region_by_calling_code(cc) {
       None => return "+" + cc.to_string() + " " + nsn
       Some(code) => code
@@ -50,7 +56,10 @@ pub fn AsYouTypeFormatter::current_output(self : AsYouTypeFormatter) -> String {
     return match find_region(region) {
       None => text
       Some(r) =>
-        "+" + cc.to_string() + " " + render_partial(r, nsn, false, true)
+        "+" +
+        cc.to_string() +
+        " " +
+        render_partial(formats_of(r), r.national_prefix, nsn, false, true)
     }
   }
   match find_region(self.region) {
@@ -68,15 +77,31 @@ pub fn AsYouTypeFormatter::current_output(self : AsYouTypeFormatter) -> String {
           if rest == "" {
             text
           } else if r.calling_code == 1 {
-            prefix + " " + render_partial(r, rest, false, false)
+            prefix +
+            " " +
+            render_partial(
+              formats_of(r),
+              prefix,
+              rest,
+              false,
+              false,
+              skip_local_only=true,
+            )
           } else {
-            render_partial(r, rest, true, false)
+            render_partial(formats_of(r), prefix, rest, true, false)
           }
         } else if prefix != "" && r.calling_code != 1 {
           // Do not fabricate a trunk prefix the user has not typed.
           text
         } else {
-          render_partial(r, text, false, false)
+          render_partial(
+            formats_of(r),
+            prefix,
+            text,
+            false,
+            false,
+            skip_local_only=r.calling_code == 1,
+          )
         }
       }
   }
@@ -125,16 +150,18 @@ fn distribute_prefix(
 ///|
 /// Render a prefix of a national number through the first rule that fits it.
 fn render_partial(
-  r : Region,
+  formats : Array[PhoneFormat],
+  national_prefix : String,
   digits : String,
   trunk : Bool,
   international : Bool,
+  skip_local_only~ : Bool = false,
 ) -> String {
   let cs = chars_of(digits)
-  for f in formats_of(r) {
+  for f in formats {
     // Local-only NANP rules must not compete with the complete-number
     // template, otherwise the layout switches at seven digits.
-    if r.calling_code == 1 && f.intl_format == "NA" {
+    if skip_local_only && f.intl_format == "NA" {
       continue
     }
     if !format_leading_matches(f, digits) {
@@ -163,19 +190,19 @@ fn render_partial(
         f.format
       }
     } else if trunk && f.prefix_rule != "" {
-      national_format_rule(f.format, f.prefix_rule, r.national_prefix)
+      national_format_rule(f.format, f.prefix_rule, national_prefix)
     } else {
       f.format
     }
     let rendered = apply_partial_format(rule, cs, lens)
-    let expected = if trunk { r.national_prefix + digits } else { digits }
+    let expected = if trunk { national_prefix + digits } else { digits }
     // A partial rule must preserve every typed digit, including on overflow.
     if digits_of(rendered) == expected {
       return rendered
     }
   }
   if trunk {
-    r.national_prefix + digits
+    national_prefix + digits
   } else {
     digits
   }

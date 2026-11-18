@@ -46,6 +46,25 @@ fn main {
     "global_uri_not_rewritten: " +
     (@dialnumber.parse_tel_uri("tel:+44-02079460958") is None).to_string(),
   )
-  let isdn = @dialnumber.parse_tel_uri_full("tel:+442079460958;isub=A[8];route=a+b").unwrap()
-  println("canonical_tel_parameters: " + @dialnumber.to_tel_uri_full(isdn).unwrap())
+  let isdn = @dialnumber.parse_tel_uri_full(
+    "tel:+442079460958;isub=A[8];route=a+b",
+  ).unwrap()
+  println(
+    "canonical_tel_parameters: " + @dialnumber.to_tel_uri_full(isdn).unwrap(),
+  )
+  let network = @dialnumber.parse("+800 12345678 x 0042", "").unwrap()
+  println("network_international: " + @dialnumber.format_international(network))
+  println(
+    "network_national: " + @dialnumber.format_national(network, "001").unwrap(),
+  )
+  let typed = @dialnumber.AsYouTypeFormatter::new("GB")
+  let mut displayed = ""
+  for c in "+80012345678" {
+    displayed = typed.input_digit(c)
+  }
+  println("network_typing: " + displayed)
+  println(
+    "network_local_possible: " +
+    @dialnumber.is_possible(@dialnumber.PhoneNumber::new(979, "12345678")).to_string(),
+  )
 }

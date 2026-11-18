@@ -192,6 +192,12 @@ test "original Google Java oracle: phone-8" {
     "toll-free",
   )
   assert_eq(p.extension, "")
+  assert_eq(@dialnumber.format_international(p), "+800 1234 5678")
+  assert_eq(@dialnumber.format_national(p, "001"), Some("1234 5678"))
+  assert_eq(
+    @dialnumber.parse("+" + p.country_code.to_string() + " " + "1234 5678", ""),
+    Some(p),
+  )
   assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))
   assert_eq(@dialnumber.parse_tel_uri("tel:+800-1234-5678"), Some(p))
 }
@@ -211,6 +217,12 @@ test "original Google Java oracle: phone-9" {
     "shared-cost",
   )
   assert_eq(p.extension, "")
+  assert_eq(@dialnumber.format_international(p), "+808 1234 5678")
+  assert_eq(@dialnumber.format_national(p, "001"), Some("1234 5678"))
+  assert_eq(
+    @dialnumber.parse("+" + p.country_code.to_string() + " " + "1234 5678", ""),
+    Some(p),
+  )
   assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))
   assert_eq(@dialnumber.parse_tel_uri("tel:+808-1234-5678"), Some(p))
 }
@@ -230,6 +242,15 @@ test "original Google Java oracle: phone-10" {
     "mobile",
   )
   assert_eq(p.extension, "")
+  assert_eq(@dialnumber.format_international(p), "+870 301 234 567")
+  assert_eq(@dialnumber.format_national(p, "001"), Some("301 234 567"))
+  assert_eq(
+    @dialnumber.parse(
+      "+" + p.country_code.to_string() + " " + "301 234 567",
+      "",
+    ),
+    Some(p),
+  )
   assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))
   assert_eq(@dialnumber.parse_tel_uri("tel:+870-301-234-567"), Some(p))
 }
@@ -249,6 +270,15 @@ test "original Google Java oracle: phone-11" {
     "voip",
   )
   assert_eq(p.extension, "")
+  assert_eq(@dialnumber.format_international(p), "+878 10 12345 67890")
+  assert_eq(@dialnumber.format_national(p, "001"), Some("10 12345 67890"))
+  assert_eq(
+    @dialnumber.parse(
+      "+" + p.country_code.to_string() + " " + "10 12345 67890",
+      "",
+    ),
+    Some(p),
+  )
   assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))
   assert_eq(@dialnumber.parse_tel_uri("tel:+878-10-12345-67890"), Some(p))
 }
@@ -268,6 +298,15 @@ test "original Google Java oracle: phone-12" {
     "mobile",
   )
   assert_eq(p.extension, "")
+  assert_eq(@dialnumber.format_international(p), "+881 6 123 456789")
+  assert_eq(@dialnumber.format_national(p, "001"), Some("6 123 456789"))
+  assert_eq(
+    @dialnumber.parse(
+      "+" + p.country_code.to_string() + " " + "6 123 456789",
+      "",
+    ),
+    Some(p),
+  )
   assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))
   assert_eq(@dialnumber.parse_tel_uri("tel:+881-6-123-456789"), Some(p))
 }
@@ -287,6 +326,12 @@ test "original Google Java oracle: phone-13" {
     "voip",
   )
   assert_eq(p.extension, "")
+  assert_eq(@dialnumber.format_international(p), "+882 13 00 1234")
+  assert_eq(@dialnumber.format_national(p, "001"), Some("13 00 1234"))
+  assert_eq(
+    @dialnumber.parse("+" + p.country_code.to_string() + " " + "13 00 1234", ""),
+    Some(p),
+  )
   assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))
   assert_eq(@dialnumber.parse_tel_uri("tel:+882-13-00-1234"), Some(p))
 }
@@ -306,6 +351,15 @@ test "original Google Java oracle: phone-14" {
     "voip",
   )
   assert_eq(p.extension, "")
+  assert_eq(@dialnumber.format_international(p), "+883 510 012 345")
+  assert_eq(@dialnumber.format_national(p, "001"), Some("510 012 345"))
+  assert_eq(
+    @dialnumber.parse(
+      "+" + p.country_code.to_string() + " " + "510 012 345",
+      "",
+    ),
+    Some(p),
+  )
   assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))
   assert_eq(@dialnumber.parse_tel_uri("tel:+883-510-012-345"), Some(p))
 }
@@ -325,6 +379,15 @@ test "original Google Java oracle: phone-15" {
     "uan",
   )
   assert_eq(p.extension, "")
+  assert_eq(@dialnumber.format_international(p), "+888 123 456 78901")
+  assert_eq(@dialnumber.format_national(p, "001"), Some("123 456 78901"))
+  assert_eq(
+    @dialnumber.parse(
+      "+" + p.country_code.to_string() + " " + "123 456 78901",
+      "",
+    ),
+    Some(p),
+  )
   assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))
   assert_eq(@dialnumber.parse_tel_uri("tel:+888-123-456-78901"), Some(p))
 }
@@ -344,6 +407,15 @@ test "original Google Java oracle: phone-16" {
     "premium-rate",
   )
   assert_eq(p.extension, "")
+  assert_eq(@dialnumber.format_international(p), "+979 1 2345 6789")
+  assert_eq(@dialnumber.format_national(p, "001"), Some("1 2345 6789"))
+  assert_eq(
+    @dialnumber.parse(
+      "+" + p.country_code.to_string() + " " + "1 2345 6789",
+      "",
+    ),
+    Some(p),
+  )
   assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))
   assert_eq(@dialnumber.parse_tel_uri("tel:+979-1-2345-6789"), Some(p))
 }
@@ -2367,6 +2439,222 @@ test "original Google Java oracle: phone-108" {
   assert_eq(p.extension, "")
   assert_eq(@dialnumber.format_international(p), "+1 5550123")
   assert_eq(@dialnumber.format_national(p, "US"), Some("555-0123"))
+}
+
+///|
+test "original Google Java oracle: phone-109" {
+  let p = @dialnumber.parse("2015550123 x 0042", "US").unwrap()
+  assert_eq(@dialnumber.is_valid(p), true)
+  assert_eq(@dialnumber.is_possible(p), true)
+  assert_eq(@dialnumber.format_e164(p), "+12015550123")
+  assert_eq(@dialnumber.region_of_number(p).unwrap_or(""), "US")
+  assert_eq(
+    match @dialnumber.number_type(p) {
+      Some(t) => t.to_string()
+      None => ""
+    },
+    "fixed-line-or-mobile",
+  )
+  assert_eq(p.extension, "0042")
+  assert_eq(@dialnumber.format_international(p), "+1 201-555-0123 ext. 0042")
+  assert_eq(
+    @dialnumber.format_national(p, "US"),
+    Some("(201) 555-0123 ext. 0042"),
+  )
+  assert_eq(@dialnumber.parse("(201) 555-0123 ext. 0042", "US"), Some(p))
+  assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))
+  assert_eq(@dialnumber.parse_tel_uri("tel:+1-201-555-0123;ext=0042"), Some(p))
+}
+
+///|
+test "original Google Java oracle: phone-110" {
+  let p = @dialnumber.parse("02079460958 # 0042", "GB").unwrap()
+  assert_eq(@dialnumber.is_valid(p), true)
+  assert_eq(@dialnumber.is_possible(p), true)
+  assert_eq(@dialnumber.format_e164(p), "+442079460958")
+  assert_eq(@dialnumber.region_of_number(p).unwrap_or(""), "GB")
+  assert_eq(
+    match @dialnumber.number_type(p) {
+      Some(t) => t.to_string()
+      None => ""
+    },
+    "fixed-line",
+  )
+  assert_eq(p.extension, "0042")
+  assert_eq(@dialnumber.format_international(p), "+44 20 7946 0958 x0042")
+  assert_eq(@dialnumber.format_national(p, "GB"), Some("020 7946 0958 x0042"))
+  assert_eq(@dialnumber.parse("020 7946 0958 x0042", "GB"), Some(p))
+  assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))
+  assert_eq(@dialnumber.parse_tel_uri("tel:+44-20-7946-0958;ext=0042"), Some(p))
+}
+
+///|
+test "original Google Java oracle: phone-111" {
+  let p = @dialnumber.parse("030123456 X 0042", "DE").unwrap()
+  assert_eq(@dialnumber.is_valid(p), true)
+  assert_eq(@dialnumber.is_possible(p), true)
+  assert_eq(@dialnumber.format_e164(p), "+4930123456")
+  assert_eq(@dialnumber.region_of_number(p).unwrap_or(""), "DE")
+  assert_eq(
+    match @dialnumber.number_type(p) {
+      Some(t) => t.to_string()
+      None => ""
+    },
+    "fixed-line",
+  )
+  assert_eq(p.extension, "0042")
+  assert_eq(@dialnumber.format_international(p), "+49 30 123456 ext. 0042")
+  assert_eq(@dialnumber.format_national(p, "DE"), Some("030 123456 ext. 0042"))
+  assert_eq(@dialnumber.parse("030 123456 ext. 0042", "DE"), Some(p))
+  assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))
+  assert_eq(@dialnumber.parse_tel_uri("tel:+49-30-123456;ext=0042"), Some(p))
+}
+
+///|
+test "original Google Java oracle: phone-112" {
+  let p = @dialnumber.parse("2015550123 ext. 0042", "US").unwrap()
+  assert_eq(@dialnumber.is_valid(p), true)
+  assert_eq(@dialnumber.is_possible(p), true)
+  assert_eq(@dialnumber.format_e164(p), "+12015550123")
+  assert_eq(@dialnumber.region_of_number(p).unwrap_or(""), "US")
+  assert_eq(
+    match @dialnumber.number_type(p) {
+      Some(t) => t.to_string()
+      None => ""
+    },
+    "fixed-line-or-mobile",
+  )
+  assert_eq(p.extension, "0042")
+  assert_eq(@dialnumber.format_international(p), "+1 201-555-0123 ext. 0042")
+  assert_eq(
+    @dialnumber.format_national(p, "US"),
+    Some("(201) 555-0123 ext. 0042"),
+  )
+  assert_eq(@dialnumber.parse("(201) 555-0123 ext. 0042", "US"), Some(p))
+  assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))
+  assert_eq(@dialnumber.parse_tel_uri("tel:+1-201-555-0123;ext=0042"), Some(p))
+}
+
+///|
+test "original Google Java oracle: phone-113" {
+  let p = @dialnumber.parse("+80012345678 ext 0042", "").unwrap()
+  assert_eq(@dialnumber.is_valid(p), true)
+  assert_eq(@dialnumber.is_possible(p), true)
+  assert_eq(@dialnumber.format_e164(p), "+80012345678")
+  assert_eq(@dialnumber.region_of_number(p).unwrap_or(""), "001")
+  assert_eq(
+    match @dialnumber.number_type(p) {
+      Some(t) => t.to_string()
+      None => ""
+    },
+    "toll-free",
+  )
+  assert_eq(p.extension, "0042")
+  assert_eq(@dialnumber.format_international(p), "+800 1234 5678 ext. 0042")
+  assert_eq(@dialnumber.format_national(p, "001"), Some("1234 5678 ext. 0042"))
+  assert_eq(
+    @dialnumber.parse(
+      "+" + p.country_code.to_string() + " " + "1234 5678 ext. 0042",
+      "",
+    ),
+    Some(p),
+  )
+  assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))
+  assert_eq(@dialnumber.parse_tel_uri("tel:+800-1234-5678;ext=0042"), Some(p))
+}
+
+///|
+test "original Google Java oracle: phone-114" {
+  let p = @dialnumber.parse("+88234851234567", "").unwrap()
+  assert_eq(@dialnumber.is_valid(p), true)
+  assert_eq(@dialnumber.is_possible(p), true)
+  assert_eq(@dialnumber.format_e164(p), "+88234851234567")
+  assert_eq(@dialnumber.region_of_number(p).unwrap_or(""), "001")
+  assert_eq(
+    match @dialnumber.number_type(p) {
+      Some(t) => t.to_string()
+      None => ""
+    },
+    "voicemail",
+  )
+  assert_eq(p.extension, "")
+  assert_eq(@dialnumber.format_international(p), "+882 348 5123 4567")
+  assert_eq(@dialnumber.format_national(p, "001"), Some("348 5123 4567"))
+  assert_eq(
+    @dialnumber.parse(
+      "+" + p.country_code.to_string() + " " + "348 5123 4567",
+      "",
+    ),
+    Some(p),
+  )
+  assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))
+  assert_eq(@dialnumber.parse_tel_uri("tel:+882-348-5123-4567"), Some(p))
+}
+
+///|
+test "original Google Java oracle: phone-115" {
+  let p = @dialnumber.parse("+88161234567890", "").unwrap()
+  assert_eq(@dialnumber.is_valid(p), false)
+  assert_eq(@dialnumber.is_possible(p), false)
+  assert_eq(@dialnumber.format_e164(p), "+88161234567890")
+  assert_eq(@dialnumber.region_of_number(p).unwrap_or(""), "001")
+  assert_eq(
+    match @dialnumber.number_type(p) {
+      Some(t) => t.to_string()
+      None => ""
+    },
+    "",
+  )
+  assert_eq(p.extension, "")
+  assert_eq(@dialnumber.format_international(p), "+881 61234567890")
+  assert_eq(@dialnumber.format_national(p, "001"), Some("61234567890"))
+}
+
+///|
+test "original Google Java oracle: phone-116" {
+  let p = @dialnumber.parse("+883510012345678", "").unwrap()
+  assert_eq(@dialnumber.is_valid(p), true)
+  assert_eq(@dialnumber.is_possible(p), true)
+  assert_eq(@dialnumber.format_e164(p), "+883510012345678")
+  assert_eq(@dialnumber.region_of_number(p).unwrap_or(""), "001")
+  assert_eq(
+    match @dialnumber.number_type(p) {
+      Some(t) => t.to_string()
+      None => ""
+    },
+    "voip",
+  )
+  assert_eq(p.extension, "")
+  assert_eq(@dialnumber.format_international(p), "+883 510 012 345 678")
+  assert_eq(@dialnumber.format_national(p, "001"), Some("510 012 345 678"))
+  assert_eq(
+    @dialnumber.parse(
+      "+" + p.country_code.to_string() + " " + "510 012 345 678",
+      "",
+    ),
+    Some(p),
+  )
+  assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))
+  assert_eq(@dialnumber.parse_tel_uri("tel:+883-510-012-345-678"), Some(p))
+}
+
+///|
+test "original Google Java oracle: phone-117" {
+  let p = @dialnumber.parse("+97912345678", "").unwrap()
+  assert_eq(@dialnumber.is_valid(p), false)
+  assert_eq(@dialnumber.is_possible(p), true)
+  assert_eq(@dialnumber.format_e164(p), "+97912345678")
+  assert_eq(@dialnumber.region_of_number(p).unwrap_or(""), "001")
+  assert_eq(
+    match @dialnumber.number_type(p) {
+      Some(t) => t.to_string()
+      None => ""
+    },
+    "",
+  )
+  assert_eq(p.extension, "")
+  assert_eq(@dialnumber.format_international(p), "+979 12345678")
+  assert_eq(@dialnumber.format_national(p, "001"), Some("12345678"))
 }
 
 ///|

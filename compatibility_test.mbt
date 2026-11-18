@@ -80364,6 +80364,18 @@ test "end-to-end oracle: 001" {
           }).to_string(),
         )
       }
+      if @dialnumber.format_international(p) != "+800 1234 5678" {
+        differences.push(
+          "001:+80012345678/international expected=+800 1234 5678 actual=" +
+          @dialnumber.format_international(p).to_string(),
+        )
+      }
+      if @dialnumber.format_national(p, "001").unwrap_or("") != "1234 5678" {
+        differences.push(
+          "001:+80012345678/national expected=1234 5678 actual=" +
+          @dialnumber.format_national(p, "001").unwrap_or("").to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+8001234", "") {
@@ -80463,6 +80475,18 @@ test "end-to-end oracle: 001" {
             Some(t) => t.to_string()
             None => ""
           }).to_string(),
+        )
+      }
+      if @dialnumber.format_international(p) != "+808 1234 5678" {
+        differences.push(
+          "001:+80812345678/international expected=+808 1234 5678 actual=" +
+          @dialnumber.format_international(p).to_string(),
+        )
+      }
+      if @dialnumber.format_national(p, "001").unwrap_or("") != "1234 5678" {
+        differences.push(
+          "001:+80812345678/national expected=1234 5678 actual=" +
+          @dialnumber.format_national(p, "001").unwrap_or("").to_string(),
         )
       }
     }
@@ -80566,6 +80590,18 @@ test "end-to-end oracle: 001" {
           }).to_string(),
         )
       }
+      if @dialnumber.format_international(p) != "+870 301 234 567" {
+        differences.push(
+          "001:+870301234567/international expected=+870 301 234 567 actual=" +
+          @dialnumber.format_international(p).to_string(),
+        )
+      }
+      if @dialnumber.format_national(p, "001").unwrap_or("") != "301 234 567" {
+        differences.push(
+          "001:+870301234567/national expected=301 234 567 actual=" +
+          @dialnumber.format_national(p, "001").unwrap_or("").to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+87030123", "") {
@@ -80666,6 +80702,18 @@ test "end-to-end oracle: 001" {
             Some(t) => t.to_string()
             None => ""
           }).to_string(),
+        )
+      }
+      if @dialnumber.format_international(p) != "+878 10 12345 67890" {
+        differences.push(
+          "001:+878101234567890/international expected=+878 10 12345 67890 actual=" +
+          @dialnumber.format_international(p).to_string(),
+        )
+      }
+      if @dialnumber.format_national(p, "001").unwrap_or("") != "10 12345 67890" {
+        differences.push(
+          "001:+878101234567890/national expected=10 12345 67890 actual=" +
+          @dialnumber.format_national(p, "001").unwrap_or("").to_string(),
         )
       }
     }
@@ -80771,6 +80819,18 @@ test "end-to-end oracle: 001" {
           }).to_string(),
         )
       }
+      if @dialnumber.format_international(p) != "+881 6 123 456789" {
+        differences.push(
+          "001:+8816123456789/international expected=+881 6 123 456789 actual=" +
+          @dialnumber.format_international(p).to_string(),
+        )
+      }
+      if @dialnumber.format_national(p, "001").unwrap_or("") != "6 123 456789" {
+        differences.push(
+          "001:+8816123456789/national expected=6 123 456789 actual=" +
+          @dialnumber.format_national(p, "001").unwrap_or("").to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+881612345", "") {
@@ -80870,6 +80930,18 @@ test "end-to-end oracle: 001" {
             Some(t) => t.to_string()
             None => ""
           }).to_string(),
+        )
+      }
+      if @dialnumber.format_international(p) != "+882 13 00 1234" {
+        differences.push(
+          "001:+88213001234/international expected=+882 13 00 1234 actual=" +
+          @dialnumber.format_international(p).to_string(),
+        )
+      }
+      if @dialnumber.format_national(p, "001").unwrap_or("") != "13 00 1234" {
+        differences.push(
+          "001:+88213001234/national expected=13 00 1234 actual=" +
+          @dialnumber.format_national(p, "001").unwrap_or("").to_string(),
         )
       }
     }
@@ -80973,6 +81045,18 @@ test "end-to-end oracle: 001" {
           }).to_string(),
         )
       }
+      if @dialnumber.format_international(p) != "+883 510 012 345" {
+        differences.push(
+          "001:+883510012345/international expected=+883 510 012 345 actual=" +
+          @dialnumber.format_international(p).to_string(),
+        )
+      }
+      if @dialnumber.format_national(p, "001").unwrap_or("") != "510 012 345" {
+        differences.push(
+          "001:+883510012345/national expected=510 012 345 actual=" +
+          @dialnumber.format_national(p, "001").unwrap_or("").to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+88351001", "") {
@@ -81074,6 +81158,18 @@ test "end-to-end oracle: 001" {
           }).to_string(),
         )
       }
+      if @dialnumber.format_international(p) != "+888 123 456 78901" {
+        differences.push(
+          "001:+88812345678901/international expected=+888 123 456 78901 actual=" +
+          @dialnumber.format_international(p).to_string(),
+        )
+      }
+      if @dialnumber.format_national(p, "001").unwrap_or("") != "123 456 78901" {
+        differences.push(
+          "001:+88812345678901/national expected=123 456 78901 actual=" +
+          @dialnumber.format_national(p, "001").unwrap_or("").to_string(),
+        )
+      }
     }
   }
   match @dialnumber.parse("+8881234567", "") {
@@ -81173,6 +81269,18 @@ test "end-to-end oracle: 001" {
             Some(t) => t.to_string()
             None => ""
           }).to_string(),
+        )
+      }
+      if @dialnumber.format_international(p) != "+979 1 2345 6789" {
+        differences.push(
+          "001:+979123456789/international expected=+979 1 2345 6789 actual=" +
+          @dialnumber.format_international(p).to_string(),
+        )
+      }
+      if @dialnumber.format_national(p, "001").unwrap_or("") != "1 2345 6789" {
+        differences.push(
+          "001:+979123456789/national expected=1 2345 6789 actual=" +
+          @dialnumber.format_national(p, "001").unwrap_or("").to_string(),
         )
       }
     }

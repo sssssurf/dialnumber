@@ -251,7 +251,8 @@ fn format_leading_matches(f : PhoneFormat, national_number : String) -> Bool {
 /// Render a national number through a plan's formatting rules. None when no rule
 /// fits, which the callers turn into the ungrouped form.
 fn render_with_formats(
-  r : Region,
+  formats : Array[PhoneFormat],
+  national_prefix : String,
   national_number : String,
   international : Bool,
 ) -> String? {
@@ -261,7 +262,7 @@ fn render_with_formats(
       return None
     }
   }
-  for f in formats_of(r) {
+  for f in formats {
     if !format_leading_matches(f, national_number) {
       continue
     }
@@ -283,7 +284,7 @@ fn render_with_formats(
         f.format
       }
     } else if f.prefix_rule != "" {
-      national_format_rule(f.format, f.prefix_rule, r.national_prefix)
+      national_format_rule(f.format, f.prefix_rule, national_prefix)
     } else {
       f.format
     }
@@ -306,13 +307,25 @@ pub fn format_e164(pn : PhoneNumber) -> String {
 /// no rule for the number's shape.
 fn format_international_base(pn : PhoneNumber) -> String {
   let base = "+" + pn.country_code.to_string() + " "
+  if find_non_geo(pn.country_code) is Some(network) {
+    return base +
+      render_with_formats(network.formats, "", pn.national_number, true).unwrap_or(
+        pn.national_number,
+      )
+  }
   match region_of_number(pn) {
     None => base + pn.national_number
     Some(code) =>
       match find_region(code) {
         None => base + pn.national_number
         Some(r) =>
-          match render_with_formats(r, pn.national_number, true) {
+          match
+            render_with_formats(
+              formats_of(r),
+              r.national_prefix,
+              pn.national_number,
+              true,
+            ) {
             None => base + pn.national_number
             Some(v) => base + v
           }
@@ -328,13 +341,30 @@ fn format_international_base(pn : PhoneNumber) -> String {
 /// publishes no rule for the shape falls back to trunk prefix plus ungrouped
 /// number.
 fn format_national_base(pn : PhoneNumber, region : String) -> String? {
+  if region == "001" {
+    return match find_non_geo(pn.country_code) {
+      Some(network) =>
+        Some(
+          render_with_formats(network.formats, "", pn.national_number, false).unwrap_or(
+            pn.national_number,
+          ),
+        )
+      None => None
+    }
+  }
   match find_region(region) {
     None => None
     Some(r) =>
       if r.calling_code != pn.country_code {
         None
       } else {
-        match render_with_formats(r, pn.national_number, false) {
+        match
+          render_with_formats(
+            formats_of(r),
+            r.national_prefix,
+            pn.national_number,
+            false,
+          ) {
           Some(v) => Some(v)
           None => Some(pn.national_number)
         }
@@ -442,7 +472,8 @@ pub fn format_dialling(pn : PhoneNumber, from_region : String) -> String? {
 /// The RFC 3966 `tel:` URI. The extension, when present, becomes `;ext=`. The
 /// subscriber is the ungrouped E.164 number, as the grammar expects.
 pub fn format_rfc3966(pn : PhoneNumber) -> String {
-  if !region_exists_at_code(pn.country_code) || !is_all_digits(pn.national_number) {
+  if !region_exists_at_code(pn.country_code) ||
+    !is_all_digits(pn.national_number) {
     return "tel:invalid"
   }
   match

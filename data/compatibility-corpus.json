@@ -6,7 +6,7 @@
     "license": "MIT",
     "sha256": "c9f0a3e7655b6483d5a00f4c52fa2febb5cb783181e2a9d82e81e6cbcd1972cb",
     "numberingPlansSha256": "5c811eac9ada01cf38b2102486c8ba4550f8abb0dc526beebf6cb83de35bd0cb",
-    "adapterSha256": "4ce4fbf417d99e4e56fadc7c5a9a810450937917ef981da2a9e58520208d2866"
+    "adapterSha256": "7fb4441f882a0762cddc9632d9ded5c090acbd1893baf3d2faaf212df38cedb1"
   },
   "rows": [
     {
@@ -22657,7 +22657,9 @@
       "possible": true,
       "region": "001",
       "type": "toll-free",
-      "extension": ""
+      "extension": "",
+      "international": "+800 1234 5678",
+      "national": "1234 5678"
     },
     {
       "id": "001:+80012345678:short",
@@ -22687,7 +22689,9 @@
       "possible": true,
       "region": "001",
       "type": "shared-cost",
-      "extension": ""
+      "extension": "",
+      "international": "+808 1234 5678",
+      "national": "1234 5678"
     },
     {
       "id": "001:+80812345678:short",
@@ -22717,7 +22721,9 @@
       "possible": true,
       "region": "001",
       "type": "mobile",
-      "extension": ""
+      "extension": "",
+      "international": "+870 301 234 567",
+      "national": "301 234 567"
     },
     {
       "id": "001:+870301234567:short",
@@ -22747,7 +22753,9 @@
       "possible": true,
       "region": "001",
       "type": "voip",
-      "extension": ""
+      "extension": "",
+      "international": "+878 10 12345 67890",
+      "national": "10 12345 67890"
     },
     {
       "id": "001:+878101234567890:short",
@@ -22777,7 +22785,9 @@
       "possible": true,
       "region": "001",
       "type": "mobile",
-      "extension": ""
+      "extension": "",
+      "international": "+881 6 123 456789",
+      "national": "6 123 456789"
     },
     {
       "id": "001:+8816123456789:short",
@@ -22807,7 +22817,9 @@
       "possible": true,
       "region": "001",
       "type": "voip",
-      "extension": ""
+      "extension": "",
+      "international": "+882 13 00 1234",
+      "national": "13 00 1234"
     },
     {
       "id": "001:+88213001234:short",
@@ -22837,7 +22849,9 @@
       "possible": true,
       "region": "001",
       "type": "voip",
-      "extension": ""
+      "extension": "",
+      "international": "+883 510 012 345",
+      "national": "510 012 345"
     },
     {
       "id": "001:+883510012345:short",
@@ -22867,7 +22881,9 @@
       "possible": true,
       "region": "001",
       "type": "uan",
-      "extension": ""
+      "extension": "",
+      "international": "+888 123 456 78901",
+      "national": "123 456 78901"
     },
     {
       "id": "001:+88812345678901:short",
@@ -22897,7 +22913,9 @@
       "possible": true,
       "region": "001",
       "type": "premium-rate",
-      "extension": ""
+      "extension": "",
+      "international": "+979 1 2345 6789",
+      "national": "1 2345 6789"
     },
     {
       "id": "001:+979123456789:short",

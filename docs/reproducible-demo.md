@@ -262,7 +262,7 @@ node scripts/check-docs.mjs
 ## Test summary
 
 ```text
-Total tests: 780, passed: 780, failed: 0.
+Total tests: 792, passed: 792, failed: 0.
 ```
 
 ## Verifying the documentation itself
@@ -277,10 +277,10 @@ text in this repository.
 ## Current audit checks and historical dates
 
 The original October check was recorded on 2026-10-27. This page's current
-literal output and test summary use the 2026-11-17 0.11.0 release. The toolchain
-is moon 0.1.20261104 and moonc v0.10.20+65efd5b93. The suite contains 780 tests.
+literal output and test summary use the 2026-11-18 0.12.0 release. The toolchain
+is moon 0.1.20261117 and moonc v0.10.21+06da1ed44. The suite contains 792 tests.
 The independent JavaScript corpus and its 15 differing cases / 28 fields are
-recorded in compatibility.md. The original Java recording now has 121 scenarios;
+recorded in compatibility.md. The original Java recording now has 130 scenarios;
 see google-compatibility.md. The old October/0.9.0 results are historical records,
 not a claim that the November repairs existed before the contest deadline.
 

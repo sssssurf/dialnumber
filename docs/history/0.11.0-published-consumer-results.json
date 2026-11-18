@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-17T00:55:37.103Z",
+  "module": "sssssurf/dialnumber",
+  "version": "0.11.0",
+  "source": "Mooncakes registry dependency in a separate module; no local path override",
+  "status": "passed",
+  "resolvedVersion": "0.11.0",
+  "output": [
+    "e164: +442079460958",
+    "valid: true",
+    "network_region: 001",
+    "network_valid: true",
+    "different_country_match: none",
+    "as_you_type: 020 7946 0958",
+    "numeric_context: +4930123456",
+    "explicit_authority: +12015550123"
+  ],
+  "reviewOutput": [
+    "argentina_e164: +5491123456789",
+    "argentina_valid: true",
+    "argentina_national: 011 15-2345-6789",
+    "national_roundtrip: true",
+    "overflow_well_formed: false",
+    "overflow_matches_empty: false",
+    "uppercase_mandatory_rejected: true",
+    "duplicate_parameter_rejected: true",
+    "carrier_idd_e164: +442079460958",
+    "extension_display: +44 20 7946 0958 x0042",
+    "unassigned_length_possible: true",
+    "canada_local_uan_valid: true",
+    "context_does_not_dial_out: true",
+    "global_uri_not_rewritten: true",
+    "canonical_tel_parameters: tel:+442079460958;isub=A[8];route=a%2Bb"
+  ],
+  "installedDependency": {
+    "name": "sssssurf/dialnumber",
+    "version": "0.11.0",
+    "source": {
+      "kind": "registry"
+    },
+    "workspace_member": false
+  },
+  "archiveSha256": "111150355191c2f87ed0d66b916e1f125d8f88f9453135a00959e3b1eef5efdb",
+  "registryChecksumMatches": true,
+  "sourceFilesCompared": 48,
+  "compiledSourceSha256": "73fa39faa248e14e69f960b7434f95792a065a75dc75f2c80356a64cd82bdd42",
+  "releaseCodeCommit": "286afeaa91cba40ca840286bc754429b6ce809bb",
+  "releaseCodeCi": "https://github.com/sssssurf/dialnumber/actions/runs/43990806672",
+  "releaseCodeCiStatus": "success"
+}

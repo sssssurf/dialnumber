@@ -10,6 +10,7 @@ priv struct NonGeoPlan {
   calling_code : Int32
   general : String
   types : Array[PlanType]
+  formats : Array[PhoneFormat]
 }
 
 ///|
@@ -17,8 +18,9 @@ fn plan_non_geo(
   calling_code : Int32,
   general : String,
   types : Array[PlanType],
+  formats : Array[PhoneFormat],
 ) -> NonGeoPlan {
-  { calling_code, general, types, }
+  { calling_code, general, types, formats, }
 }
 
 ///|
@@ -42,7 +44,8 @@ fn non_geo_possible(pn : PhoneNumber) -> Bool {
     None => false
     Some(p) => {
       for t in p.types {
-        if t.national.contains(pn.national_number.length()) {
+        if t.national.contains(pn.national_number.length()) ||
+          t.local_only.contains(pn.national_number.length()) {
           return true
         }
       }

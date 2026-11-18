@@ -1,8 +1,8 @@
 # dialnumber
 
-Version **0.11.0** separates human input normalization from RFC 3966 URI
-resolution and verifies every published plan example through three rendering
-paths. See the [November 17 review](docs/完整复核.md).
+Version **0.12.0** adds metadata-driven display and incremental grouping for
+all nine non-geographic networks, and accepts spaced extension markers such as
+`x 0042`. See the [November acceptance record](docs/十一月验收.md).
 
 
 Version 0.9.0 repairs the formal acceptance findings received after the October
@@ -28,10 +28,11 @@ pipeline regenerates the whole table from Google's libphonenumber metadata with 
 recorded checksum. Every public function is total — bad input comes back as
 `None` or `false`, never as an exception.
 
-## October acceptance
+## Acceptance and maintenance
 
-The project has already passed application review. Final acceptance materials:
-[criteria and evidence](docs/验收材料.md),
+Current [November criteria and evidence](docs/十一月验收.md) document substantial
+maintenance work. The October application passed initial review, but the formal
+submission was rejected. Historical [October materials](docs/验收材料.md),
 [development decisions and AI use](docs/development-retrospective.md),
 [delivery status](docs/acceptance-status.md).
 
@@ -80,7 +81,7 @@ For a small public-API example, run moon run --target js examples/basic.
 - [Response to the initial review](docs/初审补充说明.md).
 
 The original Google Java libphonenumber 9.0.17 is also executed directly for
-121 scenarios (109 phone workflows, six comparisons, six typing traces). See
+130 scenarios (118 phone workflows, six comparisons, six typing traces). See
 [the direct Java comparison](docs/google-compatibility.md), including all
 13 intermediate spacing/parenthesis differences.
 
@@ -453,7 +454,7 @@ regression shows up as a number, not as an opinion.
 
 ## Tests
 
-780 tests cover the public API, the pattern engine, the formatting rules, the
+792 tests cover the public API, the pattern engine, the formatting rules, the
 generated table, the `tel:` grammar, the invariants of random input, and
 robustness against malformed input. The bulk of them are generated from the same
 data the library ships, so a data refresh grows the suite with it:

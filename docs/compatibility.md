@@ -12,6 +12,7 @@ provenance are committed in `data/compatibility-corpus.json`.
   overlong negatives, and eight national-input formatting scenarios.
 - Parse → E.164 → possible/valid → region/type; formatting scenarios also
   compare the national and international renderings.
+- All nine non-geographic positive scenarios also compare both display forms.
 - For deliberately invalid inputs, only rejection by possible/valid is
   compared. The structural parser may accept text that the oracle rejects;
   that does not make the input a valid telephone number.

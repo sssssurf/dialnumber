@@ -36,6 +36,10 @@ phones.push(['GB','442079460958'], ['GB','+44 (0)20 7946 0958'],
   ['US','+11111234567'], ['US','+10000000000'],
   ['US','+13101234'], ['US','+15550123'],
   ['US','3101234'], ['CA','3101234'], ['US','5550123']);
+phones.push(['US','2015550123 x 0042'], ['GB','02079460958 # 0042'],
+  ['DE','030123456 X 0042'], ['US','2015550123 ext. 0042'],
+  ['','+80012345678 ext 0042'], ['','+88234851234567'],
+  ['','+88161234567890'], ['','+883510012345678'], ['','+97912345678']);
 const traces = [['GB','02079460958'],['US','2015550123'],['US','12015550123'],
   ['US','+442079460958'],['JP','09012345678'],['US','201555012345678']];
 const matches = [[1,'2015550123',1,'2015550123','',''],
@@ -116,14 +120,16 @@ for (const row of doc.rows) {
       `  assert_eq(@dialnumber.region_of_number(p).unwrap_or(""), ${q(row[5])})`,
       `  assert_eq(match @dialnumber.number_type(p) { Some(t) => t.to_string(); None => "" }, ${q(row[6])})`,
       `  assert_eq(p.extension, ${q(row[9])})`);
-    // Non-geographic grouping is a separately documented remaining boundary.
-    // Cross-country IDD hints are not the resolved national formatting plan.
-    const formatRegion = row[5] && row[5] !== '001' ? row[5] : hint;
+    // Network 001 has its own formats. The original Java reference now checks
+    // both network displays along with all geographic formatting assertions.
+    const formatRegion = row[5] || hint;
     if (formatRegion) out.push(
       `  assert_eq(@dialnumber.format_international(p), ${q(row[7])})`,
       `  assert_eq(@dialnumber.format_national(p, ${q(formatRegion)}), Some(${q(row[8])}))`);
     if (row[2] === 'true') {
-      if (formatRegion) out.push(`  assert_eq(@dialnumber.parse(${q(row[8])}, ${q(formatRegion)}), Some(p))`);
+      if (formatRegion === '001') {
+        out.push(`  assert_eq(@dialnumber.parse("+" + p.country_code.to_string() + " " + ${q(row[8])}, ""), Some(p))`);
+      } else if (formatRegion) out.push(`  assert_eq(@dialnumber.parse(${q(row[8])}, ${q(formatRegion)}), Some(p))`);
       out.push(`  assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))`,
         `  assert_eq(@dialnumber.parse_tel_uri(${q(row[10])}), Some(p))`);
     }
@@ -170,8 +176,9 @@ const report = ['# Direct verification against Google Java libphonenumber', '',
   '  and all nine non-geographic networks.',
   '  E.164, possibility, validity, region',
   '  number type and preserved extension are asserted even for invalid cases.',
-  '  Geographic formatting is asserted against the resolved national region.',
-  '  Valid cases also parse back the reference national and RFC3966 forms and',
+  '  Geographic and non-geographic international and national formatting are asserted.',
+  '  A network display needs its explicit calling code to parse back, since 001',
+  '  denotes nine networks. Valid cases also parse the reference RFC3966 forms and',
   '  the library RFC3966 output, preserving the complete PhoneNumber.',
   '  The recorded possible-reason column distinguishes local-only possibility.',
   '- Six number comparisons use PhoneNumberUtil.isNumberMatch directly and agree,',
@@ -186,7 +193,7 @@ const report = ['# Direct verification against Google Java libphonenumber', '',
   'prefixes; Java delays parentheses. Java adds a space after a complete calling',
   'code before the next digit. These are presentation differences, not discarded',
   'digits or a change of telephone destination. This suite does not claim full',
-  'global Java parity or network grouping parity for non-geographic formatting.', '',
+  'global Java parity. Network display grouping is checked for the recorded cases.', '',
   '## Reproduce offline', '', fence+'bash',
   'node scripts/gen-google-compat.mjs --check', 'moon test --target wasm-gc', fence, '',
   '## Recreate the reference recording', '',

@@ -94,3 +94,18 @@ controls and seven intentionally damaged scratch recordings.
 Adapter hashes canonicalize CRLF to LF before hashing, so Windows and Linux
 check the same source content. Official JAR/XML/npm metadata hashes remain exact
 byte hashes. New recordings were executed again after this portability repair.
+
+## November 18 network formats
+
+The network table retains its validation patterns and adds formatting rules
+from original Google XML v9.0.17. The pinned XML SHA-256 and extraction script
+are recorded under meta.formatSource. Local-only lengths are supplemented only
+when the original validation pattern agrees. The older XML never replaces a
+newer validation pattern. Rebuild with the same XML used by the Java oracle:
+
+    node scripts/import-network-formats.mjs --xml /path/to/PhoneNumberMetadata-v9.0.17.xml
+    node scripts/gen-non-geo.mjs --check
+
+The normal XML updater also preserves network formats, local-only lengths and
+the network-table checksum. Original Java verification now includes 130
+scenarios, with both national and international network displays asserted.
