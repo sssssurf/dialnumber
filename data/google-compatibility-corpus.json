@@ -4,10 +4,31 @@
     "version": "9.0.17",
     "license": "Apache-2.0",
     "jarSha256": "c280b2493de61a070edbc9a83e27023dfd0453cc1295601a48802af907926bcd",
-    "adapterSha256": "4d1729e5ff6132931bfc3e519c66099bd4dac5e5d8fb1f5cd29607f8f9372ec1",
+    "adapterSha256": "1d8dc68c3b8e56ec4999378440b5e168f697a8b03cba56e0e925a8dbe2e9f9fd",
     "url": "https://repo.maven.apache.org/maven2/com/googlecode/libphonenumber/libphonenumber/9.0.17/libphonenumber-9.0.17.jar"
   },
   "requests": [
+    [
+      "reject-0",
+      "reject",
+      "US",
+      "                                                                                                                                                                                                                                               +12015550123",
+      "TOO_LONG"
+    ],
+    [
+      "reject-1",
+      "reject",
+      "",
+      "99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999",
+      "TOO_LONG"
+    ],
+    [
+      "reject-2",
+      "reject",
+      "GB",
+      "02079460958                                                                                                                                                                                                                                                ",
+      "TOO_LONG"
+    ],
     [
       "phone-0",
       "phone",
@@ -717,6 +738,12 @@
       "+97912345678"
     ],
     [
+      "phone-118",
+      "phone",
+      "US",
+      "                                                                                                                                                                                                                                              +12015550123"
+    ],
+    [
       "typing-0",
       "typing",
       "GB",
@@ -814,6 +841,21 @@
     ]
   ],
   "rows": [
+    [
+      "reject-0",
+      "reject",
+      "TOO_LONG"
+    ],
+    [
+      "reject-1",
+      "reject",
+      "TOO_LONG"
+    ],
+    [
+      "reject-2",
+      "reject",
+      "TOO_LONG"
+    ],
     [
       "phone-0",
       "phone",
@@ -2465,6 +2507,20 @@
       "",
       "tel:+979-12345678",
       "IS_POSSIBLE_LOCAL_ONLY"
+    ],
+    [
+      "phone-118",
+      "phone",
+      "true",
+      "true",
+      "+12015550123",
+      "US",
+      "fixed-line-or-mobile",
+      "+1 201-555-0123",
+      "(201) 555-0123",
+      "",
+      "tel:+1-201-555-0123",
+      "IS_POSSIBLE"
     ],
     [
       "typing-0",

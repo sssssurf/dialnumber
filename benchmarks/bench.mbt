@@ -8,13 +8,26 @@
 // parsing is string work, validation is pattern work, formatting is table work.
 
 ///|
-let us_number : @dialnumber.PhoneNumber = @dialnumber.PhoneNumber::new(1, "2015550123")
+let us_number : @dialnumber.PhoneNumber = @dialnumber.PhoneNumber::new(
+  1, "2015550123",
+)
 
 ///|
-let gb_number : @dialnumber.PhoneNumber = @dialnumber.PhoneNumber::new(44, "2079460958")
+let gb_number : @dialnumber.PhoneNumber = @dialnumber.PhoneNumber::new(
+  44, "2079460958",
+)
 
 ///|
 let gb_rule : String = "(?:2(?:0[3-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])|3(?:0[0-9]|1[0-9]))\\d{7}"
+
+///|
+let ready_formatter : @dialnumber.AsYouTypeFormatter = {
+  let formatter = @dialnumber.AsYouTypeFormatter::new("GB")
+  for c in "02079460958" {
+    let _ = formatter.input_digit(c)
+  }
+  formatter
+}
 
 ///|
 test "bench: parse an E.164 number" (it : @bench.T) {
@@ -28,7 +41,9 @@ test "bench: parse a national number" (it : @bench.T) {
 
 ///|
 test "bench: parse a tel: URI" (it : @bench.T) {
-  it.bench(fn() { it.keep(@dialnumber.parse_tel_uri("tel:+12015550123;ext=42")) })
+  it.bench(fn() {
+    it.keep(@dialnumber.parse_tel_uri("tel:+12015550123;ext=42"))
+  })
 }
 
 ///|
@@ -74,4 +89,14 @@ test "bench: format_national" (it : @bench.T) {
 ///|
 test "bench: matches_pattern on a plan rule" (it : @bench.T) {
   it.bench(fn() { it.keep(@dialnumber.matches_pattern(gb_rule, "2079460958")) })
+}
+
+///|
+test "bench: Argentina domestic capture transform" (it : @bench.T) {
+  it.bench(fn() { it.keep(@dialnumber.parse("011 15-2345-6789", "AR")) })
+}
+
+///|
+test "bench: reread unchanged typing output" (it : @bench.T) {
+  it.bench(fn() { it.keep(ready_formatter.current_output()) })
 }

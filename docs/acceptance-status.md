@@ -1,9 +1,9 @@
 # Acceptance status
 
-Updated: 2026-11-18. Current version: 0.12.0.
+Updated: 2026-11-19. Current version: 0.13.0.
 
 The November submission materials are in 十一月验收.md. They identify the
-current maintenance work against the 0.11.0 baseline and link measured
+current maintenance work against the 0.12.0 baseline and link measured
 verification and publication results. Organizer review is pending.
 
 - Application review: passed, as confirmed by the participant's organizer email.
@@ -14,15 +14,15 @@ verification and publication results. Organizer review is pending.
   Version 0.11.0 separates URI resolution from human-input normalization and
   exercises three round trips for all 1,132 plan examples.
 - Current engineering evidence: acceptance-results.json. All four targets pass
-  792 tests per target. The report records generator, integrity, example,
+  799 tests per target. The report records generator, integrity, example,
   documentation, benchmark and package checks.
 - Publication, registry dependency and example output are recorded in
   published-consumer-results.json for the current version.
 - Supplement/re-review: not submitted by this tool. The organizer must decide
   whether the post-deadline repairs may be considered; no final approval is claimed.
 
-The current reference coverage has 130 original Google Java scenarios, including
-118 phone workflows, six comparisons and six typing traces; 2,299 JavaScript
+The current reference coverage has 134 original Google Java scenarios, including
+119 phone workflows, three rejected inputs, six comparisons and six typing traces; 2,299 JavaScript
 inputs and six typing traces; and 1,872 independent capture cases across all
 32 transform plans. The corpus integrity check uses two passing controls and
 seven corruptions that must fail for their specific integrity error.

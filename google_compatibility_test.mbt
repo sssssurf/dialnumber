@@ -2,6 +2,39 @@
 // Google libphonenumber 9.0.17. No Java runtime is needed by these tests.
 
 ///|
+test "original Google Java oracle: reject-0" {
+  assert_true(
+    @dialnumber.parse(
+      "                                                                                                                                                                                                                                               +12015550123",
+      "US",
+    )
+    is None,
+  )
+}
+
+///|
+test "original Google Java oracle: reject-1" {
+  assert_true(
+    @dialnumber.parse(
+      "99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999",
+      "",
+    )
+    is None,
+  )
+}
+
+///|
+test "original Google Java oracle: reject-2" {
+  assert_true(
+    @dialnumber.parse(
+      "02079460958                                                                                                                                                                                                                                                ",
+      "GB",
+    )
+    is None,
+  )
+}
+
+///|
 test "original Google Java oracle: phone-0" {
   let p = @dialnumber.parse("020 7946 0958", "GB").unwrap()
   assert_eq(@dialnumber.is_valid(p), true)
@@ -2655,6 +2688,31 @@ test "original Google Java oracle: phone-117" {
   assert_eq(p.extension, "")
   assert_eq(@dialnumber.format_international(p), "+979 12345678")
   assert_eq(@dialnumber.format_national(p, "001"), Some("12345678"))
+}
+
+///|
+test "original Google Java oracle: phone-118" {
+  let p = @dialnumber.parse(
+    "                                                                                                                                                                                                                                              +12015550123",
+    "US",
+  ).unwrap()
+  assert_eq(@dialnumber.is_valid(p), true)
+  assert_eq(@dialnumber.is_possible(p), true)
+  assert_eq(@dialnumber.format_e164(p), "+12015550123")
+  assert_eq(@dialnumber.region_of_number(p).unwrap_or(""), "US")
+  assert_eq(
+    match @dialnumber.number_type(p) {
+      Some(t) => t.to_string()
+      None => ""
+    },
+    "fixed-line-or-mobile",
+  )
+  assert_eq(p.extension, "")
+  assert_eq(@dialnumber.format_international(p), "+1 201-555-0123")
+  assert_eq(@dialnumber.format_national(p, "US"), Some("(201) 555-0123"))
+  assert_eq(@dialnumber.parse("(201) 555-0123", "US"), Some(p))
+  assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))
+  assert_eq(@dialnumber.parse_tel_uri("tel:+1-201-555-0123"), Some(p))
 }
 
 ///|

@@ -4,6 +4,17 @@ All notable changes to this project are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.13.0] - 2026-11-19
+
+- Add remove_last_digit to incremental formatting and retain the rendering until
+  the next accepted edit. Clear and ignored keys keep consistent output.
+- Index the fixed region/calling-code tables and cache prefix syntax trees and
+  format groups per metadata row, preserving ordering and reference behavior.
+- Limit raw human-input parsing to 250 UTF-16 units before trimming. Previously
+  accepted longer padded inputs now reject, matching original Google Java.
+- Extend original Java recording to 134 scenarios, including the accepted limit
+  and three TOO_LONG cases. Add editing regression and workload benchmarks.
+
 ## [0.12.0] - 2026-11-18
 
 - Add the nine non-geographic networks' original national and international

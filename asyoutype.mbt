@@ -11,24 +11,38 @@
 pub(all) struct AsYouTypeFormatter {
   priv region : String
   priv mut digits : String
+  priv mut output : String?
 }
 
 ///|
 /// Start a formatter for a region. An unknown region still consumes digits; it
 /// simply has no rules to group them with.
 pub fn AsYouTypeFormatter::new(region : String) -> AsYouTypeFormatter {
-  { region, digits: "", }
+  { region, digits: "", output: Some(""), }
 }
 
 ///|
 /// Forget what has been typed.
 pub fn AsYouTypeFormatter::clear(self : AsYouTypeFormatter) -> Unit {
   self.digits = ""
+  self.output = Some("")
 }
 
 ///|
 /// The rendering of the digits typed so far.
 pub fn AsYouTypeFormatter::current_output(self : AsYouTypeFormatter) -> String {
+  match self.output {
+    Some(value) => value
+    None => {
+      let value = self.render_output()
+      self.output = Some(value)
+      value
+    }
+  }
+}
+
+///|
+fn AsYouTypeFormatter::render_output(self : AsYouTypeFormatter) -> String {
   let text = self.digits
   if starts_with(text, "+") {
     let body = digits_of(text)
@@ -116,6 +130,20 @@ pub fn AsYouTypeFormatter::input_digit(
 ) -> String {
   if is_digit(digit) || (digit == '+' && self.digits == "") {
     self.digits = self.digits + digit.to_string()
+    self.output = None
+  }
+  self.current_output()
+}
+
+///|
+/// Remove the last accepted digit (or the initial '+') and regroup the rest.
+/// An empty formatter remains empty. Ignored keystrokes are never stored.
+pub fn AsYouTypeFormatter::remove_last_digit(
+  self : AsYouTypeFormatter,
+) -> String {
+  if self.digits != "" {
+    self.digits = self.digits[0:self.digits.length() - 1].to_owned()
+    self.output = None
   }
   self.current_output()
 }
@@ -167,7 +195,7 @@ fn render_partial(
     if !format_leading_matches(f, digits) {
       continue
     }
-    let groups = match parse_format_groups(f.pattern) {
+    let groups = match format_groups(f) {
       None => continue
       Some(g) => g
     }

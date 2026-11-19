@@ -9,6 +9,26 @@ priv struct PrefixMatch {
 }
 
 ///|
+priv struct PrefixProgram {
+  pattern : String
+  node : PatNode
+  groups : Int32
+}
+
+///|
+fn compile_prefix(pattern : String) -> PrefixProgram? {
+  let node = match parse_pattern(pattern) {
+    None => return None
+    Some(v) => v
+  }
+  Some({
+    pattern,
+    node,
+    groups: capture_count(chars_of(pattern), pattern.length()) + 1,
+  })
+}
+
+///|
 fn prefix_eval(
   node : PatNode,
   src : Array[Char],
@@ -126,19 +146,41 @@ fn prefix_eval(
 }
 
 ///|
-fn match_national_prefix(pattern : String, digits : String) -> PrefixMatch? {
+fn match_national_prefix(
+  pattern : String,
+  digits : String,
+  cached~ : @ref.Ref[PrefixProgram?]? = None,
+) -> PrefixMatch? {
   if digits.length() > 250 {
     return None
   }
-  let node = match parse_pattern(pattern) {
-    None => return None
-    Some(v) => v
+  let program = match cached {
+    Some(cell) =>
+      match cell.val {
+        Some(p) if p.pattern == pattern => p
+        _ => {
+          let p = match compile_prefix(pattern) {
+            None => return None
+            Some(v) => v
+          }
+          cell.val = Some(p)
+          p
+        }
+      }
+    None =>
+      match compile_prefix(pattern) {
+        None => return None
+        Some(v) => v
+      }
   }
   let captures : Array[String?] = []
-  for _ in 0..<(capture_count(chars_of(pattern), pattern.length()) + 1) {
+  for _ in 0..<program.groups {
     captures.push(None)
   }
-  let results = prefix_eval(node, chars_of(digits), { end: 0, captures, })
+  let results = prefix_eval(program.node, chars_of(digits), {
+    end: 0,
+    captures,
+  })
   if results.length() == 0 {
     None
   } else {

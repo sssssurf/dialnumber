@@ -40,13 +40,20 @@ phones.push(['US','2015550123 x 0042'], ['GB','02079460958 # 0042'],
   ['DE','030123456 X 0042'], ['US','2015550123 ext. 0042'],
   ['','+80012345678 ext 0042'], ['','+88234851234567'],
   ['','+88161234567890'], ['','+883510012345678'], ['','+97912345678']);
+phones.push(['US', ' '.repeat(238) + '+12015550123']);
+const rejections = [
+  ['US', ' '.repeat(239) + '+12015550123', 'TOO_LONG'],
+  ['', '9'.repeat(251), 'TOO_LONG'],
+  ['GB', '02079460958' + ' '.repeat(240), 'TOO_LONG'],
+];
 const traces = [['GB','02079460958'],['US','2015550123'],['US','12015550123'],
   ['US','+442079460958'],['JP','09012345678'],['US','201555012345678']];
 const matches = [[1,'2015550123',1,'2015550123','',''],
   [1,'2015550123',44,'2015550123','',''],[1,'2015550123',0,'2015550123','',''],
   [1,'2015550123',1,'5550123','',''],[1,'2015550123',1,'2015550123','42',''],
   [1,'2015550123',1,'2015550123','42','43']];
-const requests = [...phones.map(([region,input],i)=>[`phone-${i}`,'phone',region,input]),
+const requests = [...rejections.map(([region,input,reason],i)=>[`reject-${i}`,'reject',region,input,reason]),
+  ...phones.map(([region,input],i)=>[`phone-${i}`,'phone',region,input]),
   ...traces.map(([region,input],i)=>[`typing-${i}`,'typing',region,input]),
   ...matches.map((row,i)=>[`match-${i}`,'match',...row])];
 const adapterHash = crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'scripts/ReferenceOracle.java'),'utf8').replaceAll('\r\n','\n')).digest('hex');
@@ -102,6 +109,7 @@ for (const row of doc.rows) {
   if (row[1] === 'phone' && (!['true','false'].includes(row[2]) || !['true','false'].includes(row[3]))) {
     throw new Error('Invalid Java oracle verdict: '+row[0]);
   }
+  if (row[1] === 'reject' && row[2] !== request[4]) throw new Error('Wrong Java rejection reason: '+row[0]);
 }
 
 const q = JSON.stringify;
@@ -133,6 +141,8 @@ for (const row of doc.rows) {
       out.push(`  assert_eq(@dialnumber.parse_tel_uri(@dialnumber.format_rfc3966(p)), Some(p))`,
         `  assert_eq(@dialnumber.parse_tel_uri(${q(row[10])}), Some(p))`);
     }
+  } else if (row[1] === 'reject') {
+    out.push(`  assert_true(@dialnumber.parse(${q(request[3])}, ${q(request[2])}) is None)`);
   } else if (row[1] === 'typing') {
     out.push(`  let f = @dialnumber.AsYouTypeFormatter::new(${q(request[2])})`,
       '  let mismatches : Array[String] = []');
@@ -184,6 +194,8 @@ const report = ['# Direct verification against Google Java libphonenumber', '',
   '- Six number comparisons use PhoneNumberUtil.isNumberMatch directly and agree,',
   '  including different explicit calling codes, unknown code, short suffix,',
   '  missing extension and conflicting extensions.',
+  '- Three over-limit raw inputs are rejected with the original TOO_LONG reason;',
+  '  a padded 250-unit input is accepted and its full phone workflow is checked.',
   '- Six original AsYouTypeFormatter traces record every keystroke. Completed',
   '  outputs and digits agree. The following intermediate presentation differences',
   '  remain explicit, with both values retained and tested:', '',

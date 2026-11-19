@@ -1,8 +1,9 @@
 # dialnumber
 
-Version **0.12.0** adds metadata-driven display and incremental grouping for
-all nine non-geographic networks, and accepts spaced extension markers such as
-`x 0042`. See the [November acceptance record](docs/十一月验收.md).
+Version **0.13.0** adds last-digit deletion to incremental formatting, reuses
+parsed plan rules and indexes fixed metadata. Human-input parsing rejects raw
+strings above 250 UTF-16 units, matching original Google Java. See the
+[November acceptance record](docs/十一月验收.md).
 
 
 Version 0.9.0 repairs the formal acceptance findings received after the October
@@ -75,13 +76,22 @@ For a small public-API example, run moon run --target js examples/basic.
 
 - Nine non-geographic networks, with region 001 and their own length/type rules.
 - is_number_match for exact, NSN and short NSN comparison, including extension rules.
-- AsYouTypeFormatter for national or + international input, clear/reset and safe overflow.
+- AsYouTypeFormatter for national or + international input, last-digit deletion, clear/reset and safe overflow.
+
+Use `formatter.remove_last_digit()` for backspace and `formatter.clear()` to
+reset a field. `current_output()` reuses the rendering until an accepted edit;
+ignored keys never enter the buffer. Cursor insertion and arbitrary selection
+editing remain the caller's responsibility.
+
+The `parse`, `parse_e164` and `parse_national` human-input entry points limit raw
+input to 250 UTF-16 code units before trimming. Older releases accepted longer
+padded strings. Shorter invalid numbers remain parseable for separate validation.
 - An independent 2,299-case end-to-end corpus plus six per-keystroke typing traces.
   [Compatibility results and every difference](docs/compatibility.md) are committed.
 - [Response to the initial review](docs/初审补充说明.md).
 
 The original Google Java libphonenumber 9.0.17 is also executed directly for
-130 scenarios (118 phone workflows, six comparisons, six typing traces). See
+134 scenarios (119 phone workflows, three rejected inputs, six comparisons, six typing traces). See
 [the direct Java comparison](docs/google-compatibility.md), including all
 13 intermediate spacing/parenthesis differences.
 
@@ -462,7 +472,7 @@ regression shows up as a number, not as an opinion.
 
 ## Tests
 
-792 tests cover the public API, the pattern engine, the formatting rules, the
+799 tests cover the public API, the pattern engine, the formatting rules, the
 generated table, the `tel:` grammar, the invariants of random input, and
 robustness against malformed input. The bulk of them are generated from the same
 data the library ships, so a data refresh grows the suite with it:

@@ -47,6 +47,7 @@ priv struct PhoneFormat {
   /// The compiled leading-digit pattern of the rule (the last one published),
   /// memoised so rendering does not re-parse it.
   leading_rule : @ref.Ref[CompiledPattern?]
+  groups : @ref.Ref[Array[FormatGroup]?]
 }
 
 ///|
@@ -65,6 +66,7 @@ fn plan_format(
     intl_format,
     prefix_rule,
     leading_rule: @ref.Ref(None),
+    groups: @ref.Ref(None),
   }
 }
 
@@ -88,6 +90,8 @@ priv struct Region {
   /// when the plan only publishes the plain prefix.
   prefix_parsing : String
   prefix_transform : String
+  prefix_rule : @ref.Ref[PrefixProgram?]
+  idd_rule : @ref.Ref[PrefixProgram?]
   /// The territory's leading-digit pattern, or empty when it publishes none.
   leading_digits : String
   /// The compiled leading-digit pattern, memoised like the type rules.
@@ -191,6 +195,8 @@ fn plan_row(
     national_prefix,
     prefix_parsing,
     prefix_transform,
+    prefix_rule: @ref.Ref(None),
+    idd_rule: @ref.Ref(None),
     leading_digits,
     leading_rule: @ref.Ref(None),
     primary,
@@ -214,13 +220,29 @@ fn normalize_code(code : String) -> String {
 ///|
 /// Look a region up by its ISO 3166-1 alpha-2 code, case-insensitively.
 fn find_region(code : String) -> Region? {
-  let want = normalize_code(code)
+  region_index.get(normalize_code(code))
+}
+
+///|
+/// Index only the fixed generated plans. User inputs never grow these maps.
+let region_index : Map[String, Region] = {
+  let index : Map[String, Region] = Map([])
   for r in regions {
-    if r.code == want {
-      return Some(r)
+    index.set(r.code, r)
+  }
+  index
+}
+
+///|
+let calling_region_index : Map[Int32, Array[Region]] = {
+  let index : Map[Int32, Array[Region]] = Map([])
+  for r in regions {
+    match index.get(r.calling_code) {
+      Some(rows) => rows.push(r)
+      None => index.set(r.calling_code, [r])
     }
   }
-  None
+  index
 }
 
 ///|
@@ -311,8 +333,8 @@ fn formats_of(r : Region) -> Array[PhoneFormat] {
   if r.formats.length() > 0 {
     return r.formats
   }
-  for other in regions {
-    if other.calling_code == r.calling_code && other.primary {
+  for other in regions_with_code(r.calling_code) {
+    if other.primary {
       return other.formats
     }
   }
@@ -439,27 +461,25 @@ pub fn local_only_lengths(code : String) -> Array[Int32]? {
 /// wins; otherwise the first in code order. Use `regions_by_calling_code` for
 /// all of them.
 pub fn region_by_calling_code(cc : Int32) -> String? {
-  for r in regions {
-    if r.calling_code == cc && r.primary {
+  let rows = regions_with_code(cc)
+  for r in rows {
+    if r.primary {
       return Some(r.code)
     }
   }
-  for r in regions {
-    if r.calling_code == cc {
-      return Some(r.code)
-    }
+  if rows.length() == 0 {
+    None
+  } else {
+    Some(rows[0].code)
   }
-  None
 }
 
 ///|
 /// Every region that shares a calling code, in table order.
 pub fn regions_by_calling_code(cc : Int32) -> Array[String] {
   let out : Array[String] = []
-  for r in regions {
-    if r.calling_code == cc {
-      out.push(r.code)
-    }
+  for r in regions_with_code(cc) {
+    out.push(r.code)
   }
   out
 }

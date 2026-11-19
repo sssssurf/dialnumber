@@ -16,13 +16,7 @@
 ///|
 /// The regions that share a calling code, in table order.
 fn regions_with_code(cc : Int32) -> Array[Region] {
-  let out : Array[Region] = []
-  for r in regions {
-    if r.calling_code == cc {
-      out.push(r)
-    }
-  }
-  out
+  calling_region_index.get(cc).unwrap_or([])
 }
 
 ///|

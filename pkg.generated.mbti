@@ -104,6 +104,7 @@ pub fn AsYouTypeFormatter::clear(Self) -> Unit
 pub fn AsYouTypeFormatter::current_output(Self) -> String
 pub fn AsYouTypeFormatter::input_digit(Self, Char) -> String
 pub fn AsYouTypeFormatter::new(String) -> Self
+pub fn AsYouTypeFormatter::remove_last_digit(Self) -> String
 
 #derive(Eq, @debug.Debug)
 pub(all) enum NumberMatch {

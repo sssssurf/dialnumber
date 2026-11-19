@@ -83,6 +83,19 @@ fn parse_format_groups(pattern : String) -> Array[FormatGroup]? {
 }
 
 ///|
+/// Generated plan shapes are immutable; retain their parsed groups per rule.
+fn format_groups(rule : PhoneFormat) -> Array[FormatGroup]? {
+  match rule.groups.val {
+    Some(groups) => Some(groups)
+    None => {
+      let groups = parse_format_groups(rule.pattern)
+      rule.groups.val = groups
+      groups
+    }
+  }
+}
+
+///|
 /// Split `total` digits over the groups, left to right and greedily, the way a
 /// regex engine's greedy quantifiers would. None when the shapes cannot cover
 /// the number.
@@ -266,7 +279,7 @@ fn render_with_formats(
     if !format_leading_matches(f, national_number) {
       continue
     }
-    let groups = match parse_format_groups(f.pattern) {
+    let groups = match format_groups(f) {
       None => continue
       Some(g) => g
     }

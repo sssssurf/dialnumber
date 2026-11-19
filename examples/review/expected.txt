@@ -16,4 +16,6 @@ canonical_tel_parameters: tel:+442079460958;isub=A[8];route=a%2Bb
 network_international: +800 1234 5678 ext. 0042
 network_national: 1234 5678 ext. 0042
 network_typing: +800 1234 5678
+network_backspace: +800 1234 567
+over_limit_input_rejected: true
 network_local_possible: true

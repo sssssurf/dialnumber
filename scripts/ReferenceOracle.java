@@ -3,6 +3,7 @@
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 import com.google.i18n.phonenumbers.AsYouTypeFormatter;
+import com.google.i18n.phonenumbers.NumberParseException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.charset.StandardCharsets;
@@ -15,6 +16,15 @@ class ReferenceOracle {
     for (String line : Files.readAllLines(Path.of(args[0]), StandardCharsets.UTF_8)) {
       String[] f = line.split("\t", -1);
       switch (f[1]) {
+        case "reject": {
+          try {
+            util.parse(f[3], f[2].isEmpty() ? "ZZ" : f[2]);
+            throw new IllegalStateException("Expected reference rejection: " + f[0]);
+          } catch (NumberParseException ex) {
+            output.add(f[0] + "\treject\t" + ex.getErrorType().name());
+          }
+          break;
+        }
         case "phone": {
           PhoneNumber p = util.parse(f[3], f[2].isEmpty() ? "ZZ" : f[2]);
           String region = util.getRegionCodeForNumber(p);

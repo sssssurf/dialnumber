@@ -5,27 +5,9 @@
 ///|
 test "arbitrary junk never panics" {
   let junk : Array[String] = [
-    "",
-    " ",
-    "+",
-    "+++",
-    "0000",
-    "----",
-    "()()()",
-    "／／／",
-    "＋１２３４５",
-    "🦀🦀",
-    "0123456789",
-    "ext",
-    "x",
-    "#",
-    ";ext=",
-    "tel:",
-    "tel:;ext=",
-    "tel:;phone-context=",
-    "+1",
-    "+99999999999999999999999999",
-    "1234567890123456789012345678901234567890",
+    "", " ", "+", "+++", "0000", "----", "()()()", "／／／", "＋１２３４５",
+    "🦀🦀", "0123456789", "ext", "x", "#", ";ext=", "tel:", "tel:;ext=", "tel:;phone-context=",
+    "+1", "+99999999999999999999999999", "1234567890123456789012345678901234567890",
     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
   ]
   for w in junk {
@@ -52,37 +34,35 @@ test "arbitrary junk never panics" {
 }
 
 ///|
-test "a very long national number is handled" {
+test "over-limit raw input rejects and oversized public values stay invalid" {
   let buf = StringBuilder()
   for i = 0; i < 500; i = i + 1 {
     buf.write_char('9')
   }
   let long = "+1" + buf.to_string()
-  match @dialnumber.parse(long, "") {
-    Some(pn) => {
-      assert_eq(pn.country_code, 1)
-      assert_false(@dialnumber.is_possible(pn))
-      assert_false(@dialnumber.is_valid(pn))
-      assert_eq(@dialnumber.possible_types(pn).length(), 0)
-      assert_true(@dialnumber.region_of_number(pn) is None)
-      assert_true(@dialnumber.number_type(pn) is None)
-    }
-    None => assert_true(false)
-  }
+  assert_true(@dialnumber.parse(long, "") is None)
+  let pn = @dialnumber.PhoneNumber::new(1, buf.to_string())
+  assert_false(@dialnumber.is_possible(pn))
+  assert_false(@dialnumber.is_valid(pn))
+  assert_eq(@dialnumber.possible_types(pn).length(), 0)
+  assert_true(@dialnumber.region_of_number(pn) is None)
+  assert_true(@dialnumber.number_type(pn) is None)
 }
 
 ///|
-test "a long run of separators between digits is fine" {
+test "separator-heavy raw input follows the same length budget" {
   let buf = StringBuilder()
   buf.write_string("+86")
   for i = 0; i < 200; i = i + 1 {
     buf.write_string(" - . ")
   }
   buf.write_string("13123456789")
-  match @dialnumber.parse(buf.to_string(), "") {
-    Some(pn) => assert_eq(@dialnumber.format_e164(pn), "+8613123456789")
-    None => assert_true(false)
-  }
+  assert_true(@dialnumber.parse(buf.to_string(), "") is None)
+  let in_budget = "+86" + " - . ".repeat(40) + "13123456789"
+  assert_eq(
+    @dialnumber.format_e164(@dialnumber.parse(in_budget, "").unwrap()),
+    "+8613123456789",
+  )
 }
 
 ///|

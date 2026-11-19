@@ -63,6 +63,11 @@ fn main {
     displayed = typed.input_digit(c)
   }
   println("network_typing: " + displayed)
+  println("network_backspace: " + typed.remove_last_digit())
+  println(
+    "over_limit_input_rejected: " +
+    (@dialnumber.parse(" ".repeat(239) + "+12015550123", "US") is None).to_string(),
+  )
   println(
     "network_local_possible: " +
     @dialnumber.is_possible(@dialnumber.PhoneNumber::new(979, "12345678")).to_string(),

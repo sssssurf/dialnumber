@@ -146,7 +146,8 @@ fn strip_national_prefix(r : Region, digits : String) -> String {
   if pattern == "" {
     return digits
   }
-  let matched = match match_national_prefix(pattern, digits) {
+  let matched = match
+    match_national_prefix(pattern, digits, cached=Some(r.prefix_rule)) {
     None => return digits
     Some(v) => v
   }
@@ -184,7 +185,12 @@ fn strip_national_prefix(r : Region, digits : String) -> String {
 /// `default_region` is the ISO 3166-1 alpha-2 code the number should be read in
 /// when it does not carry a `+` or an international prefix. Pass `""` to accept
 /// only self-describing numbers. Returns None when the input cannot be read.
+/// Raw input is limited to 250 UTF-16 code units, before trimming, matching
+/// the original reference parser's input limit.
 pub fn parse(input : String, default_region : String) -> PhoneNumber? {
+  if input.length() > 250 {
+    return None
+  }
   let (main, ext) = split_extension(input)
   let cs = chars_of(trim(main))
   if cs.length() == 0 {
@@ -210,7 +216,8 @@ pub fn parse(input : String, default_region : String) -> PhoneNumber? {
     match find_region(default_region) {
       Some(r) =>
         if r.idd_pattern != "" {
-          match match_national_prefix(r.idd_pattern, body) {
+          match
+            match_national_prefix(r.idd_pattern, body, cached=Some(r.idd_rule)) {
             Some(prefix) if prefix.end > 0 =>
               match drop(body, prefix.end) {
                 Some(after) =>

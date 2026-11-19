@@ -6,7 +6,7 @@ This is separate from the broader libphonenumber-js corpus.
 
 Artifact SHA-256: c280b2493de61a070edbc9a83e27023dfd0453cc1295601a48802af907926bcd.
 
-- 118 complete phone scenarios, including all 32 transform plans,
+- 119 complete phone scenarios, including all 32 transform plans,
   real national-input transform cases, international dial-out/carrier prefixes,
   default-region country codes, extensions, local-only/invalid NANP cases,
   and all nine non-geographic networks.
@@ -20,6 +20,8 @@ Artifact SHA-256: c280b2493de61a070edbc9a83e27023dfd0453cc1295601a48802af907926b
 - Six number comparisons use PhoneNumberUtil.isNumberMatch directly and agree,
   including different explicit calling codes, unknown code, short suffix,
   missing extension and conflicting extensions.
+- Three over-limit raw inputs are rejected with the original TOO_LONG reason;
+  a padded 250-unit input is accepted and its full phone workflow is checked.
 - Six original AsYouTypeFormatter traces record every keystroke. Completed
   outputs and digits agree. The following intermediate presentation differences
   remain explicit, with both values retained and tested:

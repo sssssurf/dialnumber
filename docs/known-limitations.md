@@ -51,13 +51,13 @@ the grammar in [RFC 3966 verified erratum 203](https://www.rfc-editor.org/errata
    pattern API is bounded and does not expose a general regex capture interface.
 2. Incremental formatting is intentionally smaller than libphonenumber's full
    interactive editor. It ignores non-digit keystrokes except an initial +; it
-   does not provide deletion/cursor editing, vanity-letter conversion or all
+   provides last-digit deletion but not cursor editing, vanity-letter conversion or all
    operator-specific dialling prefixes. Six traces are coverage, not universal parity.
 3. Published international grouping separators are preserved. The JavaScript
    oracle normalizes some separators to spaces; E.164 digits agree.
 4. Validation tests range rules, not existence, reachability or ownership of a line.
 5. The broad independent corpus uses libphonenumber-js 1.11.20/max. A separate
-   130-scenario recording executes the original Java 9.0.17 runtime directly;
+   134-scenario recording executes the original Java 9.0.17 runtime directly;
    All known metadata, reference semantic and formatting differences remain in the
    committed corpus, explicitly explained in compatibility.md.
 
@@ -77,3 +77,8 @@ and independent JS corpora assert the recorded network grouping results.
 International network AsYouType preserves every entered digit and groups
 supported prefixes; the existing six full Java typing traces and their 13
 documented intermediate-layout differences remain.
+
+Version 0.13.0 adds remove_last_digit and memoized current output. Human-input
+parsing limits raw text to 250 UTF-16 units before trimming, changing older
+behavior for very long padded inputs to match original Java. The recording
+includes the accepted boundary and three TOO_LONG cases.
