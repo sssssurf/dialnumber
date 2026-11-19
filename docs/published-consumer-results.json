@@ -1,5 +1,56 @@
 {
+  "date": "2026-11-19T02:33:01.384Z",
   "module": "sssssurf/dialnumber",
   "version": "0.13.0",
-  "status": "awaiting registry publication and consumer verification"
+  "source": "Mooncakes registry dependency in a separate module; no local path override",
+  "status": "passed",
+  "resolvedVersion": "0.13.0",
+  "output": [
+    "e164: +442079460958",
+    "valid: true",
+    "network_region: 001",
+    "network_valid: true",
+    "different_country_match: none",
+    "as_you_type: 020 7946 0958",
+    "numeric_context: +4930123456",
+    "explicit_authority: +12015550123"
+  ],
+  "reviewOutput": [
+    "argentina_e164: +5491123456789",
+    "argentina_valid: true",
+    "argentina_national: 011 15-2345-6789",
+    "national_roundtrip: true",
+    "overflow_well_formed: false",
+    "overflow_matches_empty: false",
+    "uppercase_mandatory_rejected: true",
+    "duplicate_parameter_rejected: true",
+    "carrier_idd_e164: +442079460958",
+    "extension_display: +44 20 7946 0958 x0042",
+    "unassigned_length_possible: true",
+    "canada_local_uan_valid: true",
+    "context_does_not_dial_out: true",
+    "global_uri_not_rewritten: true",
+    "canonical_tel_parameters: tel:+442079460958;isub=A[8];route=a%2Bb",
+    "network_international: +800 1234 5678 ext. 0042",
+    "network_national: 1234 5678 ext. 0042",
+    "network_typing: +800 1234 5678",
+    "network_backspace: +800 1234 567",
+    "over_limit_input_rejected: true",
+    "network_local_possible: true"
+  ],
+  "installedDependency": {
+    "name": "sssssurf/dialnumber",
+    "version": "0.13.0",
+    "source": {
+      "kind": "registry"
+    },
+    "workspace_member": false
+  },
+  "archiveSha256": "c8f808a99fd7aea93c8714ebe347b56d50c82093ede2f02a6df050abc36b793b",
+  "registryChecksumMatches": true,
+  "sourceFilesCompared": 50,
+  "compiledSourceSha256": "8f8a7a4a692088457593c25282b64853d425ad934779edf5fd44f82ae371514c",
+  "releaseCodeCommit": "d6cb10d0b8e67fd8ba9d9723a52f6c1b61923ca5",
+  "releaseCodeCi": "https://github.com/sssssurf/dialnumber/actions/runs/44444643561",
+  "releaseCodeCiStatus": "success"
 }
